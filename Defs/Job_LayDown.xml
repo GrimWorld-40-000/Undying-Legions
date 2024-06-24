@@ -1,0 +1,11 @@
+<Defs>
+
+    <JobDef>
+        <defName>GW40K_Job_LayDown</defName>
+        <driverClass>GW40K_Necrons.JobDriver_LayDownCasket</driverClass>
+        <reportString>lying down.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+        <neverShowWeapon>true</neverShowWeapon>
+      </JobDef>
+</Defs>

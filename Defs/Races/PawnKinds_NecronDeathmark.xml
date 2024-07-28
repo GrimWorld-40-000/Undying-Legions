@@ -1,0 +1,25 @@
+<Defs>
+    <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
+        <defName>GW40K_NecronDeathmarkPawnKind_Colonist</defName>
+        <label>necron deathmark</label>
+        <defaultFactionType>PlayerColony</defaultFactionType>
+        <race>GW40K_NecronDeathmark</race>
+        <combatPower>60</combatPower>
+        <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+        <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+        <techHediffsChance>0.03</techHediffsChance>
+        <techHediffsMoney>50~800</techHediffsMoney>
+        <techHediffsTags>
+          <li>Poor</li>
+          <li>Simple</li>
+          <li>ImplantEmpireCommon</li>
+        </techHediffsTags>
+        <techHediffsDisallowTags>
+          <li>PainCauser</li>
+        </techHediffsDisallowTags>
+        <initialResistanceRange>13~21</initialResistanceRange>
+        <abilities>
+          <li>GW40K_Necron_Teleport</li>
+        </abilities>
+      </PawnKindDef>
+</Defs>

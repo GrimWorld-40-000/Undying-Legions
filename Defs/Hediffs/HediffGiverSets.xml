@@ -1,0 +1,18 @@
+<Defs>
+    <HediffGiverSetDef>
+        <defName>GW40K_Necron_HediffGiverSet</defName>
+        <hediffGivers>
+            <li Class="GW40K_Necrons.HediffGiverNecron">
+                <hediff>GW40K_Necron_TiredHediff</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+    <HediffGiverSetDef>
+        <defName>GW40K_Necron_Resurrection_HediffGiverSet</defName>
+        <hediffGivers>
+            <li Class="GW40K_Necrons.HediffGiver_Resurrection">
+                <hediff>GW40K_Necron_ResurrectionHediff</hediff>
+            </li>
+        </hediffGivers>
+    </HediffGiverSetDef>
+</Defs>

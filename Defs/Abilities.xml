@@ -1,0 +1,100 @@
+<Defs>
+    <AbilityDef>
+        <defName>GW40K_Necron_SwapPlaces</defName>
+        <label>swap</label>
+        <description>no description needed</description>
+        <iconPath>Things/Projectile/LauncherShot</iconPath>
+        <cooldownTicksRange>2800</cooldownTicksRange>
+        <aiCanUse>true</aiCanUse>
+        <verbProperties>
+          <verbClass>GW40K_Necrons.Verb_CastOnNecron</verbClass>
+          <range>27.9</range>
+          <warmupTime>3</warmupTime> 
+          <targetParams>
+            <canTargetLocations>false</canTargetLocations>
+            <canTargetAnimals>false</canTargetAnimals>
+            <canTargetSelf>false</canTargetSelf>
+            <canTargetBuildings>false</canTargetBuildings>
+            <canTargetMechs>false</canTargetMechs>
+          </targetParams>
+        </verbProperties>
+        <comps>
+          <li Class="GW40K_Necrons.SwapCompAbilityProperties"></li>
+        </comps>
+      </AbilityDef>
+
+      <AbilityDef>
+        <defName>GW40K_Necron_Jump</defName>
+        <label>jump</label>
+        <description>no description needed</description>
+        <iconPath>Things/Projectile/LauncherShot</iconPath>
+        <cooldownTicksRange>2800</cooldownTicksRange>
+        <aiCanUse>true</aiCanUse>
+        <verbProperties>
+          <verbClass>Verb_CastAbility</verbClass>
+          <range>27.9</range>
+          <warmupTime>3</warmupTime> 
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+            <canTargetPawns>false</canTargetPawns>
+            <canTargetAnimals>false</canTargetAnimals>
+            <canTargetSelf>false</canTargetSelf>
+            <canTargetBuildings>false</canTargetBuildings>
+            <canTargetMechs>false</canTargetMechs>
+          </targetParams>
+        </verbProperties>
+        <comps>
+          <li Class="GW40K_Necrons.JumpAbilityProperties"></li>
+        </comps>
+      </AbilityDef>
+
+      <AbilityDef>
+        <defName>GW40K_Necron_Teleport</defName>
+        <label>teleport</label>
+        <description>no description needed</description>
+        <iconPath>Things/Projectile/LauncherShot</iconPath>
+        <cooldownTicksRange>2800</cooldownTicksRange>
+        <aiCanUse>true</aiCanUse>
+        <verbProperties>
+          <verbClass>Verb_CastAbility</verbClass>
+          <range>27.9</range>
+          <warmupTime>1</warmupTime> 
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+            <canTargetPawns>false</canTargetPawns>
+            <canTargetAnimals>false</canTargetAnimals>
+            <canTargetSelf>false</canTargetSelf>
+            <canTargetBuildings>false</canTargetBuildings>
+            <canTargetMechs>false</canTargetMechs>
+          </targetParams>
+        </verbProperties>
+        <comps>
+          <li Class="GW40K_Necrons.TeleportAbilityProperties"></li>
+        </comps>
+      </AbilityDef>
+
+      <AbilityDef>
+        <defName>GW40K_Necron_Judge</defName>
+        <label>judge</label>
+        <description>no description needed</description>
+        <iconPath>Things/Projectile/LauncherShot</iconPath>
+        <cooldownTicksRange>2800</cooldownTicksRange>
+        <aiCanUse>false</aiCanUse>
+        <verbProperties>
+          <verbClass>Verb_CastAbility</verbClass>
+          <range>11.9</range>
+          <warmupTime>1</warmupTime> 
+          <targetParams>
+            <canTargetLocations>false</canTargetLocations>
+            <canTargetPawns>true</canTargetPawns>
+            <canTargetAnimals>false</canTargetAnimals>
+            <canTargetSelf>false</canTargetSelf>
+            <canTargetBuildings>false</canTargetBuildings>
+            <canTargetMechs>false</canTargetMechs>
+          </targetParams>
+        </verbProperties>
+        <comps>
+          <li Class="GW40K_Necrons.JudgeAbilityProperties"></li>
+        </comps>
+      </AbilityDef>
+</Defs>

@@ -1,0 +1,24 @@
+<Defs>
+<HediffDef>
+        <defName>GW40K_Necron_HealingHediff</defName>
+        <label>healing</label>
+        <description>dddd.</description>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <hediffClass>HediffWithComps</hediffClass>
+        <stages>
+            <li>
+              <naturalHealingFactor>9999</naturalHealingFactor>
+              <statOffsets>
+                <InjuryHealingFactor>9999</InjuryHealingFactor>
+              </statOffsets>
+            </li>
+          </stages>
+        <comps>
+          <li Class="HediffCompProperties_Disappears">
+            <compClass>HediffComp_Disappears</compClass>
+            <disappearsAfterTicks>300</disappearsAfterTicks>
+            <showRemainingTime>true</showRemainingTime>
+          </li>
+        </comps>
+      </HediffDef>
+</Defs>

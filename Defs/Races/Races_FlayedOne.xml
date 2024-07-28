@@ -1,0 +1,57 @@
+<Defs>
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_FlayedOne_HeadType</defName>
+    <graphicPath>GW40K/FlayedOne/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+  </HeadTypeDef>
+
+    <AlienRace.ThingDef_AlienRace ParentName="GW40K_NecronBase">
+        <defName>GW40K_NecronFlayedOne</defName>
+        <label>necron flayed one</label>
+        <description>asd</description>
+        <statBases>
+            <MeleeCooldownFactor>0.8</MeleeCooldownFactor>
+            <AimingDelayFactor>20</AimingDelayFactor>
+            <ShootingAccuracyPawn>0.01</ShootingAccuracyPawn>
+        </statBases>
+        <race>
+          <foodType>CarnivoreAnimal</foodType>
+        </race>
+        <alienRace>
+          <generalSettings>
+            <alienPartGenerator>
+              <headTypes Inherit="False">
+                <li>GW40K_NecronWarrior_HeadType</li>
+              </headTypes>
+              <bodyTypes Inherit="false">
+                <li>Male</li>
+              </bodyTypes>
+            </alienPartGenerator>
+    
+            <forcedRaceTraitEntries>
+              <li>
+                <defName>GW40K_Trait_NecronBloodthirst</defName>
+              </li>
+            </forcedRaceTraitEntries>
+          </generalSettings>
+    
+          <graphicPaths>
+            <skinShader>Cutout</skinShader>
+            <head>
+              <path>GW40K/FlayedOne/Head/</path>
+            </head>
+            <body>
+              <path>GW40K/FlayedOne/Body/</path>
+            </body>
+          </graphicPaths>
+    
+        </alienRace>
+        <modExtensions Inherit="False">
+          <li Class="GW40K_Necrons.NonOrganicPawn">
+            <passion>Melee</passion>
+            <passionType>Major</passionType>
+          </li>
+        </modExtensions>
+      </AlienRace.ThingDef_AlienRace>
+</Defs>

@@ -1,0 +1,32 @@
+<Defs>
+    <TraitDef>
+        <defName>GW30K_Trait_NecronDestroyerRanged</defName>
+        <commonality>0</commonality>
+        <degreeDatas>
+          <li>
+            <label>ranged fighter</label>
+            <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+            <statOffsets>
+                <MeleeCooldownFactor>-20</MeleeCooldownFactor>
+                <MeleeDamageFactor>-20</MeleeDamageFactor>
+            </statOffsets>
+          </li>
+        </degreeDatas>
+      </TraitDef>
+
+      <TraitDef>
+
+        <defName>GW30K_Trait_NecronDestroyerMelee</defName>
+        <commonality>0</commonality>
+        <degreeDatas>
+          <li>
+            <label>melee fighter</label>
+            <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+            <statOffsets>
+                <ShootingAccuracyPawn>-20</ShootingAccuracyPawn>
+                <AimingDelayFactor>-20</AimingDelayFactor>
+            </statOffsets>
+          </li>
+        </degreeDatas>
+      </TraitDef>
+</Defs>

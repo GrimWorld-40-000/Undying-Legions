@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_NecronWarrior_HeadType</defName>
+    <graphicPath>GW40K/NecronWarrior/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+  </HeadTypeDef>
+
+
+  <AlienRace.ThingDef_AlienRace ParentName="Human" Name="GW40K_NecronBase" Abstract="True">
+    <statBases>
+      <MarketValue>1750</MarketValue>
+      <MoveSpeed>4.6</MoveSpeed>
+      <ComfyTemperatureMin>16</ComfyTemperatureMin>
+      <ComfyTemperatureMax>26</ComfyTemperatureMax>
+      <LeatherAmount>75</LeatherAmount>
+      <RoyalFavorValue>1</RoyalFavorValue>
+      <InjuryHealingFactor>0.4</InjuryHealingFactor>
+      <MentalBreakThreshold>0.01</MentalBreakThreshold>
+    </statBases>
+
+    <tools>
+      <li>
+        <label>left fist</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <surpriseAttack>
+          <extraMeleeDamages>
+            <li>
+              <def>Stun</def>
+              <amount>12</amount>
+            </li>
+          </extraMeleeDamages>
+        </surpriseAttack>
+      </li>
+      <li>
+        <label>right fist</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <surpriseAttack>
+          <extraMeleeDamages>
+            <li>
+              <def>Stun</def>
+              <amount>12</amount>
+            </li>
+          </extraMeleeDamages>
+        </surpriseAttack>
+      </li>
+      <li>
+        <label>teeth</label>
+        <capacities>
+          <li>Bite</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+        <chanceFactor>0.07</chanceFactor>
+      </li>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>5</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+    </tools>
+    <race>
+      <lifeExpectancy>500</lifeExpectancy>
+      <leatherDef>Leather_Human</leatherDef>
+      <bloodDef>Filth_MachineBits</bloodDef>
+      <bleedRateFactor>0</bleedRateFactor>
+      <hasMeat>false</hasMeat>
+      <thinkTreeMain>GW40K_Necron_ThinkTree</thinkTreeMain>
+      <nameCategory>HumanStandard</nameCategory>
+      <nameGenerator>NamerPersonCorunan</nameGenerator>
+      <body>GW40K_NecronBody</body>
+      <baseBodySize>1</baseBodySize>
+      <baseHealthScale>1</baseHealthScale>
+      <foodType>OmnivoreHuman</foodType>
+      <fleshType>Normal</fleshType>
+      <gestationPeriodDays>28</gestationPeriodDays>
+      <meatMarketValue>0.2</meatMarketValue>
+      <manhunterOnDamageChance>0.0</manhunterOnDamageChance>
+      <manhunterOnTameFailChance>0.0</manhunterOnTameFailChance>
+      <hasGenders>false</hasGenders>
+      <baseHungerRate>0</baseHungerRate>
+      <litterSizeCurve Inherit="false">
+        <points>
+          <li>(0.5, 0)</li>
+          <li>(1, 1)</li>
+          <li>(1.01, 0.02)</li>
+          <li>(3.5, 0)</li>
+        </points>
+      </litterSizeCurve>
+      <specialShadowData>
+        <volume>(0.3, 0.8, 0.4)</volume>
+        <offset>(0,0,-0.3)</offset>
+      </specialShadowData>
+      <ageGenerationCurve Inherit="false">
+        <points>
+          <li MayRequire="Ludeon.RimWorld.Biotech">(0,0)</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">(0.001,43)</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">(8,86)</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">(12.5,118)</li>  <!-- Exclude 12.5-13 years to avoid spawning pawns who are very close to becoming adults -->
+          <li MayRequire="Ludeon.RimWorld.Biotech">(12.51,0)</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">(13,0)</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">(13.001,122)</li><!-- End exclude -->
+          <li MayRequire="Ludeon.RimWorld.Biotech">(13.999,130)</li>
+          <li>(14,0)</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">(14.001,130)</li>
+          <li>(450,100)</li>
+          <li>(500,100)</li>
+          <li>(550,25)</li>
+          <li>(600,5)</li>
+          <li>(700,2)</li>
+          <li>(800,1)</li>
+          <li>(999,0)</li>
+        </points>
+      </ageGenerationCurve>
+      <hediffGiverSets Inherit="False">
+        <li>GW40K_Necron_HediffGiverSet</li>
+        <li>GW40K_Necron_Resurrection_HediffGiverSet</li>
+      </hediffGiverSets>
+    </race>
+
+    <ingredient>
+      <mergeCompatibilityTags>
+        <li>HumanMeat</li>
+      </mergeCompatibilityTags>
+    </ingredient>
+    <alienRace>
+      <generalSettings>
+        <humanRecipeImport>true</humanRecipeImport>
+        <allowHumanBios>true</allowHumanBios>
+        <alienPartGenerator>
+          <headOffsetDirectional>
+            <north>
+              <layerOffset>-0.5</layerOffset>
+              <offset>(0.0, 0.1)</offset>
+            </north>
+            <south>
+              <offset>(0.0, 0.1)</offset>
+            </south>
+            <east>
+              <layerOffset>-0.3</layerOffset>
+              <offset>(0.1, 0.1)</offset>
+            </east>
+            <west>
+              <layerOffset>-0.3</layerOffset>
+              <offset>(-0.1, 0.1)</offset>
+            </west>
+          </headOffsetDirectional>
+          <borderScale>2</borderScale>
+          <atlasScale>2</atlasScale>
+          <colorChannels>
+            <li>
+              <name>skin</name>
+              <first Class="ColorGenerator_Options">
+                <options>
+                  <li>
+                    <weight>10</weight>
+                    <only>RGBA(1,1,1)</only>
+                  </li>
+                </options>
+              </first>
+            </li>
+            <li>
+              <name>base</name>
+              <first Class="ColorGenerator_Options">
+                <options>
+                  <li>
+                    <weight>10</weight>
+                    <only>RGBA(1.0,1.0,1.0,1)</only>
+                  </li>
+                </options>
+              </first>
+            </li>
+          </colorChannels>
+        </alienPartGenerator>
+      </generalSettings>
+      
+      <styleSettings>
+        <li>
+          <key>HairDef</key>
+          <value>
+            <hasStyle>false</hasStyle>
+          </value>
+        </li>
+        <li>
+          <key>BeardDef</key>
+          <value>
+            <hasStyle>false</hasStyle>
+            <!-- <styleTags>NoBeard</styleTags> -->
+          </value>
+        </li>
+        <li>
+          <key>TattooDef</key>
+          <value>
+            <hasStyle>false</hasStyle>
+          </value>
+        </li>
+      </styleSettings>
+
+      <thoughtSettings>
+        <canStillReceiveThoughts>
+          <li>GW40K_Thought_HateLiving</li>
+        </canStillReceiveThoughts>
+        <restrictedThoughts>
+          <li>GW40K_Thought_HateLiving</li>
+        </restrictedThoughts>
+      </thoughtSettings>
+
+      <raceRestriction>
+        <blackXenotypeList>
+          <li>Dirtmole</li>
+          <li>Genie</li>
+          <li>Hussar</li>
+          <li>Sanguophage</li>
+          <li>Neanderthal</li>
+          <li>Pigskin</li>
+          <li>Impid</li>
+          <li>Waster</li>
+          <li>Yttakin</li>
+          <li>Highmate</li>
+        </blackXenotypeList>
+
+        <blackGeneList>
+          <li MayRequire="Ludeon.RimWorld.Biotech">Brow_Heavy</li>
+          <li MayRequire="Ludeon.RimWorld.Biotech">FacialRidges</li>
+        </blackGeneList>
+        <blackGeneTags>
+          <li>SkinColor</li>
+          <li>HairColor</li>
+          <li>EyeColor</li>
+          <li>BodyType</li>
+          <li>Ears</li>
+          <li>Nose</li>
+          <li>Jaw</li>
+          <li>Head</li>
+          <li>Headbone</li>
+          <li>HairStyle</li>
+          <li>BeardStyle</li>
+          <li>SkinColorOverride</li>
+          <li>Fur</li>
+          <li>Tail</li>
+        </blackGeneTags>
+        <blackEndoCategories>
+          <li>Melanin</li>
+          <li>HairColor</li>
+          <li>Ears</li>
+          <li>Nose</li>
+          <li>Jaw</li>
+          <li>Head</li>
+          <li>BodyType</li>
+        </blackEndoCategories>
+        <onlyEatRaceRestrictedFood>
+          true
+        </onlyEatRaceRestrictedFood>
+        <whiteFoodList>
+        </whiteFoodList>
+        <apparelList></apparelList>
+        <whiteApparelList></whiteApparelList>
+        <onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
+      </raceRestriction>
+
+    </alienRace>
+    <modExtensions>
+      <li Class="GW40K_Necrons.NonOrganicPawn"></li>
+    </modExtensions>
+  </AlienRace.ThingDef_AlienRace>
+
+  <AlienRace.ThingDef_AlienRace ParentName="GW40K_NecronBase">
+    <defName>GW40K_NecronWarrior</defName>
+    <label>necron warrior</label>
+    <description>asd</description>
+    <alienRace>
+      <generalSettings>
+        <alienPartGenerator>
+          <headTypes Inherit="False">
+            <li>Male_AverageNormal</li>
+            <li>GW40K_NecronWarrior_HeadType</li>
+          </headTypes>
+          <bodyTypes Inherit="false">
+            <li>Male</li>
+          </bodyTypes>
+        </alienPartGenerator>
+
+        <forcedRaceTraitEntries>
+          <li>
+            <defName>GW30K_Trait_BaseNecron</defName>
+          </li>
+        </forcedRaceTraitEntries>
+      </generalSettings>
+
+      <graphicPaths>
+        <skinShader>Cutout</skinShader>
+        <head>
+          <path>GW40K/NecronWarrior/Head/</path>
+        </head>
+        <body>
+          <path>GW40K/NecronWarrior/Body/</path>
+        </body>
+      </graphicPaths>
+
+    </alienRace>
+  </AlienRace.ThingDef_AlienRace>
+</Defs>

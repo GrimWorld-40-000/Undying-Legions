@@ -1,0 +1,30 @@
+<Defs>
+    <HediffDef>
+        <defName>GW40K_Necron_ResurrectionHediff</defName>
+        <label>resurrection protocol</label>
+        <description>dddd.</description>
+        <lethalSeverity>1</lethalSeverity>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <hediffClass>GW40K_Necrons.Hediff_Resurrection</hediffClass>
+        <stages>
+            <li>
+                <minSeverity>0.99</minSeverity>
+                <label></label>
+                <lifeThreatening>true</lifeThreatening>
+                <capMods>
+                  <li>
+                    <capacity>Consciousness</capacity>
+                    <setMax>0.01</setMax>
+                  </li>
+                </capMods>
+              </li>
+        </stages>
+        <comps>
+          <li Class="HediffCompProperties_Disappears">
+            <compClass>HediffComp_Disappears</compClass>
+            <disappearsAfterTicks>60000~120000</disappearsAfterTicks>
+            <showRemainingTime>true</showRemainingTime>
+          </li>
+        </comps>
+      </HediffDef>
+</Defs>

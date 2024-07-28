@@ -1,0 +1,14 @@
+<Defs>
+    <ThoughtDef>
+        <defName>GW40K_Thought_HateLiving</defName>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+        <workerClass>GW40K_Necrons.ThoughtWorker_HateLiving</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+          <li>
+            <label>living organism</label>
+            <baseOpinionOffset>-99</baseOpinionOffset>
+          </li>
+        </stages>
+      </ThoughtDef>
+</Defs>

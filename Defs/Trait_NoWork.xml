@@ -1,0 +1,24 @@
+<Defs>
+    <TraitDef>
+        <defName>GW30K_Trait_BaseNecron</defName>
+        <commonality>0</commonality>
+        <disabledWorkTags>Social, Intellectual, Artistic, Crafting</disabledWorkTags>
+        <degreeDatas>
+          <li>
+            <label>base necron</label>
+            <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+          </li>
+        </degreeDatas>
+      </TraitDef>
+      <TraitDef>
+        <defName>GW30K_Trait_OverlordNecron</defName>
+        <commonality>0</commonality>
+        <disabledWorkTags>ManualDumb</disabledWorkTags>
+        <degreeDatas>
+          <li>
+            <label>overlord necron</label>
+            <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+          </li>
+        </degreeDatas>
+      </TraitDef>
+</Defs>

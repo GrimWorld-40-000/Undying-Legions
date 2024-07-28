@@ -1,0 +1,18 @@
+<Defs>
+    <TraitDef>
+        <defName>GW40K_Trait_NecronBloodthirst</defName>
+        <commonality>0</commonality>
+        <degreeDatas>
+          <li>
+            <label>bloodthirst</label>
+            <description>{PAWN_nameDef} iary weapon.</description>
+            <randomMentalState>Berserk</randomMentalState>
+            <randomMentalStateMtbDaysMoodCurve>
+              <points>
+                <li>(0, 20)</li>
+              </points>
+            </randomMentalStateMtbDaysMoodCurve>
+          </li>
+        </degreeDatas>
+      </TraitDef>
+</Defs>

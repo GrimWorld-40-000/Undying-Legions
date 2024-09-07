@@ -1,0 +1,74 @@
+<Defs>
+
+	<ThingDef ParentName="HatMakeableBase">
+		<defName>GW40k_Necron_Shackle</defName>
+		<label>shackle</label>
+		<description>A shackle.</description>
+		<techLevel>Ultra</techLevel>
+		<graphicData>
+			<texPath>Things/Pawn/Humanlike/Apparel/Headwrap/Headwrap</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<stuffCategories>
+			<li>Fabric</li>
+		</stuffCategories>
+		<costStuffCount>20</costStuffCount>
+		<statBases>
+			<WorkToMake>1400</WorkToMake>
+			<MaxHitPoints>80</MaxHitPoints>
+			<Mass>0.08</Mass>
+			<StuffEffectMultiplierArmor>0.25</StuffEffectMultiplierArmor>
+			<StuffEffectMultiplierInsulation_Cold>0.1</StuffEffectMultiplierInsulation_Cold>
+			<StuffEffectMultiplierInsulation_Heat>0.1</StuffEffectMultiplierInsulation_Heat>
+			<EquipDelay>1.5</EquipDelay>
+		</statBases>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+			<bodyPartGroups>
+				<li>UpperHead</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Pawn/Humanlike/Apparel/Headwrap/Headwrap</wornGraphicPath>
+			<layers>
+				<li>Overhead</li>
+			</layers>
+			<defaultOutfitTags>
+				<li>Worker</li>
+			</defaultOutfitTags>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+		</apparel>
+		<colorGenerator Class="ColorGenerator_StandardApparel"/>
+		<recipeMaker>
+			<displayPriority>135</displayPriority>
+		</recipeMaker>
+		<comps>
+			<li Class="GW40kHediffAura.CompProperties_ApparelGiveHediff">
+				<hediffDef>GW40k_Necron_ShackleHediff</hediffDef>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<HediffDef ParentName="DiseaseBase">
+		<defName>GW40k_Necron_ShackleHediff</defName>
+		<label>shackled</label>
+		<description>Sleep drugs in the bloodstream. Anesthetic renders creatures unconscious.</description>
+		<isBad>false</isBad>
+		<initialSeverity>1</initialSeverity>
+		<maxSeverity>1</maxSeverity>
+		<comps>
+		</comps>
+		<stages>			
+			<li>
+				<painFactor>0</painFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.01</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+</Defs>

@@ -1,0 +1,27 @@
+<Defs>
+
+	<ThingDef ParentName="RockBase">
+		<defName>GW40k_Necron_NecrodemisMineable</defName>
+		<label>necrodemis</label>
+		<description>Rock containing bits of necrodemis.</description>
+		<graphicData>
+			<texPath>Things/Building/Linked/RockFlecked_Atlas</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<color>(68,83,68)</color>
+			<colorTwo>(30,173,25)</colorTwo>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>1500</MaxHitPoints>
+		</statBases>
+		<building>
+			<isResourceRock>true</isResourceRock>
+			<mineableThing>GW40k_Necron_Necrodemis</mineableThing>
+			<mineableYield>40</mineableYield>
+			<mineableScatterCommonality>0.0</mineableScatterCommonality>
+			<mineableScatterLumpSizeRange>1~1</mineableScatterLumpSizeRange>
+			<veinMineable>true</veinMineable>
+		</building>
+	</ThingDef>
+
+</Defs>

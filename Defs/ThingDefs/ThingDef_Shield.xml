@@ -1,0 +1,108 @@
+<Defs>
+
+	<ThingDef ParentName="GWShieldBase" Name="GWNecronShieldBase" Abstract="true">
+		<description>Necron Shield</description>
+		<apparel>
+			<drawData>
+				<defaultData>
+					<layer>75</layer> <!--70-77 is over helmet and under gun-->
+				</defaultData>
+				<dataNorth>
+					<offset>(0.0, -0.4, 0.1)</offset>
+				</dataNorth>
+				<dataSouth>
+					<offset>(0.0, 0.0, 0.0)</offset>
+				</dataSouth>
+                <dataWest>
+                    <offset>(-0.25, 0.0, 0.0)</offset>
+                </dataWest>
+                <dataEast>
+                    <offset>(0.25, 0.0, 0.0)</offset>
+                </dataEast>
+                <scale>1.0</scale>
+                <childScale>1.0</childScale>
+            </drawData>
+		</apparel>
+		<statBases>
+			<WorkToMake>15000</WorkToMake>
+			<MaxHitPoints>2000</MaxHitPoints>
+		</statBases>
+		<recipeMaker>
+			<recipeUsers>
+				<li>FabricationBench</li>
+			</recipeUsers>
+		</recipeMaker>
+	</ThingDef>
+	
+	<ThingDef ParentName="GWNecronShieldBase">
+		<defName>GM40k_Necron_Shield</defName>
+		<label>necron shield</label>
+		<graphicData>
+			<texPath>Things/Items/NecronWeapons/Shield</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>Cutout</shaderType>
+		</graphicData>
+		<comps>
+			<li Class="GWParryShield.CompProperties_GW_Parryable">
+				<parryHediff>GW40k_Necron_ShieldParry</parryHediff><!-- the parry hediff-->
+				<parryChance>0.30</parryChance> <!-- 0.20 = 20% -->
+				<parryWindow>30</parryWindow>
+				<parryCooldown>90</parryCooldown>
+			</li>
+		</comps>
+		<costStuffCount>200</costStuffCount>
+		<costList>
+			<ComponentSpacer>15</ComponentSpacer>
+			<ComponentIndustrial>30</ComponentIndustrial>
+			<GW_ComponentRelic>1</GW_ComponentRelic>
+			<Plasteel>100</Plasteel>
+			<Steel>230</Steel>
+			<Gold>10</Gold>
+			<HP_Ceramite>100</HP_Ceramite>
+			<HP_Adamantium>90</HP_Adamantium>
+			<HP_Auramite>20</HP_Auramite>
+		</costList>
+		<stuffCategories Inherit="False">
+			<li>Imperial_Metals</li>
+		</stuffCategories>
+		<statBases>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+			<Mass>7</Mass>
+			<Bulk MayRequire="CETeam.CombatExtended">8</Bulk>
+			<WornBulk MayRequire="CETeam.CombatExtended">5</WornBulk>
+		</statBases>
+		<equippedStatOffsets>
+			<ReloadSpeed MayRequire="CETeam.CombatExtended">-0.2</ReloadSpeed>
+			<MeleeHitChance>-1</MeleeHitChance>
+			<ShootingAccuracyPawn>-0.15</ShootingAccuracyPawn>
+			<AimingAccuracy MayRequire="CETeam.CombatExtended">-0.08</AimingAccuracy>
+			<Suppressability MayRequire="CETeam.CombatExtended">-0.25</Suppressability>
+			<MeleeCritChance MayRequire="CETeam.CombatExtended">-0.05</MeleeCritChance>
+			<MeleeParryChance MayRequire="CETeam.CombatExtended">1.0</MeleeParryChance>
+		</equippedStatOffsets>
+		<apparel>			
+			<!-- <wornGraphicPath>Things/Weapons/Shield/PraesidiumShield</wornGraphicPath> -->
+			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
+			<tags>
+				<li>GW_Necron_Shield</li>
+			</tags>
+		</apparel>
+		<modExtensions>
+			<!-- <li Class="VFECore.ApparelDrawPosExtension"> -->
+				<!-- <isUnifiedApparel>true</isUnifiedApparel> -->
+				<!-- <hideHead>false</hideHead> -->
+			<!-- </li> -->
+			<li Class="CombatExtended.ShieldDefExtension" MayRequire="CETeam.CombatExtended">
+				<shieldCoverage>
+					<li>Hands</li>
+					<li>Arms</li>
+					<li>Shoulders</li>
+					<li>Torso</li>
+					<li>Neck</li>
+				</shieldCoverage>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+
+</Defs>

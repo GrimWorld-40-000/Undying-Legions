@@ -1,0 +1,89 @@
+<Defs>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>GW40k_Necron_Component</defName>
+		<label>black component</label>
+		<description>necron component</description>
+		<possessionCount>2</possessionCount>
+		<graphicData>
+			<texPath>Things/Item/Resource/ComponentIndustrial</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<soundInteract>Metal_Drop</soundInteract>
+		<soundDrop>Standard_Drop</soundDrop>
+		<stackLimit>50</stackLimit>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<statBases>
+			<MaxHitPoints>70</MaxHitPoints>
+			<MarketValue>32</MarketValue>
+			<Mass>0.6</Mass>
+			<Flammability>0.6</Flammability>
+			<DeteriorationRate>2.0</DeteriorationRate>
+		</statBases>
+		<intricate>true</intricate>
+		<thingCategories>
+			<li>Manufactured</li>
+		</thingCategories>
+		<allowedArchonexusCount>10</allowedArchonexusCount>
+	</ThingDef>
+	
+	<ThingDef ParentName="OrganicProductBase">
+		<defName>GW40k_Necron_Necrodemis</defName>
+		<label>necrodemis</label>
+		<description>necrodemis</description>
+		<possessionCount>10</possessionCount>
+		<graphicData>
+			<texPath>Things/Items/Necrodermis</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>8.0</MarketValue>
+			<Mass>0.025</Mass>
+			<Nutrition>0.05</Nutrition>
+			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+		</statBases>
+		<ingestible>
+			<foodType>Processed</foodType>
+			<preferability>MealAwful</preferability>
+			<ingestEffect>EatVegetarian</ingestEffect>
+			<ingestSound>Meal_Eat</ingestSound>
+			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
+			<babiesCanIngest>false</babiesCanIngest>
+			<outcomeDoers>
+				<li Class="NecronComp.IngestionOutcomeDoer_GiveHediffNecron">
+					<hediffDef>Plague</hediffDef>
+					<severity>0.15</severity>
+					<raceException>
+						<li>GW40K_NecronOverlord</li>
+						<li>GW40K_NecronPraetorian</li>
+						<li>GW40K_NecronLychGuard</li>
+						<li>GW40K_NecronFlayedOne</li>
+						<li>GW40K_NecronDestroyer</li>
+						<li>GW40K_NecronDeathmark</li>
+					</raceException>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<thingCategories>
+			<li>Manufactured</li>
+		</thingCategories>
+		<allowedArchonexusCount>150</allowedArchonexusCount>
+		<comps>
+			<li Class="NecronComp.CompProperties_HediffAura">
+				<radius>3</radius>
+				<hediffDef>Plague</hediffDef>
+				<severityPerTrigger>0.1</severityPerTrigger>
+				<raceException>
+					<li>GW40K_NecronOverlord</li>
+					<li>GW40K_NecronPraetorian</li>
+					<li>GW40K_NecronLychGuard</li>
+					<li>GW40K_NecronFlayedOne</li>
+					<li>GW40K_NecronDestroyer</li>
+					<li>GW40K_NecronDeathmark</li>
+				</raceException>
+				<interval>250</interval>
+			</li>
+		</comps>
+	</ThingDef>
+	
+</Defs>

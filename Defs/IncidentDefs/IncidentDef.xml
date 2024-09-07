@@ -1,0 +1,29 @@
+<Defs>
+
+	<IncidentDef>
+    <defName>GW40k_Necron_NecrodemisSpread</defName>
+    <label>necrodemis spread</label>
+    <category>Misc</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>NecronComp.IncidentWorker_NecrodemisInfection</workerClass>
+    <baseChance>1.0</baseChance>
+    <letterLabel>necrodemis spread</letterLabel>
+    <letterText>some ore on the map has turned into necrodemis</letterText>
+    <letterDef>NegativeEvent</letterDef>
+	<modExtensions>
+		<li Class="NecronComp.ModExtension_NecrodemisInfection">
+			<countPerTrigger>13</countPerTrigger>
+			<replaceWith>GW40k_Necron_NecrodemisMineable</replaceWith>
+			<excludedThings>
+				<li>MineablePlasteel</li>
+				<li>MineableComponentsIndustrial</li>
+				<li>MineableHP_Adamantium</li>
+				<li>MineableHP_Auramite</li>
+			</excludedThings>
+		</li>
+	</modExtensions>
+  </IncidentDef>
+
+</Defs>

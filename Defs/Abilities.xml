@@ -1,100 +1,144 @@
 <Defs>
-    <AbilityDef>
-        <defName>GW40K_Necron_SwapPlaces</defName>
-        <label>swap</label>
-        <description>no description needed</description>
-        <iconPath>Things/Projectile/LauncherShot</iconPath>
-        <cooldownTicksRange>2800</cooldownTicksRange>
-        <aiCanUse>true</aiCanUse>
-        <verbProperties>
-          <verbClass>GW40K_Necrons.Verb_CastOnNecron</verbClass>
-          <range>27.9</range>
-          <warmupTime>3</warmupTime> 
-          <targetParams>
-            <canTargetLocations>false</canTargetLocations>
-            <canTargetAnimals>false</canTargetAnimals>
-            <canTargetSelf>false</canTargetSelf>
-            <canTargetBuildings>false</canTargetBuildings>
-            <canTargetMechs>false</canTargetMechs>
-          </targetParams>
-        </verbProperties>
-        <comps>
-          <li Class="GW40K_Necrons.SwapCompAbilityProperties"></li>
-        </comps>
-      </AbilityDef>
+	<AbilityDef>
+		<defName>GW40K_Necron_SwapPlaces</defName>
+		<label>swap</label>
+		<description>no description needed</description>
+		<iconPath>Things/Projectile/LauncherShot</iconPath>
+		<cooldownTicksRange>2800</cooldownTicksRange>
+		<aiCanUse>true</aiCanUse>
+		<verbProperties>
+			<verbClass>GW40K_Necrons.Verb_CastOnNecron</verbClass>
+			<range>27.9</range>
+			<warmupTime>3</warmupTime>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+				<canTargetAnimals>false</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>false</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.SwapCompAbilityProperties"/>
+		</comps>
+	</AbilityDef>
 
-      <AbilityDef>
-        <defName>GW40K_Necron_Jump</defName>
-        <label>jump</label>
-        <description>no description needed</description>
-        <iconPath>Things/Projectile/LauncherShot</iconPath>
-        <cooldownTicksRange>2800</cooldownTicksRange>
-        <aiCanUse>true</aiCanUse>
-        <verbProperties>
-          <verbClass>Verb_CastAbility</verbClass>
-          <range>27.9</range>
-          <warmupTime>3</warmupTime> 
-          <targetParams>
-            <canTargetLocations>true</canTargetLocations>
-            <canTargetPawns>false</canTargetPawns>
-            <canTargetAnimals>false</canTargetAnimals>
-            <canTargetSelf>false</canTargetSelf>
-            <canTargetBuildings>false</canTargetBuildings>
-            <canTargetMechs>false</canTargetMechs>
-          </targetParams>
-        </verbProperties>
-        <comps>
-          <li Class="GW40K_Necrons.JumpAbilityProperties"></li>
-        </comps>
-      </AbilityDef>
+	<AbilityDef>
+		<defName>GW40K_Necron_Jump</defName>
+		<label>jump</label>
+		<description>no description needed</description>
+		<iconPath>Things/Projectile/LauncherShot</iconPath>
+		<cooldownTicksRange>2800</cooldownTicksRange>
+		<aiCanUse>true</aiCanUse>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>27.9</range>
+			<warmupTime>3</warmupTime>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>false</canTargetPawns>
+				<canTargetAnimals>false</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>false</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.JumpAbilityProperties"/>
+		</comps>
+	</AbilityDef>
 
-      <AbilityDef>
-        <defName>GW40K_Necron_Teleport</defName>
-        <label>teleport</label>
-        <description>no description needed</description>
-        <iconPath>Things/Projectile/LauncherShot</iconPath>
-        <cooldownTicksRange>2800</cooldownTicksRange>
-        <aiCanUse>true</aiCanUse>
-        <verbProperties>
-          <verbClass>Verb_CastAbility</verbClass>
-          <range>27.9</range>
-          <warmupTime>1</warmupTime> 
-          <targetParams>
-            <canTargetLocations>true</canTargetLocations>
-            <canTargetPawns>false</canTargetPawns>
-            <canTargetAnimals>false</canTargetAnimals>
-            <canTargetSelf>false</canTargetSelf>
-            <canTargetBuildings>false</canTargetBuildings>
-            <canTargetMechs>false</canTargetMechs>
-          </targetParams>
-        </verbProperties>
-        <comps>
-          <li Class="GW40K_Necrons.TeleportAbilityProperties"></li>
-        </comps>
-      </AbilityDef>
+	<AbilityDef>
+		<defName>GW40K_Necron_Teleport</defName>
+		<label>teleport</label>
+		<description>no description needed</description>
+		<iconPath>Things/Projectile/LauncherShot</iconPath>
+		<cooldownTicksRange>2800</cooldownTicksRange>
+		<aiCanUse>true</aiCanUse>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>27.9</range>
+			<warmupTime>1</warmupTime>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>false</canTargetPawns>
+				<canTargetAnimals>false</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>false</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.TeleportAbilityProperties"/>
+		</comps>
+	</AbilityDef>
 
-      <AbilityDef>
-        <defName>GW40K_Necron_Judge</defName>
-        <label>judge</label>
-        <description>no description needed</description>
-        <iconPath>Things/Projectile/LauncherShot</iconPath>
-        <cooldownTicksRange>2800</cooldownTicksRange>
-        <aiCanUse>false</aiCanUse>
-        <verbProperties>
-          <verbClass>Verb_CastAbility</verbClass>
-          <range>11.9</range>
-          <warmupTime>1</warmupTime> 
-          <targetParams>
-            <canTargetLocations>false</canTargetLocations>
-            <canTargetPawns>true</canTargetPawns>
-            <canTargetAnimals>false</canTargetAnimals>
-            <canTargetSelf>false</canTargetSelf>
-            <canTargetBuildings>false</canTargetBuildings>
-            <canTargetMechs>false</canTargetMechs>
-          </targetParams>
-        </verbProperties>
-        <comps>
-          <li Class="GW40K_Necrons.JudgeAbilityProperties"></li>
-        </comps>
-      </AbilityDef>
+	<AbilityDef>
+		<defName>GW40K_Necron_Judge</defName>
+		<label>judge</label>
+		<description>no description needed</description>
+		<iconPath>Things/Projectile/LauncherShot</iconPath>
+		<cooldownTicksRange>2800</cooldownTicksRange>
+		<aiCanUse>false</aiCanUse>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>11.9</range>
+			<warmupTime>1</warmupTime>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetAnimals>false</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>false</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.JudgeAbilityProperties"/>
+		</comps>
+	</AbilityDef>
+	  
+	<AbilityDef ParentName="AbilityTouchBase">
+		<defName>GW40k_Necron_Transmute</defName>
+		<label>transmute necrodemis</label>
+		<description>making necrodemis out of stuff</description>
+		<iconPath>Things/Projectile/LauncherShot</iconPath>
+		<cooldownTicksRange>50000</cooldownTicksRange><!-- 20 hours -->
+		<showPsycastEffects>false</showPsycastEffects>
+		<sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+		<displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+		<disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+		<casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<drawAimPie>false</drawAimPie>
+			<warmupTime>2</warmupTime>
+			<range>-1</range>
+			<targetParams>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>true</canTargetBuildings>
+				<canTargetPawns>false</canTargetPawns>
+				<canTargetItems>true</canTargetItems>
+				<thingCategory>Item</thingCategory>
+				<mapObjectTargetsMustBeAutoAttackable>false</mapObjectTargetsMustBeAutoAttackable>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="CompProperties_TransmuteNecron">
+				<failedMessage>Must target steel, Plasteel</failedMessage>
+				<sourcePair>
+					<li>
+						<sourceThing>Steel</sourceThing>
+						<outcomeThing>GW40k_Necron_Necrodemis</outcomeThing>
+						<ratio>3</ratio>
+					</li>
+					<li>
+						<sourceThing>Plasteel</sourceThing>
+						<outcomeThing>GW40k_Necron_Necrodemis</outcomeThing>
+						<ratio>3</ratio>
+					</li>
+				</sourcePair>
+			</li>
+		</comps>
+	</AbilityDef>
 </Defs>

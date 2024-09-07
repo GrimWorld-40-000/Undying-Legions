@@ -1,0 +1,145 @@
+<Defs>
+
+	<ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality" Name="GW40k_Necron_MeleeMakeable" Abstract="True">
+		<techLevel>Ultra</techLevel>
+		<weaponClasses>
+		  <li>Melee</li>
+		</weaponClasses>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
+		<graphicData>
+			<shaderType>Cutout</shaderType>
+		</graphicData>
+		<weaponTags>
+			<li>GW_Necron_Melee</li>
+		</weaponTags>
+		<stuffCategories Inherit="false" />
+		<recipeMaker>
+			<!-- <researchPrerequisite>GW_TotE_CustodesGuard</researchPrerequisite> -->
+			<skillRequirements>
+				<Crafting>10</Crafting>
+			</skillRequirements>
+			<recipeUsers Inherit="false">
+				<li>FabricationBench</li>
+			</recipeUsers>
+			<displayPriority>410</displayPriority>
+		</recipeMaker>
+	</ThingDef>
+	
+	<!-- Hyper Sword -->
+	<ThingDef ParentName="GW40k_Necron_MeleeMakeable">
+		<defName>GW40k_Necron_HyperSword</defName>
+		<label>hyper Sword</label>
+		<description>Hyper_Sword</description>
+		<graphicData>
+			<texPath>Things/Items/NecronWeapons/Hyper_Sword</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.0</drawSize>
+		</graphicData>
+		<uiIconScale>1.0</uiIconScale>				
+		<statBases>
+			<WorkToMake>20000</WorkToMake>
+			<Mass>1.85</Mass>
+		</statBases>
+		<equippedAngleOffset>-30</equippedAngleOffset>
+		<stuffCategories>
+			<!-- <li>Imperial_Metals</li> -->
+		</stuffCategories>
+		<costStuffCount>200</costStuffCount>
+		<costList>
+			<ComponentSpacer>15</ComponentSpacer>
+			<ComponentIndustrial>30</ComponentIndustrial>
+			<GW40k_Necron_Component>5</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
+		</costList>
+		<tools>
+			<li>
+			<label>handle</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2.5</cooldownTime>
+			<armorPenetration>0.6</armorPenetration>
+			</li>
+			<li>
+			<label>point</label>
+			<capacities>
+				<li>Stab</li>
+			</capacities>
+			<power>40</power>
+			<cooldownTime>1.0</cooldownTime>
+			<armorPenetration>1.1</armorPenetration>
+			</li>
+			<li>
+			<label>edge</label>
+			<capacities>
+				<li>Cut</li>
+			</capacities>
+			<power>25</power>
+			<cooldownTime>2</cooldownTime>
+			<armorPenetration>0.8</armorPenetration>
+			</li>
+		</tools>		
+	</ThingDef>
+	
+	<!-- warscythe -->
+	<ThingDef ParentName="GW40k_Necron_MeleeMakeable">
+		<defName>GW40k_Necron_Warscythe</defName>
+		<label>warscythe</label>
+		<description>warscythe</description>
+		<graphicData>
+			<texPath>Things/Items/NecronWeapons/warscythe</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.0</drawSize>
+		</graphicData>
+		<uiIconScale>1.0</uiIconScale>				
+		<statBases>
+			<WorkToMake>20000</WorkToMake>
+			<Mass>1.85</Mass>
+		</statBases>
+		<equippedAngleOffset>-30</equippedAngleOffset>
+		<stuffCategories>
+			<!-- <li>Imperial_Metals</li> -->
+		</stuffCategories>
+		<costStuffCount>200</costStuffCount>
+		<costList>
+			<ComponentSpacer>15</ComponentSpacer>
+			<ComponentIndustrial>30</ComponentIndustrial>
+			<GW40k_Necron_Component>5</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
+		</costList>
+		<tools>
+			<li>
+			<label>handle</label>
+			<capacities>
+				<li>Blunt</li>
+			</capacities>
+			<power>9</power>
+			<cooldownTime>2.5</cooldownTime>
+			<armorPenetration>0.6</armorPenetration>
+			</li>
+			<li>
+			<label>point</label>
+			<capacities>
+				<li>Stab</li>
+			</capacities>
+			<power>40</power>
+			<cooldownTime>1.0</cooldownTime>
+			<armorPenetration>1.1</armorPenetration>
+			</li>
+			<li>
+			<label>edge</label>
+			<capacities>
+				<li>Cut</li>
+			</capacities>
+			<power>25</power>
+			<cooldownTime>2</cooldownTime>
+			<armorPenetration>0.8</armorPenetration>
+			</li>
+		</tools>		
+	</ThingDef>
+
+
+</Defs>

@@ -124,7 +124,7 @@
 			</targetParams>
 		</verbProperties>
 		<comps>
-			<li Class="CompProperties_TransmuteNecron">
+			<li Class="NecronComp.CompProperties_TransmuteNecron">
 				<failedMessage>Must target steel, Plasteel</failedMessage>
 				<sourcePair>
 					<li>

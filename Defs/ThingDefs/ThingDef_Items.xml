@@ -45,6 +45,7 @@
 		<ingestible>
 			<foodType>Processed</foodType>
 			<preferability>MealAwful</preferability>
+			<socialPropernessMatters>true</socialPropernessMatters>
 			<ingestEffect>EatVegetarian</ingestEffect>
 			<ingestSound>Meal_Eat</ingestSound>
 			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>

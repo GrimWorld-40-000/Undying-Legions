@@ -160,6 +160,29 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<modExtensions>
+			<li Class="VFECore.ThingDefExtension">
+				<weaponDraftedDrawOffsets>
+					<north>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</north>
+					<east>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</east>
+					<west>
+						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</west>
+					<south>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</south>
+				</weaponDraftedDrawOffsets>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	
 	<!-- Enmitic_Exterminator -->
@@ -228,6 +251,29 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<modExtensions>
+			<li Class="VFECore.ThingDefExtension">
+				<weaponDraftedDrawOffsets>
+					<north>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</north>
+					<east>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</east>
+					<west>
+						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</west>
+					<south>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</south>
+				</weaponDraftedDrawOffsets>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	
 	<!-- GaussBlaster -->
@@ -296,7 +342,28 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
+			<li Class="VFECore.ThingDefExtension">
+				<weaponDraftedDrawOffsets>
+					<north>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</north>
+					<east>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</east>
+					<west>
+						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</west>
+					<south>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</south>
+				</weaponDraftedDrawOffsets>
+			</li>
 			<li Class="NecronComp.ModExtension_BulletArmorDegrade">
 				<hpDeductAmount>5</hpDeductAmount>
 			</li>
@@ -369,7 +436,28 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
+			<li Class="VFECore.ThingDefExtension">
+				<weaponDraftedDrawOffsets>
+					<north>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</north>
+					<east>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</east>
+					<west>
+						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</west>
+					<south>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</south>
+				</weaponDraftedDrawOffsets>
+			</li>
 			<li Class="NecronComp.ModExtension_BulletArmorDegrade">
 				<hpDeductAmount>5</hpDeductAmount>
 			</li>
@@ -414,7 +502,7 @@
 				<warmupTime>2.5</warmupTime>
 				<range>55</range>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<burstShotCount>1</burstShotCount>
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>11</muzzleFlashScale>
@@ -442,6 +530,29 @@
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<modExtensions>
+			<li Class="VFECore.ThingDefExtension">
+				<weaponDraftedDrawOffsets>
+					<north>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</north>
+					<east>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</east>
+					<west>
+						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</west>
+					<south>
+						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
+						<angleOffset>-25</angleOffset>
+					</south>
+				</weaponDraftedDrawOffsets>
+			</li>
+		</modExtensions>
 	</ThingDef>
 	<ThingDef ParentName="BaseBullet">
 		<defName>GW40k_Necron_TeslaBeam</defName>
@@ -465,7 +576,7 @@
 				<explosionDamageDef>EMP</explosionDamageDef>
 				<impactRadius>2</impactRadius>
 				<targetFriendly>false</targetFriendly>
-				<addFire>true</addFire>
+				<addFire>false</addFire>
 				<bounceRange>8</bounceRange>
 				<maxLifetime>50</maxLifetime>
 				<impactSound>Shot_ChargeRifle</impactSound>

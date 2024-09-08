@@ -42,10 +42,10 @@
 			<Nutrition>0.05</Nutrition>
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
 		</statBases>
+		<socialPropernessMatters>true</socialPropernessMatters>
 		<ingestible>
 			<foodType>Processed</foodType>
-			<preferability>MealAwful</preferability>
-			<socialPropernessMatters>true</socialPropernessMatters>
+			<preferability>MealAwful</preferability>			
 			<ingestEffect>EatVegetarian</ingestEffect>
 			<ingestSound>Meal_Eat</ingestSound>
 			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>

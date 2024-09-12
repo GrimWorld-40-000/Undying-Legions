@@ -81,17 +81,17 @@
 			<MeleeParryChance MayRequire="CETeam.CombatExtended">1.0</MeleeParryChance>
 		</equippedStatOffsets>
 		<apparel>			
-			<!-- <wornGraphicPath>Things/Weapons/Shield/PraesidiumShield</wornGraphicPath> -->
+			<wornGraphicPath>Things/Items/NecronWeapons/Shield/NecronShield</wornGraphicPath>
 			<developmentalStageFilter>Child, Adult</developmentalStageFilter>
 			<tags>
 				<li>GW_Necron_Shield</li>
 			</tags>
 		</apparel>
 		<modExtensions>
-			<!-- <li Class="VFECore.ApparelDrawPosExtension"> -->
-				<!-- <isUnifiedApparel>true</isUnifiedApparel> -->
-				<!-- <hideHead>false</hideHead> -->
-			<!-- </li> -->
+			<li Class="VFECore.ApparelDrawPosExtension">
+				<isUnifiedApparel>true</isUnifiedApparel>
+				<hideHead>false</hideHead>
+			</li>
 			<li Class="CombatExtended.ShieldDefExtension" MayRequire="CETeam.CombatExtended">
 				<shieldCoverage>
 					<li>Hands</li>

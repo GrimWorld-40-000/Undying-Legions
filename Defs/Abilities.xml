@@ -116,7 +116,7 @@
 			<range>-1</range>
 			<targetParams>
 				<canTargetSelf>false</canTargetSelf>
-				<canTargetBuildings>true</canTargetBuildings>
+				<canTargetBuildings>false</canTargetBuildings>
 				<canTargetPawns>false</canTargetPawns>
 				<canTargetItems>true</canTargetItems>
 				<thingCategory>Item</thingCategory>

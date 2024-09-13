@@ -270,9 +270,12 @@
           true
         </onlyEatRaceRestrictedFood>
         <whiteFoodList>
+			<li>GW40k_Necron_Necrodemis</li>
         </whiteFoodList>
         <apparelList></apparelList>
-        <whiteApparelList></whiteApparelList>
+        <whiteApparelList>
+			<li>GM40k_Necron_Shield</li>
+		</whiteApparelList>
         <onlyUseRaceRestrictedApparel>true</onlyUseRaceRestrictedApparel>
       </raceRestriction>
 

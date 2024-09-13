@@ -27,6 +27,15 @@
 		<allowedArchonexusCount>10</allowedArchonexusCount>
 	</ThingDef>
 	
+	<StuffCategoryDef>
+    <defName>Metallic_Necron</defName>
+    <label>necron</label>
+    <noun>necron</noun>
+    <destroySoundSmall>BuildingDestroyed_Metal_Small</destroySoundSmall>
+    <destroySoundMedium>BuildingDestroyed_Metal_Medium</destroySoundMedium>
+    <destroySoundLarge>BuildingDestroyed_Metal_Big</destroySoundLarge>
+  </StuffCategoryDef>
+	
 	<ThingDef ParentName="OrganicProductBase">
 		<defName>GW40k_Necron_Necrodemis</defName>
 		<label>necrodemis</label>
@@ -41,11 +50,37 @@
 			<Mass>0.025</Mass>
 			<Nutrition>0.05</Nutrition>
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+			<StuffPower_Armor_Sharp>0.9</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Blunt>0.45</StuffPower_Armor_Blunt>
+			<StuffPower_Armor_Heat>0.60</StuffPower_Armor_Heat>
+			<StuffPower_Insulation_Cold>3</StuffPower_Insulation_Cold>
+			<StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
+			<SharpDamageMultiplier>1</SharpDamageMultiplier>
+			<BluntDamageMultiplier>1</BluntDamageMultiplier>
 		</statBases>
+		<stuffProps>
+			<categories>
+				<li>Metallic_Necron</li>
+			</categories>
+			<appearance>Metal</appearance>
+			<commonality>1.00</commonality>
+			<constructEffect>ConstructMetal</constructEffect>
+			<color>(105,105,105)</color>
+			<soundImpactBullet>BulletImpact_Metal</soundImpactBullet>
+			<soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
+			<soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
+			<soundImpactMelee>Pawn_Melee_Punch_HitBuilding_Metal</soundImpactMelee>
+			<statFactors>
+				<MaxHitPoints>1</MaxHitPoints>
+				<Beauty>1</Beauty>
+				<Flammability>0.4</Flammability>
+			</statFactors>
+			<canSuggestUseDefaultStuff>true</canSuggestUseDefaultStuff>
+		</stuffProps>
 		<socialPropernessMatters>true</socialPropernessMatters>
 		<ingestible>
 			<foodType>Processed</foodType>
-			<preferability>MealAwful</preferability>			
+			<preferability>MealAwful</preferability>
 			<ingestEffect>EatVegetarian</ingestEffect>
 			<ingestSound>Meal_Eat</ingestSound>
 			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>

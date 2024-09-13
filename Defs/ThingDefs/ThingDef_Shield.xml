@@ -40,7 +40,7 @@
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/Shield</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>Cutout</shaderType>
+			<shaderType>CutoutComplex</shaderType>
 		</graphicData>
 		<comps>
 			<li Class="GWParryShield.CompProperties_GW_Parryable">
@@ -63,7 +63,7 @@
 			<HP_Auramite>20</HP_Auramite>
 		</costList>
 		<stuffCategories Inherit="False">
-			<li>Imperial_Metals</li>
+			<li>Metallic_Necron</li>
 		</stuffCategories>
 		<statBases>
 			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>

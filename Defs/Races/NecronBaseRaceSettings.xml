@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <AlienRace.RaceSettings>
+    <!--<AlienRace.RaceSettings>
         <defName>GW40K_NecronWarriorSettings</defName>
         <pawnKindSettings>
             <alienslavekinds>
@@ -57,5 +57,5 @@
                 </li>
             </alienwandererkinds>
         </pawnKindSettings>
-    </AlienRace.RaceSettings>
+    </AlienRace.RaceSettings> -->
 </Defs>

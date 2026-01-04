@@ -8,7 +8,7 @@
   </HeadTypeDef>
 
 
-  <AlienRace.ThingDef_AlienRace ParentName="Human" Name="GW40K_NecronBase" Abstract="True">
+  <!-- <AlienRace.ThingDef_AlienRace ParentName="Human" Name="GW40K_NecronBase" Abstract="True">
     <statBases>
       <MarketValue>1750</MarketValue>
       <MoveSpeed>4.6</MoveSpeed>
@@ -319,5 +319,5 @@
       </graphicPaths>
 
     </alienRace>
-  </AlienRace.ThingDef_AlienRace>
+  </AlienRace.ThingDef_AlienRace> -->
 </Defs>

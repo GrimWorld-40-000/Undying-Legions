@@ -6,7 +6,7 @@
     <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
   </HeadTypeDef>
 
-    <AlienRace.ThingDef_AlienRace ParentName="GW40K_NecronBase">
+   <!--<AlienRace.ThingDef_AlienRace ParentName="GW40K_NecronBase">
         <defName>GW40K_NecronFlayedOne</defName>
         <label>necron flayed one</label>
         <description>asd</description>
@@ -53,5 +53,5 @@
             <passionType>Major</passionType>
           </li>
         </modExtensions>
-      </AlienRace.ThingDef_AlienRace>
+      </AlienRace.ThingDef_AlienRace> -->
 </Defs>

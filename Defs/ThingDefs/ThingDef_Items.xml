@@ -4,7 +4,6 @@
 		<defName>GW40k_Necron_Component</defName>
 		<label>black component</label>
 		<description>necron component</description>
-		<possessionCount>2</possessionCount>
 		<graphicData>
 			<texPath>Things/Item/Resource/ComponentIndustrial</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>

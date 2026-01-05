@@ -1,52 +1,75 @@
 <Defs>
-    <!--<AlienRace.ThingDef_AlienRace ParentName="GW40K_NecronBase">
-        <defName>GW40K_NecronLychGuard</defName>
-        <label>necron lych guard</label>
-        <description>asd</description>
-        <statBases>
-            <IncomingDamageFactor>0.50</IncomingDamageFactor>
-            <MeleeDodgeChance>0.5</MeleeDodgeChance>
-        </statBases>
-        <race>
-          <foodType>CarnivoreAnimal</foodType>
-          <baseBodySize>50</baseBodySize>
-        </race>
-        <alienRace>
-          <generalSettings>
-            <alienPartGenerator>
-              <headTypes Inherit="False">
-                <li>GW40K_NecronWarrior_HeadType</li>
-              </headTypes>
-              <bodyTypes Inherit="false">
-                <li>Male</li>
-              </bodyTypes>
-            </alienPartGenerator>
-    
-            <forcedRaceTraitEntries>
-                <li>GW30K_Trait_NecronDestroyerMelee</li>
-            </forcedRaceTraitEntries>
-          </generalSettings>
-    
-          <graphicPaths>
-            <skinShader>Cutout</skinShader>
-            <head>
-              <path>GW40K/LychGuard/Head/</path>
-            </head>
-            <body>
-              <path>GW40K/LychGuard/Body/</path>
-            </body>
-          </graphicPaths>
-    
-        </alienRace>
-        <comps>
-            <li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="AnimalBehaviours.CompProperties_Floating">
-            </li>
-        </comps>
-        <modExtensions Inherit="False">
-          <li Class="GW40K_Necrons.NonOrganicPawn">
-            <passion>Melee</passion>
-            <passionType>Minor</passionType>
-          </li>
-        </modExtensions>
-      </AlienRace.ThingDef_AlienRace> -->
+
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_LychGuard_HeadType</defName>
+    <graphicPath>GW40K/LychGuard/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+  </HeadTypeDef>
+
+  <ThingDef Name="GW40K_NecronLychGuard" ParentName="BasePawn">
+    <defName>GW40K_NecronLychGuard</defName>
+    <label>necron lych guard</label>
+    <description>asd</description>
+    <statBases>
+      <MarketValue>1750</MarketValue>
+      <MoveSpeed>4.6</MoveSpeed>
+      <ComfyTemperatureMin>0</ComfyTemperatureMin>
+      <ComfyTemperatureMax>40</ComfyTemperatureMax>
+      <LeatherAmount>0</LeatherAmount>
+      <Wildness>0.0</Wildness>
+      <IncomingDamageFactor>0.50</IncomingDamageFactor>
+      <MeleeDodgeChance>0.5</MeleeDodgeChance>
+    </statBases>
+    <tools>
+      <li>
+        <label>metal fist</label>
+        <labelNoLocation>fist</labelNoLocation>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+      </li>
+      <li>
+        <label>metal fist</label>
+        <labelNoLocation>fist</labelNoLocation>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+      </li>
+    </tools>
+    <race>
+      <thinkTreeMain>Humanlike</thinkTreeMain>
+      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
+      <intelligence>Humanlike</intelligence>
+      <makesFootprints>true</makesFootprints>
+      <lifeExpectancy>10000</lifeExpectancy>
+      <bloodDef>Filth_Blood</bloodDef>
+      <bloodSmearDef>Filth_BloodSmear</bloodSmearDef>
+      <nameCategory>HumanStandard</nameCategory>
+      <body>Human</body>
+      <renderTree>Humanlike</renderTree>
+      <baseBodySize>1</baseBodySize>
+      <baseHealthScale>1.5</baseHealthScale>
+      <foodType>OmnivoreHuman</foodType>
+      <meatMarketValue>0</meatMarketValue>
+      <manhunterOnDamageChance>0</manhunterOnDamageChance>
+      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+      <lifeStageAges>
+        <li>
+          <def>HumanlikeAdult</def>
+          <minAge>0</minAge>
+        </li>
+      </lifeStageAges>
+      <hediffGiverSets>
+        <li>OrganicStandard</li>
+      </hediffGiverSets>
+    </race>
+  </ThingDef>
+
 </Defs>

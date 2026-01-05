@@ -41,7 +41,7 @@
 		</projectile>
 	</ThingDef>
 	
-	<!-- Laser Bullet -->
+	<!-- Laser Bullet 
 	<ThingDef>
 		<defName>GW40k_Necron_BeamGraphic</defName>
 		<thingClass>VanillaWeaponsExpandedLaser.LaserBeamGraphic</thingClass>
@@ -53,8 +53,8 @@
 		<altitudeLayer>MoteOverhead</altitudeLayer>
 		<useHitPoints>False</useHitPoints>
 		<neverMultiSelect>True</neverMultiSelect>
-	</ThingDef>
-	<ThingDef Abstract="True" Name="GW40k_Necron_BulletLaser" ParentName="BaseBullet">
+	</ThingDef>-->
+	<!--<ThingDef Abstract="True" Name="GW40k_Necron_BulletLaser" ParentName="BaseBullet">
 		<thingClass>VanillaWeaponsExpandedLaser.LaserBeam</thingClass>
 		<drawOffscreen>true</drawOffscreen>
 		<beamGraphic>GW40k_Necron_BeamGraphic</beamGraphic>
@@ -73,8 +73,8 @@
 		</projectile>
     
 		<seam>0.25</seam>
-	</ThingDef>  
-	<ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VanillaWeaponsExpandedLaser.LaserBeamDef">
+	</ThingDef> -->
+	<!-- <ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VanillaWeaponsExpandedLaser.LaserBeamDef"> 
 		<defName>GW40k_Necron_Laser</defName>
 		<label>Necron Beam</label>
 		<description>beam</description>
@@ -85,16 +85,16 @@
 		<causefireChance>0</causefireChance>
 		<beamWidth>1.5</beamWidth>
 		<lifetime>60</lifetime>
-		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
+		<explosionEffect>Ring_ExpandY</explosionEffect>
 		<projectile>
 			<damageDef>Cut</damageDef>
 			<damageAmountBase>40</damageAmountBase>
 			<armorPenetrationBase>2.10</armorPenetrationBase>
 			<stoppingPower>3</stoppingPower>
 		</projectile>
-	</ThingDef>
+	</ThingDef> -->
 	
-	<!-- Disintegrator -->
+	<!-- Disintegrator 
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_Disintegrator</defName>
 		<label>Disintegrator</label>
@@ -162,28 +162,8 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
-			<li Class="VFECore.ThingDefExtension">
-				<weaponDraftedDrawOffsets>
-					<north>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</north>
-					<east>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</east>
-					<west>
-						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</west>
-					<south>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</south>
-				</weaponDraftedDrawOffsets>
-			</li>
 		</modExtensions>
-	</ThingDef>
+	</ThingDef>-->
 	
 	<!-- Enmitic_Exterminator -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
@@ -253,26 +233,6 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
-			<li Class="VFECore.ThingDefExtension">
-				<weaponDraftedDrawOffsets>
-					<north>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</north>
-					<east>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</east>
-					<west>
-						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</west>
-					<south>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</south>
-				</weaponDraftedDrawOffsets>
-			</li>
 		</modExtensions>
 	</ThingDef>
 	
@@ -344,26 +304,6 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
-			<li Class="VFECore.ThingDefExtension">
-				<weaponDraftedDrawOffsets>
-					<north>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</north>
-					<east>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</east>
-					<west>
-						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</west>
-					<south>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</south>
-				</weaponDraftedDrawOffsets>
-			</li>
 			<li Class="NecronComp.ModExtension_BulletArmorDegrade">
 				<hpDeductAmount>5</hpDeductAmount>
 			</li>
@@ -438,33 +378,10 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
-			<li Class="VFECore.ThingDefExtension">
-				<weaponDraftedDrawOffsets>
-					<north>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</north>
-					<east>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</east>
-					<west>
-						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</west>
-					<south>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</south>
-				</weaponDraftedDrawOffsets>
-			</li>
-			<li Class="NecronComp.ModExtension_BulletArmorDegrade">
-				<hpDeductAmount>5</hpDeductAmount>
-			</li>
 		</modExtensions>
 	</ThingDef>
 	
-	<!-- TeslaCarbine -->
+	<!-- TeslaCarbine 
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_TeslaCarbine</defName>
 		<label>TeslaCarbine</label>
@@ -532,26 +449,6 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
-			<li Class="VFECore.ThingDefExtension">
-				<weaponDraftedDrawOffsets>
-					<north>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</north>
-					<east>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</east>
-					<west>
-						<!-- <drawOffset>(0.25,-0.1,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</west>
-					<south>
-						<!-- <drawOffset>(-0.25,0,0.4)</drawOffset> -->
-						<angleOffset>-25</angleOffset>
-					</south>
-				</weaponDraftedDrawOffsets>
-			</li>
 		</modExtensions>
 	</ThingDef>
 	<ThingDef ParentName="BaseBullet">
@@ -582,6 +479,6 @@
 				<impactSound>Shot_ChargeRifle</impactSound>
 			</li>
 		</modExtensions>
-	</ThingDef>
+	</ThingDef> -->
 
 </Defs>

@@ -1,48 +1,82 @@
 <Defs>
-    <!-- <AlienRace.ThingDef_AlienRace ParentName="GW40K_NecronBase">
-        <defName>GW40K_NecronDeathmark</defName>
-        <label>necron deathmark</label>
-        <description>asd</description>
-        <statBases>
-            <ShootingAccuracyPawn>1.3</ShootingAccuracyPawn>
-            <MeleeDamageFactor>0.01</MeleeDamageFactor>
-            <IncomingDamageFactor>1.2</IncomingDamageFactor>
-            <AimingDelayFactor>1.2</AimingDelayFactor>
-        </statBases>
-        <alienRace>
-          <generalSettings>
-            <alienPartGenerator>
-              <headTypes Inherit="False">
-                <li>GW40K_NecronWarrior_HeadType</li>
-              </headTypes>
-              <bodyTypes Inherit="false">
-                <li>Male</li>
-              </bodyTypes>
-            </alienPartGenerator>
-    
-            <forcedRaceTraitEntries>
-              <li>
-                <defName>GW30K_Trait_BaseNecron</defName>
-              </li>
-            </forcedRaceTraitEntries>
-          </generalSettings>
-    
-          <graphicPaths>
-            <skinShader>Cutout</skinShader>
-            <head>
-              <path>GW40K/Deathmark/Head/</path>
-            </head>
-            <body>
-              <path>GW40K/Deathmark/Body/</path>
-            </body>
-          </graphicPaths>
-    
-        </alienRace>
-        <modExtensions>
-          <li Class="GW40K_Necrons.NonOrganicPawn">
-            <passion>Shooting</passion>
-            <passionType>Minor</passionType>
-          </li>
-        </modExtensions>
-      </AlienRace.ThingDef_AlienRace> -->
+
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_NecronDeathmark_HeadType</defName>
+    <graphicPath>GW40K/Deathmark/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+  </HeadTypeDef>
+
+  <ThingDef Name="GW40K_NecronDeathmark" ParentName="BasePawn">
+    <defName>GW40K_NecronDeathmark</defName>
+    <label>necron deathmark</label>
+    <description>asd</description>
+
+    <statBases>
+      <MarketValue>1750</MarketValue>
+      <MoveSpeed>4.6</MoveSpeed>
+      <ComfyTemperatureMin>0</ComfyTemperatureMin>
+      <ComfyTemperatureMax>40</ComfyTemperatureMax>
+      <LeatherAmount>0</LeatherAmount>
+      <Wildness>0.0</Wildness>
+      <ShootingAccuracyPawn>1.3</ShootingAccuracyPawn>
+      <MeleeDamageFactor>0.01</MeleeDamageFactor>
+      <IncomingDamageFactor>1.2</IncomingDamageFactor>
+      <AimingDelayFactor>1.2</AimingDelayFactor>
+    </statBases>
+
+    <tools>
+      <li>
+        <label>metal fist</label>
+        <labelNoLocation>fist</labelNoLocation>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+      </li>
+      <li>
+        <label>metal fist</label>
+        <labelNoLocation>fist</labelNoLocation>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>10</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+      </li>
+    </tools>
+
+    <race>
+      <thinkTreeMain>Humanlike</thinkTreeMain>
+      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
+      <intelligence>Humanlike</intelligence>
+      <makesFootprints>true</makesFootprints>
+      <lifeExpectancy>10000</lifeExpectancy>
+      <bloodDef>Filth_Blood</bloodDef>
+      <bloodSmearDef>Filth_BloodSmear</bloodSmearDef>
+      <nameCategory>HumanStandard</nameCategory>
+      <body>Human</body>
+      <renderTree>Humanlike</renderTree>
+      <baseBodySize>1</baseBodySize>
+      <baseHealthScale>1.5</baseHealthScale>
+      <foodType>OmnivoreHuman</foodType>
+      <meatMarketValue>0</meatMarketValue>
+      <manhunterOnDamageChance>0</manhunterOnDamageChance>
+      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+
+      <lifeStageAges>
+        <li>
+          <def>HumanlikeAdult</def>
+          <minAge>0</minAge>
+        </li>
+      </lifeStageAges>
+
+      <hediffGiverSets>
+        <li>OrganicStandard</li>
+      </hediffGiverSets>
+    </race>
+
+  </ThingDef>
+
 </Defs>

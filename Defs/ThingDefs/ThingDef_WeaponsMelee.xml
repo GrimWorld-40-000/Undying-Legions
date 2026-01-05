@@ -140,26 +140,7 @@
 			</li>
 		</tools>
 		<modExtensions>
-			<li Class="VFECore.ThingDefExtension">
-				<weaponDraftedDrawOffsets>
-					<north>
-						<drawOffset>(0.4, 0, 0.40)</drawOffset>
-						<angleOffset>-95</angleOffset>
-					</north>
-					<east>
-						<drawOffset>(0.15, 0, 0.40)</drawOffset>
-						<angleOffset>-75</angleOffset>
-					</east>
-					<south>
-						<drawOffset>(0.40, 0, 0.40)</drawOffset>
-						<angleOffset>-95</angleOffset>
-					</south>
-					<west>
-						<drawOffset>(-0.15, 0, 0.40)</drawOffset>
-						<angleOffset>75</angleOffset>
-					</west>
-				</weaponDraftedDrawOffsets>
-			</li>
+
 		</modExtensions>		
 	</ThingDef>
 	

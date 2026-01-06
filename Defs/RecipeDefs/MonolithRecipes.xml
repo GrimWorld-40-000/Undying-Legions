@@ -1,0 +1,43 @@
+<Defs>
+<RecipeDef>
+    <defName>GW40K_SpawnAndBind_Militor</defName>
+    <workerClass>GW40K_Necrons.RecipeWorker_SpawnAndBindMech</workerClass>
+    <workAmount>2000</workAmount>
+     <workSkill>Crafting</workSkill>
+    <label>Bind Warrior</label>
+    <jobString>Assembling Militor...</jobString>
+    <effectWorking>ConstructMetal</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <ingredients>
+        <li>
+            <filter>
+                <thingDefs>
+                    <li>GW40k_Necron_Necrodemis</li>
+                </thingDefs>
+            </filter>
+            <count>5</count>
+        </li>
+    </ingredients>
+    <fixedIngredientFilter>
+        <thingDefs>
+            <li>GW40k_Necron_Necrodemis</li>
+        </thingDefs>
+    </fixedIngredientFilter>
+    <skillRequirements>
+        <Crafting>5</Crafting>
+    </skillRequirements>
+</RecipeDef>
+<WorkGiverDef>
+    <defName>GW40K_SpawnAndBind_Militor_WorkGiver</defName>
+    <giverClass>WorkGiver_DoBill</giverClass>
+    <workType>Crafting</workType>
+    <priorityInType>100</priorityInType>
+    <verb>assemble</verb>
+    <gerund>assembling</gerund>
+    <fixedBillGiverDefs>
+        <li>GW_UD_Monolith</li>
+    </fixedBillGiverDefs>
+
+</WorkGiverDef>
+
+</Defs>

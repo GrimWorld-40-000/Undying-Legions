@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Assemblies\NecronComp.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16D51650-870C-4131-85A9-A4A60967F77E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>NecronComp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ApplicationVersion>0.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>NecronComp</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine.CoreModule" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IngestionOutcomeDoer_GiveHediffNecron.cs" />
+    <Compile Include="ModExtension_NecrodemisInfection.cs" />
+    <Compile Include="IncidentWorker_NecrodemisInfection.cs" />
+    <Compile Include="CompAbilityEffect_TransmuteNecron.cs" />
+    <Compile Include="CompProperties_TransmuteNecron.cs" />
+    <Compile Include="Pawn_PostApplyDamage_ArmorDegrade.cs" />
+    <Compile Include="NecronStartPatch.cs" />
+    <Compile Include="ModExtension_BulletArmorDegrade.cs" />
+    <Compile Include="CompStructureSelfRegen.cs" />
+    <Compile Include="CompProperties_StructureSelfRegen.cs" />
+    <Compile Include="NecronUtility.cs" />
+    <Compile Include="CompProperties_HediffAura.cs" />
+    <Compile Include="CompHediffAura.cs" />
+    <Compile Include="System\Runtime\CompilerServices\RefSafetyRulesAttribute.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -10,4 +10,22 @@
         <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
         <showUnitTicks>false</showUnitTicks>
       </NeedDef>
+	  
+    <NeedDef>
+        <defName>GW_UD_Necrodermis</defName>
+        <needClass>NecronGeneUtil.Need_Necrodermis</needClass>
+        <label>necrodermis</label>
+        <description>d.</description>
+		<onlyIfCausedByGene>true</onlyIfCausedByGene>
+		<listPriority>800</listPriority>
+        <major>true</major>
+        <showForCaravanMembers>true</showForCaravanMembers>
+		<fallPerDay>0.15</fallPerDay>
+		<modExtensions>
+			<li Class="NecronGeneUtil.NeedExtension_Necron">
+				<starvingHediffDef>GW_UD_NecrodermisStarving</starvingHediffDef>
+				<severityPerInterval>0.01</severityPerInterval>
+			</li>
+		</modExtensions>
+      </NeedDef>
 </Defs>

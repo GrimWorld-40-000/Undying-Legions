@@ -1,0 +1,109 @@
+<Defs>
+	<GeneCategoryDef>
+		<defName>GW_UD_NecronGene</defName>
+		<label>Necron</label>
+		<displayPriorityInXenotype>990</displayPriorityInXenotype>
+	</GeneCategoryDef>
+	<GeneDef>
+		<defName>GW_UD_EternalSlumber</defName>
+		<label>Eternal Slumber</label>
+		<description>. . .</description>
+		<geneClass>Gene_Deathrest</geneClass>
+		<iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<enablesNeeds>
+			<li>Deathrest</li>
+		</enablesNeeds>
+		<biostatMet>6</biostatMet>
+		<minAgeActive>3</minAgeActive>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>death</symbol></li>
+				<li><symbol>dead</symbol></li>
+				<li><symbol>still</symbol></li>
+			</prefixSymbols>
+			<suffixSymbols>
+				<li><symbol>rester</symbol></li>
+			</suffixSymbols>
+		</symbolPack>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_ResurrectionProtocal</defName>
+		<label>Resurrection Protocal</label>
+		<description>. . .</description>
+		<!-- <geneClass>Gene_Deathrest</geneClass> -->
+		<iconPath>Genes/ResurectionProtocol</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_BodyDegradation</defName>
+		<label>Body Degradation</label>
+		<description>. . .</description>
+		<!-- <geneClass>Gene_Deathrest</geneClass> -->
+		<enablesNeeds>
+			<li>GW_UD_Necrodermis</li>
+		</enablesNeeds>
+		<iconPath>Genes/BodyDegradation</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_LifeLess</defName>
+		<label>LifeLess</label>
+		<description>. . .</description>
+		<geneClass>NecronGeneUtil.Gene_NoInspirationAndPassion</geneClass>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW40K_Necron_Lifeless</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_SlowAdvancement</defName>
+		<label>Slow Advancement</label>
+		<description>. . .</description>
+		<!-- <geneClass>Gene_Deathrest</geneClass> -->
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<statFactors>
+			<WorkSpeedGlobal>0.7</WorkSpeedGlobal>
+		</statFactors>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_Hatred</defName>
+		<label>Hatred for the Living</label>
+		<description>. . .</description>
+		<!-- <geneClass>Gene_Deathrest</geneClass> -->
+		<iconPath>Genes/Hatred for the Living</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_ApparelRestriction</defName>
+		<label>Can't Wear Cloth</label>
+		<description>. . .</description>
+		<geneClass>NecronGeneUtil.Gene_RemoveAllApparelOnAdd</geneClass>
+		<iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<allowedApparels>
+				</allowedApparels>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	
+</Defs>

@@ -11,7 +11,6 @@ using System.Runtime.InteropServices;
 namespace System.Runtime.CompilerServices;
 
 [CompilerGenerated]
-[Embedded]
 [AttributeUsage(AttributeTargets.Module, AllowMultiple = false, Inherited = false)]
 internal sealed class RefSafetyRulesAttribute : Attribute
 {

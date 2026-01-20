@@ -1,0 +1,147 @@
+<Defs>
+
+	<HediffDef>
+		<defName>GW40K_Necron_Lifeless</defName>
+		<label>Lifeless</label>
+		<description>. . .</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<blocksInspirations>true</blocksInspirations>
+			</li>
+		</stages>
+		<comps>
+		</comps>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>GW_UD_NecronLychguard</defName>
+		<label>Lych Guard</label>
+		<description>. . .</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<regeneration>10</regeneration>
+			</li>
+		</stages>
+		<comps>
+		</comps>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>GW_UD_NecronDeathmark</defName>
+		<label>Lych Guard</label>
+		<description>. . .</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<regeneration>10</regeneration>
+			</li>
+		</stages>
+		<comps>
+		</comps>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>GW_UD_NecronCryptek</defName>
+		<label>Lych Guard</label>
+		<description>. . .</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<regeneration>10</regeneration>
+			</li>
+		</stages>
+		<comps>
+		</comps>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>GW_UD_NecronOverlord</defName>
+		<label>Lych Guard</label>
+		<description>. . .</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<regeneration>10</regeneration>
+			</li>
+		</stages>
+		<comps>
+		</comps>
+	</HediffDef>
+	  
+	<HediffDef>
+		<defName>GW_UD_NecrodermisStarving</defName>
+		<label>necrodermis starvation</label>
+		<description>. . .</description>
+		<lethalSeverity>1</lethalSeverity>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<stages>
+			<li>
+				<label>trivial</label>
+				<socialFightChanceFactor>1.5</socialFightChanceFactor>
+				<hungerRateFactorOffset>0.5</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.2</minSeverity>
+				<label>minor</label>
+				<socialFightChanceFactor>2</socialFightChanceFactor>
+				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.4</minSeverity>
+				<label>moderate</label>
+				<socialFightChanceFactor>2.5</socialFightChanceFactor>
+				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.20</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.6</minSeverity>
+				<label>severe</label>
+				<socialFightChanceFactor>3</socialFightChanceFactor>
+				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.30</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.8</minSeverity>
+				<label>extreme</label>
+				<lifeThreatening>true</lifeThreatening>
+				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.1</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+</Defs>

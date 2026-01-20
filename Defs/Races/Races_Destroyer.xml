@@ -4,6 +4,8 @@
     <defName>GW40K_NecronDestroyer_HeadType</defName>
     <graphicPath>GW40K/NecronWarrior/Head/Male_Average_Normal</graphicPath>
     <gender>None</gender>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
   </HeadTypeDef>
 
   <ThingDef Name="GW40K_NecronDestroyer" ParentName="BasePawn">

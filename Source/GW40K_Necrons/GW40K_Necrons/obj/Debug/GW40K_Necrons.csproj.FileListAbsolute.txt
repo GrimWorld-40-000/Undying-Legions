@@ -1,0 +1,4 @@
+D:\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Source\GW40K_Necrons\GW40K_Necrons\obj\Debug\GW40K_Necrons.csproj.AssemblyReference.cache
+D:\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Source\GW40K_Necrons\GW40K_Necrons\obj\Debug\GW40K_Necrons.csproj.CoreCompileInputs.cache
+D:\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Assemblies\GW40K_Necrons.dll
+D:\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Source\GW40K_Necrons\GW40K_Necrons\obj\Debug\GW40K_Necrons.dll

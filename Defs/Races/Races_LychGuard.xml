@@ -1,11 +1,6 @@
 <Defs>
 
-  <HeadTypeDef ParentName="AverageBase">
-    <defName>GW40K_LychGuard_HeadType</defName>
-    <graphicPath>GW40K/LychGuard/Head/Male_Average_Normal</graphicPath>
-    <gender>None</gender>
-    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
-  </HeadTypeDef>
+  
 
   <ThingDef Name="GW40K_NecronLychGuard" ParentName="BasePawn">
     <defName>GW40K_NecronLychGuard</defName>

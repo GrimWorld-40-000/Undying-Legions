@@ -1,0 +1,71 @@
+<Defs>
+
+	<XenotypeDef Name="GW_UD_NecronXenotypeBase" Abstract="True">
+		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_EternalSlumber</li>
+			<li>GW_UD_ResurrectionProtocal</li>
+			<li>GW_UD_BodyDegradation</li>
+			<li>GW_UD_LifeLess</li>
+			<li>GW_UD_SlowAdvancement</li>
+			<li>GW_UD_Hatred</li>
+			<li>GW_UD_ApparelRestriction</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
+		<defName>GW_UD_NecronLychguard</defName>
+		<label>Lychguard</label>
+		<description>. . .</description>
+		<descriptionShort>. . .</descriptionShort>
+		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_NecronLychguard</li>
+			<li>GW_UD_NecronLychguard_Head</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
+		<defName>GW_UD_NecronDeathmark</defName>
+		<label>Deathmark</label>
+		<description>. . .</description>
+		<descriptionShort>. . .</descriptionShort>
+		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_NecronDeathmark</li>
+			<li>GW_UD_NecronDeathmark_Head</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
+		<defName>GW_UD_NecronCryptek</defName>
+		<label>Cryptek</label>
+		<description>. . .</description>
+		<descriptionShort>. . .</descriptionShort>
+		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_NecronCryptek</li>
+			<li>GW_UD_NecronCryptek_Head</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
+		<defName>GW_UD_NecronOverlord</defName>
+		<label>Overlord</label>
+		<description>. . .</description>
+		<descriptionShort>. . .</descriptionShort>
+		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_NecronOverlord</li>
+			<li>GW_UD_NecronOverlord_Head</li>
+		</genes>
+	</XenotypeDef>
+	
+	
+
+</Defs>

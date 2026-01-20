@@ -1,10 +1,6 @@
 <Defs>
 
-  <HeadTypeDef ParentName="AverageBase">
-    <defName>GW40K_NecronDeathmark_HeadType</defName>
-    <graphicPath>GW40K/Deathmark/Head/Male_Average_Normal</graphicPath>
-    <gender>None</gender>
-  </HeadTypeDef>
+  
 
   <ThingDef Name="GW40K_NecronDeathmark" ParentName="BasePawn">
     <defName>GW40K_NecronDeathmark</defName>

@@ -1,0 +1,27 @@
+<Defs>
+
+	<ThoughtDef>
+		<defName>GW_UD_HateFlesh</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>NecronGeneUtil.ThoughtWorker_NecronHateFlesh</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>notmatch</label>
+				<baseOpinionOffset>-90</baseOpinionOffset>
+			</li>
+			<li>
+				<label>match</label>
+				<baseOpinionOffset>90</baseOpinionOffset>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="NecronGeneUtil.ThoughtExtension_NecronHateFlesh">
+				<requireGeneDef>GW_UD_ResurrectionProtocal</requireGeneDef>
+				<stateMatch>1</stateMatch>
+				<stateNotMatch>0</stateNotMatch>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+</Defs>

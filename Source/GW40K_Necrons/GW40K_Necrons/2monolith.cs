@@ -15,7 +15,7 @@ namespace GW40K_Necrons;
 [HarmonyPatch(typeof (Toils_Recipe), "FinishRecipeAndStartStoringProduct")]
 public static class Patch_FinishRecipeAndStartStoringProduct
 {
-  public static void Postfix(Toil __result, TargetIndex billGiverInd)
+  public static void Postfix(Toil __result, TargetIndex productIndex)
   {
     __result.AddFinishAction((Action) (() =>
     {

@@ -1,0 +1,37 @@
+<Defs>
+
+	<HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_LychGuard_HeadType</defName>
+    <graphicPath>GW40K/LychGuard/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
+  </HeadTypeDef>
+  
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_NecronDeathmark_HeadType</defName>
+    <graphicPath>GW40K/Deathmark/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
+  </HeadTypeDef>
+  
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_NecronCryptek_HeadType</defName>
+    <graphicPath>GW40K/Cryptek/Head/CryptekH</graphicPath>
+    <gender>None</gender>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
+  </HeadTypeDef>
+  
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_Overlord_HeadType</defName>
+    <graphicPath>GW40K/Overlord/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
+  </HeadTypeDef>
+
+</Defs>

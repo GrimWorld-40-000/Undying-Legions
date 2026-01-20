@@ -5,6 +5,8 @@
     <graphicPath>GW40K/NecronWarrior/Head/Male_Average_Normal</graphicPath>
     <gender>None</gender>
     <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
   </HeadTypeDef>
 
   <ThingDef Name="GW40K_NecronWarrior" ParentName="BasePawn">

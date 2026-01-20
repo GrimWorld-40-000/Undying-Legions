@@ -1,0 +1,220 @@
+<Defs>
+
+	<FurDef>
+		<defName>GW_UD_NecronLychguard</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/LychGuard/Body/Naked_Male</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
+	<FurDef>
+		<defName>GW_UD_NecronDeathmark</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/Deathmark/Body/Naked_Male</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
+	<FurDef>
+		<defName>GW_UD_NecronCryptek</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/Cryptek/Body/Cryptek</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
+	<FurDef>
+		<defName>GW_UD_NecronOverlord</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/Overlord/Body/Naked_Male</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
+	
+	<GeneDef Name="GW_UD_NecronBodyGeneBase" Abstract="True">
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<exclusionTags>
+			<li>HairStyle</li>
+			<li>BeardStyle</li>
+			<li>AG_Bodies</li>
+			<li>Bodies</li>
+			<li>Body</li>
+			<li>Fur</li>
+		</exclusionTags>
+		<iconColor>(0.75, 0.75, 0.75)</iconColor>
+		<skinColorOverride>(255,255,255)</skinColorOverride>
+		<biostatCpx>1</biostatCpx>
+		<selectionWeight>0</selectionWeight>
+		<displayOrderInCategory>405</displayOrderInCategory>
+		<skinIsHairColor>false</skinIsHairColor>
+		<tattoosVisible>false</tattoosVisible>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<fur>GW_UD_NecronLychguard</fur>
+		<bodyType>Thin</bodyType>
+		<renderNodeProperties>
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+			</li>
+		</renderNodeProperties>
+		<biologicalAgeTickFactorFromAgeCurve>
+			<points>
+				<li>(18, 1)</li>
+				<li>(18.5, 0)</li>
+			</points>
+		</biologicalAgeTickFactorFromAgeCurve>
+		<disablesNeeds>
+			<li>Food</li>
+		</disablesNeeds>
+		<statOffsets>
+			<LeatherAmount>0</LeatherAmount>
+			<ToxicResistance>1.00</ToxicResistance>
+			<ComfyTemperatureMin>-20</ComfyTemperatureMin>
+			<ComfyTemperatureMax>20</ComfyTemperatureMax>
+			<MoveSpeed>-0.2</MoveSpeed>
+		</statOffsets>
+		<statFactors>
+			<Fertility>0</Fertility>
+			<InjuryHealingFactor>2.5</InjuryHealingFactor>
+		</statFactors>
+		<missingGeneRomanceChanceFactor>0.2</missingGeneRomanceChanceFactor>
+		<hairTagFilter>
+			<whitelist>true</whitelist>
+			<tags>
+				<li>Bald</li>
+			</tags>
+		</hairTagFilter>
+		<beardTagFilter>
+			<whitelist>true</whitelist>
+			<tags>
+				<li>NoBeard</li>
+			</tags>
+		</beardTagFilter>
+		<modExtensions>
+			<li Class="VEF.Genes.GeneExtension">
+				<furHidesBody>true</furHidesBody>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
+		<defName>GW_UD_NecronLychguard</defName>
+		<label>necron lychguard</label>
+		<labelShortAdj>lychguard</labelShortAdj>
+		<description>. . .</description>
+		<fur>GW_UD_NecronLychguard</fur>
+		<iconPath>Genes/Machine_body</iconPath>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW_UD_NecronLychguard</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	<GeneDef ParentName="GeneJawBase">
+		<defName>GW_UD_NecronLychguard_Head</defName>
+		<label>Lychguard Head</label>
+		<description>. . .</description>
+		<iconPath>GW40K/LychGuard/Head/Male_Average_Normal_south</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_LychGuard_HeadType</li>
+		</forcedHeadTypes>
+		<exclusionTags>
+			<li>Head</li>
+		</exclusionTags>
+		<displayOrderInCategory>97</displayOrderInCategory>
+	</GeneDef>
+	
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
+		<defName>GW_UD_NecronDeathmark</defName>
+		<label>necron deathmark</label>
+		<labelShortAdj>deathmark</labelShortAdj>
+		<description>. . .</description>
+		<fur>GW_UD_NecronDeathmark</fur>
+		<iconPath>Genes/Machine_body</iconPath>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW_UD_NecronDeathmark</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	<GeneDef ParentName="GeneJawBase">
+		<defName>GW_UD_NecronDeathmark_Head</defName>
+		<label>deathmark head</label>
+		<description>. . .</description>
+		<iconPath>GW40K/Deathmark/Head/Male_Average_Normal_south</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_NecronDeathmark_HeadType</li>
+		</forcedHeadTypes>
+		<exclusionTags>
+			<li>Head</li>
+		</exclusionTags>
+		<displayOrderInCategory>97</displayOrderInCategory>
+	</GeneDef>
+	
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
+		<defName>GW_UD_NecronCryptek</defName>
+		<label>necron cryptek</label>
+		<labelShortAdj>Cryptek</labelShortAdj>
+		<description>. . .</description>
+		<fur>GW_UD_NecronCryptek</fur>
+		<iconPath>Genes/Machine_body</iconPath>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW_UD_NecronCryptek</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	<GeneDef ParentName="GeneJawBase">
+		<defName>GW_UD_NecronCryptek_Head</defName>
+		<label>cryptek head</label>
+		<description>. . .</description>
+		<iconPath>GW40K/Cryptek/Head/CryptekH_south</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_NecronCryptek_HeadType</li>
+		</forcedHeadTypes>
+		<exclusionTags>
+			<li>Head</li>
+		</exclusionTags>
+		<displayOrderInCategory>97</displayOrderInCategory>
+	</GeneDef>
+	
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
+		<defName>GW_UD_NecronOverlord</defName>
+		<label>necron overlord</label>
+		<labelShortAdj>Overlord</labelShortAdj>
+		<description>. . .</description>
+		<fur>GW_UD_NecronOverlord</fur>
+		<iconPath>Genes/Machine_body</iconPath>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW_UD_NecronOverlord</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	<GeneDef ParentName="GeneJawBase">
+		<defName>GW_UD_NecronOverlord_Head</defName>
+		<label>overlord head</label>
+		<description>. . .</description>
+		<iconPath>GW40K/Overlord/Head/Male_Average_Normal_south</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_Overlord_HeadType</li>
+		</forcedHeadTypes>
+		<exclusionTags>
+			<li>Head</li>
+		</exclusionTags>
+		<displayOrderInCategory>97</displayOrderInCategory>
+	</GeneDef>
+
+</Defs>

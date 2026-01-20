@@ -1,0 +1,100 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\2monolith.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|solutionrelative:2monolith.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\undying-legions\\source\\gw40k_necrons\\gw40k_necrons\\1monolith.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|solutionrelative:1monolith.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\system\\runtime\\compilerservices\\refsafetyrulesattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|solutionrelative:system\\runtime\\compilerservices\\refsafetyrulesattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|GW40K_Necrons||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "1monolith.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\1monolith.cs",
+              "RelativeDocumentMoniker": "1monolith.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\1monolith.cs",
+              "RelativeToolTip": "1monolith.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T01:32:20.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RefSafetyRulesAttribute.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\System\\Runtime\\CompilerServices\\RefSafetyRulesAttribute.cs",
+              "RelativeDocumentMoniker": "System\\Runtime\\CompilerServices\\RefSafetyRulesAttribute.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\System\\Runtime\\CompilerServices\\RefSafetyRulesAttribute.cs",
+              "RelativeToolTip": "System\\Runtime\\CompilerServices\\RefSafetyRulesAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T01:32:09.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GW40K_Necrons",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\GW40K_Necrons.csproj",
+              "RelativeDocumentMoniker": "GW40K_Necrons.csproj",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\GW40K_Necrons.csproj",
+              "RelativeToolTip": "GW40K_Necrons.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-20T01:31:53.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "2monolith.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\2monolith.cs",
+              "RelativeDocumentMoniker": "2monolith.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\2monolith.cs",
+              "RelativeToolTip": "2monolith.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T01:31:43.697Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

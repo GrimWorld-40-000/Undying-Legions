@@ -381,7 +381,7 @@
 		</modExtensions>
 	</ThingDef>
 	
-	<!-- TeslaCarbine 
+	<!-- TeslaCarbine  -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_TeslaCarbine</defName>
 		<label>TeslaCarbine</label>
@@ -451,34 +451,56 @@
 		<modExtensions>
 		</modExtensions>
 	</ThingDef>
+  
 	<ThingDef ParentName="BaseBullet">
 		<defName>GW40k_Necron_TeslaBeam</defName>
 		<label>tesla beam</label>
-		<thingClass>VFEMech.TeslaProjectile</thingClass>
+		<thingClass>ChainProjectiles.ChainProjectile</thingClass>
 		<drawOffscreen>true</drawOffscreen>
 		<graphicData>
 			<texPath>Things/Projectiles/Laser_Red</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-            <shaderType>TransparentPostLight</shaderType>
+      <shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile>
 			<damageDef>Burn</damageDef>
 			<damageAmountBase>5</damageAmountBase>
 			<speed>140</speed>
+      <beamMoteDef>Mote_TeslaCarbineBeam</beamMoteDef>
+      <beamStartOffset>0.5</beamStartOffset>
 		</projectile>
-		<modExtensions>
-			<li Class="VFEMech.TeslaChainingProps">
-				<maxBounceCount>3</maxBounceCount>
-				<damageDef>Burn</damageDef>
-				<explosionDamageDef>EMP</explosionDamageDef>
-				<impactRadius>2</impactRadius>
-				<targetFriendly>false</targetFriendly>
-				<addFire>false</addFire>
-				<bounceRange>8</bounceRange>
-				<maxLifetime>50</maxLifetime>
-				<impactSound>Shot_ChargeRifle</impactSound>
-			</li>
-		</modExtensions>
-	</ThingDef> -->
+    <modExtensions>
+      <li Class="ChainProjectiles.ChainProjectileModExtension">
+        <chainRange>10</chainRange>
+        <chainMaxCount>10</chainMaxCount>
+      </li>
+    </modExtensions>
+	</ThingDef>
+  
+  <ThingDef ParentName="MoteBase">
+    <defName>Mote_TeslaCarbineBeam</defName>
+    <thingClass>MoteDualAttached</thingClass>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.1</fadeInTime>
+      <fadeOutTime>0.1</fadeOutTime>
+      <solidTime>0.1</solidTime>
+      <rotateTowardsTarget>True</rotateTowardsTarget>
+      <scaleToConnectTargets>True</scaleToConnectTargets>
+    </mote>
+    <drawOffscreen>true</drawOffscreen>
+    <graphicData>
+      <texPath>Things/Projectiles/TeslaCarbineMote</texPath>
+      <graphicClass>Graphic_MoteWithAgeSecs</graphicClass>
+      <shaderType>MoteBeam</shaderType>
+      <shaderParameters>
+        <_ExtraTexA>/Things/Mote/BeamSecondaryNoise_A</_ExtraTexA>
+        <_ExtraTexB>/Things/Mote/BeamSecondaryNoise_B</_ExtraTexB>
+        <_ScrollSpeedA>0</_ScrollSpeedA>
+        <_ScrollSpeedB>0</_ScrollSpeedB>
+        <_Intensity>2</_Intensity>
+      </shaderParameters>
+    </graphicData>
+  </ThingDef>
 
 </Defs>

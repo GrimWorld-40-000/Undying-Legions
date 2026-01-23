@@ -17,3 +17,24 @@ public class NonOrganicPawn : DefModExtension
   public string passion;
   public Passion passionType;
 }
+
+ public class GeneExtension_NonOrganic : DefModExtension
+    {
+        public bool makeNonOrganic = true;
+    }
+ public class Gene_ResurrectionProtocol : Gene
+    {
+        public override void PostAdd()
+        {
+            base.PostAdd();
+        }
+
+      
+        public static bool PawnHasResurrectionProtocol(Pawn pawn)
+        {
+            return pawn.genes?.GetGene(NecronDefOfs.GW_UD_ResurrectionProtocal)
+                   is Gene_ResurrectionProtocol;
+        }
+    }
+
+

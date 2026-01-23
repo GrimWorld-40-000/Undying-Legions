@@ -36,6 +36,7 @@
 		<iconPath>Genes/ResurectionProtocol</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
+		<geneClass>GW40K_Necrons.Gene_ResurrectionProtocol</geneClass>
 	</GeneDef>
 	
 	<GeneDef>

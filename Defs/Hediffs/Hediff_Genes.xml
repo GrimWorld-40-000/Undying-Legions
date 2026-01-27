@@ -143,5 +143,43 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+	<HediffDef>
+		<defName>GW40K_Necron_RecallMemories</defName>
+		<label>Recall Memories</label>
+		<description>. . .</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<becomeVisible>false</becomeVisible>
+				<mentalBreakMtbDays>9</mentalBreakMtbDays>
+				<mentalBreakExplanation />
+			</li>
+		</stages>
+		<comps>
+		</comps>
+	</HediffDef>
+	
+	<HediffDef>
+		<defName>GW40K_Necron_Nobility</defName>
+		<label>Nobility</label>
+		<description>. . .</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<becomeVisible>false</becomeVisible>
+				<mentalBreakMtbDays>9</mentalBreakMtbDays>
+				<mentalBreakExplanation />
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_ChangeNeed">
+				<needDef>Joy</needDef>
+				<percentPerDay>-0.1</percentPerDay>
+			</li>
+		</comps>
+	</HediffDef>
 
 </Defs>

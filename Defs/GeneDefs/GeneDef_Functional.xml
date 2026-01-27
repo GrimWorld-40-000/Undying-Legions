@@ -107,4 +107,221 @@
 		</modExtensions>
 	</GeneDef>
 	
+	<!-- unique gene -->
+	
+	<GeneDef>
+		<defName>GW_UD_NecronEmissary</defName>
+		<label>Necron emmisarry</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<statFactors>
+			<NegotiationAbility>1.15</NegotiationAbility>
+			<SocialImpact>1.15</SocialImpact>
+		</statFactors>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_Bodyguard</defName>
+		<label>Bodyguard</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<statOffsets>
+			<MeleeDodgeChance>-15</MeleeDodgeChance>
+		</statOffsets>
+		<forcedTraits>
+			<li>
+				<def>Brawler</def>
+			</li>
+		</forcedTraits>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_CantWork</defName>
+		<label>Can't Work</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<disabledWorkTags>AllWork</disabledWorkTags>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_LowBorn</defName>
+		<label>Low Born</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<disablesNeeds>
+			<li>Food</li>
+			<li>Comfort</li>
+			<li>Joy</li>
+			<li>Beauty</li>
+			<li>Outdoors</li>
+			<li>Indoors</li>
+		</disablesNeeds>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_GreaterStagger</defName>
+		<label>Great Stagger</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<statFactors>
+			<StaggerDurationFactor>1.15</StaggerDurationFactor>
+		</statFactors>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_Sharpshooter</defName>
+		<label>Sharpshooter</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<statFactors>
+			<ShootingAccuracyFactor_Long>1.5</ShootingAccuracyFactor_Long>
+		</statFactors>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_Workflow</defName>
+		<label>Workflow</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<statOffsets>
+			<WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+		</statOffsets>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_RecallMemories</defName>
+		<label>Recall memories</label>
+		<description>. . .</description>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW40K_Necron_RecallMemories</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_TechnoMagic</defName>
+		<label>Techno-Magic</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_NobleHabits</defName>
+		<label>Noble habits</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+	</GeneDef>
+	<ThoughtDef>
+		<defName>GW_UD_NobleHabits</defName>
+		<workerClass>ThoughtWorker_AlwaysActive</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+		<requiredGenes>
+			<li>GW_UD_NobleHabits</li>
+		</requiredGenes>
+		<stages>
+			<li>
+				<label>Noble habits</label>
+				<description>. . .</description>
+				<baseMoodEffect>-15</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<GeneDef>
+		<defName>GW_UD_Royalty</defName>
+		<label>Royalty</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<disablesNeeds>
+			<li>Food</li>
+			<li>Outdoors</li>
+			<li>Indoors</li>
+		</disablesNeeds>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_TechnoInterface</defName>
+		<label>Techno-Interface</label>
+		<description>. . .</description>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>MechlinkImplant</hediffDef>
+				<part>Brain</part>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	
+	<GeneDef>
+		<defName>GW_UD_RoyalHabits</defName>
+		<label>Royal habits</label>
+		<description>. . .</description>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+	</GeneDef>
+	<ThoughtDef>
+		<defName>GW_UD_RoyalHabits</defName>
+		<workerClass>ThoughtWorker_AlwaysActive</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+		<requiredGenes>
+			<li>GW_UD_RoyalHabits</li>
+		</requiredGenes>
+		<stages>
+			<li>
+				<label>Noble habits</label>
+				<description>. . .</description>
+				<baseMoodEffect>-30</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<GeneDef>
+		<defName>GW_UD_Nobility</defName>
+		<label>Nobility</label>
+		<description>. . .</description>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<iconPath>Genes/Lifeless</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<biostatMet>0</biostatMet>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW40K_Necron_Nobility</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	
 </Defs>

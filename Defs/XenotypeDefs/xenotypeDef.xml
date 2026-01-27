@@ -24,6 +24,16 @@
 		<genes>
 			<li>GW_UD_NecronLychguard</li>
 			<li>GW_UD_NecronLychguard_Head</li>
+			<li>GW_UD_Bodyguard</li>
+			<li>GW_UD_CantWork</li>
+			<li>GW_UD_LowBorn</li>
+			<li>GW_UD_NecronEmissary</li>
+			<li>WoundHealing_Fast</li>
+			<li>MeleeDamage_Strong</li>
+			<li>Robust</li>
+			<li>Unstoppable</li>
+			<li>AptitudeRemarkable_Melee</li>
+			<li>AptitudeStrong_Social</li>
 		</genes>
 	</XenotypeDef>
 
@@ -35,8 +45,14 @@
 		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
+			<li>GW_UD_GreaterStagger</li>
+			<li>GW_UD_LowBorn</li>
+			<li>GW_UD_Sharpshooter</li>
 			<li>GW_UD_NecronDeathmark</li>
+			<li>Delicate</li>
 			<li>GW_UD_NecronDeathmark_Head</li>
+			<li>AptitudeRemarkable_Shooting</li>
+			<li>AptitudeTerrible_Social</li>
 		</genes>
 	</XenotypeDef>
 
@@ -48,8 +64,18 @@
 		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
+			<li>GW_UD_NobleHabits</li>
+			<li>GW_UD_RecallMemories</li>
+			<li>GW_UD_Royalty</li>
+			<li>GW_UD_TechnoInterface</li>
+			<li>GW_UD_TechnoMagic</li>
+			<li>GW_UD_Workflow</li>
 			<li>GW_UD_NecronCryptek</li>
 			<li>GW_UD_NecronCryptek_Head</li>
+			<li>Learning_Fast</li>
+			<li>AptitudeRemarkable_Crafting</li>
+			<li>AptitudePoor_Social</li>
+			<li>AptitudeRemarkable_Intellectual</li>
 		</genes>
 	</XenotypeDef>
 
@@ -61,8 +87,17 @@
 		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
+			<li>GW_UD_Nobility</li>
+			<li>GW_UD_RecallMemories</li>
+			<li>GW_UD_RoyalHabits</li>
+			<li>GW_UD_Royalty</li>
 			<li>GW_UD_NecronOverlord</li>
+			<li>Aggression_HyperAggressive</li>
+			<li>KillThirst</li>
 			<li>GW_UD_NecronOverlord_Head</li>
+			<li>AptitudeRemarkable_Shooting</li>
+			<li>AptitudeRemarkable_Melee</li>
+			<li>AptitudeStrong_Social</li>
 		</genes>
 	</XenotypeDef>
 	

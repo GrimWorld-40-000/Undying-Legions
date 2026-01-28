@@ -256,6 +256,7 @@
 		<defName>GW_UD_Royalty</defName>
 		<label>Royalty</label>
 		<description>. . .</description>
+		<geneClass>NecronGeneUtil.Gene_RoyaltyNeed</geneClass>
 		<iconPath>Genes/Lifeless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
@@ -264,6 +265,20 @@
 			<li>Outdoors</li>
 			<li>Indoors</li>
 		</disablesNeeds>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>AmbrosiaHigh</hediffDef>
+				<!-- <part>Brain</part> -->
+				<severityOnAdd>1.0</severityOnAdd>
+				<threshold>0.9</threshold>
+				<isGiveBuffIfAnyPassThreshold>False</isGiveBuffIfAnyPassThreshold>
+				<needDefs>
+					<li>Joy</li>
+					<li>Beauty</li>
+					<li>Comfort</li>
+				</needDefs>
+			</li>
+		</modExtensions>
 	</GeneDef>
 	
 	<GeneDef>

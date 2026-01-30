@@ -132,19 +132,19 @@ namespace GW40K_Necrons
         }
     }
 
-    // EMPTY RECIPE WORKER — KEPT SIMPLE FOR 1.6 WORKTABLES
+    
     public class RecipeWorker_SpawnAndBindMech : RecipeWorker
     {
         // intentionally empty 
     }
 
-    // Patch the REAL completion hook: Toils_Recipe.FinishRecipeAndStartStoringProduct(TargetIndex)
+    
     [HarmonyPatch(typeof(Toils_Recipe), "FinishRecipeAndStartStoringProduct")]
     public static class Patch_FinishRecipeAndStartStoringProduct
     {
         public static void Postfix(Toil __result, TargetIndex billGiverInd)
         {
-            // Attach a finish action to the toil so it runs when the bill actually finishes
+         
             var toil = __result;
             toil.AddFinishAction(() =>
             {

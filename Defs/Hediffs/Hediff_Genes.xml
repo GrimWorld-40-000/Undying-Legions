@@ -24,6 +24,8 @@
 		<stages>
 			<li>
 				<regeneration>10</regeneration>
+				<naturalHealingFactor>1.5</naturalHealingFactor>
+				<totalBleedFactor>0</totalBleedFactor>
 			</li>
 		</stages>
 		<comps>
@@ -39,6 +41,8 @@
 		<stages>
 			<li>
 				<regeneration>10</regeneration>
+				<naturalHealingFactor>1.5</naturalHealingFactor>
+				<totalBleedFactor>0</totalBleedFactor>
 			</li>
 		</stages>
 		<comps>
@@ -54,6 +58,8 @@
 		<stages>
 			<li>
 				<regeneration>10</regeneration>
+				<naturalHealingFactor>1.5</naturalHealingFactor>
+				<totalBleedFactor>0</totalBleedFactor>
 			</li>
 		</stages>
 		<comps>
@@ -69,6 +75,8 @@
 		<stages>
 			<li>
 				<regeneration>10</regeneration>
+				<naturalHealingFactor>1.5</naturalHealingFactor>
+				<totalBleedFactor>0</totalBleedFactor>
 			</li>
 		</stages>
 		<comps>

@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -49,9 +49,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompProperties_Resurrectible.cs" />
+    <Compile Include="CompResurrectible.cs" />
+    <Compile Include="CorpseCompAdder.cs" />
+    <Compile Include="HarmonyPatch_ForceDeathrestOrComa.cs" />
     <Compile Include="HarmonyPatch_OutdoorsNeed.cs" />
     <Compile Include="HarmonyPatch_Passion.cs" />
     <Compile Include="HarmonyPatch_ShouldBeDead.cs" />
+    <Compile Include="HarmonyPatch_ShouldBeDeathrestingOrInComa.cs" />
     <Compile Include="HediffGiverNecron.cs" />
     <Compile Include="HediffGiver_Resurrection.cs" />
     <Compile Include="Hediff_Resurrection.cs" />

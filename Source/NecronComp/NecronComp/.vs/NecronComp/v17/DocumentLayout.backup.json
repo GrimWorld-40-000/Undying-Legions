@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\NecronComp\\NecronComp\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{16D51650-870C-4131-85A9-A4A60967F77E}|NecronComp.csproj|c:\\games\\rimworld.v1.6.4630\\mods\\undying-legions\\source\\necroncomp\\necroncomp\\compabilityeffect_transmutenecron.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16D51650-870C-4131-85A9-A4A60967F77E}|NecronComp.csproj|solutionrelative:compabilityeffect_transmutenecron.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CompAbilityEffect_TransmuteNecron.cs",
+              "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\NecronComp\\NecronComp\\CompAbilityEffect_TransmuteNecron.cs",
+              "RelativeDocumentMoniker": "CompAbilityEffect_TransmuteNecron.cs",
+              "ToolTip": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\NecronComp\\NecronComp\\CompAbilityEffect_TransmuteNecron.cs",
+              "RelativeToolTip": "CompAbilityEffect_TransmuteNecron.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-10T00:22:31.732Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -83,6 +83,13 @@ namespace GW40K_Necrons
                 canResurrect = false;
                 return false;
             }
+
+            if (corpse.InnerPawn.health.summaryHealth.SummaryHealthPercent >= 0.10f)
+            {
+                canResurrect = false;
+                return false;
+            }
+
             canResurrect = true;
             return true;
         }
@@ -100,6 +107,14 @@ namespace GW40K_Necrons
 
             if (ticksToResurrect <= 0)
             {
+                // reinitiate canresurrect in case the corpse had been eaten/lost the gene
+                InitiateCanResurrect();
+                // once tested false, corpse will not be resurrecting on its own anymore
+                if (!canResurrect.GetValueOrDefault(false))
+                {
+                    return;
+                }
+
                 Pawn pawn = corpse.InnerPawn;
                 //foreach (Hediff h in pawn.health.hediffSet.hediffs)
                 //{

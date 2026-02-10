@@ -17,7 +17,7 @@
 		</stages>
 		<modExtensions>
 			<li Class="NecronGeneUtil.ThoughtExtension_NecronHateFlesh">
-				<requireGeneDef>GW_UD_ResurrectionProtocal</requireGeneDef>
+				<requireGeneDef>GW_UD_ResurrectionProtocol</requireGeneDef>
 				<stateMatch>1</stateMatch>
 				<stateNotMatch>0</stateNotMatch>
 			</li>

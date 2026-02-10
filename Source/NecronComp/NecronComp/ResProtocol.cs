@@ -26,7 +26,7 @@ namespace GW40K_Necrons
 
         public static bool PawnHasResurrectionProtocol(Pawn pawn)
         {
-            return pawn.genes?.GetGene(NecronDefOfs.GW_UD_ResurrectionProtocal)
+            return pawn.genes?.GetGene(NecronDefOfs.GW_UD_ResurrectionProtocol)
                    is Gene_ResurrectionProtocol;
         }
     }

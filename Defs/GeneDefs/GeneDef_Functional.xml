@@ -29,7 +29,7 @@
 	</GeneDef>
 	
 	<GeneDef>
-		<defName>GW_UD_ResurrectionProtocal</defName>
+		<defName>GW_UD_ResurrectionProtocol</defName>
 		<label>Resurrection Protocal</label>
 		<description>. . .</description>
 		<!-- <geneClass>Gene_Deathrest</geneClass> -->

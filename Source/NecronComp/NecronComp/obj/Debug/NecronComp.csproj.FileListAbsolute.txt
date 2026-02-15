@@ -1,0 +1,2 @@
+C:\Games\RimWorld.v1.6.4630\Mods\Undying-Legions\Source\NecronComp\NecronComp\obj\Debug\NecronComp.csproj.AssemblyReference.cache
+C:\Games\RimWorld.v1.6.4630\Mods\Undying-Legions\Source\NecronComp\NecronComp\obj\Debug\NecronComp.csproj.CoreCompileInputs.cache

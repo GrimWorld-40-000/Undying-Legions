@@ -19,4 +19,5 @@ public class NecronDefOfs
   public static HediffDef GW40K_Necron_TiredHediff;
   public static HediffDef GW40K_Necron_ResurrectionHediff;
   public static HediffDef GW40K_Necron_HealingHediff;
+  public static GeneDef GW_UD_ResurrectionProtocol;
 }

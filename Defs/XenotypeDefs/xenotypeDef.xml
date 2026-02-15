@@ -5,7 +5,7 @@
 		<inheritable>true</inheritable>
 		<genes>
 			<li>GW_UD_EternalSlumber</li>
-			<li>GW_UD_ResurrectionProtocal</li>
+			<li>GW_UD_ResurrectionProtocol</li>
 			<li>GW_UD_BodyDegradation</li>
 			<li>GW_UD_LifeLess</li>
 			<li>GW_UD_SlowAdvancement</li>

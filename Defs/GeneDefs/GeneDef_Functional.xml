@@ -37,6 +37,11 @@
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<geneClass>GW40K_Necrons.Gene_ResurrectionProtocol</geneClass>
+		<modExtensions>
+			<li Class="GW40K_Necrons.GeneExtension_Resurrection">
+        <ticksToResurrect>625</ticksToResurrect>
+			</li>
+		</modExtensions>
 	</GeneDef>
 	
 	<GeneDef>

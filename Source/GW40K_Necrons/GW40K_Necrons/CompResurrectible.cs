@@ -23,70 +23,59 @@ namespace GW40K_Necrons
 
         private Corpse corpse = null;
 
-        //public override void PostPostMake()
-        //{
-        //    base.PostPostMake();
-        //    if (parent is not Corpse c)
-        //    {
-        //        return;
-        //    }
-        //    corpse = c;
-        //    if (corpse.InnerPawn?.genes == null || !corpse.InnerPawn.genes.HasActiveGene(NecronDefOfs.GW_UD_ResurrectionProtocol))
-        //    {
-        //        return;
-        //    }
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref canResurrect, "canResurrect");
+            Scribe_Values.Look(ref ticksToResurrect, "ticksToResurrect");
+            Scribe_References.Look(ref corpse, "corpse");
+        }
 
-        //    if (corpse.InnerPawn?.health.hediffSet.GetBrain() == null)
-        //    {
-        //        return;
-        //    }
-        //    canResurrect = true;
-        //}
-
-        //public override string CompInspectStringExtra()
-        //{
-        //    string extra = "";
-        //    if (canResurrect.GetValueOrDefault(InitiateCanResurrect()))
-        //    {
-        //        extra = "will resurrect in " + ticksToResurrect + " ticks";
-        //    }
-        //    else
-        //    {
-        //        extra = "wont resurrect";
-        //    }
-        //    return base.CompInspectStringExtra() + extra;
-        //}
-
+        // we cant afford checking if each and every corpse should resurrect every rare tick.
+        // we only apply the check to corpses with canRessurect = true and we only initiate the variable when we have to
         private bool InitiateCanResurrect()
         {
-
             if (parent is not Corpse c)
             {
                 canResurrect = false;
+                //Log.Warning("not a corpse");
                 return false;
             }
             corpse = c;
 
             if (corpse.InnerPawn == null)
             {
+                //Log.Warning("no innerPawn");
                 return false;
             }
 
-            if (corpse.InnerPawn.genes == null || !corpse.InnerPawn.genes.HasActiveGene(NecronDefOfs.GW_UD_ResurrectionProtocol))
+            if (corpse.InnerPawn.genes != null && corpse.InnerPawn.genes.HasActiveGene(NecronDefOfs.GW_UD_ResurrectionProtocol))
+            {
+                // get the resurrection duration from the gene
+                if (corpse.InnerPawn.genes.GetGene(NecronDefOfs.GW_UD_ResurrectionProtocol).def.GetModExtension<GeneExtension_Resurrection>() is GeneExtension_Resurrection modExtension)
+                {
+                    ticksToResurrect = modExtension.ticksToResurrect;
+                    //Log.Warning("resurrects in " + ticksToResurrect);
+                }
+            }
+            else
             {
                 canResurrect = false;
+                //Log.Warning("no gene");
                 return false;
             }
 
             if (corpse.InnerPawn.health.hediffSet.GetBrain() == null)
             {
                 canResurrect = false;
+                //Log.Warning("no brain");
                 return false;
             }
 
             if (corpse.InnerPawn.health.summaryHealth.SummaryHealthPercent >= 0.10f)
             {
                 canResurrect = false;
+                //Log.Warning("health too low");
                 return false;
             }
 
@@ -98,7 +87,7 @@ namespace GW40K_Necrons
         {
             base.CompTick();
 
-            if (!canResurrect.GetValueOrDefault(InitiateCanResurrect()))
+            if (!(canResurrect.HasValue ? canResurrect ?? false : InitiateCanResurrect()))
             {
                 return;
             }
@@ -110,19 +99,13 @@ namespace GW40K_Necrons
                 // reinitiate canresurrect in case the corpse had been eaten/lost the gene
                 InitiateCanResurrect();
                 // once tested false, corpse will not be resurrecting on its own anymore
-                if (!canResurrect.GetValueOrDefault(false))
+                if (!canResurrect ?? false)
                 {
+                    canResurrect = false;
                     return;
                 }
 
                 Pawn pawn = corpse.InnerPawn;
-                //foreach (Hediff h in pawn.health.hediffSet.hediffs)
-                //{
-                //    if (h.IsLethal)
-                //    {
-                //        pawn.health.RemoveHediff(h);
-                //    }
-                //}
 
                 bool selected = Find.Selector.IsSelected(corpse);
                 bool spawned = corpse.SpawnedOrAnyParentSpawned;
@@ -153,6 +136,7 @@ namespace GW40K_Necrons
                 if (spawned)
                 {
                     GenSpawn.Spawn(pawn, loc, map);
+                    Messages.Message("MessageNecronResurrection".Translate(), pawn, MessageTypeDefOf.SilentInput);
                     Lord lord = pawn.GetLord();
                     if (lord != null)
                     {
@@ -180,7 +164,7 @@ namespace GW40K_Necrons
                     {
                         pawn.guest.SetNoInteraction();
                     }
-
+                    
                     if (selected && pawn != null)
                     {
                         Find.Selector.Select(pawn, playSound: false, forceDesignatorDeselect: false);

@@ -52,6 +52,7 @@
     <Compile Include="CompProperties_Resurrectible.cs" />
     <Compile Include="CompResurrectible.cs" />
     <Compile Include="CorpseCompAdder.cs" />
+    <Compile Include="GeneExtension_Resurrection.cs" />
     <Compile Include="HarmonyPatch_ForceDeathrestOrComa.cs" />
     <Compile Include="HarmonyPatch_OutdoorsNeed.cs" />
     <Compile Include="HarmonyPatch_Passion.cs" />

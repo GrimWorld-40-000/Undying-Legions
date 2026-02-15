@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|solutionrelative:compresurrectible.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|c:\\games\\rimworld.v1.6.4630\\mods\\undying-legions\\source\\gw40k_necrons\\gw40k_necrons\\geneextension_resurrection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|solutionrelative:geneextension_resurrection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\compproperties_resurrectible.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}|GW40K_Necrons.csproj|solutionrelative:compproperties_resurrectible.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -61,11 +65,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GeneExtension_Resurrection.cs",
+              "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\GeneExtension_Resurrection.cs",
+              "RelativeDocumentMoniker": "GeneExtension_Resurrection.cs",
+              "ToolTip": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\GeneExtension_Resurrection.cs",
+              "RelativeToolTip": "GeneExtension_Resurrection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T04:14:27.778Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -75,14 +92,14 @@
               "RelativeDocumentMoniker": "CompResurrectible.cs",
               "ToolTip": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\CompResurrectible.cs*",
               "RelativeToolTip": "CompResurrectible.cs*",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAYwGkAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAgwIoAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-10T02:46:20.194Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CompProperties_Resurrectible.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\CompProperties_Resurrectible.cs",
               "RelativeDocumentMoniker": "CompProperties_Resurrectible.cs",
@@ -90,12 +107,11 @@
               "RelativeToolTip": "CompProperties_Resurrectible.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-10T02:44:26.72Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-10T02:44:26.72Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CorpseCompAdder.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\CorpseCompAdder.cs",
               "RelativeDocumentMoniker": "CorpseCompAdder.cs",
@@ -107,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "HarmonyPatch_ShouldBeDead.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\HarmonyPatch_ShouldBeDead.cs",
               "RelativeDocumentMoniker": "HarmonyPatch_ShouldBeDead.cs",
@@ -119,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HarmonyPatch_ForceDeathrestOrComa.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\HarmonyPatch_ForceDeathrestOrComa.cs",
               "RelativeDocumentMoniker": "HarmonyPatch_ForceDeathrestOrComa.cs",
@@ -131,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "HarmonyPatch_ShouldBeDeathrestingOrInComa.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\HarmonyPatch_ShouldBeDeathrestingOrInComa.cs",
               "RelativeDocumentMoniker": "HarmonyPatch_ShouldBeDeathrestingOrInComa.cs",
@@ -143,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "HediffGiver_Resurrection.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\HediffGiver_Resurrection.cs",
               "RelativeDocumentMoniker": "HediffGiver_Resurrection.cs",
@@ -155,7 +171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "NecronDefOfs.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\NecronDefOfs.cs",
               "RelativeDocumentMoniker": "NecronDefOfs.cs",
@@ -167,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "NonOrganicPawn.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\NonOrganicPawn.cs",
               "RelativeDocumentMoniker": "NonOrganicPawn.cs",
@@ -179,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "1monolith.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\1monolith.cs",
               "RelativeDocumentMoniker": "1monolith.cs",
@@ -191,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RefSafetyRulesAttribute.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\System\\Runtime\\CompilerServices\\RefSafetyRulesAttribute.cs",
               "RelativeDocumentMoniker": "System\\Runtime\\CompilerServices\\RefSafetyRulesAttribute.cs",
@@ -203,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "GW40K_Necrons",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\GW40K_Necrons.csproj",
               "RelativeDocumentMoniker": "GW40K_Necrons.csproj",
@@ -214,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "2monolith.cs",
               "DocumentMoniker": "C:\\Games\\RimWorld.v1.6.4630\\Mods\\Undying-Legions\\Source\\GW40K_Necrons\\GW40K_Necrons\\2monolith.cs",
               "RelativeDocumentMoniker": "2monolith.cs",

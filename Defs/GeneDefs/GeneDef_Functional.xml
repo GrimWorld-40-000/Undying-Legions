@@ -14,7 +14,8 @@
 		<enablesNeeds>
 			<li>Deathrest</li>
 		</enablesNeeds>
-		<biostatMet>6</biostatMet>
+		<biostatMet>0</biostatMet>
+		<biostatArc>1</biostatArc>
 		<minAgeActive>3</minAgeActive>
 		<symbolPack>
 			<prefixSymbols>
@@ -36,6 +37,7 @@
 		<iconPath>Genes/ResurectionProtocol</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
+		<biostatArc>1</biostatArc>
 		<geneClass>GW40K_Necrons.Gene_ResurrectionProtocol</geneClass>
 		<modExtensions>
 			<li Class="GW40K_Necrons.GeneExtension_Resurrection">
@@ -55,6 +57,7 @@
 		<iconPath>Genes/BodyDegradation</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
+		<biostatArc>1</biostatArc>
 	</GeneDef>
 	
 	<GeneDef>
@@ -65,6 +68,7 @@
 		<iconPath>Genes/Lifeless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
+		<biostatArc>1</biostatArc>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_Necron_Lifeless</hediffDef>
@@ -81,6 +85,7 @@
 		<iconPath>Genes/Lifeless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
+		<biostatArc>1</biostatArc>
 		<statFactors>
 			<WorkSpeedGlobal>0.7</WorkSpeedGlobal>
 		</statFactors>
@@ -94,6 +99,7 @@
 		<iconPath>Genes/Hatred for the Living</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
+		<biostatArc>1</biostatArc>
 	</GeneDef>
 	
 	<GeneDef>
@@ -121,6 +127,7 @@
 		<iconPath>Genes/Lifeless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
+		<biostatArc>1</biostatArc>
 		<statFactors>
 			<NegotiationAbility>1.15</NegotiationAbility>
 			<SocialImpact>1.15</SocialImpact>

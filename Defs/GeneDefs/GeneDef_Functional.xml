@@ -243,7 +243,7 @@
 		<defName>GW_UD_NobleHabits</defName>
 		<label>Noble habits</label>
 		<description>. . .</description>
-		<iconPath>Genes/royalty</iconPath>
+		<iconPath>Genes/highborn (nobility)</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 	</GeneDef>
@@ -340,7 +340,7 @@
 		<label>Nobility</label>
 		<description>. . .</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
-		<iconPath>Genes/royalty</iconPath>
+		<iconPath>Genes/highborn (nobility)</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<modExtensions>

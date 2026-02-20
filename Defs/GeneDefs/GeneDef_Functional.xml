@@ -107,7 +107,7 @@
 		<label>Can't Wear Cloth</label>
 		<description>. . .</description>
 		<geneClass>NecronGeneUtil.Gene_RemoveAllApparelOnAdd</geneClass>
-		<iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
+		<iconPath>Genes/clotheless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<modExtensions>
@@ -124,7 +124,7 @@
 		<defName>GW_UD_NecronEmissary</defName>
 		<label>Necron emmisarry</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/emmisarry</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<biostatArc>1</biostatArc>
@@ -138,7 +138,7 @@
 		<defName>GW_UD_Bodyguard</defName>
 		<label>Bodyguard</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/Bodyguard</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<statOffsets>
@@ -155,7 +155,7 @@
 		<defName>GW_UD_CantWork</defName>
 		<label>Can't Work</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/inertia</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<disabledWorkTags>AllWork</disabledWorkTags>
@@ -165,7 +165,7 @@
 		<defName>GW_UD_LowBorn</defName>
 		<label>Low Born</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/lowborn</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<disablesNeeds>
@@ -182,7 +182,7 @@
 		<defName>GW_UD_GreaterStagger</defName>
 		<label>Great Stagger</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/greatstagger</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<statFactors>
@@ -194,7 +194,7 @@
 		<defName>GW_UD_Sharpshooter</defName>
 		<label>Sharpshooter</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/sharpshooter</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<statFactors>
@@ -206,7 +206,7 @@
 		<defName>GW_UD_Workflow</defName>
 		<label>Workflow</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/workflow</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<statOffsets>
@@ -219,7 +219,7 @@
 		<label>Recall memories</label>
 		<description>. . .</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/memory</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<modExtensions>
@@ -234,7 +234,7 @@
 		<defName>GW_UD_TechnoMagic</defName>
 		<label>Techno-Magic</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/technomagic</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 	</GeneDef>
@@ -243,7 +243,7 @@
 		<defName>GW_UD_NobleHabits</defName>
 		<label>Noble habits</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/royalty</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 	</GeneDef>
@@ -269,7 +269,7 @@
 		<label>Royalty</label>
 		<description>. . .</description>
 		<geneClass>NecronGeneUtil.Gene_RoyaltyNeed</geneClass>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/royalty</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<disablesNeeds>
@@ -298,7 +298,7 @@
 		<label>Techno-Interface</label>
 		<description>. . .</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/Techno-interface</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<modExtensions>
@@ -314,7 +314,7 @@
 		<defName>GW_UD_RoyalHabits</defName>
 		<label>Royal habits</label>
 		<description>. . .</description>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/royalty</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 	</GeneDef>
@@ -340,7 +340,7 @@
 		<label>Nobility</label>
 		<description>. . .</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/royalty</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<modExtensions>

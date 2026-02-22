@@ -314,7 +314,7 @@
 		<defName>GW_UD_RoyalHabits</defName>
 		<label>Royal habits</label>
 		<description>. . .</description>
-		<iconPath>Genes/royalty</iconPath>
+		<iconPath>Genes/wat</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 	</GeneDef>

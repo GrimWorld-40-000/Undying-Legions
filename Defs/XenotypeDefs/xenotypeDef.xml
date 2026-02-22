@@ -20,7 +20,7 @@
 		<label>Lychguard</label>
 		<description>. . .</description>
 		<descriptionShort>. . .</descriptionShort>
-		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<iconPath>Genes/weird3</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
 			<li>GW_UD_NecronLychguard</li>
@@ -43,7 +43,7 @@
 		<label>Deathmark</label>
 		<description>. . .</description>
 		<descriptionShort>. . .</descriptionShort>
-		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<iconPath>Genes/weird2</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
 			<li>GW_UD_GreaterStagger</li>
@@ -62,7 +62,7 @@
 		<label>Cryptek</label>
 		<description>. . .</description>
 		<descriptionShort>. . .</descriptionShort>
-		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<iconPath>Genes/weird</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
 			<li>GW_UD_NobleHabits</li>
@@ -85,7 +85,7 @@
 		<label>Overlord</label>
 		<description>. . .</description>
 		<descriptionShort>. . .</descriptionShort>
-		<iconPath>UI/Icons/Xenotypes/Other</iconPath>
+		<iconPath>Genes/weird4</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
 			<li>GW_UD_Nobility</li>

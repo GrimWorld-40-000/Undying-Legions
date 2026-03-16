@@ -70,5 +70,46 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+	<!-- <ThingDef ParentName="HatMakeableBase" Name="CowboyHat"> -->
+    <!-- <defName>GW40K_HiddenHeadApparel</defName> -->
+    <!-- <label>Necron head thing</label> -->
+    <!-- <description>. . .</description> -->
+    <!-- <possessionCount>1</possessionCount> -->
+    <!-- <recipeMaker Inherit="False" IsNull="True" /> -->
+    <!-- <graphicData> -->
+      <!-- <texPath>Things/Items/Necrodermis/Necrodermis_a</texPath> -->
+      <!-- <graphicClass>Graphic_Single</graphicClass> -->
+      <!-- <drawSize>(0.9, 0.9)</drawSize> -->
+    <!-- </graphicData> -->
+	<!-- <tradeability>None</tradeability> -->
+	<!-- <useHitPoints>false</useHitPoints> -->
+	<!-- <destroyOnDrop>true</destroyOnDrop> -->
+    <!-- <statBases> -->
+      <!-- <Mass>0.14</Mass> -->
+      <!-- <EquipDelay>0.8</EquipDelay> -->
+	  <!-- <MarketValue>0</MarketValue> -->
+    <!-- </statBases> -->
+    <!-- <equippedStatOffsets /> -->
+    <!-- <apparel> -->
+      <!-- <countsAsClothingForNudity>true</countsAsClothingForNudity> -->
+      <!-- <developmentalStageFilter>Child, Adult</developmentalStageFilter> -->
+      <!-- <bodyPartGroups> -->
+        <!-- <li>UpperHead</li> -->
+      <!-- </bodyPartGroups> -->
+	  <!-- <renderSkipFlags> -->
+		<!-- <li>Head</li> -->
+	  <!-- </renderSkipFlags> -->
+      <!-- <layers> -->
+        <!-- <li>Overhead</li> -->
+      <!-- </layers> -->
+      <!-- <tags> -->
+        <!-- <li>Necron_UniqueThing</li> -->
+      <!-- </tags> -->
+    <!-- </apparel> -->
+    <!-- <tradeTags> -->
+      <!-- <li>Necron_UniqueThing</li> -->
+    <!-- </tradeTags> -->
+  <!-- </ThingDef> -->
 
 </Defs>

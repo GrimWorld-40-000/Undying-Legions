@@ -1,0 +1,115 @@
+<Defs>
+
+	<PawnKindDef Name="UD_NecronPawnKindBase" Abstract="True">
+		<race>Human</race>
+		<defaultFactionDef>UD_NecronFaction</defaultFactionDef>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<invNutrition>2.55</invNutrition>
+		<itemQuality>Normal</itemQuality>
+		<backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality>
+		<maxGenerationAge>65</maxGenerationAge>
+		<combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
+		<combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount>
+		<biocodeWeaponChance>0.1</biocodeWeaponChance>
+	</PawnKindDef>
+	
+	<PawnKindDef Abstract="True" Name="UD_NecronRangedBase" ParentName="UD_NecronPawnKindBase">
+    <race>Human</race>
+    <gearHealthRange>0.7~2.3</gearHealthRange>
+	<initialResistanceRange>9999~9999</initialResistanceRange>
+    <initialWillRange>9999~9999</initialWillRange>
+    <apparelTags Inherit="False" />
+	<apparelRequired>
+		<!-- <li>GW40K_HiddenHeadApparel</li> -->
+	</apparelRequired>
+    <apparelMoney>0</apparelMoney>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+    <weaponMoney>9999~9999</weaponMoney>
+    <techHediffsChance>0.05</techHediffsChance>
+    <techHediffsMoney>500~500</techHediffsMoney>
+    <techHediffsTags>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
+    <disallowedTraits>
+      <li>Brawler</li>
+    </disallowedTraits>
+    <inventoryOptions>
+      <skipChance>0.95</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>MedicineIndustrial</thingDef>
+          <countRange>1</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="UD_NecronRangedBase">
+    <defName>UD_NecronCryptek</defName>
+    <label>Cryptek</label>
+    <combatPower>100</combatPower>
+    <canBeSapper>true</canBeSapper>
+    <isGoodBreacher>true</isGoodBreacher>
+    <weaponTags>
+      <li>GW_Necron_Melee_Staff</li>
+    </weaponTags>
+	<xenotypeSet Inherit="False">
+		<xenotypeChances>
+			<GW_UD_NecronCryptek>1</GW_UD_NecronCryptek>
+		</xenotypeChances>
+	</xenotypeSet>
+	<abilities>
+      <li>ResurrectionMech</li>
+    </abilities>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="UD_NecronRangedBase">
+    <defName>UD_NecronOverlord</defName>
+    <label>Overlord</label>
+	<factionLeader>true</factionLeader>
+    <combatPower>100</combatPower>
+    <canBeSapper>true</canBeSapper>
+    <isGoodBreacher>true</isGoodBreacher>
+    <weaponTags>
+      <li>GW_Necron_Melee_Warscythe</li>
+    </weaponTags>
+	<xenotypeSet Inherit="False">
+		<xenotypeChances>
+			<GW_UD_NecronOverlord>1</GW_UD_NecronOverlord>
+		</xenotypeChances>
+	</xenotypeSet>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="UD_NecronRangedBase">
+    <defName>UD_NecronLychguard</defName>
+    <label>Lychguard</label>
+    <combatPower>100</combatPower>
+    <canBeSapper>true</canBeSapper>
+    <isGoodBreacher>true</isGoodBreacher>
+    <weaponTags>
+      <li>GW_Necron_Melee_HyperSword</li>
+    </weaponTags>
+	<xenotypeSet Inherit="False">
+		<xenotypeChances>
+			<GW_UD_NecronLychguard>1</GW_UD_NecronLychguard>
+		</xenotypeChances>
+	</xenotypeSet>
+  </PawnKindDef>
+  
+  <PawnKindDef ParentName="UD_NecronRangedBase">
+    <defName>UD_NecronDeathmark</defName>
+    <label>Deathmark</label>
+    <combatPower>100</combatPower>
+    <canBeSapper>true</canBeSapper>
+    <isGoodBreacher>true</isGoodBreacher>
+    <weaponTags>
+      <li>GW_Necron_Ranged_Disintegrator</li>
+    </weaponTags>
+	<xenotypeSet Inherit="False">
+		<xenotypeChances>
+			<GW_UD_NecronDeathmark>1</GW_UD_NecronDeathmark>
+		</xenotypeChances>
+	</xenotypeSet>
+  </PawnKindDef>
+
+</Defs>

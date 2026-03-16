@@ -109,6 +109,10 @@
 		<fur>GW_UD_NecronLychguard</fur>
 		<iconPath>Genes/Machine_body</iconPath>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<statOffsets>
+			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+		</statOffsets>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW_UD_NecronLychguard</hediffDef>

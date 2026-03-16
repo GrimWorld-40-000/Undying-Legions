@@ -46,13 +46,16 @@
 		<stuffCategories>
 			<!-- <li>Imperial_Metals</li> -->
 		</stuffCategories>
-		<costStuffCount>200</costStuffCount>
+		<!-- <costStuffCount>200</costStuffCount> -->
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
 			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
 		</costList>
+		<weaponTags>
+			<li>GW_Necron_Melee_HyperSword</li>
+		</weaponTags>
 		<tools>
 			<li>
 			<label>handle</label>
@@ -103,13 +106,16 @@
 		<stuffCategories>
 			<!-- <li>Imperial_Metals</li> -->
 		</stuffCategories>
-		<costStuffCount>200</costStuffCount>
+		<!-- <costStuffCount>200</costStuffCount> -->
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
 			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
 		</costList>
+		<weaponTags>
+			<li>GW_Necron_Melee_Warscythe</li>
+		</weaponTags>
 		<tools>
 			<li>
 			<label>handle</label>
@@ -163,13 +169,16 @@
 		<stuffCategories>
 			<!-- <li>Imperial_Metals</li> -->
 		</stuffCategories>
-		<costStuffCount>200</costStuffCount>
+		<!-- <costStuffCount>200</costStuffCount> -->
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
 			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
 		</costList>
+		<weaponTags>
+			<li>GW_Necron_Melee_Claw</li>
+		</weaponTags>
 		<tools>
 			<li>
 			<label>handle</label>

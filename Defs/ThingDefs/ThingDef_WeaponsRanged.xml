@@ -27,6 +27,29 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="BaseBullet">
+		<defName>GW40k_Necron_ChainChargeBullet</defName>
+		<label>beam repeater laser</label>
+		<thingClass>ChainProjectiles.ChainProjectile</thingClass>
+		<graphicData>
+		  <texPath>Things/Projectile/Bullet_Small</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+		  <damageDef>BeamBypassShields</damageDef>
+		  <damageAmountBase>5</damageAmountBase>
+		  <beamMoteDef>Mote_BeamRepeaterLaser</beamMoteDef>
+		  <beamStartOffset>0.5</beamStartOffset>
+		  <armorPenetrationBase>0.5</armorPenetrationBase>
+		</projectile>
+		<modExtensions>
+		  <li Class="ChainProjectiles.ChainProjectileModExtension">
+			<chainRange>10</chainRange>
+			<chainMaxCount>4</chainMaxCount>
+		  </li>
+		</modExtensions>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBullet">
 		<defName>GW40k_Necron_ChargeBullet</defName>
 		<label>charge shot</label>
 		<graphicData>
@@ -41,10 +64,10 @@
 		</projectile>
 	</ThingDef>
 	
-	<!-- Laser Bullet 
+	 <!-- Laser Bullet  -->
 	<ThingDef>
 		<defName>GW40k_Necron_BeamGraphic</defName>
-		<thingClass>VanillaWeaponsExpandedLaser.LaserBeamGraphic</thingClass>
+		<thingClass>VEF.Weapons.LaserBeamGraphic</thingClass>
 		<drawOffscreen>true</drawOffscreen>
 		<label>beam</label>
     
@@ -53,9 +76,9 @@
 		<altitudeLayer>MoteOverhead</altitudeLayer>
 		<useHitPoints>False</useHitPoints>
 		<neverMultiSelect>True</neverMultiSelect>
-	</ThingDef>-->
-	<!--<ThingDef Abstract="True" Name="GW40k_Necron_BulletLaser" ParentName="BaseBullet">
-		<thingClass>VanillaWeaponsExpandedLaser.LaserBeam</thingClass>
+	</ThingDef>
+	<ThingDef Abstract="True" Name="GW40k_Necron_BulletLaser" ParentName="BaseBullet">
+		<thingClass>VEF.Weapons.LaserBeam</thingClass>
 		<drawOffscreen>true</drawOffscreen>
 		<beamGraphic>GW40k_Necron_BeamGraphic</beamGraphic>
    
@@ -73,8 +96,8 @@
 		</projectile>
     
 		<seam>0.25</seam>
-	</ThingDef> -->
-	<!-- <ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VanillaWeaponsExpandedLaser.LaserBeamDef"> 
+	</ThingDef> 
+	 <ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VEF.Weapons.LaserBeamDef"> 
 		<defName>GW40k_Necron_Laser</defName>
 		<label>Necron Beam</label>
 		<description>beam</description>
@@ -85,16 +108,16 @@
 		<causefireChance>0</causefireChance>
 		<beamWidth>1.5</beamWidth>
 		<lifetime>60</lifetime>
-		<explosionEffect>Ring_ExpandY</explosionEffect>
+		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
 		<projectile>
 			<damageDef>Cut</damageDef>
 			<damageAmountBase>40</damageAmountBase>
 			<armorPenetrationBase>2.10</armorPenetrationBase>
 			<stoppingPower>3</stoppingPower>
 		</projectile>
-	</ThingDef> -->
+	</ThingDef> 
 	
-	<!-- Disintegrator 
+	 <!-- Disintegrator  -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_Disintegrator</defName>
 		<label>Disintegrator</label>
@@ -124,6 +147,10 @@
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
 			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
 		</costList>
+		<weaponTags>
+			<li>GW_Necron_Ranged</li>
+			<li>GW_Necron_Ranged_Disintegrator</li>
+		</weaponTags>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
@@ -163,7 +190,7 @@
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
 		</modExtensions>
-	</ThingDef>-->
+	</ThingDef>
 	
 	<!-- Enmitic_Exterminator -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
@@ -211,6 +238,7 @@
 		</verbs>
 		<weaponTags>
 			<li>GW_Necron_Ranged</li>
+			<li>GW_Necron_Ranged_Exterminator</li>
 		</weaponTags>
 		<tools>
 			<li>
@@ -270,7 +298,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>GW40k_Necron_ChargeBullet</defaultProjectile>
+				<defaultProjectile>GW40k_Necron_ChainChargeBullet</defaultProjectile>
 				<warmupTime>2.5</warmupTime>
 				<range>55</range>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
@@ -282,6 +310,7 @@
 		</verbs>
 		<weaponTags>
 			<li>GW_Necron_Ranged</li>
+			<li>GW_Necron_Ranged_GaussBlaster</li>
 		</weaponTags>
 		<tools>
 			<li>
@@ -356,6 +385,7 @@
 		</verbs>
 		<weaponTags>
 			<li>GW_Necron_Ranged</li>
+			<li>GW_Necron_Ranged_GaussFlayer</li>
 		</weaponTags>
 		<tools>
 			<li>
@@ -427,6 +457,7 @@
 		</verbs>
 		<weaponTags>
 			<li>GW_Necron_Ranged</li>
+			<li>GW_Necron_Ranged_TeslaCarbine</li>
 		</weaponTags>
 		<tools>
 			<li>

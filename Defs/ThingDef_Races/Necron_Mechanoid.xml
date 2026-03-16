@@ -1,0 +1,494 @@
+<Defs>
+	
+	<PawnKindDef Name="UD_NecronMechPawnKindBase" Abstract="True">
+		<race>UD_Necron_Warrior</race>
+		<defaultFactionDef>UD_NecronFaction</defaultFactionDef>
+		<chemicalAddictionChance>0</chemicalAddictionChance>
+		<!-- <invNutrition>2.55</invNutrition> -->
+		<itemQuality>Normal</itemQuality>
+		<!-- <backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality> -->
+		<maxGenerationAge>200</maxGenerationAge>
+		<!-- <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance> -->
+		<!-- <combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount> -->
+		<!-- <biocodeWeaponChance>0.1</biocodeWeaponChance> -->
+	</PawnKindDef>
+	
+	<!-- Warrior -->
+	<ThingDef ParentName="BaseMechanoidWalker">
+		<defName>UD_Necron_Warrior</defName>
+		<label>Necron Warrior</label>
+		<description>. . .</description>
+		<statBases>
+			<MoveSpeed>2.5</MoveSpeed>
+			<BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
+		</statBases>
+		<tools>
+			<li>
+				<label>left fist</label>
+				<labelNoLocation>fist</labelNoLocation>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12.0</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+			<li>
+				<label>right fist</label>
+				<labelNoLocation>fist</labelNoLocation>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>12.0</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>8.5</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.2</chanceFactor>
+			</li>
+		</tools>
+		<race>
+			<body>Lancer</body>
+			<baseHealthScale>1.5</baseHealthScale>
+			<lifeStageAges Inherit="False">
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>0</minAge>
+					<soundWounded>Pawn_Mech_Pikeman_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Pikeman_Death</soundDeath>
+					<soundCall>Pawn_Mech_Pikeman_Call</soundCall>
+				</li>
+			</lifeStageAges>
+			<detritusLeavings>
+				<li>
+					<def>ChunkMechanoidSlag</def>
+					<texOverrideIndex>11</texOverrideIndex>
+					<spawnChance>0.1</spawnChance>
+				</li>
+				<li>
+					<def>ChunkMechanoidSlag</def>
+					<texOverrideIndex>16</texOverrideIndex>
+					<spawnChance>0.1</spawnChance>
+				</li>
+				<li>
+					<def>ChunkMechanoidSlag</def>
+					<texOverrideIndex>1</texOverrideIndex>
+					<spawnChance>0.1</spawnChance>
+				</li>
+			</detritusLeavings>
+		</race>
+	</ThingDef>
+
+	<PawnKindDef ParentName="BaseMechanoidKind">
+		<defName>UD_Necron_Warrior</defName>
+		<label>necron warrior</label>
+		<labelPlural>necron warriors</labelPlural>
+		<race>UD_Necron_Warrior</race>
+		<combatPower>110</combatPower>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/Mechanoid/Warrior/NecronWarrior</texPath>
+					<shaderType>CutoutWithOverlay</shaderType>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>1.4</drawSize>
+					<shadowData>
+						<volume>(0.4, 0.8, 0.4)</volume>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+		<weaponMoney>9999~9999</weaponMoney>
+		<weaponTags>
+			<li>GW_Necron_Ranged_GaussFlayer</li>
+		</weaponTags>
+		<techHediffsChance>1</techHediffsChance>
+		<techHediffsMoney>9999~9999</techHediffsMoney>
+	</PawnKindDef>
+	
+	<!-- Cryptothrall -->
+	<ThingDef ParentName="BaseMechanoidWalker">
+		<defName>UD_Necron_Cryptothrall</defName>
+		<label>Cryptothrall</label>
+		<description>. . .</description>
+		<tools>
+			<li>
+				<label>left blade</label>
+				<labelNoLocation>blade</labelNoLocation>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>20</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+			<li>
+				<label>right blade</label>
+				<labelNoLocation>blade</labelNoLocation>
+				<capacities>
+					<li>Cut</li>
+					<li>Stab</li>
+				</capacities>
+				<power>20</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.2</chanceFactor>
+			</li>
+		</tools>
+		<race>
+			<body>Scyther</body>
+			<baseHealthScale>1.32</baseHealthScale>
+			<soundMeleeHitPawn>Pawn_Melee_MechanoidSlash_HitPawn</soundMeleeHitPawn>
+			<soundMeleeHitBuilding>Pawn_Melee_MechanoidSlash_HitBuilding</soundMeleeHitBuilding>
+			<soundMeleeMiss>Pawn_Melee_MechanoidSlash_Miss</soundMeleeMiss>
+			<lifeStageAges Inherit="False">
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>0</minAge>
+					<soundWounded>Pawn_Mech_Pikeman_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Pikeman_Death</soundDeath>
+					<soundCall>Pawn_Mech_Pikeman_Call</soundCall>
+				</li>
+			</lifeStageAges>
+			<detritusLeavings>
+				<li>
+					<def>ChunkMechanoidSlag</def>
+					<texOverrideIndex>18</texOverrideIndex>
+					<spawnChance>0.1</spawnChance>
+				</li>
+				<li>
+					<def>ChunkMechanoidSlag</def>
+					<texOverrideIndex>15</texOverrideIndex>
+					<spawnChance>0.1</spawnChance>
+				</li>
+			</detritusLeavings>
+		</race>
+		<statBases>
+			<BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
+		</statBases>
+	</ThingDef>
+
+	<PawnKindDef ParentName="BaseMechanoidKind">
+		<defName>UD_Necron_Cryptothrall</defName>
+		<label>Cryptothrall</label>
+		<race>UD_Necron_Cryptothrall</race>
+		<combatPower>150</combatPower>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/Mechanoid/Cryptothrall/Cryptothrall</texPath>
+					<shaderType>CutoutWithOverlay</shaderType>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>1.5</drawSize>
+					<shadowData>
+						<volume>(0.4, 0.8, 0.4)</volume>
+					</shadowData>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+		<weaponMoney>0~0</weaponMoney>
+		<defendPointRadius>0</defendPointRadius>
+		<weaponTags>
+		</weaponTags>
+		<techHediffsChance>1</techHediffsChance>
+		<techHediffsMoney>9999~9999</techHediffsMoney>
+	</PawnKindDef>
+	
+	<!-- Immortal -->
+	<ThingDef ParentName="LancerMechanoidWalker">
+		<defName>UD_Necron_Immortal</defName>
+		<label>immortal</label>
+		<description>. . .</description>
+		<race>
+			<lifeStageAges Inherit="False">
+				<li>
+					<def>MechanoidFullyFormed</def>
+					<minAge>0</minAge>
+					<soundWounded>Pawn_Mech_Tesseron_Wounded</soundWounded>
+					<soundDeath>Pawn_Mech_Tesseron_Death</soundDeath>
+					<soundCall>Pawn_Mech_Tesseron_Call</soundCall>
+				</li>
+			</lifeStageAges>
+			<detritusLeavings>
+				<li>
+					<def>ChunkMechanoidSlag</def>
+					<texOverrideIndex>11</texOverrideIndex>
+					<spawnChance>0.1</spawnChance>
+				</li>
+				<li>
+					<def>ChunkMechanoidSlag</def>
+					<texOverrideIndex>1</texOverrideIndex>
+					<spawnChance>0.1</spawnChance>
+				</li>
+			</detritusLeavings>
+		</race>
+		<statBases>
+			<BandwidthCost>3</BandwidthCost>
+			<ControlTakingTime>18</ControlTakingTime>
+		</statBases>
+	</ThingDef>
+
+	<PawnKindDef ParentName="BaseMechanoidKind">
+		<defName>UD_Necron_Immortal</defName>
+		<label>immortal</label>
+		<race>UD_Necron_Immortal</race>
+		<combatPower>150</combatPower>
+		<lifeStages>
+			<li>
+				<bodyGraphicData>
+					<texPath>Things/Pawn/Mechanoid/Immortal/NecronImmortal_Hulk</texPath>
+					<shaderType>CutoutWithOverlay</shaderType>
+					<graphicClass>Graphic_Multi</graphicClass>
+					<drawSize>1.5</drawSize>
+				</bodyGraphicData>
+			</li>
+		</lifeStages>
+		<weaponMoney>9999~9999</weaponMoney>
+		<weaponTags>
+			<li>GW_Necron_Ranged_GaussBlaster</li>
+			<li>GW_Necron_Ranged_TeslaCarbine</li>
+		</weaponTags>
+		<techHediffsChance>1</techHediffsChance>
+		<techHediffsMoney>9999~9999</techHediffsMoney>
+	</PawnKindDef>
+	
+	<!-- FlayedOne -->
+	<ThingDef ParentName="HeavyMechanoid">
+    <defName>UD_Necron_FlayedOne</defName>
+    <label>Flayed One</label>
+    <description>. . .</description>
+    <statBases>
+      <MoveSpeed>1.9</MoveSpeed>
+      <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+      <BandwidthCost>3</BandwidthCost>
+      <WorkSpeedGlobal>1.5</WorkSpeedGlobal>
+      <EnergyShieldEnergyMax>2.5</EnergyShieldEnergyMax>
+    </statBases>
+    <race>
+      <body>Mech_Tunneler</body>
+      <baseBodySize>3.5</baseBodySize>
+      <baseHealthScale>1.5</baseHealthScale>
+      <lifeStageAges>
+        <li>
+          <def>MechanoidFullyFormed</def>
+          <minAge>0</minAge>
+          <soundWounded>Pawn_Mech_Tunneler_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Tunneler_Death</soundDeath>
+          <soundCall>Pawn_Mech_Tunneler_Call</soundCall>
+        </li>
+      </lifeStageAges>
+      <bulletStaggerEffecterDef>TunnelerSlowedDown</bulletStaggerEffecterDef>
+      <mechEnabledWorkTypes>
+        <li>Mining</li>
+      </mechEnabledWorkTypes>
+      <detritusLeavings>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>0</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>3</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>1</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+      </detritusLeavings>
+    </race>
+    <tools>
+      <li>
+        <label>left power claw</label>
+        <labelNoLocation>power claw</labelNoLocation>
+        <capacities>
+          <li>Scratch</li>
+        </capacities>
+        <power>22</power>
+        <cooldownTime>2.9</cooldownTime>
+        <linkedBodyPartsGroup>LeftPowerClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+      </li>
+      <li>
+        <label>right power claw</label>
+        <labelNoLocation>power claw</labelNoLocation>
+        <capacities>
+          <li>Scratch</li>
+        </capacities>
+        <power>22</power>
+        <cooldownTime>2.9</cooldownTime>
+        <linkedBodyPartsGroup>RightPowerClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+      </li>
+    </tools>
+    <comps>
+      <li Class="CompProperties_Shield" />
+    </comps>
+  </ThingDef>
+  
+  <PawnKindDef ParentName="HeavyMechanoidKind">
+    <defName>UD_Necron_FlayedOne</defName>
+    <label>flayed one</label>
+    <race>UD_Necron_FlayedOne</race>
+    <allowInMechClusters>false</allowInMechClusters>
+    <combatPower>250</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Mechanoid/FlayedOne/NecronFlayedOne_Hulk</texPath>
+          <shaderType>CutoutWithOverlay</shaderType>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>1.8</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>      
+    <abilities>
+      <li>SmokepopMech</li>
+    </abilities>
+    <controlGroupPortraitZoom>1</controlGroupPortraitZoom>  
+  </PawnKindDef>
+  
+  <!-- CryptekMech -->
+	<ThingDef ParentName="HeavyMechanoid">
+    <defName>UD_Necron_CryptekMech</defName>
+    <label>Cryptek</label>
+    <description>. . .</description>
+    <statBases>
+      <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+	  <MoveSpeed>1.6</MoveSpeed>
+      <EnergyShieldRechargeRate>0.5</EnergyShieldRechargeRate>
+      <EnergyShieldEnergyMax>3</EnergyShieldEnergyMax>
+      <MeleeDoorDamageFactor>1.5</MeleeDoorDamageFactor>
+      <EMPResistance>0.7</EMPResistance>
+    </statBases>
+    <race>
+      <body>Mech_Tunneler</body>
+      <baseBodySize>3.5</baseBodySize>
+      <baseHealthScale>1.5</baseHealthScale>
+      <lifeStageAges>
+        <li>
+          <def>MechanoidFullyFormed</def>
+          <minAge>0</minAge>
+          <soundWounded>Pawn_Mech_Tunneler_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Tunneler_Death</soundDeath>
+          <soundCall>Pawn_Mech_Tunneler_Call</soundCall>
+        </li>
+      </lifeStageAges>
+      <bulletStaggerEffecterDef>TunnelerSlowedDown</bulletStaggerEffecterDef>
+      <mechEnabledWorkTypes>
+        <li>Mining</li>
+      </mechEnabledWorkTypes>
+      <detritusLeavings>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>0</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>3</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>1</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+      </detritusLeavings>
+    </race>
+    <tools>
+      <li>
+        <label>left power claw</label>
+        <labelNoLocation>power claw</labelNoLocation>
+        <capacities>
+          <li>Scratch</li>
+        </capacities>
+        <power>22</power>
+        <cooldownTime>2.9</cooldownTime>
+        <linkedBodyPartsGroup>LeftPowerClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+      </li>
+      <li>
+        <label>right power claw</label>
+        <labelNoLocation>power claw</labelNoLocation>
+        <capacities>
+          <li>Scratch</li>
+        </capacities>
+        <power>22</power>
+        <cooldownTime>2.9</cooldownTime>
+        <linkedBodyPartsGroup>RightPowerClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+      </li>
+    </tools>
+    <comps>
+      <li Class="CompProperties_Shield" />
+	  <li Class="CompProperties_MechCarrier">
+        <spawnPawnKind>UD_Necron_Warrior</spawnPawnKind>
+        <fixedIngredient>Steel</fixedIngredient>
+        <costPerPawn>25</costPerPawn>
+        <startingIngredientCount>600</startingIngredientCount>
+        <maxIngredientCount>600</maxIngredientCount>
+        <spawnEffecter>WarqueenWarUrchinsSpawned</spawnEffecter>
+        <spawnedMechEffecter>WarUrchinSpawned</spawnedMechEffecter>
+        <attachSpawnedEffecter>true</attachSpawnedEffecter>
+        <attachSpawnedMechEffecter>true</attachSpawnedMechEffecter>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <PawnKindDef ParentName="HeavyMechanoidKind">
+    <defName>UD_Necron_CryptekMech</defName>
+    <label>Cryptek</label>
+    <race>UD_Necron_CryptekMech</race>
+    <allowInMechClusters>false</allowInMechClusters>
+    <combatPower>250</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Mechanoid/FlayedOne/NecronFlayedOne_Hulk</texPath>
+          <shaderType>CutoutWithOverlay</shaderType>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>1.8</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>      
+    <abilities>
+      <li>SmokepopMech</li>
+    </abilities>
+    <controlGroupPortraitZoom>1</controlGroupPortraitZoom>  
+  </PawnKindDef>
+  
+</Defs>

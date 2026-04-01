@@ -129,12 +129,12 @@
 				<sourcePair>
 					<li>
 						<sourceThing>Steel</sourceThing>
-						<outcomeThing>GW40k_Necron_Necrodemis</outcomeThing>
+						<outcomeThing>GW40k_Necron_Necrodermis</outcomeThing>
 						<ratio>3</ratio>
 					</li>
 					<li>
 						<sourceThing>Plasteel</sourceThing>
-						<outcomeThing>GW40k_Necron_Necrodemis</outcomeThing>
+						<outcomeThing>GW40k_Necron_Necrodermis</outcomeThing>
 						<ratio>3</ratio>
 					</li>
 				</sourcePair>

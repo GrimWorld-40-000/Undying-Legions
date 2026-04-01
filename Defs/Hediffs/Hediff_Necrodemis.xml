@@ -1,0 +1,64 @@
+<HediffDef>
+	  <defName>Necron_NecrodermisGrowth</defName>
+		<label>necrodermis colonization</label>
+		<description>A parasitic necrodermis infection. It consumes biological matter to build living metal. If not excised early, it becomes one with the host's nervous system, making removal impossible and eventually leading to death.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<initialSeverity>0.05</initialSeverity>
+		<lethalSeverity>1.0</lethalSeverity>
+		<tendable>true</tendable>
+		<comps>
+		  <li Class="HediffCompProperties_SeverityPerDay">
+			  <severityPerDay>0.11</severityPerDay> <!-- 11% growth per day -->
+		  </li>
+		  <li Class="HediffCompProperties_TendDuration">
+			  <baseTendDurationHours>24</baseTendDurationHours>
+			  <severityPerDayTended>-0.09</severityPerDayTended> <!-- Tending significantly slows growth -->
+		  </li>
+		</comps>
+		  <stages>
+		  <!-- Stage 1: Initial Bonding (0% - 29%) -->
+		  <li>
+			<label>latent seed</label>
+			<becomeVisible>true</becomeVisible>
+			<labelColor>(0.6, 0.8, 0.6)</labelColor> <!-- Faint Green -->
+			<painOffset>0.05</painOffset> <!-- 5% Pain: Distracting itch -->
+		  </li>
+
+		  <!-- Stage 2: Vascular Metal (30% - 59%) -->
+		  <li>
+			<minSeverity>0.30</minSeverity>
+			<label>vascular metal</label>
+			<labelColor>(0.4, 0.9, 0.4)</labelColor>
+			<painOffset>0.20</painOffset> <!-- 20% Pain: Ached bones/veins -->
+			<capMods>
+			  <li><capacity>Manipulation</capacity><offset>-0.10</offset></li>
+			</capMods>
+		  </li>
+
+		  <!-- Stage 3: Dermal Plating (60% - 84%) -->
+		  <li>
+			<minSeverity>0.60</minSeverity>
+			<label>dermal plating</label>
+			<labelColor>(0.2, 1.0, 0.2)</labelColor>
+			<painOffset>0.50</painOffset> <!-- 50% Pain: Significant distress -->
+			<statOffsets>
+			  <ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+			</statOffsets>
+			<capMods>
+			  <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+			</capMods>
+		  </li>
+
+		  <!-- Stage 4: Neural Takeover (85% - 99%) -->
+		  <li>
+			<minSeverity>0.85</minSeverity>
+			<label>neural takeover</label>
+			<labelColor>(1.0, 0.2, 0.2)</labelColor> <!-- Red/Green warning -->
+			<painOffset>0.85</painOffset> <!-- 85% Pain: Likely Pain Shock/Downed -->
+			<capMods>
+			  <li><capacity>Consciousness</capacity><offset>-0.20</offset></li>
+			</capMods>
+		  </li>
+		</stages>
+
+</HediffDef>

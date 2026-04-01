@@ -51,7 +51,7 @@
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
+			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
 		</costList>
 		<weaponTags>
 			<li>GW_Necron_Melee_HyperSword</li>
@@ -111,7 +111,7 @@
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
+			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
 		</costList>
 		<weaponTags>
 			<li>GW_Necron_Melee_Warscythe</li>
@@ -174,7 +174,7 @@
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodemis>100</GW40k_Necron_Necrodemis>
+			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
 		</costList>
 		<weaponTags>
 			<li>GW_Necron_Melee_Claw</li>

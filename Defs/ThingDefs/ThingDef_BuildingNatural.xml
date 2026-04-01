@@ -1,7 +1,7 @@
 <Defs>
 
 	<ThingDef ParentName="RockBase">
-		<defName>GW40k_Necron_NecrodemisMineable</defName>
+		<defName>GW40k_Necron_NecrodermisMineable</defName>
 		<label>necrodemis</label>
 		<description>Rock containing bits of necrodemis.</description>
 		<graphicData>
@@ -16,7 +16,7 @@
 		</statBases>
 		<building>
 			<isResourceRock>true</isResourceRock>
-			<mineableThing>GW40k_Necron_Necrodemis</mineableThing>
+			<mineableThing>GW40k_Necron_Necrodermis</mineableThing>
 			<mineableYield>40</mineableYield>
 			<mineableScatterCommonality>0.0</mineableScatterCommonality>
 			<mineableScatterLumpSizeRange>1~1</mineableScatterLumpSizeRange>

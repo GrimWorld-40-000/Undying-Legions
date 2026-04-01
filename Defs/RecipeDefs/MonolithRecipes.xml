@@ -12,7 +12,7 @@
         <li>
             <filter>
                 <thingDefs>
-                    <li>GW40k_Necron_Necrodemis</li>
+                    <li>GW40k_Necron_Necrodermis</li>
                 </thingDefs>
             </filter>
             <count>5</count>
@@ -20,7 +20,7 @@
     </ingredients>
     <fixedIngredientFilter>
         <thingDefs>
-            <li>GW40k_Necron_Necrodemis</li>
+            <li>GW40k_Necron_Necrodermis</li>
         </thingDefs>
     </fixedIngredientFilter>
     <skillRequirements>

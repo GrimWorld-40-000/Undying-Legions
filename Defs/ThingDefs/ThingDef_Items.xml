@@ -36,9 +36,9 @@
   </StuffCategoryDef>
 	
 	<ThingDef ParentName="OrganicProductBase">
-		<defName>GW40k_Necron_Necrodemis</defName>
-		<label>necrodemis</label>
-		<description>necrodemis</description>
+		<defName>GW40k_Necron_Necrodermis</defName>
+		<label>necrodermis</label>
+		<description>A shimmering, viscous sludge of "living metal" consisting of trillions of nanites. When consumed by Necrons the sub-atomic mechanites synchronize with the user's core, acelerating repair.</description>
 		<possessionCount>10</possessionCount>
 		<graphicData>
 			<texPath>Things/Items/Necrodermis</texPath>
@@ -121,4 +121,37 @@
 		</comps>
 	</ThingDef>
 	
+	<ThingDef ParentName="DrugBase">
+		<defName>GW_NecrodermisInjector</defName>
+		<label>necrodermis injector</label>
+		<description>A pressurized syringe containing a necrodermis seed suspended in a nutrient solution. Upon injection, the nanites immediately begin rewriting the host's genetic code to support living metal growth. This process is difficult to reverse and ultimately fatal.</description>
+    <graphicData>
+		<texPath>Things/Item/NecrodermisInjector</texPath>
+		<graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <statBases>
+		<MarketValue>800</MarketValue>
+		<Mass>0.1</Mass>
+    </statBases>
+    <techLevel>Ultra</techLevel>
+    <ingestible>
+		<drugCategory>Medical</drugCategory>
+		<outcomeDoers>
+			<li Class="IngestionOutcomeDoer_GiveHediff">
+				<hediffDef>Necron_NecrodermisGrowth</hediffDef>
+				<severity>0.1</severity>
+			</li>
+		</outcomeDoers>
+    </ingestible>
+    <comps>
+		<li Class="CompProperties_Usable">
+			<useJob>UseItem</useJob>
+			<useLabel>Inject necrodermis seed</useLabel>
+		</li>
+		<li Class="CompProperties_UseEffect_InstallImplant"> <!-- Optional: use this if you want it to behave like a mechlink/psylink -->
+			<hediffDef>Necron_NecrodermisGrowth</hediffDef>
+		</li>
+    </comps>
+	</ThingDef>
 </Defs>

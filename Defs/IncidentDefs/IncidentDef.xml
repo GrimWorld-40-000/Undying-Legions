@@ -1,7 +1,7 @@
 <Defs>
 
 	<IncidentDef>
-    <defName>GW40k_Necron_NecrodemisSpread</defName>
+    <defName>GW40k_Necron_NecrodermisSpread</defName>
     <label>necrodemis spread</label>
     <category>Misc</category>
     <targetTags>
@@ -15,7 +15,7 @@
 	<modExtensions>
 		<li Class="NecronComp.ModExtension_NecrodemisInfection">
 			<countPerTrigger>13</countPerTrigger>
-			<replaceWith>GW40k_Necron_NecrodemisMineable</replaceWith>
+			<replaceWith>GW40k_Necron_NecrodermisMineable</replaceWith>
 			<excludedThings>
 				<li>MineablePlasteel</li>
 				<li>MineableComponentsIndustrial</li>

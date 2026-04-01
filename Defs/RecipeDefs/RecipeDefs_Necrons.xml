@@ -1,0 +1,24 @@
+<RecipeDef ParentName="SurgeryFlesh">
+  <defName>ExciseNecrodermisSeed</defName>
+  <label>excise necrodermis</label>
+  <description>Carefully harvest the growing necrodermis from the host. Failure is likely as the infection progresses.</description>
+  <workerClass>Recipe_RemoveHediff</workerClass>
+  <jobString>Excising necrodermis.</jobString>
+  <workAmount>3000</workAmount>
+  <removesHediff>Necron_NecrodermisGrowth</removesHediff>
+  <skillRequirements>
+    <Medicine>10</Medicine>
+  </skillRequirements>
+  <ingredients>
+    <li>
+      <filter><thingDefs><li>MedicineUltratech</li></thingDefs></filter>
+      <count>2</count>
+    </li>
+  </ingredients>
+  <products>
+    <!-- Yields a base amount of necrodermis upon successful removal -->
+    <GW40k_Necron_Necrodermis>10</GW40k_Necron_Necrodermis> 
+  </products>
+  <surgerySuccessChanceFactor>0.7</surgerySuccessChanceFactor>
+  <deathOnFailedSurgeryChance>0.3</deathOnFailedSurgeryChance>
+</RecipeDef>

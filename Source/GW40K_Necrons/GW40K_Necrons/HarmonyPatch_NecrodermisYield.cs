@@ -34,7 +34,7 @@ namespace NecronMod
             if (recipe.defName == "ExciseNecrodermis" && __state > 0)
             {
                 // Calculate Yield: e.g., Max 50 units at 1.0 severity
-                int yieldCount = Mathf.RoundToInt(__state * 200f);
+                int yieldCount = Mathf.RoundToInt(__state * 50f);
 
                 if (yieldCount > 0)
                 {

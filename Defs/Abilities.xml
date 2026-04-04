@@ -98,6 +98,57 @@
 		</comps>
 	</AbilityDef>
 	  
+	<AbilityDef>
+		<defName>GW40K_ScarabLeap</defName>
+		<label>scarab leap</label>
+		<description>The swarm launches itself in a burst of skittering legs, closing a short distance in an instant. Once spent, the scarabs require time to coil and ready themselves again.</description>
+		<iconPath>UI/Abilities/GW40k_Ability_Scarab_Leap</iconPath>
+		<cooldownTicksRange>9000</cooldownTicksRange>
+		<aiCanUse>true</aiCanUse>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>8.9</range>
+			<warmupTime>0.5</warmupTime>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>false</canTargetPawns>
+				<canTargetAnimals>false</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>false</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.JumpAbilityProperties"/>
+		</comps>
+	</AbilityDef>
+
+	<AbilityDef>
+		<defName>GW40K_ScarabSelfDestruct</defName>
+		<label>detonate</label>
+		<description>The swarm detonates its internal power cores in a kamikaze explosion. Damage and radius scale with the number of surviving scarabs — a full swarm produces a devastating blast; a dying one a final, desperate pop.</description>
+		<iconPath>UI/Abilities/GW40k_Ability_Scarab_Explode</iconPath>
+		<cooldownTicksRange>0</cooldownTicksRange>
+		<aiCanUse>true</aiCanUse>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<warmupTime>1.5</warmupTime>
+			<range>-1</range>
+			<targetParams>
+				<canTargetSelf>true</canTargetSelf>
+				<canTargetPawns>false</canTargetPawns>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetLocations>false</canTargetLocations>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.ScarabSelfDestructProperties">
+				<baseDamage>30</baseDamage>
+				<baseRadius>4.9</baseRadius>
+			</li>
+		</comps>
+	</AbilityDef>
+
 	<AbilityDef ParentName="AbilityTouchBase">
 		<defName>GW40k_Necron_Transmute</defName>
 		<label>transmute necrodemis</label>

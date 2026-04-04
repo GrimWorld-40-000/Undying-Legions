@@ -40,4 +40,59 @@
 
 </WorkGiverDef>
 
+
+<!-- Placeholder, move to Necron workbench -->
+<RecipeDef>
+    <defName>GW40K_Craft_NecrodermisInjector</defName>
+    <workerClass>RecipeWorker</workerClass>
+    <workAmount>2000</workAmount>
+    <workSkill>Crafting</workSkill>
+    <label>craft necrodermis injector</label>
+    <jobString>Crafting necrodermis injector...</jobString>
+    <effectWorking>ConstructMetal</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <products>
+        <GW_NecrodermisInjector>1</GW_NecrodermisInjector>
+    </products>
+    <ingredients>
+        <li>
+            <filter>
+                <thingDefs>
+                    <li>GW40k_Necron_Necrodermis</li>
+                </thingDefs>
+            </filter>
+            <count>5</count>
+        </li>
+        <li>
+            <filter>
+                <thingDefs>
+                    <li>Steel</li>
+                </thingDefs>
+            </filter>
+            <count>20</count>
+        </li>
+        <li>
+            <filter>
+                <thingDefs>
+                    <li>ComponentIndustrial</li>
+                </thingDefs>
+            </filter>
+            <count>1</count>
+        </li>
+    </ingredients>
+    <fixedIngredientFilter>
+        <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+            <li>Steel</li>
+            <li>ComponentIndustrial</li>
+        </thingDefs>
+    </fixedIngredientFilter>
+    <skillRequirements>
+        <Crafting>5</Crafting>
+    </skillRequirements>
+    <recipeUsers>
+        <li>GW_UD_Monolith</li>
+    </recipeUsers>
+</RecipeDef>
+
 </Defs>

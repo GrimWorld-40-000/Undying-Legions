@@ -11,12 +11,35 @@ namespace GW40K_Necrons;
 
 public class HediffGiver_Resurrection : HediffGiver
 {
+  // Accumulates ticks spent below critical health threshold.
+  // Resurrection only triggers after sustained critical injury,
+  // preventing the hediff from firing on a brief dip below 10%.
   private float timeDowned = 0.0f;
+
+  // 1800 ticks = 3 check intervals = ~30 seconds of sustained critical health
+  private const float DownedTicksRequired = 1800f;
 
   public override void OnIntervalPassed(Pawn pawn, Hediff cause)
   {
-    if (!pawn.IsHashIntervalTick(600) || (double) pawn.health.summaryHealth.SummaryHealthPercent >= 0.10000000149011612 || pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_Necron_ResurrectionHediff) != null)
+    if (!pawn.IsHashIntervalTick(600))
       return;
-    HealthUtility.AdjustSeverity(pawn, this.hediff, 0.999f);
+
+    // Reset timer if pawn has recovered above the critical threshold
+    if ((double)pawn.health.summaryHealth.SummaryHealthPercent >= 0.10000000149011612)
+    {
+      timeDowned = 0f;
+      return;
+    }
+
+    // Already in the process of resurrecting — don't stack
+    if (pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_Necron_ResurrectionHediff) != null)
+      return;
+
+    timeDowned += 600f;
+    if (timeDowned >= DownedTicksRequired)
+    {
+      HealthUtility.AdjustSeverity(pawn, this.hediff, 0.999f);
+      timeDowned = 0f;
+    }
   }
 }

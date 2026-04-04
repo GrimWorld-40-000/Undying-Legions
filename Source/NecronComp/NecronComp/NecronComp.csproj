@@ -1,57 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!--Project was exported from assembly: C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Assemblies\NecronComp.dll-->
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{16D51650-870C-4131-85A9-A4A60967F77E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>net472</TargetFramework>
     <AssemblyName>NecronComp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <ApplicationVersion>0.0.0.0</ApplicationVersion>
-    <FileAlignment>512</FileAlignment>
     <RootNamespace>NecronComp</RootNamespace>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>..\..\..\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Assembly-CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="UnityEngine.CoreModule" />
+    <Reference Include="0Harmony">
+      <HintPath>$(SteamPath)\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimworldPath)\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(RimworldPath)\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="IngestionOutcomeDoer_GiveHediffNecron.cs" />
-    <Compile Include="ModExtension_NecrodemisInfection.cs" />
-    <Compile Include="IncidentWorker_NecrodemisInfection.cs" />
-    <Compile Include="CompAbilityEffect_TransmuteNecron.cs" />
-    <Compile Include="CompProperties_TransmuteNecron.cs" />
-    <Compile Include="Pawn_PostApplyDamage_ArmorDegrade.cs" />
-    <Compile Include="NecronStartPatch.cs" />
-    <Compile Include="ModExtension_BulletArmorDegrade.cs" />
-    <Compile Include="CompStructureSelfRegen.cs" />
-    <Compile Include="CompProperties_StructureSelfRegen.cs" />
-    <Compile Include="NecronUtility.cs" />
-    <Compile Include="CompProperties_HediffAura.cs" />
-    <Compile Include="CompHediffAura.cs" />
-    <Compile Include="System\Runtime\CompilerServices\RefSafetyRulesAttribute.cs" />
-    <Compile Include="AssemblyInfo.cs" />
+    <!-- Decompiler-generated shim — conflicts with SDK -->
+    <Compile Remove="System\Runtime\CompilerServices\RefSafetyRulesAttribute.cs" />
+    <!-- GW40K_Necrons types that ended up in this folder — they belong to that assembly -->
+    <Compile Remove="ResProtocol.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

@@ -1,0 +1,13 @@
+<Patch>
+    <!-- Adds Litho-Phagic Acid to the Rogue Trader's stock.
+         Only applies when GrimWorld Core Imperialis is loaded. -->
+    <Operation Class="PatchOperationAdd" MayRequire="Grimworld.Core">
+        <xpath>Defs/TraderKindDef[defName="HP_Orbital_RogueTrader"]/stockGenerators</xpath>
+        <value>
+            <li Class="StockGenerator_SingleDef">
+                <thingDef>GW40k_LithoPhagicAcid</thingDef>
+                <countRange>1~3</countRange>
+            </li>
+        </value>
+    </Operation>
+</Patch>

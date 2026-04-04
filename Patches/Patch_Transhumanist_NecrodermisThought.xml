@@ -1,0 +1,15 @@
+<Patch>
+
+    <!-- Nullify the negative necrodermis thought for transhumanist pawns -->
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThoughtDef[defName="Necron_NecrodermisGrowthThought"]</xpath>
+        <value>
+            <nullifyingTraits>
+                <li>
+                    <def>Transhumanist</def>
+                </li>
+            </nullifyingTraits>
+        </value>
+    </Operation>
+
+</Patch>

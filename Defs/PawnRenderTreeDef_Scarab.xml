@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <PawnRenderTreeDef>
+    <defName>GW40K_ScarabSwarm</defName>
+    <root Class="PawnRenderNodeProperties_Parent">
+      <debugLabel>Root</debugLabel>
+      <tagDef>Root</tagDef>
+      <children>
+        <li>
+          <debugLabel>Body</debugLabel>
+          <tagDef>Body</tagDef>
+          <nodeClass>PawnRenderNode_AnimalPart</nodeClass>
+          <!-- Suppress base body graphic — all visuals come from the 4 spastic children -->
+          <useGraphic>false</useGraphic>
+          <children>
+
+            <li Class="PawnRenderNodeProperties_Spastic">
+              <linkedBodyPartsGroup>GW40K_ScarabA</linkedBodyPartsGroup>
+              <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
+              <rotDrawMode>Fresh, Rotting</rotDrawMode>
+              <rotateFacing>false</rotateFacing>
+              <offsetRangeX>-0.35~0.35</offsetRangeX>
+              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <durationTicksRange>10~35</durationTicksRange>
+              <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
+              <drawSize>1.6</drawSize>
+              <useRottenColor>true</useRottenColor>
+              <drawData>
+                <dataWest><flip>true</flip></dataWest>
+              </drawData>
+            </li>
+
+            <li Class="PawnRenderNodeProperties_Spastic">
+              <linkedBodyPartsGroup>GW40K_ScarabB</linkedBodyPartsGroup>
+              <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
+              <rotDrawMode>Fresh, Rotting</rotDrawMode>
+              <rotateFacing>false</rotateFacing>
+              <offsetRangeX>-0.35~0.35</offsetRangeX>
+              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <durationTicksRange>10~35</durationTicksRange>
+              <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
+              <drawSize>1.6</drawSize>
+              <useRottenColor>true</useRottenColor>
+              <drawData>
+                <dataWest><flip>true</flip></dataWest>
+              </drawData>
+            </li>
+
+            <li Class="PawnRenderNodeProperties_Spastic">
+              <linkedBodyPartsGroup>GW40K_ScarabC</linkedBodyPartsGroup>
+              <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
+              <rotDrawMode>Fresh, Rotting</rotDrawMode>
+              <rotateFacing>false</rotateFacing>
+              <offsetRangeX>-0.35~0.35</offsetRangeX>
+              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <durationTicksRange>10~35</durationTicksRange>
+              <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
+              <drawSize>1.6</drawSize>
+              <useRottenColor>true</useRottenColor>
+              <drawData>
+                <dataWest><flip>true</flip></dataWest>
+              </drawData>
+            </li>
+
+            <li Class="PawnRenderNodeProperties_Spastic">
+              <linkedBodyPartsGroup>GW40K_ScarabD</linkedBodyPartsGroup>
+              <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
+              <rotDrawMode>Fresh, Rotting</rotDrawMode>
+              <rotateFacing>false</rotateFacing>
+              <offsetRangeX>-0.35~0.35</offsetRangeX>
+              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <durationTicksRange>10~35</durationTicksRange>
+              <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
+              <drawSize>1.6</drawSize>
+              <useRottenColor>true</useRottenColor>
+              <drawData>
+                <dataWest><flip>true</flip></dataWest>
+              </drawData>
+            </li>
+
+            <li>
+              <debugLabel>Wounds</debugLabel>
+              <nodeClass>PawnRenderNode_AnimalPart</nodeClass>
+              <workerClass>PawnRenderNodeWorker_OverlayWounds</workerClass>
+              <overlayLayer>Body</overlayLayer>
+              <useGraphic>false</useGraphic>
+              <baseLayer>3</baseLayer>
+            </li>
+
+            <li>
+              <debugLabel>Firefoam</debugLabel>
+              <nodeClass>PawnRenderNode_AnimalPart</nodeClass>
+              <workerClass>PawnRenderNodeWorker_OverlayFirefoam</workerClass>
+              <overlayLayer>Body</overlayLayer>
+              <useGraphic>false</useGraphic>
+              <baseLayer>10</baseLayer>
+            </li>
+
+          </children>
+        </li>
+
+        <li Class="PawnRenderNodeProperties_Carried">
+          <debugLabel>Carried thing</debugLabel>
+          <workerClass>PawnRenderNodeWorker_Carried</workerClass>
+        </li>
+
+      </children>
+    </root>
+  </PawnRenderTreeDef>
+
+</Defs>

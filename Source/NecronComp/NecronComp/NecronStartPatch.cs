@@ -13,5 +13,5 @@ namespace NecronComp;
 [StaticConstructorOnStartup]
 public static class NecronStartPatch
 {
-  static NecronStartPatch() => new Harmony("FarmerJoe.NecronPatch").PatchAll();
+  static NecronStartPatch() { } // DISABLED FOR CTD TESTING
 }

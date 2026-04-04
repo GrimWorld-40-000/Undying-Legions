@@ -121,13 +121,15 @@
 		</comps>
 	</ThingDef>
 	
-	<ThingDef ParentName="DrugBase">
+	<ThingDef ParentName="ResourceBase">
 		<defName>GW_NecrodermisInjector</defName>
 		<label>necrodermis injector</label>
 		<description>A pressurized syringe containing a necrodermis seed suspended in a nutrient solution. Upon injection, the nanites immediately begin rewriting the host's genetic code to support living metal growth. This process is difficult to reverse and ultimately fatal.</description>
     <graphicData>
-		<texPath>Things/Item/NecrodermisInjector</texPath>
+		<!-- Using MechSerumHealer texture with dark tint to differentiate from the standard serum -->
+		<texPath>Things/Item/Special/MechSerumHealer</texPath>
 		<graphicClass>Graphic_Single</graphicClass>
+		<color>(168, 211, 160)</color>
     </graphicData>
     <rotatable>false</rotatable>
     <statBases>
@@ -136,11 +138,17 @@
     </statBases>
     <techLevel>Ultra</techLevel>
     <ingestible>
-		<drugCategory>Medical</drugCategory>
+		<foodType>OmnivoreAnimal</foodType>
+		<preferability>NeverForNutrition</preferability>
 		<outcomeDoers>
 			<li Class="IngestionOutcomeDoer_GiveHediff">
 				<hediffDef>Necron_NecrodermisGrowth</hediffDef>
 				<severity>0.1</severity>
+			</li>
+			<!-- Refills the necrodermis need for Necron pawns -->
+			<li Class="NecronMod.IngestionOutcomeDoer_FillNeed">
+				<needDef>GW_UD_Necrodermis</needDef>
+				<fillAmount>0.5</fillAmount>
 			</li>
 		</outcomeDoers>
     </ingestible>
@@ -149,9 +157,25 @@
 			<useJob>UseItem</useJob>
 			<useLabel>Inject necrodermis seed</useLabel>
 		</li>
-		<li Class="CompProperties_UseEffect_InstallImplant"> <!-- Optional: use this if you want it to behave like a mechlink/psylink -->
-			<hediffDef>Necron_NecrodermisGrowth</hediffDef>
-		</li>
     </comps>
 	</ThingDef>
+
+	<!-- Alias for legacy defName used in NecronGeneUtil.dll — resolves cross-reference error from old compiled assembly -->
+	<ThingDef ParentName="OrganicProductBase">
+		<defName>GW40k_Necron_Necrodemis</defName>
+		<label>necrodermis (legacy)</label>
+		<description>See GW40k_Necron_Necrodermis.</description>
+		<graphicData>
+			<texPath>Things/Items/Necrodermis/Necrodermis_a</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MarketValue>8.0</MarketValue>
+			<Mass>0.025</Mass>
+		</statBases>
+		<thingCategories>
+			<li>Manufactured</li>
+		</thingCategories>
+	</ThingDef>
+
 </Defs>

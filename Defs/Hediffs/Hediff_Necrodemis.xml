@@ -1,3 +1,4 @@
+<Defs>
 <HediffDef>
 	  <defName>Necron_NecrodermisGrowth</defName>
 		<label>necrodermis colonization</label>
@@ -14,13 +15,15 @@
 			  <baseTendDurationHours>24</baseTendDurationHours>
 			  <severityPerDayTended>-0.09</severityPerDayTended> <!-- Tending significantly slows growth -->
 		  </li>
+		  <li Class="NecronMod.HediffCompProperties_NecrodermisOverlay"/>
+		  <!-- Drops yield when host dies before surgical extraction -->
+		  <li Class="NecronMod.HediffCompProperties_NecrodermisDeathDrop"/>
 		</comps>
 		  <stages>
 		  <!-- Stage 1: Initial Bonding (0% - 29%) -->
 		  <li>
 			<label>latent seed</label>
 			<becomeVisible>true</becomeVisible>
-			<labelColor>(0.6, 0.8, 0.6)</labelColor> <!-- Faint Green -->
 			<painOffset>0.05</painOffset> <!-- 5% Pain: Distracting itch -->
 		  </li>
 
@@ -28,7 +31,6 @@
 		  <li>
 			<minSeverity>0.30</minSeverity>
 			<label>vascular metal</label>
-			<labelColor>(0.4, 0.9, 0.4)</labelColor>
 			<painOffset>0.20</painOffset> <!-- 20% Pain: Ached bones/veins -->
 			<capMods>
 			  <li><capacity>Manipulation</capacity><offset>-0.10</offset></li>
@@ -39,7 +41,6 @@
 		  <li>
 			<minSeverity>0.60</minSeverity>
 			<label>dermal plating</label>
-			<labelColor>(0.2, 1.0, 0.2)</labelColor>
 			<painOffset>0.50</painOffset> <!-- 50% Pain: Significant distress -->
 			<statOffsets>
 			  <ArmorRating_Sharp>0.30</ArmorRating_Sharp>
@@ -53,7 +54,6 @@
 		  <li>
 			<minSeverity>0.85</minSeverity>
 			<label>neural takeover</label>
-			<labelColor>(1.0, 0.2, 0.2)</labelColor> <!-- Red/Green warning -->
 			<painOffset>0.85</painOffset> <!-- 85% Pain: Likely Pain Shock/Downed -->
 			<capMods>
 			  <li><capacity>Consciousness</capacity><offset>-0.20</offset></li>
@@ -62,3 +62,4 @@
 		</stages>
 
 </HediffDef>
+</Defs>

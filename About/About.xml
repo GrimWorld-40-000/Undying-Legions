@@ -16,6 +16,7 @@
 	<loadAfter>
 		<li>ceteam.combatextended</li>
 		<li>Grimworld.Framework</li>
+		<li>Grimworld.Core</li>
 	</loadAfter>
 
 	<description>

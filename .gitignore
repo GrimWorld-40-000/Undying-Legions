@@ -1,3 +1,6 @@
+# Disabled test artifacts
+*.disabled
+
 # Build output
 **/bin/
 **/obj/

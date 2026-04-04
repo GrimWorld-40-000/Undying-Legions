@@ -1,99 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!--Project was exported from assembly: C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Assemblies\GW40K_Necrons.dll-->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Converted from old-style MSBuild format to SDK-style to resolve:
+    MSB3644: reference assemblies for .NETFramework v4.7.2 not found.
+    The SDK-style format works with the installed .NET SDK without requiring
+    the separate .NET Framework 4.7.2 Developer Pack.
+
+    Removed <Compile> items: SDK-style auto-includes all .cs files recursively,
+    so explicit file listings are unnecessary.
+
+    Removed <Reference Include="System" /> and <Reference Include="System.Core" />:
+    these BCL assemblies are automatically referenced for net472 by the SDK.
+
+    Removed <Analyzer> items pointing to RimWorld DLLs: those were not valid
+    Roslyn analyzers and had no effect on compilation.
+
+    Removed old MSBuild boilerplate (ProjectGuid, ToolsVersion, Configuration/Platform
+    PropertyGroups): SDK-style projects handle these automatically.
+  -->
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{75C37BBF-1294-4CA5-80CE-DD9E7F00F527}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>net472</TargetFramework>
     <AssemblyName>GW40K_Necrons</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <LangVersion>latest</LangVersion>
-    <ApplicationVersion>0.0.0.0</ApplicationVersion>
-    <FileAlignment>512</FileAlignment>
     <RootNamespace>GW40K_Necrons</RootNamespace>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <!-- Suppress SDK auto-generated AssemblyInfo to avoid conflict with our AssemblyInfo.cs -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>..\..\..\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
+    <!-- Uses $(SteamPath) and $(RimworldPath) environment variables -->
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+      <HintPath>$(SteamPath)\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(RimworldPath)\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(RimworldPath)\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CompProperties_Resurrectible.cs" />
-    <Compile Include="CompResurrectible.cs" />
-    <Compile Include="CorpseCompAdder.cs" />
-    <Compile Include="GeneExtension_Resurrection.cs" />
-    <Compile Include="HarmonyPatch_ForceDeathrestOrComa.cs" />
-    <Compile Include="HarmonyPatch_OutdoorsNeed.cs" />
-    <Compile Include="HarmonyPatch_Passion.cs" />
-    <Compile Include="HarmonyPatch_ShouldBeDead.cs" />
-    <Compile Include="HarmonyPatch_ShouldBeDeathrestingOrInComa.cs" />
-    <Compile Include="HediffGiverNecron.cs" />
-    <Compile Include="HediffGiver_Resurrection.cs" />
-    <Compile Include="Hediff_Resurrection.cs" />
-    <Compile Include="JobDriver_LayDownCasket.cs" />
-    <Compile Include="JobGiver_GetMaintenance.cs" />
-    <Compile Include="JudgeAbility.cs" />
-    <Compile Include="JudgeAbilityProperties.cs" />
-    <Compile Include="JumpAbility.cs" />
-    <Compile Include="JumpAbilityProperties.cs" />
-    <Compile Include="NecroCasketUtility.cs" />
-    <Compile Include="NecronCasket.cs" />
-    <Compile Include="NonOrganicPawn.cs" />
-    <Compile Include="HarmonyPatch_CanBeBroughtFood.cs" />
-    <Compile Include="HarmonyPatch_HasTendableHediff.cs" />
-    <Compile Include="HarmonyPatch_Recruitable.cs" />
-    <Compile Include="HarmonyPatch_ShouldNeed.cs" />
-    <Compile Include="GW40K_Necrons_HarmonyPatches.cs" />
-    <Compile Include="MaintenanceNeed.cs" />
-    <Compile Include="NecronDefOfs.cs" />
-    <Compile Include="Verb_CastOnNecron.cs" />
-    <Compile Include="SwapCompAbility.cs" />
-    <Compile Include="SwapCompAbilityProperties.cs" />
-    <Compile Include="TeleportAbility.cs" />
-    <Compile Include="TeleportAbilityProperties.cs" />
-    <Compile Include="ThoughtWorker_HateLiving.cs" />
-    <Compile Include="monolith.cs" />
-    <Compile Include="1monolith.cs" />
-    <Compile Include="RecipeWorker_SpawnAndBindMech.cs" />
-    <Compile Include="2monolith.cs" />
-    <Compile Include="3monolith.cs" />
-    <Compile Include="System\Runtime\CompilerServices\RefSafetyRulesAttribute.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll" />
-    <Analyzer Include="..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

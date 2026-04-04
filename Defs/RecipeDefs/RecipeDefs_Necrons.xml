@@ -1,5 +1,6 @@
+<Defs>
 <RecipeDef ParentName="SurgeryFlesh">
-  <defName>ExciseNecrodermisSeed</defName>
+  <defName>ExciseNecrodermis</defName>
   <label>excise necrodermis</label>
   <description>Carefully harvest the growing necrodermis from the host. Failure is likely as the infection progresses.</description>
   <workerClass>Recipe_RemoveHediff</workerClass>
@@ -22,3 +23,4 @@
   <surgerySuccessChanceFactor>0.7</surgerySuccessChanceFactor>
   <deathOnFailedSurgeryChance>0.3</deathOnFailedSurgeryChance>
 </RecipeDef>
+</Defs>

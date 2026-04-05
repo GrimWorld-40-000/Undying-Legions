@@ -1,7 +1,7 @@
 <Defs>
     <HediffDef>
         <defName>GW40K_Necron_TiredHediff</defName>
-        <label>maintenance loss</label>
+        <label>imminent shutdown</label>
         <description>dddd.</description>
         <lethalSeverity>1</lethalSeverity>
         <scenarioCanAdd>false</scenarioCanAdd>

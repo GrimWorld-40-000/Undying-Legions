@@ -66,10 +66,6 @@
         <compClass>CompHeatPusherPowered</compClass>
         <heatPerSecond>4</heatPerSecond>
       </li>
-      <li Class="GW40K_Necrons.CompProperties_BuildingMechanitor">
-            <mechKind>Mech_Militor</mechKind>
-                <controlRadius>20</controlRadius>
-        </li>
 
         </comps>
     <placeWorkers>
@@ -81,8 +77,79 @@
       <li>Electricity</li>
     </researchPrerequisites>
 
-        <recipes>
-            <li>GW40K_SpawnAndBind_Militor</li>
-        </recipes>
     </ThingDef>
+
+  <ThingDef ParentName="FurnitureWithQualityBase">
+    <defName>GW40K_StasisCrypt</defName>
+    <label>stasis crypt</label>
+    <description>A sealed sarcophagus of ancient living metal, designed to suspend a Necron warrior in a state of total death-like dormancy. While the occupant lies inert, nanotechnic repair arrays embedded within the casing slowly mend damage and replenish the body's necrodermis, restoring the warrior to full fighting readiness. Necron tomb worlds are riddled with millions of such crypts, their contents slumbering undisturbed for sixty million years — waiting for the stars to align once more.\n\nOnly those with the Eternal Slumber gene can use this structure.</description>
+    <thingClass>GW40K_Necrons.NecronCasket</thingClass>
+    <tickerType>Normal</tickerType>
+    <containedPawnsSelectable>true</containedPawnsSelectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <fillPercent>0.5</fillPercent>
+    <pathCost>42</pathCost>
+    <canOverlapZones>false</canOverlapZones>
+    <passability>PassThroughOnly</passability>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <graphicData>
+      <texPath>Things/Building/Ship/ShipCryptosleepCasket</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1,2)</drawSize>
+      <color>(168, 211, 160)</color>
+      <shadowData>
+        <volume>(0.83, 0.3, 1.7)</volume>
+      </shadowData>
+    </graphicData>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+      <destroySound>BuildingDestroyed_Metal_Small</destroySound>
+    </building>
+    <designationCategory>Misc</designationCategory>
+    <uiOrder>2050</uiOrder>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Flammability>0.3</Flammability>
+      <Mass>50</Mass>
+    </statBases>
+    <size>(1,2)</size>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(1,0,0)</interactionCellOffset>
+    <costList>
+      <Steel>180</Steel>
+      <Uranium>5</Uranium>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>100</basePowerConsumption>
+        <idlePowerDraw>0</idlePowerDraw>
+        <alwaysDisplayAsUsingPower>true</alwaysDisplayAsUsingPower>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_EmptyStateGraphic">
+        <graphicData>
+          <texPath>Things/Building/Ship/ShipCryptosleepCasketOpenDoor</texPath>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>(1,2)</drawSize>
+          <color>(168, 211, 160)</color>
+        </graphicData>
+      </li>
+    </comps>
+    <researchPrerequisites>
+      <li>Cryptosleep</li>
+    </researchPrerequisites>
+    <inspectorTabs>
+      <li>ITab_ContentsCasket</li>
+    </inspectorTabs>
+    <placeWorkers>
+      <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+    </placeWorkers>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+  </ThingDef>
+
 </Defs>

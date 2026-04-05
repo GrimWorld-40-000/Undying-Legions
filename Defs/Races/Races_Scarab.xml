@@ -6,7 +6,7 @@
     <label>canoptek scarab swarm</label>
     <description>A swarm of Canoptek Scarabs — autonomous Necron maintenance constructs repurposed for combat. Each scarab is a small but durable metallic beetle capable of shredding flesh with its mandibles. As the swarm takes casualties the remaining scarabs fight on, until the last one is destroyed.</description>
     <statBases>
-      <MoveSpeed>4.8</MoveSpeed>
+      <MoveSpeed>3.65</MoveSpeed>
       <MarketValue>350</MarketValue>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
@@ -20,10 +20,16 @@
     <tools>
       <li>
         <label>mandibles</label>
-        <capacities><li>Bite</li></capacities>
-        <power>8</power>
-        <armorPenetration>0.15</armorPenetration>
-        <cooldownTime>1.2</cooldownTime>
+        <capacities><li>Cut</li></capacities>
+        <power>7</power>
+        <cooldownTime>0.9</cooldownTime>
+      </li>
+      <li>
+        <label>body</label>
+        <capacities><li>Blunt</li></capacities>
+        <power>6</power>
+        <cooldownTime>0.9</cooldownTime>
+        <chanceFactor>0.2</chanceFactor>
       </li>
     </tools>
     <race>
@@ -33,7 +39,7 @@
       <body>GW40K_ScarabSwarmBody</body>
       <renderTree>GW40K_ScarabSwarm</renderTree>
       <baseBodySize>0.3</baseBodySize>
-      <baseHealthScale>0.35</baseHealthScale>
+      <baseHealthScale>4.29</baseHealthScale>
       <baseHungerRate>0</baseHungerRate>
       <makesFootprints>false</makesFootprints>
       <lifeExpectancy>10000</lifeExpectancy>
@@ -41,7 +47,7 @@
       <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
       <trainability>None</trainability>
       <useMeatFrom>Megaspider</useMeatFrom>
-      <fleshType>Insectoid</fleshType>
+      <fleshType>Mechanoid</fleshType>
       <hasCorpse>false</hasCorpse>
       <deathAction Class="GW40K_Necrons.DeathActionProperties_VanishScarab" />
       <lifeStageAges>

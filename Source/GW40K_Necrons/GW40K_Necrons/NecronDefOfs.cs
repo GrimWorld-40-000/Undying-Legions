@@ -13,8 +13,8 @@ namespace GW40K_Necrons;
 [DefOf]
 public class NecronDefOfs
 {
-  public static ThingDef GW40K_MaintenanceBed;
-  public static NeedDef GW40K_NecronNeed;
+  public static ThingDef GW40K_StasisCrypt;
+  public static NeedDef GW40K_CoreFlux;
   public static JobDef GW40K_Job_LayDown;
   public static HediffDef GW40K_Necron_TiredHediff;
   public static HediffDef GW40K_Necron_ResurrectionHediff;

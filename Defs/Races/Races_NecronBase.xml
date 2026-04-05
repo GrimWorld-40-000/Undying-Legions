@@ -1,5 +1,39 @@
 <Defs>
 
+  <!-- Core Flux — silver-green energy midpoint between silver (192,192,192) and Necrodermis green (168,211,160) -->
+  <ThingDef ParentName="BaseFilth" Name="GW40K_FilthNecronBlood">
+    <defName>GW40K_Filth_NecronBlood</defName>
+    <label>core flux</label>
+    <description>The luminescent green-silver energy that flows through a Necron's living metal body.</description>
+    <statBases>
+      <Beauty>-30</Beauty>
+      <Cleanliness>-10</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Filth/Spatter</texPath>
+      <color>(180, 202, 176, 180)</color>
+    </graphicData>
+    <filth>
+      <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
+      <disappearsInDays>35~40</disappearsInDays>
+      <rainWashes>true</rainWashes>
+      <cleaningWorkToReduceThickness>70</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+      <cleaningSound>Interact_CleanFilth_Fluid</cleaningSound>
+    </filth>
+  </ThingDef>
+
+  <ThingDef ParentName="GW40K_FilthNecronBlood">
+    <defName>GW40K_Filth_NecronBloodSmear</defName>
+    <label>core flux smear</label>
+    <graphicData>
+      <texPath>Things/Filth/CrawlSmear</texPath>
+      <color>(180, 202, 176, 165)</color>
+      <graphicClass>Graphic_ClusterTight</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+  </ThingDef>
+
   <HeadTypeDef ParentName="AverageBase">
     <defName>GW40K_NecronWarrior_HeadType</defName>
     <graphicPath>GW40K/NecronWarrior/Head/Male_Average_Normal</graphicPath>
@@ -52,8 +86,8 @@
       <intelligence>Humanlike</intelligence>
       <makesFootprints>true</makesFootprints>
       <lifeExpectancy>10000</lifeExpectancy>
-      <bloodDef>Filth_Blood</bloodDef>
-      <bloodSmearDef>Filth_BloodSmear</bloodSmearDef>
+      <bloodDef>GW40K_Filth_NecronBlood</bloodDef>
+      <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
       <nameCategory>HumanStandard</nameCategory>
       <body>Human</body>
       <renderTree>Humanlike</renderTree>

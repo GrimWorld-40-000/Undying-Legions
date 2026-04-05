@@ -194,7 +194,7 @@
                     <li Class="JobGiver_SatisfyChemicalNeed"/>
                     <li Class="JobGiver_SatifyChemicalDependency" MayRequire="Ludeon.RimWorld.Biotech" />
                     <li Class="JobGiver_GetHemogen" MayRequire="Ludeon.RimWorld.Biotech" />
-                    <li Class="JobGiver_GetDeathrest" MayRequire="Ludeon.RimWorld.Biotech" />
+                    <li Class="GW40K_Necrons.JobGiver_GetMaintenance" />
                     <li Class="ThinkNode_Priority_GetJoy">
                       <subNodes>
                         <li Class="JobGiver_GetJoy"/>

@@ -1,10 +1,5 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GW40K_Necrons.Patch_FinishRecipeAndStartStoringProduct
-// Assembly: GW40K_Necrons, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 7A7FA5E5-16FF-4234-BCBC-527D2120B282
-// Assembly location: C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Assemblies\GW40K_Necrons.dll
-
 using HarmonyLib;
+using RimWorld;
 using System;
 using Verse;
 using Verse.AI;
@@ -12,26 +7,35 @@ using Verse.AI;
 #nullable disable
 namespace GW40K_Necrons;
 
-[HarmonyPatch(typeof (Toils_Recipe), "FinishRecipeAndStartStoringProduct")]
+[HarmonyPatch(typeof(Toils_Recipe), "FinishRecipeAndStartStoringProduct")]
 public static class Patch_FinishRecipeAndStartStoringProduct
 {
-  public static void Postfix(Toil __result, TargetIndex productIndex)
-  {
-    __result.AddFinishAction((Action) (() =>
+    public static void Postfix(Toil __result, TargetIndex productIndex)
     {
-      Pawn actor = __result.actor;
-      if (actor == null)
-        return;
-      Job curJob = actor.CurJob;
-      if (curJob == null || !(curJob.targetA.Thing is Building thing2))
-        return;
-      CompBuildingMechanitor comp = thing2.GetComp<CompBuildingMechanitor>();
-      if (comp == null)
-        return;
-      PawnKindDef mechKind = comp.mechKind;
-      if (mechKind == null)
-        return;
-      comp.QueueMechSpawn(mechKind);
-    }));
-  }
+        __result.AddFinishAction((Action)(() =>
+        {
+            Pawn actor = __result.actor;
+            if (actor == null) return;
+
+            Job curJob = actor.CurJob;
+            if (curJob == null || !(curJob.targetA.Thing is Building building)) return;
+
+            // New system: recipe has RecipeExtension_SpawnMech — bind to Command Protocol worker
+            RecipeDef recipeDef = curJob.RecipeDef;
+            var spawnExt = recipeDef?.GetModExtension<RecipeExtension_SpawnMech>();
+            if (spawnExt?.mechKindDef != null)
+            {
+                PawnKindDef mechKind = spawnExt.mechKindDef;
+                LongEventHandler.QueueLongEvent(() =>
+                {
+                    Pawn mech = PawnGenerator.GeneratePawn(mechKind, actor.Faction);
+                    GenSpawn.Spawn(mech, building.Position, building.Map);
+                    mech.GetOverseer()?.relations.RemoveDirectRelation(PawnRelationDefOf.Overseer, mech);
+                    actor.relations.AddDirectRelation(PawnRelationDefOf.Overseer, mech);
+                    actor.mechanitor?.AssignPawnControlGroup(mech, null);
+                }, "GW40K_SummonMech", false, null);
+                return;
+            }
+        }));
+    }
 }

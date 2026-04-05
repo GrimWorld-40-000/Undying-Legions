@@ -126,14 +126,7 @@
 					<UD_NecronCryptek>1</UD_NecronCryptek>
 				</options>
 			</li>
-			<li>
-				<kindDef>Combat</kindDef>
-				<commonality>80</commonality>
-				<options>
-					<UD_Necron_Warrior>5</UD_Necron_Warrior>
-					<UD_Necron_CryptekMech>1</UD_Necron_CryptekMech>
-				</options>
-			</li>
+
 			<li>
 				<!-- Melee only-->
 				<kindDef>Combat</kindDef>

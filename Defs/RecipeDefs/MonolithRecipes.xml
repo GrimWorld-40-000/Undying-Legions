@@ -1,48 +1,163 @@
 <Defs>
-<RecipeDef>
-    <defName>GW40K_SpawnAndBind_Militor</defName>
+
+  <!-- ==================== SUMMONING RECIPES ==================== -->
+
+  <RecipeDef>
+    <defName>GW40K_Summon_Warrior</defName>
     <workerClass>GW40K_Necrons.RecipeWorker_SpawnAndBindMech</workerClass>
-    <workAmount>2000</workAmount>
-     <workSkill>Crafting</workSkill>
-    <label>Bind Warrior</label>
-    <jobString>Assembling Militor...</jobString>
+    <label>summon necron warrior</label>
+    <description>Call forth a necron warrior through the monolith's Eternity Gate. The gate tears open a channel to the tombworld's stasis vaults, pulling a dormant warrior from its sixty-million-year slumber to answer the Overlord's command.</description>
+    <jobString>Summoning necron warrior...</jobString>
+    <workAmount>3000</workAmount>
+    <workSkill>Crafting</workSkill>
     <effectWorking>ConstructMetal</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <ingredients>
-        <li>
-            <filter>
-                <thingDefs>
-                    <li>GW40k_Necron_Necrodermis</li>
-                </thingDefs>
-            </filter>
-            <count>5</count>
-        </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
     </ingredients>
     <fixedIngredientFilter>
-        <thingDefs>
-            <li>GW40k_Necron_Necrodermis</li>
-        </thingDefs>
+      <thingDefs>
+        <li>GW40k_Necron_Necrodermis</li>
+      </thingDefs>
     </fixedIngredientFilter>
     <skillRequirements>
-        <Crafting>5</Crafting>
+      <Crafting>5</Crafting>
     </skillRequirements>
-</RecipeDef>
-<WorkGiverDef>
-    <defName>GW40K_SpawnAndBind_Militor_WorkGiver</defName>
-    <giverClass>WorkGiver_DoBill</giverClass>
-    <workType>Crafting</workType>
-    <priorityInType>100</priorityInType>
-    <verb>assemble</verb>
-    <gerund>assembling</gerund>
-    <fixedBillGiverDefs>
-        <li>GW_UD_Monolith</li>
-    </fixedBillGiverDefs>
+    <recipeUsers>
+      <li>GW_UD_Monolith</li>
+    </recipeUsers>
+    <modExtensions>
+      <li Class="GW40K_Necrons.RecipeExtension_SpawnMech">
+        <mechKindDef>UD_Necron_Warrior</mechKindDef>
+      </li>
+    </modExtensions>
+  </RecipeDef>
 
-</WorkGiverDef>
+  <RecipeDef>
+    <defName>GW40K_Summon_Cryptothrall</defName>
+    <workerClass>GW40K_Necrons.RecipeWorker_SpawnAndBindMech</workerClass>
+    <label>summon cryptothrall</label>
+    <description>Call forth a cryptothrall through the monolith's Eternity Gate. These purpose-built bodyguards are drawn directly from the Cryptek's own reserves aboard a nearby Necron starship, their blade-limbs already primed for slaughter.</description>
+    <jobString>Summoning cryptothrall...</jobString>
+    <workAmount>4000</workAmount>
+    <workSkill>Crafting</workSkill>
+    <effectWorking>ConstructMetal</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+          </thingDefs>
+        </filter>
+        <count>8</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>GW40k_Necron_Necrodermis</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <skillRequirements>
+      <Crafting>6</Crafting>
+    </skillRequirements>
+    <recipeUsers>
+      <li>GW_UD_Monolith</li>
+    </recipeUsers>
+    <modExtensions>
+      <li Class="GW40K_Necrons.RecipeExtension_SpawnMech">
+        <mechKindDef>UD_Necron_Cryptothrall</mechKindDef>
+      </li>
+    </modExtensions>
+  </RecipeDef>
 
+  <RecipeDef>
+    <defName>GW40K_Summon_Immortal</defName>
+    <workerClass>GW40K_Necrons.RecipeWorker_SpawnAndBindMech</workerClass>
+    <label>summon necron immortal</label>
+    <description>Call forth a necron immortal through the monolith's Eternity Gate. Immortals are the elite infantry of the tombworld, their bodies reinforced with heavier necrodermis plating over millions of years. The gate reaches deep into the stasis vaults to retrieve one of these ancient killing machines.</description>
+    <jobString>Summoning necron immortal...</jobString>
+    <workAmount>5000</workAmount>
+    <workSkill>Crafting</workSkill>
+    <effectWorking>ConstructMetal</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>GW40k_Necron_Necrodermis</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <skillRequirements>
+      <Crafting>7</Crafting>
+    </skillRequirements>
+    <recipeUsers>
+      <li>GW_UD_Monolith</li>
+    </recipeUsers>
+    <modExtensions>
+      <li Class="GW40K_Necrons.RecipeExtension_SpawnMech">
+        <mechKindDef>UD_Necron_Immortal</mechKindDef>
+      </li>
+    </modExtensions>
+  </RecipeDef>
 
-<!-- Placeholder, move to Necron workbench -->
-<RecipeDef>
+  <RecipeDef>
+    <defName>GW40K_Summon_FlayedOne</defName>
+    <workerClass>GW40K_Necrons.RecipeWorker_SpawnAndBindMech</workerClass>
+    <label>summon flayed one</label>
+    <description>Call forth a flayed one through the monolith's Eternity Gate. These maddened constructs are not summoned willingly — the gate tears them screaming from the dark spaces between dimensions where they lurk, compelled by the Overlord's command protocol to serve once more.</description>
+    <jobString>Summoning flayed one...</jobString>
+    <workAmount>6000</workAmount>
+    <workSkill>Crafting</workSkill>
+    <effectWorking>ConstructMetal</effectWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+          </thingDefs>
+        </filter>
+        <count>15</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>GW40k_Necron_Necrodermis</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <skillRequirements>
+      <Crafting>8</Crafting>
+    </skillRequirements>
+    <recipeUsers>
+      <li>GW_UD_Monolith</li>
+    </recipeUsers>
+    <modExtensions>
+      <li Class="GW40K_Necrons.RecipeExtension_SpawnMech">
+        <mechKindDef>UD_Necron_FlayedOne</mechKindDef>
+      </li>
+    </modExtensions>
+  </RecipeDef>
+
+  <!-- ==================== CRAFTING RECIPES ==================== -->
+
+  <!-- Placeholder, move to Necron workbench -->
+  <RecipeDef>
     <defName>GW40K_Craft_NecrodermisInjector</defName>
     <workerClass>RecipeWorker</workerClass>
     <workAmount>2000</workAmount>
@@ -52,47 +167,47 @@
     <effectWorking>ConstructMetal</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <products>
-        <GW_NecrodermisInjector>1</GW_NecrodermisInjector>
+      <GW_NecrodermisInjector>1</GW_NecrodermisInjector>
     </products>
     <ingredients>
-        <li>
-            <filter>
-                <thingDefs>
-                    <li>GW40k_Necron_Necrodermis</li>
-                </thingDefs>
-            </filter>
-            <count>5</count>
-        </li>
-        <li>
-            <filter>
-                <thingDefs>
-                    <li>Steel</li>
-                </thingDefs>
-            </filter>
-            <count>20</count>
-        </li>
-        <li>
-            <filter>
-                <thingDefs>
-                    <li>ComponentIndustrial</li>
-                </thingDefs>
-            </filter>
-            <count>1</count>
-        </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
     </ingredients>
     <fixedIngredientFilter>
-        <thingDefs>
-            <li>GW40k_Necron_Necrodermis</li>
-            <li>Steel</li>
-            <li>ComponentIndustrial</li>
-        </thingDefs>
+      <thingDefs>
+        <li>GW40k_Necron_Necrodermis</li>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
     </fixedIngredientFilter>
     <skillRequirements>
-        <Crafting>5</Crafting>
+      <Crafting>5</Crafting>
     </skillRequirements>
     <recipeUsers>
-        <li>GW_UD_Monolith</li>
+      <li>GW_UD_Monolith</li>
     </recipeUsers>
-</RecipeDef>
+  </RecipeDef>
 
 </Defs>

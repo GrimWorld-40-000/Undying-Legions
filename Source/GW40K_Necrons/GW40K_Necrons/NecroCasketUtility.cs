@@ -30,7 +30,7 @@ public static class NecroCasketUtility
     for (int dg = 0; dg < 3; dg++)
     {
       Danger maxDanger = dg <= 1 ? Danger.None : Danger.Deadly;
-      ThingDef gw40KMaintenanceBed = NecronDefOfs.GW40K_MaintenanceBed;
+      ThingDef gw40KMaintenanceBed = NecronDefOfs.GW40K_StasisCrypt;
       if (RestUtility.CanUseBedEver(sleeper, gw40KMaintenanceBed))
       {
         NecronCasket necroCasket = (NecronCasket) GenClosest.ClosestThingReachable(sleeper.PositionHeld, sleeper.MapHeld, ThingRequest.ForDef(gw40KMaintenanceBed), PathEndMode.OnCell, TraverseParms.For(traveler), validator: (Predicate<Thing>) (b => b.Position.GetDangerFor(sleeper, sleeper.MapHeld) <= maxDanger && NecroCasketUtility.IsValidBedFor(b, sleeper, traveler, checkSocialProperness, ignoreOtherReservations: ignoreOtherReservations, guestStatus: guestStatus) && (dg > 0 || !b.Position.GetItems(b.Map).Any<Thing>((Func<Thing, bool>) (thing => thing.def.IsCorpse)))));
@@ -84,6 +84,6 @@ public static class NecroCasketUtility
 
   public static bool CanUseCasketEver(Pawn p, ThingDef bedDef)
   {
-    return !p.RaceProps.IsMechanoid && (!ModsConfig.BiotechActive || bedDef != ThingDefOf.DeathrestCasket || p.CanDeathrest());
+    return p.needs?.TryGetNeed(NecronDefOfs.GW40K_CoreFlux) != null;
   }
 }

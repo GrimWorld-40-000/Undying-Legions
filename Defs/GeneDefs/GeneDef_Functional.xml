@@ -8,11 +8,10 @@
 		<defName>GW_UD_EternalSlumber</defName>
 		<label>Eternal Slumber</label>
 		<description>. . .</description>
-		<geneClass>Gene_Deathrest</geneClass>
 		<iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<enablesNeeds>
-			<li>Deathrest</li>
+			<li>GW40K_CoreFlux</li>
 		</enablesNeeds>
 		<biostatMet>0</biostatMet>
 		<biostatArc>1</biostatArc>
@@ -303,7 +302,7 @@
 		<biostatMet>0</biostatMet>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
-				<hediffDef>MechlinkImplant</hediffDef>
+				<hediffDef>GW40K_CommandProtocolImplant</hediffDef>
 				<part>Brain</part>
 				<severityOnAdd>1.0</severityOnAdd>
 			</li>

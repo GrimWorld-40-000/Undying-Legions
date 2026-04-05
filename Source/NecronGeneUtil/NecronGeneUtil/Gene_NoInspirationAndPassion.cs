@@ -1,3 +1,4 @@
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -10,7 +11,7 @@ public class Gene_NoInspirationAndPassion : Gene
     public override void PostAdd()
     {
         base.PostAdd();
-        foreach (SkillRecord skill in base.pawn.skills.skills)
+        foreach (SkillRecord skill in base.pawn.skills.skills.ToList())
             if ((int)skill.passion > 0) skill.passion = (Passion)0;
         if (modExtension?.hediffDef == null) return;
         var hediff = base.pawn.health.hediffSet.GetFirstHediffOfDef(modExtension.hediffDef)

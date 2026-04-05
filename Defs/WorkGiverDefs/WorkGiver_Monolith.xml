@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <WorkGiverDef>
+    <defName>GW_UD_WorkGiver_Monolith</defName>
+    <giverClass>GW40K_Necrons.WorkGiver_MonolithSummon</giverClass>
+    <workType>Crafting</workType>
+    <priorityInType>70</priorityInType>
+    <verb>operate</verb>
+    <gerund>operating monolith</gerund>
+    <thingDefs>
+      <li>GW_UD_Monolith</li>
+    </thingDefs>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <workTags>ManipulationRequired</workTags>
+  </WorkGiverDef>
+
+</Defs>

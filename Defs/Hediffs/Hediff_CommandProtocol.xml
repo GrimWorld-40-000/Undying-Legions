@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Item: Command Protocol node (equippable, installs the hediff) -->
+  <ThingDef ParentName="MechanitorImplantBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>GW40K_CommandProtocol</defName>
+    <label>command protocol</label>
+    <description>An ancient Necron cranial node that encodes hard-wired dominance directives into the bearer's neural engrams, allowing direct command over Necron war constructs. Those who bear the command protocol are known as Necron Overlords.\n\nThe node is self-installing. Pressed against the base of the skull, it fuses with the living metal of the host's nervous system and threads command-band frequencies through the necrodermis framework.\n\nUnlike crude mechanoid links, the command protocol does not merely send radio signals — it enforces the absolute unity and obedience of the Necron race through hard-coded directives etched sixty million years ago. The bond between Overlord and construct is not cooperation; it is compulsion.\n\nThe protocol is integrated at the core engram level and cannot be removed while the bearer lives.\n\nNote: A bearer of the command protocol must be capable of smithing work to gestate Necron constructs.</description>
+    <thingClass>Mechlink</thingClass>
+    <descriptionHyperlinks><HediffDef>GW40K_CommandProtocolImplant</HediffDef></descriptionHyperlinks>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Beauty>-4</Beauty>
+      <Mass>1</Mass>
+      <MarketValue>1500</MarketValue>
+      <DeteriorationRate>0</DeteriorationRate>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/Mechlink</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>0.65</drawSize>
+      <color>(168, 211, 160)</color>
+    </graphicData>
+    <comps>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Usable">
+        <compClass>CompUsableImplant</compClass>
+        <useJob>InstallMechlink</useJob>
+        <useLabel>Install {0_label} to become Necron Overlord</useLabel>
+      </li>
+      <li Class="CompProperties_UseEffectInstallImplant">
+        <compClass>CompUseEffect_InstallImplantMechlink</compClass>
+        <hediffDef>GW40K_CommandProtocolImplant</hediffDef>
+        <bodyPart>Brain</bodyPart>
+        <requiresPsychicallySensitive>false</requiresPsychicallySensitive>
+      </li>
+      <li Class="CompProperties_UseEffectPlaySound">
+        <soundOnUsed>MechlinkInstalled</soundOnUsed>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- Hediff: installed command protocol -->
+  <HediffDef ParentName="ImplantHediffBase" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>GW40K_CommandProtocolImplant</defName>
+    <hediffClass>Hediff_Mechlink</hediffClass>
+    <label>command protocol</label>
+    <description>An ancient Necron cranial node that encodes hard-wired dominance directives into the bearer's neural engrams, allowing direct command over Necron war constructs.\n\nThe absolute unity and obedience of the Necron race, enforced through directives etched sixty million years ago. Cannot be removed while the bearer lives.</description>
+    <descriptionShort>A Necron cranial node that allows direct command over Necron war constructs. Cannot be removed while the bearer lives.</descriptionShort>
+    <isBad>false</isBad>
+    <duplicationAllowed>false</duplicationAllowed>
+    <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
+    <stages>
+      <li>
+        <statOffsets>
+          <MechBandwidth>6</MechBandwidth>
+          <MechControlGroups>2</MechControlGroups>
+        </statOffsets>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_LetterOnDeath">
+        <letterDef>NeutralEvent</letterDef>
+        <letterLabel>Reusable {HEDIFF_label} available</letterLabel>
+        <letterText>{PAWN} has died with a {HEDIFF_label} installed. This can be removed and installed by someone else.</letterText>
+        <onlyIfNoMechanitorDied>true</onlyIfNoMechanitorDied>
+      </li>
+    </comps>
+  </HediffDef>
+
+</Defs>

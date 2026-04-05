@@ -16,6 +16,7 @@
 	<!-- Warrior -->
 	<ThingDef ParentName="BaseMechanoidWalker">
 		<defName>UD_Necron_Warrior</defName>
+		<modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
 		<label>Necron Warrior</label>
 		<description>. . .</description>
 		<statBases>
@@ -119,6 +120,7 @@
 	<!-- Cryptothrall -->
 	<ThingDef ParentName="BaseMechanoidWalker">
 		<defName>UD_Necron_Cryptothrall</defName>
+		<modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
 		<label>Cryptothrall</label>
 		<description>. . .</description>
 		<tools>
@@ -220,6 +222,7 @@
 	<!-- Immortal -->
 	<ThingDef ParentName="LancerMechanoidWalker">
 		<defName>UD_Necron_Immortal</defName>
+		<modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
 		<label>immortal</label>
 		<description>. . .</description>
 		<race>
@@ -278,6 +281,7 @@
 	<!-- FlayedOne -->
 	<ThingDef ParentName="HeavyMechanoid">
     <defName>UD_Necron_FlayedOne</defName>
+    <modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
     <label>Flayed One</label>
     <description>. . .</description>
     <statBases>
@@ -379,7 +383,8 @@
   
   <!-- CryptekMech -->
 	<ThingDef ParentName="HeavyMechanoid">
-    <defName>UD_Necron_CryptekMech</defName>
+    <defName>UD_Unused_CryptekMech</defName>
+    <modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
     <label>Cryptek</label>
     <description>. . .</description>
     <statBases>
@@ -467,15 +472,15 @@
   </ThingDef>
   
   <PawnKindDef ParentName="HeavyMechanoidKind">
-    <defName>UD_Necron_CryptekMech</defName>
-    <label>Cryptek</label>
-    <race>UD_Necron_CryptekMech</race>
+    <defName>UD_Unused_CryptekMech</defName>
+    <label>UNUSED Cryptek</label>
+    <race>UD_Unused_CryptekMech</race>
     <allowInMechClusters>false</allowInMechClusters>
     <combatPower>250</combatPower>
     <lifeStages>
       <li>
         <bodyGraphicData>
-          <texPath>Things/Pawn/Mechanoid/FlayedOne/NecronFlayedOne_Hulk</texPath>
+          <texPath>Things/Pawn/Mechanoid/Cryptek/Cryptek</texPath>
           <shaderType>CutoutWithOverlay</shaderType>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>1.8</drawSize>

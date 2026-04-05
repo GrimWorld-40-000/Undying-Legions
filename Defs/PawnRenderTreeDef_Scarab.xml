@@ -26,9 +26,6 @@
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>
               <useRottenColor>true</useRottenColor>
-              <drawData>
-                <dataWest><flip>true</flip></dataWest>
-              </drawData>
             </li>
 
             <li Class="PawnRenderNodeProperties_Spastic">
@@ -42,9 +39,6 @@
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>
               <useRottenColor>true</useRottenColor>
-              <drawData>
-                <dataWest><flip>true</flip></dataWest>
-              </drawData>
             </li>
 
             <li Class="PawnRenderNodeProperties_Spastic">
@@ -58,9 +52,6 @@
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>
               <useRottenColor>true</useRottenColor>
-              <drawData>
-                <dataWest><flip>true</flip></dataWest>
-              </drawData>
             </li>
 
             <li Class="PawnRenderNodeProperties_Spastic">
@@ -74,9 +65,6 @@
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>
               <useRottenColor>true</useRottenColor>
-              <drawData>
-                <dataWest><flip>true</flip></dataWest>
-              </drawData>
             </li>
 
             <li>

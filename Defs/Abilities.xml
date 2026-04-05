@@ -102,8 +102,8 @@
 		<defName>GW40K_ScarabLeap</defName>
 		<label>scarab leap</label>
 		<description>The swarm launches itself in a burst of skittering legs, closing a short distance in an instant. Once spent, the scarabs require time to coil and ready themselves again.</description>
-		<iconPath>UI/Abilities/GW40k_Ability_Scarab_Leap</iconPath>
-		<cooldownTicksRange>9000</cooldownTicksRange>
+		<iconPath>UI/Abilities/GW40k_ScarabJump</iconPath>
+		<cooldownTicksRange>2000</cooldownTicksRange>
 		<aiCanUse>true</aiCanUse>
 		<verbProperties>
 			<verbClass>Verb_CastAbility</verbClass>
@@ -127,18 +127,18 @@
 		<defName>GW40K_ScarabSelfDestruct</defName>
 		<label>detonate</label>
 		<description>The swarm detonates its internal power cores in a kamikaze explosion. Damage and radius scale with the number of surviving scarabs — a full swarm produces a devastating blast; a dying one a final, desperate pop.</description>
-		<iconPath>UI/Abilities/GW40k_Ability_Scarab_Explode</iconPath>
+		<iconPath>UI/Abilities/GW40k_ScarabExplode</iconPath>
 		<cooldownTicksRange>0</cooldownTicksRange>
 		<aiCanUse>true</aiCanUse>
 		<verbProperties>
 			<verbClass>Verb_CastAbility</verbClass>
 			<warmupTime>1.5</warmupTime>
-			<range>-1</range>
+			<range>1</range>
 			<targetParams>
 				<canTargetSelf>true</canTargetSelf>
-				<canTargetPawns>false</canTargetPawns>
-				<canTargetBuildings>false</canTargetBuildings>
-				<canTargetLocations>false</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetBuildings>true</canTargetBuildings>
+				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 		</verbProperties>
 		<comps>

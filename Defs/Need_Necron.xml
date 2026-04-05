@@ -1,9 +1,10 @@
 <Defs>
     <NeedDef>
-        <defName>GW40K_NecronNeed</defName>
+        <defName>GW40K_CoreFlux</defName>
         <needClass>GW40K_Necrons.MaintenanceNeed</needClass>
-        <label>maintenance</label>
-        <description>d.</description>
+        <label>core flux</label>
+        <description>Necrons must periodically replenish their core flux — the luminescent energy that powers their living metal body. Without it, a Necron's necrodermis shell and neural engrams begin to degrade.\n\nCore flux can be restored by consuming necrodermis, undergoing scarab repair, or entering a stasis crypt.\n\nGoing too long without replenishing core flux will cause the Necron to enter reanimation protocol.</description>
+        <onlyIfCausedByGene>true</onlyIfCausedByGene>
         <listPriority>50</listPriority>
         <major>true</major>
         <showForCaravanMembers>true</showForCaravanMembers>

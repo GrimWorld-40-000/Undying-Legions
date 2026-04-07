@@ -61,10 +61,13 @@
 				<parentTagDef>Body</parentTagDef>
 			</li>
 		</renderNodeProperties>
+		<!-- Linear adult aging: active from 18 through ancient necron ages. -->
 		<biologicalAgeTickFactorFromAgeCurve>
 			<points>
+				<li>(0, 0)</li>
+				<li>(17.9, 0)</li>
 				<li>(18, 1)</li>
-				<li>(18.5, 0)</li>
+				<li>(10000, 1)</li>
 			</points>
 		</biologicalAgeTickFactorFromAgeCurve>
 		<disablesNeeds>

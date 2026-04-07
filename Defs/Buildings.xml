@@ -86,7 +86,7 @@
     <thingClass>GW40K_Necrons.NecronCasket</thingClass>
     <tickerType>Normal</tickerType>
     <containedPawnsSelectable>true</containedPawnsSelectable>
-    <drawerType>MapMeshAndRealTime</drawerType>
+    <drawerType>RealtimeOnly</drawerType>
     <fillPercent>0.5</fillPercent>
     <pathCost>42</pathCost>
     <canOverlapZones>false</canOverlapZones>
@@ -137,6 +137,8 @@
           <drawSize>(1,2)</drawSize>
           <color>(168, 211, 160)</color>
         </graphicData>
+        <!-- Same as vanilla CryptosleepCasket: base stays drawn, open-door graphic layers on top when empty. -->
+        <alwaysDrawParent>true</alwaysDrawParent>
       </li>
     </comps>
     <researchPrerequisites>

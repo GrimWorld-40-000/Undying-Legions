@@ -152,6 +152,10 @@
     <hitPoints>40</hitPoints>
     <skinCovered>true</skinCovered>
     <executionPartPriority>400</executionPartPriority>
+    <!-- No kidneys in body graph: single filtration anchor for blood filtration capacity -->
+    <tags>
+      <li>BloodFiltrationSource</li>
+    </tags>
   </BodyPartDef>
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">

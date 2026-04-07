@@ -57,7 +57,7 @@
       <bloodDef>Filth_Blood</bloodDef>
       <bloodSmearDef>Filth_BloodSmear</bloodSmearDef>
       <nameCategory>HumanStandard</nameCategory>
-      <body>Human</body>
+      <body>GW40K_NecronBody</body>
       <renderTree>Humanlike</renderTree>
       <baseBodySize>1</baseBodySize>
       <baseHealthScale>1.5</baseHealthScale>
@@ -78,6 +78,12 @@
       </hediffGiverSets>
     </race>
 
+    <modExtensions>
+      <li Class="GW40K_Necrons.NonOrganicPawn">
+        <passion>Minor</passion>
+        <passionType>Minor</passionType>
+      </li>
+    </modExtensions>
   </ThingDef>
 
 </Defs>

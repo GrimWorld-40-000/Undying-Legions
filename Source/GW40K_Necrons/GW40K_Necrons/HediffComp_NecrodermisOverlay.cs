@@ -17,7 +17,7 @@ namespace NecronMod
     {
         private static readonly float[] StageOpacities = { 0.25f, 0.50f, 0.75f, 1.00f };
         private const string TexBase = "Things/Pawn/Overlays/Necrodermis";
-        private const float OverlaySize = 1.0f;
+        private const float OverlaySize = 0.7225f; // 15% smaller
 
         private int cachedStage = -1;
         private int cachedRotInt = -1;

@@ -18,32 +18,21 @@ public class NonOrganicPawn : DefModExtension
   public Passion passionType;
 }
 
-// Marker placed on Necron mech ThingDefs — used to gate Command Protocol / vanilla Mechlink control
-public class NecronMechExtension : DefModExtension { }
-
-// Used on RecipeDefs at the Monolith to specify which Necron mech PawnKindDef to summon
-public class RecipeExtension_SpawnMech : DefModExtension
+public class GeneExtension_NonOrganic : DefModExtension
 {
-    public PawnKindDef mechKindDef;
+    public bool makeNonOrganic = true;
 }
 
-public class GeneExtension_NonOrganic : DefModExtension
+public class Gene_ResurrectionProtocol : Gene
+{
+    public override void PostAdd()
     {
-        public bool makeNonOrganic = true;
-    }
- public class Gene_ResurrectionProtocol : Gene
-    {
-        public override void PostAdd()
-        {
-            base.PostAdd();
-        }
-
-      
-        public static bool PawnHasResurrectionProtocol(Pawn pawn)
-        {
-            return pawn.genes?.GetGene(NecronDefOfs.GW_UD_ResurrectionProtocol)
-                   is Gene_ResurrectionProtocol;
-        }
+        base.PostAdd();
     }
 
-
+    public static bool PawnHasResurrectionProtocol(Pawn pawn)
+    {
+        return pawn.genes?.GetGene(NecronDefOfs.GW_UD_ResurrectionProtocol)
+               is Gene_ResurrectionProtocol;
+    }
+}

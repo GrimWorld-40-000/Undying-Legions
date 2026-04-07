@@ -1,73 +1,182 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: GW40K_Necrons.MaintenanceNeed
-// Assembly: GW40K_Necrons, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 7A7FA5E5-16FF-4234-BCBC-527D2120B282
-// Assembly location: C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Undying-Legions\Assemblies\GW40K_Necrons.dll
-
+﻿using System.Collections.Generic;
 using RimWorld;
-using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
 #nullable disable
 namespace GW40K_Necrons;
 
+/// <summary>
+/// Core flux: Necron analogue of Biotech <see cref="Need_Deathrest"/>.
+/// Drains while the pawn is active; refills during vanilla deathrest or while held in a cryptosleep casket (stasis crypt).
+/// Rates match <see cref="Need_Deathrest"/> (1/30 max per day drain, 0.2/day gain while replenishing).
+/// </summary>
 public class MaintenanceNeed : Need
 {
-  private int lastRestTick = -999;
-  private float lastRestEffectiveness = 1f;
-  private int ticksAtZero;
-  private const float FullSleepHours = 10.5f;
-  public const float BaseRestGainPerTick = 3.809524E-05f;
-  private const float BaseRestFallPerTick = 1.58333332E-05f;
-  public const float ThreshTired = 0.28f;
-  public const float ThreshVeryTired = 0.14f;
-  public const float DefaultFallAsleepMaxLevel = 0.75f;
-  public const float DefaultNaturalWakeThreshold = 1f;
-  public const float CanWakeThreshold = 0.2f;
-  private const float BaseInvoluntarySleepMTBDays = 0.25f;
+    public const float FallPerDay = 1f / 30f;
+    public const float GainPerDayReplenishing = 0.2f;
 
-  public RestCategory CurCategory
-  {
-    get
+    /// <summary>Need ticks every 150 game ticks; same 400 divisor as <see cref="Need_Deathrest.NeedInterval"/>.</summary>
+    private const float IntervalsPerDay = 400f;
+
+    /// <summary>
+    /// Extra core flux loss per need interval, expressed as a multiple of (FallPerDay/IntervalsPerDay), while
+    /// <see cref="NecronDefOfs.GW_UD_NecrodermisMaintenanceDeficit"/> is present. Tiers follow hediff stages (light→critical).
+    /// </summary>
+    private const float BodyDegradLightExtraFallMul = 1f;
+
+    private const float BodyDegradModerateExtraFallMul = 2.5f;
+
+    private const float BodyDegradSevereExtraFallMul = 5f;
+
+    private const float BodyDegradCriticalExtraFallMul = 9f;
+
+    public const float ThreshTired = 0.28f;
+    public const float ThreshVeryTired = 0.14f;
+
+    /// <summary>Matches vanilla deathrest alert band (10%).</summary>
+    public const float LevelForCriticalAlert = 0.1f;
+
+    public RestCategory CurCategory
     {
-      if ((double) this.CurLevel < 0.0099999997764825821)
-        return RestCategory.Exhausted;
-      return (double) this.CurLevel < 0.14000000059604645 ? RestCategory.VeryTired : ((double) this.CurLevel < 0.2800000011920929 ? RestCategory.Tired : RestCategory.Rested);
+        get
+        {
+            if (CurLevel < 0.01f)
+                return RestCategory.Exhausted;
+            if (CurLevel < ThreshVeryTired)
+                return RestCategory.VeryTired;
+            if (CurLevel < ThreshTired)
+                return RestCategory.Tired;
+            return RestCategory.Rested;
+        }
     }
-  }
 
-  public float RestFallPerTick => 1f / 1000f;
+    public MaintenanceNeed(Pawn pawn)
+        : base(pawn)
+    {
+        threshPercents = new List<float> { ThreshTired, ThreshVeryTired };
+    }
 
-  public override int GUIChangeArrow => -1;
+    public override int GUIChangeArrow
+    {
+        get
+        {
+            if (IsFrozen)
+                return 0;
+            return CoreFluxReplenishing() ? 1 : -1;
+        }
+    }
 
-  public MaintenanceNeed(Pawn pawn)
-    : base(pawn)
-  {
-    this.threshPercents = new List<float>();
-    this.threshPercents.Add(0.28f);
-    this.threshPercents.Add(0.14f);
-  }
+    public override void SetInitialLevel()
+    {
+        CurLevel = Rand.Range(0.9f, 1f);
+    }
 
-  public override void ExposeData()
-  {
-    base.ExposeData();
-    Scribe_Values.Look<int>(ref this.ticksAtZero, "ticksAtZero");
-  }
+    protected override bool IsFrozen
+    {
+        get
+        {
+            if (CoreFluxReplenishing())
+                return false;
+            return base.IsFrozen;
+        }
+    }
 
-  public override void SetInitialLevel() => this.CurLevel = Rand.Range(0.9f, 1f);
+    public override void NeedInterval()
+    {
+        if (IsFrozen)
+            return;
 
-  public override void NeedInterval()
-  {
-    if (this.IsFrozen || (double) this.CurLevel <= 0.0)
-      return;
-    this.CurLevel -= this.RestFallPerTick;
-  }
+        float eff = DeathrestReplenishmentEfficiency(pawn);
+        float delta = CoreFluxReplenishing()
+            ? GainPerDayReplenishing * eff / IntervalsPerDay
+            : -FallPerDay / IntervalsPerDay;
 
-  public void TickResting(float restEffectiveness)
-  {
-    if ((double) restEffectiveness <= 0.0)
-      return;
-    this.lastRestTick = Find.TickManager.TicksGame;
-    this.lastRestEffectiveness = restEffectiveness;
-  }
+        CurLevel += delta;
+
+        if (!CoreFluxReplenishing())
+            CurLevel -= BodyDegradationExtraCoreFluxFallPerInterval();
+
+        CheckForCoreFluxState();
+    }
+
+    /// <summary>Vanilla-style: at zero flux apply exhaustion + forced Eternal Slumber; clear when flux returns or while replenishing.</summary>
+    private void CheckForCoreFluxState()
+    {
+        if (pawn.health?.hediffSet == null)
+            return;
+        if (NecronDefOfs.GW40K_CoreFluxExhaustion == null || NecronDefOfs.GW40K_EternalSlumberForced == null)
+            return;
+
+        bool depleted = CurLevel <= 0f;
+        bool recovering = CoreFluxReplenishing();
+
+        if (!depleted || recovering)
+        {
+            RemoveZeroFluxHediffs();
+            return;
+        }
+
+        if (pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_CoreFluxExhaustion) == null)
+            pawn.health.AddHediff(NecronDefOfs.GW40K_CoreFluxExhaustion);
+        if (pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_EternalSlumberForced) == null)
+            pawn.health.AddHediff(NecronDefOfs.GW40K_EternalSlumberForced);
+    }
+
+    private void RemoveZeroFluxHediffs()
+    {
+        RemoveHediffIfAny(NecronDefOfs.GW40K_CoreFluxExhaustion);
+        RemoveHediffIfAny(NecronDefOfs.GW40K_EternalSlumberForced);
+    }
+
+    private void RemoveHediffIfAny(HediffDef def)
+    {
+        if (def == null)
+            return;
+        Hediff h = pawn.health.hediffSet.GetFirstHediffOfDef(def);
+        if (h == null)
+            return;
+        if (def == NecronDefOfs.GW40K_EternalSlumberForced)
+            h.TryGetComp<HediffComp_EternalSlumberInterruption>()?.MarkCleanRemovalFromNeed();
+        pawn.health.RemoveHediff(h);
+    }
+
+    /// <summary>
+    /// Additional core flux drain from body degradation while necrodermis is depleted (all visible stages).
+    /// Does not apply while core flux is replenishing (deathrest or cryptosleep casket).
+    /// </summary>
+    private float BodyDegradationExtraCoreFluxFallPerInterval()
+    {
+        if (pawn.health?.hediffSet == null || NecronDefOfs.GW_UD_NecrodermisMaintenanceDeficit == null)
+            return 0f;
+        Hediff bd = pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW_UD_NecrodermisMaintenanceDeficit);
+        if (bd == null)
+            return 0f;
+        float sev = bd.Severity;
+        if (sev < 0.2f)
+            return 0f;
+        float basePerInterval = FallPerDay / IntervalsPerDay;
+        float mul = sev >= 0.8f
+            ? BodyDegradCriticalExtraFallMul
+            : sev >= 0.6f
+                ? BodyDegradSevereExtraFallMul
+                : sev >= 0.4f
+                    ? BodyDegradModerateExtraFallMul
+                    : BodyDegradLightExtraFallMul;
+        return basePerInterval * mul;
+    }
+
+    private static float DeathrestReplenishmentEfficiency(Pawn p)
+    {
+        Gene_Deathrest gene = p.genes?.GetFirstGeneOfType<Gene_Deathrest>();
+        return gene?.DeathrestEfficiency ?? 1f;
+    }
+
+    /// <summary>True if pawn is in deathrest or inside a cryptosleep casket (including <see cref="NecronCasket"/>).</summary>
+    public bool CoreFluxReplenishing()
+    {
+        if (pawn.Deathresting)
+            return true;
+        return ThingOwnerUtility.GetAnyParent<Building_CryptosleepCasket>(pawn) != null;
+    }
 }

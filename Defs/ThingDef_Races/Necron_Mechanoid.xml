@@ -1,22 +1,21 @@
 <Defs>
 	
-	<PawnKindDef Name="UD_NecronMechPawnKindBase" Abstract="True">
-		<race>UD_Necron_Warrior</race>
+	<!-- ParentName pulls in BaseMechanoidKind; defaultFactionDef assigns necrons to this hive (not vanilla Mechanoids). -->
+	<PawnKindDef Name="UD_NecronMechPawnKindBase" Abstract="True" ParentName="BaseMechanoidKind">
 		<defaultFactionDef>UD_NecronFaction</defaultFactionDef>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
-		<!-- <invNutrition>2.55</invNutrition> -->
 		<itemQuality>Normal</itemQuality>
-		<!-- <backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality> -->
-		<maxGenerationAge>200</maxGenerationAge>
-		<!-- <combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance> -->
-		<!-- <combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount> -->
-		<!-- <biocodeWeaponChance>0.1</biocodeWeaponChance> -->
+		<maxGenerationAge>10000</maxGenerationAge>
+	</PawnKindDef>
+
+	<PawnKindDef Name="UD_NecronHeavyMechPawnKindBase" Abstract="True" ParentName="HeavyMechanoidKind">
+		<defaultFactionDef>UD_NecronFaction</defaultFactionDef>
 	</PawnKindDef>
 	
 	<!-- Warrior -->
-	<ThingDef ParentName="BaseMechanoidWalker">
+	<ThingDef ParentName="BaseNechWalker">
 		<defName>UD_Necron_Warrior</defName>
-		<modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
+		<!-- NecronMechExtension inherited from BaseNech -->
 		<label>Necron Warrior</label>
 		<description>. . .</description>
 		<statBases>
@@ -90,7 +89,7 @@
 		</race>
 	</ThingDef>
 
-	<PawnKindDef ParentName="BaseMechanoidKind">
+	<PawnKindDef ParentName="UD_NecronMechPawnKindBase">
 		<defName>UD_Necron_Warrior</defName>
 		<label>necron warrior</label>
 		<labelPlural>necron warriors</labelPlural>
@@ -118,9 +117,9 @@
 	</PawnKindDef>
 	
 	<!-- Cryptothrall -->
-	<ThingDef ParentName="BaseMechanoidWalker">
+	<ThingDef ParentName="BaseNechWalker">
 		<defName>UD_Necron_Cryptothrall</defName>
-		<modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
+		<!-- NecronMechExtension inherited from BaseNech -->
 		<label>Cryptothrall</label>
 		<description>. . .</description>
 		<tools>
@@ -193,7 +192,7 @@
 		</statBases>
 	</ThingDef>
 
-	<PawnKindDef ParentName="BaseMechanoidKind">
+	<PawnKindDef ParentName="UD_NecronMechPawnKindBase">
 		<defName>UD_Necron_Cryptothrall</defName>
 		<label>Cryptothrall</label>
 		<race>UD_Necron_Cryptothrall</race>
@@ -219,13 +218,16 @@
 		<techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
 	
-	<!-- Immortal -->
-	<ThingDef ParentName="LancerMechanoidWalker">
+	<!-- Immortal — must set body (BaseNechLancer has none); missing body breaks pawn gen / ShouldBeDead -->
+	<ThingDef ParentName="BaseNechLancer">
 		<defName>UD_Necron_Immortal</defName>
-		<modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
+		<!-- NecronMechExtension inherited from BaseNech -->
 		<label>immortal</label>
 		<description>. . .</description>
 		<race>
+			<body>Lancer</body>
+			<baseBodySize>1.0</baseBodySize>
+			<baseHealthScale>1.5</baseHealthScale>
 			<lifeStageAges Inherit="False">
 				<li>
 					<def>MechanoidFullyFormed</def>
@@ -254,7 +256,7 @@
 		</statBases>
 	</ThingDef>
 
-	<PawnKindDef ParentName="BaseMechanoidKind">
+	<PawnKindDef ParentName="UD_NecronMechPawnKindBase">
 		<defName>UD_Necron_Immortal</defName>
 		<label>immortal</label>
 		<race>UD_Necron_Immortal</race>
@@ -279,7 +281,7 @@
 	</PawnKindDef>
 	
 	<!-- FlayedOne -->
-	<ThingDef ParentName="HeavyMechanoid">
+	<ThingDef ParentName="BaseNechHeavy">
     <defName>UD_Necron_FlayedOne</defName>
     <modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
     <label>Flayed One</label>
@@ -356,7 +358,7 @@
     </comps>
   </ThingDef>
   
-  <PawnKindDef ParentName="HeavyMechanoidKind">
+  <PawnKindDef ParentName="UD_NecronHeavyMechPawnKindBase">
     <defName>UD_Necron_FlayedOne</defName>
     <label>flayed one</label>
     <race>UD_Necron_FlayedOne</race>
@@ -382,7 +384,7 @@
   </PawnKindDef>
   
   <!-- CryptekMech -->
-	<ThingDef ParentName="HeavyMechanoid">
+	<ThingDef ParentName="BaseNechHeavy">
     <defName>UD_Unused_CryptekMech</defName>
     <modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
     <label>Cryptek</label>
@@ -471,7 +473,7 @@
     </comps>
   </ThingDef>
   
-  <PawnKindDef ParentName="HeavyMechanoidKind">
+  <PawnKindDef ParentName="UD_NecronHeavyMechPawnKindBase">
     <defName>UD_Unused_CryptekMech</defName>
     <label>UNUSED Cryptek</label>
     <race>UD_Unused_CryptekMech</race>

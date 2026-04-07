@@ -17,6 +17,10 @@
       <ComfyTemperatureMin>-100</ComfyTemperatureMin>
       <ComfyTemperatureMax>250</ComfyTemperatureMax>
     </statBases>
+    <!-- Required by mechanoid validator; scarab vanishes on death so these never actually drop -->
+    <butcherProducts>
+      <Steel>1</Steel>
+    </butcherProducts>
     <tools>
       <li>
         <label>mandibles</label>

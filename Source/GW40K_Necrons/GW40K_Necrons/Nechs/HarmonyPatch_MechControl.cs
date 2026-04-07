@@ -34,6 +34,15 @@ public static class HarmonyPatch_MechControl
         if (!isNecronMech && hasCommandProtocol && !hasVanillaMechlink)
         {
             __result = "The command protocol governs only Necron constructs.";
+            return;
+        }
+
+        // Bandwidth cap — deny binding a new Necron mech if the tracker is already full
+        if (isNecronMech && hasCommandProtocol)
+        {
+            var tracker = HediffComp_NecronCommandTracker.GetTracker(pawn);
+            if (tracker != null && !tracker.controlledMechs.Contains(mech) && !tracker.HasBandwidthFor())
+                __result = "Command bandwidth is at capacity. Destroy or release a construct first.";
         }
     }
 }

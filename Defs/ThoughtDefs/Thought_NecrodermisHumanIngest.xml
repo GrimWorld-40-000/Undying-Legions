@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>GW_UD_IngestedRawNecrodermis</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackedEffectMultiplier>0.85</stackedEffectMultiplier>
+    <stages>
+      <li>
+        <label>living metal injection</label>
+        <description>They pumped that sludge into me on purpose. It felt wrong—cold, crawling—and now I can't stop thinking about what might be growing in there.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

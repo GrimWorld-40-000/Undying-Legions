@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <EffecterDef>
+    <defName>GW40K_MechUncontrolled_Nech</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+        <ticksBetweenMotes>200</ticksBetweenMotes>
+        <moteDef>Mote_GW40K_MechUncontrolled_Nech</moteDef>
+        <rotation>0~0</rotation>
+        <absoluteAngle>true</absoluteAngle>
+        <attachToSpawnThing>true</attachToSpawnThing>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+    </children>
+  </EffecterDef>
+
+</Defs>

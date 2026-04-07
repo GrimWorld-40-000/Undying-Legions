@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThingDef ParentName="MoteBase">
+    <defName>Mote_GW40K_MechUncontrolled_Nech</defName>
+    <thingClass>MoteAttached</thingClass>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>2</fadeInTime>
+      <solidTime>0</solidTime>
+      <fadeOutTime>1</fadeOutTime>
+    </mote>
+    <graphicData>
+      <graphicClass>Graphic_PawnBodySilhouette</graphicClass>
+      <color>(0.35, 0.72, 0.52, 0.35)</color>
+      <shaderType>MotePawnBodyColor</shaderType>
+      <texPath>Things/Mote/Transparent</texPath>
+    </graphicData>
+  </ThingDef>
+
+</Defs>

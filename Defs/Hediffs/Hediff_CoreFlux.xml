@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- DeathrestExhaustion analogue: applied when GW40K_CoreFlux hits empty (see MaintenanceNeed). -->
+  <HediffDef>
+    <defName>GW40K_CoreFluxExhaustion</defName>
+    <label>core flux exhaustion</label>
+    <description>Core flux has collapsed. Engrams stutter and motive power fails until the body enters a full recharge cycle in stasis or deathrest.</description>
+    <hediffClass>Hediff</hediffClass>
+    <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.5</setMax>
+          </li>
+        </capMods>
+        <statOffsets>
+          <PsychicSensitivity>-1</PsychicSensitivity>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Emergency coma when flux is fully depleted; clears when flux rises above zero. -->
+  <HediffDef>
+    <defName>GW40K_EternalSlumberForced</defName>
+    <label>Eternal Slumber</label>
+    <description>With no core flux remaining, the dynastic protocols have forced total shutdown. The Necron lies inert like the sleepers of the tomb worlds until power returns.\n\nEnding Eternal Slumber any way other than a full recovery (core flux restored or safe recharge in stasis/deathrest) shatters the protocol — expect murderous rage toward nearby allies.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(149, 189, 252)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_EternalSlumberInterruption" />
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

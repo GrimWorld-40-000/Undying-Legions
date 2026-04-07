@@ -14,7 +14,10 @@ public class WorkGiver_MonolithSummon : WorkGiver_DoBill
     public override bool ShouldSkip(Pawn pawn, bool forced = false)
     {
         if (base.ShouldSkip(pawn, forced)) return true;
-        return pawn.health?.hediffSet?.GetFirstHediffOfDef(
-            HediffDef.Named("GW40K_CommandProtocolImplant")) == null;
+        if (pawn.health?.hediffSet?.GetFirstHediffOfDef(
+            HediffDef.Named("GW40K_CommandProtocolImplant")) == null) return true;
+        var tracker = HediffComp_NecronCommandTracker.GetTracker(pawn);
+        if (tracker != null && !tracker.HasBandwidthFor()) return true;
+        return false;
     }
 }

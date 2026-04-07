@@ -1,4 +1,5 @@
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace NecronGeneUtil;
@@ -29,16 +30,34 @@ public class Need_Necrodermis : Need
 
     public override void NeedInterval()
     {
+        float fallMul = MaintenanceDeficitFallMultiplier();
         if (!IsFrozen)
-            CurLevel = CurLevel - FallPerTick * 150f;
+            CurLevel -= FallPerTick * 150f * fallMul;
         if (!Starving)
             lastNonStarvingTick = Find.TickManager.TicksGame;
         if (!IsFrozen)
         {
-            if (Starving)
-                HealthUtility.AdjustSeverity(base.pawn, modExtension.starvingHediffDef, modExtension.severityPerInterval);
-            else
-                HealthUtility.AdjustSeverity(base.pawn, modExtension.starvingHediffDef, -modExtension.severityPerInterval);
+            HediffDef deficit = modExtension?.maintenanceDeficitHediffDef;
+            if (deficit != null)
+            {
+                if (Starving)
+                    HealthUtility.AdjustSeverity(base.pawn, deficit, modExtension.severityPerInterval);
+                else
+                    HealthUtility.AdjustSeverity(base.pawn, deficit, -modExtension.severityPerInterval);
+            }
         }
+    }
+
+    /// <summary>Higher necrodermis drain while body degradation hediff is present (replaces hunger rate offset).</summary>
+    private float MaintenanceDeficitFallMultiplier()
+    {
+        NeedExtension_Necron ext = modExtension;
+        if (ext?.maintenanceDeficitHediffDef == null || base.pawn?.health?.hediffSet == null)
+            return 1f;
+        Hediff hd = base.pawn.health.hediffSet.GetFirstHediffOfDef(ext.maintenanceDeficitHediffDef);
+        if (hd == null || hd.Severity <= 0.001f)
+            return 1f;
+        float k = ext.extraNecrodermisFallPerSeverity;
+        return 1f + k * Mathf.Clamp01(hd.Severity);
     }
 }

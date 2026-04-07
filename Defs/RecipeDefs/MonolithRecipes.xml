@@ -176,7 +176,7 @@
             <li>GW40k_Necron_Necrodermis</li>
           </thingDefs>
         </filter>
-        <count>5</count>
+        <count>4</count>
       </li>
       <li>
         <filter>
@@ -184,22 +184,13 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>20</count>
-      </li>
-      <li>
-        <filter>
-          <thingDefs>
-            <li>ComponentIndustrial</li>
-          </thingDefs>
-        </filter>
-        <count>1</count>
+        <count>5</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>GW40k_Necron_Necrodermis</li>
         <li>Steel</li>
-        <li>ComponentIndustrial</li>
       </thingDefs>
     </fixedIngredientFilter>
     <skillRequirements>

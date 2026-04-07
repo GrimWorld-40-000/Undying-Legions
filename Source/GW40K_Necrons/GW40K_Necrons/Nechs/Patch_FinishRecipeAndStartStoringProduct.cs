@@ -32,7 +32,7 @@ public static class Patch_FinishRecipeAndStartStoringProduct
                     GenSpawn.Spawn(mech, building.Position, building.Map);
                     mech.GetOverseer()?.relations.RemoveDirectRelation(PawnRelationDefOf.Overseer, mech);
                     actor.relations.AddDirectRelation(PawnRelationDefOf.Overseer, mech);
-                    actor.mechanitor?.AssignPawnControlGroup(mech, null);
+                    HediffComp_NecronCommandTracker.GetTracker(actor)?.BindMech(mech);
                 }, "GW40K_SummonMech", false, null);
                 return;
             }

@@ -89,7 +89,7 @@
       <bloodDef>GW40K_Filth_NecronBlood</bloodDef>
       <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
       <nameCategory>HumanStandard</nameCategory>
-      <body>Human</body>
+      <body>GW40K_NecronBody</body>
       <renderTree>Humanlike</renderTree>
       <baseBodySize>1</baseBodySize>
       <baseHealthScale>1.5</baseHealthScale>
@@ -97,16 +97,28 @@
       <meatMarketValue>0</meatMarketValue>
       <manhunterOnDamageChance>0</manhunterOnDamageChance>
       <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+      <!-- Child/adult split at 18 matches minGenerationAge on necron pawn kinds; adult-at-0 breaks gene age validation ("Tried 300 times..."). -->
       <lifeStageAges>
         <li>
-          <def>HumanlikeAdult</def>
+          <def>HumanlikeChild</def>
           <minAge>0</minAge>
+        </li>
+        <li>
+          <def>HumanlikeAdult</def>
+          <minAge>18</minAge>
         </li>
       </lifeStageAges>
       <hediffGiverSets>
         <li>OrganicStandard</li>
       </hediffGiverSets>
     </race>
+
+    <modExtensions>
+      <li Class="GW40K_Necrons.NonOrganicPawn">
+        <passion>Minor</passion>
+        <passionType>Minor</passionType>
+      </li>
+    </modExtensions>
 
   </ThingDef>
 

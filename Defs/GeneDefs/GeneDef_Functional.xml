@@ -7,7 +7,7 @@
 	<GeneDef>
 		<defName>GW_UD_EternalSlumber</defName>
 		<label>Eternal Slumber</label>
-		<description>. . .</description>
+		<description>Grants the core flux need — the Necron equivalent of deathrest. Core flux depletes while the body is active and must be restored in a stasis crypt, deathrest chamber, or compatible suspension.</description>
 		<iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<enablesNeeds>

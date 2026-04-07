@@ -1,5 +1,4 @@
 using RimWorld;
-using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -7,26 +6,47 @@ namespace NecronGeneUtil;
 
 public class JobGiver_GetNecrodermis : ThinkNode_JobGiver
 {
+    private static JobDef _useItemJob;
+
+    private static JobDef UseItemJobDef
+    {
+        get
+        {
+            if (_useItemJob == null)
+                _useItemJob = DefDatabase<JobDef>.GetNamedSilentFail("UseItem");
+            return _useItemJob;
+        }
+    }
+
     public override float GetPriority(Pawn pawn)
     {
-        if (!ModsConfig.BiotechActive) return 0f;
-        if (pawn.needs.TryGetNeed<Need_Necrodermis>() == null) return 0f;
-        return 9.1f;
+        if (!ModsConfig.BiotechActive)
+            return 0f;
+        var need = pawn.needs?.TryGetNeed<Need_Necrodermis>();
+        if (need == null)
+            return 0f;
+        if (!need.Starving && FoodUtility.ShouldBeFedBySomeone(pawn))
+            return 0f;
+        if (need.CurLevelPercentage >= pawn.RaceProps.FoodLevelPercentageWantEat)
+            return 0f;
+        return 9.5f;
     }
 
     protected override Job TryGiveJob(Pawn pawn)
     {
-        if (!ModsConfig.BiotechActive) return null;
+        if (!ModsConfig.BiotechActive)
+            return null;
         var need = pawn.needs?.TryGetNeed<Need_Necrodermis>();
-        if (need == null || need.CurLevelPercentage >= 0.25f) return null;
-        int num = Mathf.CeilToInt(need.MaxLevel - need.CurLevel);
-        if (num <= 0) return null;
+        if (need == null || need.CurLevelPercentage >= pawn.RaceProps.FoodLevelPercentageWantEat)
+            return null;
         Thing pack = GetNecrodermisPack(pawn);
-        if (pack == null) return null;
-        Job job = JobMaker.MakeJob(JobDefOf.Ingest, pack);
-        job.count = Mathf.Min(pack.stackCount, num);
-        job.ingestTotalCount = true;
-        return job;
+        if (pack == null)
+            return null;
+        // Raw packs use CompUsable; same driver as serums. JobDefOf may omit UseItem on some RW versions.
+        JobDef useItem = UseItemJobDef;
+        if (useItem == null)
+            return null;
+        return JobMaker.MakeJob(useItem, pack);
     }
 
     private Thing GetNecrodermisPack(Pawn pawn)

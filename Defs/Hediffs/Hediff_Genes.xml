@@ -83,71 +83,39 @@
 		</comps>
 	</HediffDef>
 	  
+	<!-- Necrons have no food need; extra necrodermis drain scales with severity in Need_Necrodermis (extraNecrodermisFallPerSeverity). -->
 	<HediffDef>
-		<defName>GW_UD_NecrodermisStarving</defName>
-		<label>necrodermis starvation</label>
-		<description>. . .</description>
+		<defName>GW_UD_NecrodermisMaintenanceDeficit</defName>
+		<label>body degradation</label>
+		<description>The living metal lattice is starving for fresh necrodermis. Structural integrity fails faster until material is assimilated; aggression protocols spike as the mind fights for control.\n\nFrom light severity onward, the frame diverts more power to hold itself together, so core flux drains faster until necrodermis reserves are restored. Cognition penalties from low power are expressed through core flux strain, not the lattice itself.</description>
 		<lethalSeverity>1</lethalSeverity>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<stages>
 			<li>
-				<label>trivial</label>
+				<label>negligible</label>
 				<socialFightChanceFactor>1.5</socialFightChanceFactor>
-				<hungerRateFactorOffset>0.5</hungerRateFactorOffset>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.05</offset>
-					</li>
-				</capMods>
 			</li>
 			<li>
 				<minSeverity>0.2</minSeverity>
-				<label>minor</label>
+				<label>light</label>
 				<socialFightChanceFactor>2</socialFightChanceFactor>
-				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.10</offset>
-					</li>
-				</capMods>
 			</li>
 			<li>
 				<minSeverity>0.4</minSeverity>
 				<label>moderate</label>
+				<extraTooltip>Core flux loss ramps up sharply at this stage; power is being diverted to slow lattice collapse. Refill necrodermis and consider stasis before flux bottoms out.</extraTooltip>
 				<socialFightChanceFactor>2.5</socialFightChanceFactor>
-				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.20</offset>
-					</li>
-				</capMods>
 			</li>
 			<li>
 				<minSeverity>0.6</minSeverity>
 				<label>severe</label>
+				<extraTooltip>Core flux decay is severe. Without necrodermis or a full stasis cycle, shutdown from flux exhaustion will follow soon after the lattice gives way.</extraTooltip>
 				<socialFightChanceFactor>3</socialFightChanceFactor>
-				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<offset>-0.30</offset>
-					</li>
-				</capMods>
 			</li>
 			<li>
 				<minSeverity>0.8</minSeverity>
-				<label>extreme</label>
-				<lifeThreatening>true</lifeThreatening>
-				<hungerRateFactorOffset>0.6</hungerRateFactorOffset>
-				<capMods>
-					<li>
-						<capacity>Consciousness</capacity>
-						<setMax>0.1</setMax>
-					</li>
-				</capMods>
+				<label>critical</label>
+				<extraTooltip>Critical lattice failure: core flux is collapsing as fast as the body can spare energy. Assimilate necrodermis immediately - Eternal Slumber is eminent.</extraTooltip>
 			</li>
 		</stages>
 	</HediffDef>

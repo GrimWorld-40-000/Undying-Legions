@@ -2,5 +2,20 @@
 	
 	<NecrodemisInfection>some ore on the map are infected by necrodemis</NecrodemisInfection>
   <MessageNecronResurrection>A corpse is resurrecting on its own.</MessageNecronResurrection>
+  <GW_UD_TranshumanistOnly>Transhumanist only</GW_UD_TranshumanistOnly>
+  <GW_UD_NecrodermisNeedOnly>Only units with a necrodermis core can metabolize this.</GW_UD_NecrodermisNeedOnly>
+
+  <AlertCoreFluxCriticalPawn>{PAWN} core-flux critical</AlertCoreFluxCriticalPawn>
+  <AlertCoreFluxCriticalPawns>{NUMCULPRITS} colonists core-flux critical</AlertCoreFluxCriticalPawns>
+  <AlertCoreFluxCriticalDesc>These units are nearly out of core flux. If it empties completely they will enter forced Eternal Slumber until recharged in a stasis crypt or deathrest.\n\nAffected:\n{CULPRITS}</AlertCoreFluxCriticalDesc>
+
+  <GW40K_EternalSlumberInterrupted>{PAWN_nameDef}'s Eternal Slumber was broken improperly. Engrams spike into uncontrollable aggression.</GW40K_EternalSlumberInterrupted>
+  <GW40K_EternalSlumberInterruptedNoTarget>{PAWN_nameDef}'s Eternal Slumber was broken with no core flux, but there is no reachable target for {PAWN_possessive} rage to latch onto.</GW40K_EternalSlumberInterruptedNoTarget>
+
+  <GW40K_EnterStasisCrypt>Enter stasis crypt</GW40K_EnterStasisCrypt>
+
+  <GW40K_StasisCryptTimeRemaining>Time remaining on cycle: {REMAINING}</GW40K_StasisCryptTimeRemaining>
+  <GW40K_StasisCryptInterruptConfirm>Ejecting {PAWN_nameDef} before the stasis crypt cycle finishes will interrupt restoration. If {PAWN_possessive} core flux is still empty, breaking Eternal Slumber improperly can force {PAWN_objective} into murderous rage.\n\nEject anyway?</GW40K_StasisCryptInterruptConfirm>
+  <GW40K_StasisCryptInterruptConfirmNoPawn>The stasis crypt cycle is not finished. Ejecting now interrupts restoration. If the occupant's core flux is still empty, breaking Eternal Slumber improperly can cause murderous rage.\n\nEject anyway?</GW40K_StasisCryptInterruptConfirmNoPawn>
 
 </LanguageData>

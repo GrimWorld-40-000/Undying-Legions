@@ -35,20 +35,22 @@
     <destroySoundLarge>BuildingDestroyed_Metal_Big</destroySoundLarge>
   </StuffCategoryDef>
 	
-	<ThingDef ParentName="OrganicProductBase">
+	<!-- Raw necrodermis: listed with steel (ResourcesRaw). Necrons refill GW_UD_Necrodermis via CompUsable, not ingestible. -->
+	<ThingDef ParentName="ResourceBase">
 		<defName>GW40k_Necron_Necrodermis</defName>
 		<label>necrodermis</label>
-		<description>A shimmering, viscous sludge of "living metal" consisting of trillions of nanites. When consumed by Necrons the sub-atomic mechanites synchronize with the user's core, acelerating repair.</description>
-		<possessionCount>10</possessionCount>
+		<description>A viscous "living metal" sludge of nanites. Most see it only as a construction material; Necrons with a necrodermis core can metabolize stacks of it directly.</description>
 		<graphicData>
 			<texPath>Things/Items/Necrodermis</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
+		<soundInteract>Metal_Drop</soundInteract>
+		<soundDrop>Metal_Drop</soundDrop>
+		<useHitPoints>false</useHitPoints>
+		<healthAffectsPrice>false</healthAffectsPrice>
 		<statBases>
 			<MarketValue>8.0</MarketValue>
 			<Mass>0.025</Mass>
-			<Nutrition>0.05</Nutrition>
-			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
 			<StuffPower_Armor_Sharp>0.9</StuffPower_Armor_Sharp>
 			<StuffPower_Armor_Blunt>0.45</StuffPower_Armor_Blunt>
 			<StuffPower_Armor_Heat>0.60</StuffPower_Armor_Heat>
@@ -76,47 +78,24 @@
 			</statFactors>
 			<canSuggestUseDefaultStuff>true</canSuggestUseDefaultStuff>
 		</stuffProps>
-		<socialPropernessMatters>true</socialPropernessMatters>
-		<ingestible>
-			<foodType>Processed</foodType>
-			<preferability>MealAwful</preferability>
-			<ingestEffect>EatVegetarian</ingestEffect>
-			<ingestSound>Meal_Eat</ingestSound>
-			<canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
-			<babiesCanIngest>false</babiesCanIngest>
-			<outcomeDoers>
-				<li Class="NecronComp.IngestionOutcomeDoer_GiveHediffNecron">
-					<hediffDef>Plague</hediffDef>
-					<severity>0.15</severity>
-					<raceException>
-						<li>GW40K_NecronOverlord</li>
-						<li>GW40K_NecronPraetorian</li>
-						<li>GW40K_NecronLychGuard</li>
-						<li>GW40K_NecronFlayedOne</li>
-						<li>GW40K_NecronDestroyer</li>
-						<li>GW40K_NecronDeathmark</li>
-					</raceException>
-				</li>
-			</outcomeDoers>
-		</ingestible>
 		<thingCategories>
-			<li>Manufactured</li>
+			<li>ResourcesRaw</li>
 		</thingCategories>
+		<terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
 		<allowedArchonexusCount>150</allowedArchonexusCount>
 		<comps>
-			<li Class="NecronComp.CompProperties_HediffAura">
-				<radius>3</radius>
-				<hediffDef>Plague</hediffDef>
-				<severityPerTrigger>0.1</severityPerTrigger>
-				<raceException>
-					<li>GW40K_NecronOverlord</li>
-					<li>GW40K_NecronPraetorian</li>
-					<li>GW40K_NecronLychGuard</li>
-					<li>GW40K_NecronFlayedOne</li>
-					<li>GW40K_NecronDestroyer</li>
-					<li>GW40K_NecronDeathmark</li>
-				</raceException>
-				<interval>250</interval>
+			<!-- Plague: old ingestible outcome doer plus HediffAura comp — re-enable in git history if desired. -->
+			<li Class="NecronGeneUtil.CompProperties_UsableNecrodermisPack">
+				<useJob>UseItem</useJob>
+				<useLabel>Metabolize necrodermis</useLabel>
+				<useDuration>450</useDuration>
+				<showUseGizmo>true</showUseGizmo>
+			</li>
+			<li Class="NecronGeneUtil.CompProperties_UseEffectNecrodermisPackConsume">
+				<nutritionPerUnit>0.05</nutritionPerUnit>
+			</li>
+			<li Class="CompProperties_UseEffectPlaySound">
+				<soundOnUsed>Meal_Eat</soundOnUsed>
 			</li>
 		</comps>
 	</ThingDef>
@@ -135,33 +114,46 @@
     <statBases>
 		<MarketValue>800</MarketValue>
 		<Mass>0.1</Mass>
+		<!-- Used by Thing.Ingested / nutrition-aligned refill (one strong dose) -->
+		<Nutrition>0.9</Nutrition>
     </statBases>
     <techLevel>Ultra</techLevel>
     <ingestible>
 		<foodType>OmnivoreAnimal</foodType>
 		<preferability>NeverForNutrition</preferability>
 		<outcomeDoers>
-			<li Class="IngestionOutcomeDoer_GiveHediff">
+			<!-- Growth seed for organics only; Necrons with GW_UD_Necrodermis skip (handled by nutrition on use) -->
+			<li Class="NecronMod.IngestionOutcomeDoer_GiveHediffUnlessNeedPresent">
 				<hediffDef>Necron_NecrodermisGrowth</hediffDef>
 				<severity>0.1</severity>
+				<skipIfPawnHasNeed>GW_UD_Necrodermis</skipIfPawnHasNeed>
 			</li>
-			<!-- Refills the necrodermis need for Necron pawns -->
-			<li Class="NecronMod.IngestionOutcomeDoer_FillNeed">
-				<needDef>GW_UD_Necrodermis</needDef>
-				<fillAmount>0.5</fillAmount>
+			<!-- Mood for humanlikes; colonization is the growth hediff above (no separate raw-ingest roll) -->
+			<li Class="NecronMod.IngestionOutcomeDoer_HumanRawNecrodermis">
+				<thoughtDef>GW_UD_IngestedRawNecrodermis</thoughtDef>
+				<colonizationChance>0</colonizationChance>
+				<skipIfHasNeed>GW_UD_Necrodermis</skipIfHasNeed>
 			</li>
 		</outcomeDoers>
     </ingestible>
     <comps>
-		<li Class="CompProperties_Usable">
+		<li Class="NecronGeneUtil.CompProperties_UsableNecrodermisInjector">
 			<useJob>UseItem</useJob>
 			<useLabel>Inject necrodermis seed</useLabel>
+			<useDuration>600</useDuration>
+			<showUseGizmo>true</showUseGizmo>
+		</li>
+		<li Class="CompProperties_UseEffect">
+			<compClass>NecronGeneUtil.CompUseEffect_NecrodermisInjectorIngest</compClass>
+		</li>
+		<li Class="CompProperties_UseEffectPlaySound">
+			<soundOnUsed>MechSerumUsed</soundOnUsed>
 		</li>
     </comps>
 	</ThingDef>
 
 	<!-- Alias for legacy defName used in NecronGeneUtil.dll — resolves cross-reference error from old compiled assembly -->
-	<ThingDef ParentName="OrganicProductBase">
+	<ThingDef ParentName="ResourceBase">
 		<defName>GW40k_Necron_Necrodemis</defName>
 		<label>necrodermis (legacy)</label>
 		<description>See GW40k_Necron_Necrodermis.</description>
@@ -174,7 +166,7 @@
 			<Mass>0.025</Mass>
 		</statBases>
 		<thingCategories>
-			<li>Manufactured</li>
+			<li>ResourcesRaw</li>
 		</thingCategories>
 	</ThingDef>
 

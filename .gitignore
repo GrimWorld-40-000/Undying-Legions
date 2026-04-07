@@ -1,7 +1,7 @@
 # Disabled test artifacts
 *.disabled
 
-# Build output
+# Build output (including under Source/)
 **/bin/
 **/obj/
 
@@ -16,3 +16,22 @@
 # OS
 Thumbs.db
 .DS_Store
+
+# Editors & local tooling
+.vscode/
+.cursor/
+
+# GitHub / automation (keep local-only unless you intentionally track .github/)
+.github/
+
+scripts/
+
+# Nested .git dirs (e.g. accidental copy of another repo inside the mod)
+**/.git/
+
+# Local scratch / AI dumps (not mod content)
+ai_prompt.txt
+notes.md
+
+# Backup project files
+*_OLD.csproj

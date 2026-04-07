@@ -1,20 +1,22 @@
 <Defs>
 
 	<PawnKindDef Name="UD_NecronPawnKindBase" Abstract="True">
-		<race>Human</race>
+		<race>GW40K_NecronWarrior</race>
 		<defaultFactionDef>UD_NecronFaction</defaultFactionDef>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
 		<invNutrition>2.55</invNutrition>
 		<itemQuality>Normal</itemQuality>
 		<backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality>
-		<maxGenerationAge>65</maxGenerationAge>
+		<!-- Ancient necrons: generate as old adults by default -->
+		<minGenerationAge>200</minGenerationAge>
+		<maxGenerationAge>10000</maxGenerationAge>
 		<combatEnhancingDrugsChance>0.15</combatEnhancingDrugsChance>
 		<combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount>
 		<biocodeWeaponChance>0.1</biocodeWeaponChance>
 	</PawnKindDef>
 	
 	<PawnKindDef Abstract="True" Name="UD_NecronRangedBase" ParentName="UD_NecronPawnKindBase">
-    <race>Human</race>
+    <race>GW40K_NecronWarrior</race>
     <gearHealthRange>0.7~2.3</gearHealthRange>
 	<initialResistanceRange>9999~9999</initialResistanceRange>
     <initialWillRange>9999~9999</initialWillRange>
@@ -58,9 +60,6 @@
 			<GW_UD_NecronCryptek>1</GW_UD_NecronCryptek>
 		</xenotypeChances>
 	</xenotypeSet>
-	<abilities>
-      <li>ResurrectionMech</li>
-    </abilities>
   </PawnKindDef>
   
   <PawnKindDef ParentName="UD_NecronRangedBase">

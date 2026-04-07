@@ -8,13 +8,12 @@
     <priorityInType>70</priorityInType>
     <verb>operate</verb>
     <gerund>operating monolith</gerund>
-    <thingDefs>
+    <fixedBillGiverDefs>
       <li>GW_UD_Monolith</li>
-    </thingDefs>
+    </fixedBillGiverDefs>
     <requiredCapacities>
       <li>Manipulation</li>
     </requiredCapacities>
-    <workTags>ManipulationRequired</workTags>
   </WorkGiverDef>
 
 </Defs>

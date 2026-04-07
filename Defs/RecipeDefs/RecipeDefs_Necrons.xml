@@ -23,4 +23,46 @@
   <surgerySuccessChanceFactor>0.7</surgerySuccessChanceFactor>
   <deathOnFailedSurgeryChance>0.3</deathOnFailedSurgeryChance>
 </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>GW_UD_AdministerNecrodermisInjector</defName>
+    <label>administer necrodermis injector</label>
+    <description>Medically inject a necrodermis seed in nutrient medium. Used for patients who will not self-administer nanite serums (non–transhumanists).</description>
+    <workerClass>NecronGeneUtil.RecipeWorker_NecrodermisInjectorSurgery</workerClass>
+    <jobString>Administering necrodermis injector.</jobString>
+    <workAmount>2500</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <targetsBodyPart>false</targetsBodyPart>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+    <skillRequirements>
+      <Medicine>5</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>GW_NecrodermisInjector</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+      <thingDefs>
+        <li>GW_NecrodermisInjector</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <successfullyRemovedHediffMessage>{0} has successfully administered a necrodermis injector to {1}.</successfullyRemovedHediffMessage>
+  </RecipeDef>
 </Defs>

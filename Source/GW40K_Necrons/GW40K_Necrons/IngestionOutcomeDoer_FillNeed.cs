@@ -18,7 +18,8 @@ namespace NecronMod
         {
             Need need = pawn.needs?.TryGetNeed(needDef);
             if (need == null) return;
-            need.CurLevel = UnityEngine.Mathf.Clamp01(need.CurLevel + fillAmount);
+            float add = fillAmount * ingestedCount;
+            need.CurLevel = UnityEngine.Mathf.Clamp(need.CurLevel + add, 0f, need.MaxLevel);
         }
     }
 }

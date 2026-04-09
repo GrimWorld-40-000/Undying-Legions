@@ -97,7 +97,7 @@
 			</li>
 			<li>
 				<minSeverity>0.2</minSeverity>
-				<label>light</label>
+				<label>subtle</label>
 				<socialFightChanceFactor>2</socialFightChanceFactor>
 			</li>
 			<li>

@@ -23,13 +23,13 @@ public class MaintenanceNeed : Need
     /// Extra core flux loss per need interval, expressed as a multiple of (FallPerDay/IntervalsPerDay), while
     /// <see cref="NecronDefOfs.GW_UD_NecrodermisMaintenanceDeficit"/> is present. Tiers follow hediff stages (light→critical).
     /// </summary>
-    private const float BodyDegradLightExtraFallMul = 1f;
+    private const float BodyDegradLightExtraFallMul = 3f;
 
-    private const float BodyDegradModerateExtraFallMul = 2.5f;
+    private const float BodyDegradModerateExtraFallMul = 8f;
 
-    private const float BodyDegradSevereExtraFallMul = 5f;
+    private const float BodyDegradSevereExtraFallMul = 16f;
 
-    private const float BodyDegradCriticalExtraFallMul = 9f;
+    private const float BodyDegradCriticalExtraFallMul = 30f;
 
     public const float ThreshTired = 0.28f;
     public const float ThreshVeryTired = 0.14f;
@@ -88,16 +88,34 @@ public class MaintenanceNeed : Need
             return;
 
         float eff = DeathrestReplenishmentEfficiency(pawn);
+        float coreMul = NechEnergyUtility.CoreFluxCapacityMultiplier(pawn);
+        if (coreMul <= 0f)
+            coreMul = 1f;
         float delta = CoreFluxReplenishing()
-            ? GainPerDayReplenishing * eff / IntervalsPerDay
-            : -FallPerDay / IntervalsPerDay;
+            ? (GainPerDayReplenishing * eff / IntervalsPerDay) / coreMul
+            : (-FallPerDay / IntervalsPerDay) / coreMul;
 
         CurLevel += delta;
 
         if (!CoreFluxReplenishing())
-            CurLevel -= BodyDegradationExtraCoreFluxFallPerInterval();
+            CurLevel -= BodyDegradationExtraCoreFluxFallPerInterval() / coreMul;
 
         CheckForCoreFluxState();
+    }
+
+    public override string GetTipString()
+    {
+        string tip = base.GetTipString();
+        if (CoreFluxReplenishing())
+            return tip;
+
+        float extraPerDay = BodyDegradationExtraCoreFluxFallPerDay();
+        if (extraPerDay <= 0f)
+            return tip;
+
+        return tip + "\n" + "GW40K_CoreFluxBodyDegradationOffset"
+            .Translate(extraPerDay.ToStringPercent())
+            .Resolve();
     }
 
     /// <summary>Vanilla-style: at zero flux apply exhaustion + forced Eternal Slumber; clear when flux returns or while replenishing.</summary>
@@ -147,6 +165,11 @@ public class MaintenanceNeed : Need
     /// </summary>
     private float BodyDegradationExtraCoreFluxFallPerInterval()
     {
+        return BodyDegradationExtraCoreFluxFallPerDay() / IntervalsPerDay;
+    }
+
+    private float BodyDegradationExtraCoreFluxFallPerDay()
+    {
         if (pawn.health?.hediffSet == null || NecronDefOfs.GW_UD_NecrodermisMaintenanceDeficit == null)
             return 0f;
         Hediff bd = pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW_UD_NecrodermisMaintenanceDeficit);
@@ -155,7 +178,6 @@ public class MaintenanceNeed : Need
         float sev = bd.Severity;
         if (sev < 0.2f)
             return 0f;
-        float basePerInterval = FallPerDay / IntervalsPerDay;
         float mul = sev >= 0.8f
             ? BodyDegradCriticalExtraFallMul
             : sev >= 0.6f
@@ -163,7 +185,7 @@ public class MaintenanceNeed : Need
                 : sev >= 0.4f
                     ? BodyDegradModerateExtraFallMul
                     : BodyDegradLightExtraFallMul;
-        return basePerInterval * mul;
+        return FallPerDay * mul;
     }
 
     private static float DeathrestReplenishmentEfficiency(Pawn p)

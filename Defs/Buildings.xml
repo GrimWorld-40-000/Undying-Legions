@@ -82,7 +82,7 @@
   <ThingDef ParentName="FurnitureWithQualityBase">
     <defName>GW40K_StasisCrypt</defName>
     <label>stasis crypt</label>
-    <description>A sealed sarcophagus of ancient living metal, designed to suspend a Necron warrior in a state of total death-like dormancy. While the occupant lies inert, nanotechnic repair arrays embedded within the casing slowly mend damage and replenish the body's necrodermis, restoring the warrior to full fighting readiness. Necron tomb worlds are riddled with millions of such crypts, their contents slumbering undisturbed for sixty million years — waiting for the stars to align once more.\n\nOnly those with the Eternal Slumber gene can use this structure.</description>
+    <description>A sealed sarcophagus of ancient living metal, designed to suspend a Necron warrior in a state of total death-like dormancy. While the occupant lies inert, nanotechnic repair arrays embedded within the casing slowly mend damage and replenish the body's necrodermis, restoring the warrior to full fighting readiness. The crypt's lattice must be fed raw necrodermis stock during operation — consumption scales with Necron metabolic demand. Necron tomb worlds are riddled with millions of such crypts, their contents slumbering undisturbed for sixty million years — waiting for the stars to align once more.\n\nOnly those with the Eternal Slumber gene can use this structure.</description>
     <thingClass>GW40K_Necrons.NecronCasket</thingClass>
     <tickerType>Normal</tickerType>
     <containedPawnsSelectable>true</containedPawnsSelectable>
@@ -130,9 +130,29 @@
         <alwaysDisplayAsUsingPower>true</alwaysDisplayAsUsingPower>
       </li>
       <li Class="CompProperties_Flickable"/>
+      <!-- Refuel UI/hauling are vanilla; burn is C# (consumeFuelOnlyWhenUsed + NecronCasket). Sync: Need_Necron GW_UD_Necrodermis fallPerDay, ThingDef_Items nutritionPerUnit, NecronStasisSettings. -->
+      <li Class="CompProperties_Refuelable">
+        <compClass>GW40K_Necrons.CompStasisCryptNecrodermisRefuelable</compClass>
+        <fuelCapacity>50</fuelCapacity>
+        <!-- Stat display only; actual burn uses Need fallPerDay, nutrition/unit, and stasis multiplier in C#. -->
+        <fuelConsumptionRate>4</fuelConsumptionRate>
+        <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+        <fuelFilter>
+          <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+          </thingDefs>
+        </fuelFilter>
+        <initialFuelPercent>0</initialFuelPercent>
+        <showFuelGizmo>true</showFuelGizmo>
+        <targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+        <initialConfigurableTargetFuelLevel>50</initialConfigurableTargetFuelLevel>
+        <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+        <fuelLabel>GW40K_StasisCryptNecrodermisFuel</fuelLabel>
+        <outOfFuelMessage>GW40K_StasisCryptOutOfNecrodermis</outOfFuelMessage>
+      </li>
       <li Class="CompProperties_EmptyStateGraphic">
         <graphicData>
-          <texPath>Things/Building/Ship/ShipCryptosleepCasketOpenDoor</texPath>
+          <texPath>Things/Building/Ship/ShipCryptosleepCasket</texPath>
           <graphicClass>Graphic_Multi</graphicClass>
           <drawSize>(1,2)</drawSize>
           <color>(168, 211, 160)</color>

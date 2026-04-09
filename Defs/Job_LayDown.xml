@@ -8,4 +8,13 @@
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
         <neverShowWeapon>true</neverShowWeapon>
       </JobDef>
+
+    <JobDef>
+        <defName>GW40K_TakeControlOfNech</defName>
+        <driverClass>GW40K_Necrons.JobDriver_TakeControlOfNech</driverClass>
+        <reportString>taking command of nech.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+        <neverShowWeapon>true</neverShowWeapon>
+      </JobDef>
 </Defs>

@@ -12,6 +12,7 @@
 			<li>GW_UD_Hatred</li>
 			<li>GW_UD_ApparelRestriction</li>
 			<li>Superclotting</li>
+			<li MayRequire="Ludeon.RimWorld.Biotech">PerfectImmunity</li>
 		</genes>
 	</XenotypeDef>
 

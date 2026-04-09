@@ -1,6 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	
-	<!-- ParentName pulls in BaseMechanoidKind; defaultFactionDef assigns necrons to this hive (not vanilla Mechanoids). -->
+<!--
+    Based on BaseMechanoid / walkers / heavy (Core + Biotech).
+    Vanilla CompOverseerSubject + CompMechRepairable are required: RimWorld's Overseer
+    relation and GetOverseer() assume this comp exists; without it, AddDirectRelation NREs
+    and Nechinator bandwidth never updates. Gizmo/UI isolation is done in Harmony (NechGizmos).
+  -->
+
+  <!-- Mirrors BaseMechanoid (Core) + Biotech overseer/repair comps -->
+  <ThingDef ParentName="BasePawn" Name="BaseNech" Abstract="True">
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <statBases>
+      <MarketValue>1200</MarketValue>
+      <PsychicSensitivity>1.0</PsychicSensitivity>
+      <ToxicResistance>1</ToxicResistance>
+      <Flammability>0</Flammability>
+      <ComfyTemperatureMin>-100</ComfyTemperatureMin>
+      <ComfyTemperatureMax>250</ComfyTemperatureMax>
+      <MeatAmount>0</MeatAmount>
+      <ArmorRating_Heat>2.00</ArmorRating_Heat>
+      <ToxicEnvironmentResistance>1</ToxicEnvironmentResistance>
+    </statBases>
+    <receivesSignals>true</receivesSignals>
+    <tradeability>None</tradeability>
+    <race>
+      <fleshType>Mechanoid</fleshType>
+      <needsRest>false</needsRest>
+      <hasGenders>false</hasGenders>
+      <foodType>None</foodType>
+      <lifeExpectancy>2500</lifeExpectancy>
+      <bloodDef>Filth_MachineBits</bloodDef>
+      <soundCallIntervalRange>1000~2000</soundCallIntervalRange>
+      <soundCallIntervalFriendlyFactor>2</soundCallIntervalFriendlyFactor>
+      <canFlyInVacuum>true</canFlyInVacuum>
+    </race>
+    <comps>
+      <li Class="CompProperties_CanBeDormant">
+        <compClass>CompMechanoid</compClass>
+      </li>
+      <li Class="CompProperties_WakeUpDormant">
+        <wakeUpOnDamage>true</wakeUpOnDamage>
+        <wakeUpCheckRadius>30</wakeUpCheckRadius>
+        <wakeUpSound>MechanoidsWakeUp</wakeUpSound>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_OverseerSubject">
+        <delayUntilFeralCheck>60000</delayUntilFeralCheck>
+        <feralMtbDays>10</feralMtbDays>
+        <feralCascadeRadialDistance>25</feralCascadeRadialDistance>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_MechRepairable" />
+      <li Class="GW40K_Necrons.CompProperties_NechUncontrolledTimer" />
+    </comps>
+    <modExtensions>
+      <li Class="GW40K_Necrons.NecronMechExtension">
+        <coreSize>1</coreSize>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+  <!-- Mirrors BaseMechanoidWalker (Core) -->
+  <ThingDef ParentName="BaseNech" Name="BaseNechWalker" Abstract="True">
+    <statBases>
+      <MoveSpeed>4.7</MoveSpeed>
+      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+    </statBases>
+    <race>
+      <intelligence>ToolUser</intelligence>
+      <thinkTreeMain>Mechanoid</thinkTreeMain>
+      <!-- Required for Biotech ResurrectionMech: cost lookup + canResurrect gate -->
+      <mechWeightClass>Medium</mechWeightClass>
+      <baseBodySize>1.0</baseBodySize>
+      <lifeStageAges>
+        <li>
+          <def>MechanoidFullyFormed</def>
+          <minAge>0</minAge>
+          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+        </li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">
+          <def>MechanoidFullyFormed</def>
+          <minAge>100</minAge>
+          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+        </li>
+      </lifeStageAges>
+    </race>
+    <butcherProducts>
+      <Steel>15</Steel>
+    </butcherProducts>
+  </ThingDef>
+
+  <!-- Mirrors LancerMechanoidWalker (Core) â€” fast, lighter -->
+  <ThingDef Name="BaseNechLancer" ParentName="BaseNechWalker" Abstract="True">
+    <tools>
+      <li>
+        <label>left fist</label>
+        <labelNoLocation>fist</labelNoLocation>
+        <capacities><li>Blunt</li></capacities>
+        <power>12.0</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>right fist</label>
+        <labelNoLocation>fist</labelNoLocation>
+        <capacities><li>Blunt</li></capacities>
+        <power>12.0</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+    </tools>
+    <race>
+      <mechWeightClass>Light</mechWeightClass>
+    </race>
+  </ThingDef>
+
+  <!-- Mirrors HeavyMechanoid (Biotech) -->
+  <ThingDef ParentName="BaseNech" Name="BaseNechHeavy" Abstract="True" MayRequire="Ludeon.RimWorld.Biotech">
+    <statBases>
+      <MoveSpeed>1.9</MoveSpeed>
+      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+    </statBases>
+    <race>
+      <intelligence>ToolUser</intelligence>
+      <thinkTreeMain>Mechanoid</thinkTreeMain>
+      <mechWeightClass>Heavy</mechWeightClass>
+    </race>
+    <butcherProducts>
+      <Steel>20</Steel>
+      <Plasteel>10</Plasteel>
+    </butcherProducts>
+  </ThingDef>
+
+
+<!-- ParentName pulls in BaseMechanoidKind; defaultFactionDef assigns necrons to this hive (not vanilla Mechanoids). -->
 	<PawnKindDef Name="UD_NecronMechPawnKindBase" Abstract="True" ParentName="BaseMechanoidKind">
 		<defaultFactionDef>UD_NecronFaction</defaultFactionDef>
 		<chemicalAddictionChance>0</chemicalAddictionChance>
@@ -218,13 +357,19 @@
 		<techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
 	
-	<!-- Immortal — must set body (BaseNechLancer has none); missing body breaks pawn gen / ShouldBeDead -->
+	<!-- Immortal â€” must set body (BaseNechLancer has none); missing body breaks pawn gen / ShouldBeDead. Medium weight (overrides BaseNechLancer Light). -->
 	<ThingDef ParentName="BaseNechLancer">
 		<defName>UD_Necron_Immortal</defName>
-		<!-- NecronMechExtension inherited from BaseNech -->
+		<modExtensions>
+			<li Class="GW40K_Necrons.NecronMechExtension">
+				<commandBandwidthCost>2</commandBandwidthCost>
+				<coreSize>2</coreSize>
+			</li>
+		</modExtensions>
 		<label>immortal</label>
 		<description>. . .</description>
 		<race>
+			<mechWeightClass>Medium</mechWeightClass>
 			<body>Lancer</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.5</baseHealthScale>
@@ -251,7 +396,7 @@
 			</detritusLeavings>
 		</race>
 		<statBases>
-			<BandwidthCost>3</BandwidthCost>
+			<BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
 			<ControlTakingTime>18</ControlTakingTime>
 		</statBases>
 	</ThingDef>
@@ -283,14 +428,19 @@
 	<!-- FlayedOne -->
 	<ThingDef ParentName="BaseNechHeavy">
     <defName>UD_Necron_FlayedOne</defName>
-    <modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
+    <modExtensions>
+      <li Class="GW40K_Necrons.NecronMechExtension">
+        <commandBandwidthCost>2</commandBandwidthCost>
+        <coreSize>1</coreSize>
+      </li>
+    </modExtensions>
     <label>Flayed One</label>
     <description>. . .</description>
     <statBases>
       <MoveSpeed>1.9</MoveSpeed>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
-      <BandwidthCost>3</BandwidthCost>
+      <BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
       <WorkSpeedGlobal>1.5</WorkSpeedGlobal>
       <EnergyShieldEnergyMax>2.5</EnergyShieldEnergyMax>
     </statBases>
@@ -386,12 +536,17 @@
   <!-- CryptekMech -->
 	<ThingDef ParentName="BaseNechHeavy">
     <defName>UD_Unused_CryptekMech</defName>
-    <modExtensions><li Class="GW40K_Necrons.NecronMechExtension"/></modExtensions>
+    <modExtensions>
+      <li Class="GW40K_Necrons.NecronMechExtension">
+        <coreSize>3</coreSize>
+      </li>
+    </modExtensions>
     <label>Cryptek</label>
     <description>. . .</description>
     <statBases>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+      <PsychicSensitivity>1.25</PsychicSensitivity>
 	  <MoveSpeed>1.6</MoveSpeed>
       <EnergyShieldRechargeRate>0.5</EnergyShieldRechargeRate>
       <EnergyShieldEnergyMax>3</EnergyShieldEnergyMax>
@@ -498,4 +653,5 @@
     <controlGroupPortraitZoom>1</controlGroupPortraitZoom>  
   </PawnKindDef>
   
+
 </Defs>

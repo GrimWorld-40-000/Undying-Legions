@@ -10,6 +10,7 @@
     <statBases>
       <MarketValue>1750</MarketValue>
       <MoveSpeed>4.6</MoveSpeed>
+      <PsychicSensitivity>1.0</PsychicSensitivity>
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <ComfyTemperatureMax>40</ComfyTemperatureMax>
       <LeatherAmount>0</LeatherAmount>
@@ -70,6 +71,7 @@
 
       <hediffGiverSets>
         <li>OrganicStandard</li>
+        <li>GW40K_Necron_HediffGiverSet</li>
       </hediffGiverSets>
     </race>
 
@@ -77,6 +79,7 @@
       <li Class="GW40K_Necrons.NonOrganicPawn">
         <passion>Minor</passion>
         <passionType>Minor</passionType>
+        <coreSize>1</coreSize>
       </li>
     </modExtensions>
   </ThingDef>

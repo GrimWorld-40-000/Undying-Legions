@@ -7,7 +7,7 @@
 	<GeneDef>
 		<defName>GW_UD_EternalSlumber</defName>
 		<label>Eternal Slumber</label>
-		<description>Grants the core flux need — the Necron equivalent of deathrest. Core flux depletes while the body is active and must be restored in a stasis crypt, deathrest chamber, or compatible suspension.</description>
+		<description>Grants the core flux need — the Necron equivalent of deathrest. Core flux depletes while the body is active and must be restored in a stasis crypt, monolith, or compatible suspension.</description>
 		<iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<enablesNeeds>
@@ -31,7 +31,7 @@
 	<GeneDef>
 		<defName>GW_UD_ResurrectionProtocol</defName>
 		<label>Resurrection Protocal</label>
-		<description>. . .</description>
+		<description>When Necrons sustain critical damage, they enter Resurrection Protocol instead of dying. This allows them to self-repair and rise again as long as their two cores are intact.</description>
 		<!-- <geneClass>Gene_Deathrest</geneClass> -->
 		<iconPath>Genes/ResurectionProtocol</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -48,7 +48,7 @@
 	<GeneDef>
 		<defName>GW_UD_BodyDegradation</defName>
 		<label>Body Degradation</label>
-		<description>. . .</description>
+		<description>Carriers of this gene have undergone Biotransference and are now composed of living metal called necrodermis. As a result they require a constant supply of necrodermis to maintain their body.</description>
 		<!-- <geneClass>Gene_Deathrest</geneClass> -->
 		<enablesNeeds>
 			<li>GW_UD_Necrodermis</li>
@@ -61,8 +61,8 @@
 	
 	<GeneDef>
 		<defName>GW_UD_LifeLess</defName>
-		<label>LifeLess</label>
-		<description>. . .</description>
+		<label>Lifeless</label>
+		<description>Carriers of this gene cannot feel emotions and are incapable of experiencing passions; This is due to a genetic imperfection that affects their ability to process emotions.</description>
 		<geneClass>NecronGeneUtil.Gene_NoInspirationAndPassion</geneClass>
 		<iconPath>Genes/Lifeless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -79,9 +79,9 @@
 	<GeneDef>
 		<defName>GW_UD_SlowAdvancement</defName>
 		<label>Slow Advancement</label>
-		<description>. . .</description>
+		<description>Carriers of this gene experience a significant slowdown in their work speed; This is due to a genetic imperfection that affects their ability to process information and perform tasks efficiently.</description>
 		<!-- <geneClass>Gene_Deathrest</geneClass> -->
-		<iconPath>Genes/Lifeless</iconPath>
+		<iconPath>Genes/inertia</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
 		<biostatArc>1</biostatArc>
@@ -93,7 +93,7 @@
 	<GeneDef>
 		<defName>GW_UD_Hatred</defName>
 		<label>Hatred for the Living</label>
-		<description>. . .</description>
+		<description>Carriers of this gene have an innate hatred for the living. This hatred varies from clinical indifference to obsessive, omnicidal rage depending on the individual's mindset or their specific dynasty.</description>
 		<!-- <geneClass>Gene_Deathrest</geneClass> -->
 		<iconPath>Genes/Hatred for the Living</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -103,8 +103,8 @@
 	
 	<GeneDef>
 		<defName>GW_UD_ApparelRestriction</defName>
-		<label>Can't Wear Cloth</label>
-		<description>. . .</description>
+		<label>Apparel Incompatible</label>
+		<description>Carriers of this gene are restricted from wearing apparel. Whether it's a static frame or fixed exoskeleton, these individuals cannot wear any apparel.</description>
 		<geneClass>NecronGeneUtil.Gene_RemoveAllApparelOnAdd</geneClass>
 		<iconPath>Genes/clotheless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -121,8 +121,8 @@
 	
 	<GeneDef>
 		<defName>GW_UD_NecronEmissary</defName>
-		<label>Necron emmisarry</label>
-		<description>. . .</description>
+		<label>Emmisarry</label>
+		<description>Carriers of this gene have a natural aptitude for diplomacy and social interaction; This allows them to engage in negotiations and social interactions with a higher degree of success.</description>
 		<iconPath>Genes/emmisarry</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
@@ -136,7 +136,7 @@
 	<GeneDef>
 		<defName>GW_UD_Bodyguard</defName>
 		<label>Bodyguard</label>
-		<description>. . .</description>
+		<description>Carriers of this gene are melee specialists; They cannot equip ranged weapons but have a 15% bonus to dodge and don't lose experience in the melee skill.</description>
 		<iconPath>Genes/Bodyguard</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>
@@ -163,7 +163,7 @@
 	<GeneDef>
 		<defName>GW_UD_LowBorn</defName>
 		<label>Low Born</label>
-		<description>. . .</description>
+		<description>Necrons that hold this gene are genetically imperfect and thus considered lowborn. They do not possess free will and do not have the mental capacity to desire comfort, recreation, or beautiful surroundings.</description>
 		<iconPath>Genes/lowborn</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<biostatMet>0</biostatMet>

@@ -6,6 +6,8 @@ namespace GW40K_Necrons;
 
 public class HediffGiverNecron : HediffGiver
 {
+    private const float FluxThresholdStart = 0.5f;
+
     public override void OnIntervalPassed(Pawn pawn, Hediff cause)
     {
         if (pawn.Dead)
@@ -21,33 +23,23 @@ public class HediffGiverNecron : HediffGiver
             return;
         }
 
-        RestCategory curCategory = need.CurCategory;
-        Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_Necron_TiredHediff);
-        if (curCategory == RestCategory.Rested)
+        if (need.CurLevel >= FluxThresholdStart)
         {
-            if (hediff != null)
-                pawn.health.RemoveHediff(hediff);
+            RemoveStrain(pawn);
             return;
         }
 
+        float severity = (FluxThresholdStart - need.CurLevel) / FluxThresholdStart;
+        if (severity < 0f) severity = 0f;
+        if (severity > 1f) severity = 1f;
+
+        Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_Necron_TiredHediff);
         if (hediff == null)
         {
             hediff = HediffMaker.MakeHediff(NecronDefOfs.GW40K_Necron_TiredHediff, pawn);
             pawn.health.AddHediff(hediff);
         }
-
-        switch (curCategory)
-        {
-            case RestCategory.Tired:
-                hediff.Severity = 0.2f;
-                break;
-            case RestCategory.VeryTired:
-                hediff.Severity = 0.4f;
-                break;
-            case RestCategory.Exhausted:
-                hediff.Severity = 0.8f;
-                break;
-        }
+        hediff.Severity = severity;
     }
 
     private static void RemoveStrain(Pawn pawn)

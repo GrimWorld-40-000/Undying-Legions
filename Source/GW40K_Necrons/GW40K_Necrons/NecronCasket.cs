@@ -2,6 +2,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
@@ -9,15 +10,24 @@ using Verse.Sound;
 #nullable disable
 namespace GW40K_Necrons;
 
+/// <summary>
+/// Stasis cycle length = (base hours × race factor) + injury extra; timer counts down each tick while powered, flicked on,
+/// and <see cref="CompStasisCryptNecrodermisRefuelable"/> has fuel — <see cref="NecronStasisHealing.ApplyHealPulse"/> on an interval.
+/// </summary>
 public class NecronCasket : Building_CryptosleepCasket
 {
-    /// <summary>
-    /// Length of the restoration cycle (game ticks). Uses a fraction of <see cref="GenDate.TicksPerDay"/> so
-    /// stasis scales with RimWorld time instead of ~600 ticks (~10s real at 1×).
-    /// </summary>
-    private static readonly int StasisCycleTicks = GenDate.TicksPerDay / 4;
-
+    private const string NecrodermisNeedDefName = "GW_UD_Necrodermis";
     private int ticksToFinish = -1;
+
+    /// <summary>True while a cycle is in progress but fuel, power, or flick prevents advancing (timer and healing hold).</summary>
+    public bool StasisCyclePausedForFuelOrPower =>
+        ticksToFinish > 0 && ContainedThing != null && !StasisProcessingAllowed();
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref ticksToFinish, "necronStasisTicksToFinish", -1);
+    }
 
     public override bool Accepts(Thing thing)
     {
@@ -46,11 +56,14 @@ public class NecronCasket : Building_CryptosleepCasket
         this.contentsKnown = true;
     }
 
-    public override bool CanOpen => this.ticksToFinish <= 0 && this.ContainedThing != null;
+    // Keep vanilla "Open" command visible while occupied; active-cycle interruption is confirmed in gizmo action wrapper.
+    public override bool CanOpen => this.ContainedThing != null;
 
     public override bool TryAcceptThing(Thing thing, bool allowSpecialEffects = true)
     {
-        this.ticksToFinish = StasisCycleTicks;
+        this.ticksToFinish = thing is Pawn p
+            ? NecronStasisUtility.StasisCycleTicksFor(p)
+            : Mathf.Max(1, Mathf.RoundToInt(GenDate.TicksPerDay * (NecronStasisUtility.BaseStasisHours / 24f)));
         return base.TryAcceptThing(thing, true);
     }
 
@@ -60,17 +73,69 @@ public class NecronCasket : Building_CryptosleepCasket
         if (this.ContainedThing == null) return;
         if (this.ticksToFinish > 0)
         {
+            if (!this.StasisProcessingAllowed())
+                return;
+            CompStasisCryptNecrodermisRefuelable fuel = this.GetComp<CompStasisCryptNecrodermisRefuelable>();
+            fuel?.BurnFuelForStasisProcessingTick();
             --this.ticksToFinish;
+            if (this.ContainedThing is Pawn necroPawn)
+                RefillNecrodermisDuringStasis(necroPawn);
+            if (this.ContainedThing is Pawn healPawn && StasisHealIntervalTicks() > 0
+                && this.IsHashIntervalTick(StasisHealIntervalTicks()))
+            {
+                NecronStasisSettingsDef s = NecronDefOfs.GW40K_NecronStasisSettings;
+                float perDay = s != null && s.healPointsPerDayWhileInStasis > 0f
+                    ? s.healPointsPerDayWhileInStasis
+                    : 80f;
+                float eff = NecronStasisHealing.DeathrestHealEfficiency(healPawn);
+                float pts = perDay * eff * (StasisHealIntervalTicks() / (float)GenDate.TicksPerDay);
+                NecronStasisHealing.ApplyHealPulse(healPawn, pts);
+            }
             return;
         }
         this.ticksToFinish = -1;
         Pawn pawn = this.innerContainer.First<Thing>() as Pawn;
         if (pawn != null)
-        {
-            pawn.health.RemoveAllHediffs();
             pawn.needs.TryGetNeed(NecronDefOfs.GW40K_CoreFlux)?.SetInitialLevel();
-        }
         this.Open();
+    }
+
+    private static int StasisHealIntervalTicks()
+    {
+        NecronStasisSettingsDef s = NecronDefOfs.GW40K_NecronStasisSettings;
+        if (s == null || s.healIntervalTicks <= 0)
+            return 600;
+        return s.healIntervalTicks;
+    }
+
+    private bool StasisProcessingAllowed()
+    {
+        CompStasisCryptNecrodermisRefuelable fuel = this.GetComp<CompStasisCryptNecrodermisRefuelable>();
+        if (fuel != null && !fuel.HasFuel)
+            return false;
+        CompPowerTrader power = this.GetComp<CompPowerTrader>();
+        if (power != null && !power.PowerOn)
+            return false;
+        CompFlickable flick = this.GetComp<CompFlickable>();
+        if (flick != null && !flick.SwitchIsOn)
+            return false;
+        return true;
+    }
+
+    private static void RefillNecrodermisDuringStasis(Pawn pawn)
+    {
+        if (pawn?.needs == null)
+            return;
+        NeedDef necroNeedDef = DefDatabase<NeedDef>.GetNamedSilentFail(NecrodermisNeedDefName);
+        if (necroNeedDef == null)
+            return;
+        Need need = pawn.needs.TryGetNeed(necroNeedDef);
+        if (need == null || need.CurLevel >= 1f)
+            return;
+
+        float gainPerDay = NecronStasisFuelUtility.StasisNecrodermisUnitsBurnedPerDay()
+            * NecronStasisFuelUtility.NecrodermisNutritionPerUnitFromSettings();
+        need.CurLevel = Mathf.Min(1f, need.CurLevel + gainPerDay / GenDate.TicksPerDay);
     }
 
     public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
@@ -151,17 +216,19 @@ public class NecronCasket : Building_CryptosleepCasket
     {
         if (this.ticksToFinish <= 0)
             return string.Empty;
-        return "GW40K_StasisCryptTimeRemaining"
-            .Translate(this.ticksToFinish.ToStringTicksToPeriod().Named("REMAINING"))
-            .Resolve();
+        TaggedString line = "GW40K_StasisCryptTimeRemaining"
+            .Translate(this.ticksToFinish.ToStringTicksToPeriod().Named("REMAINING"));
+        if (this.StasisCyclePausedForFuelOrPower)
+            line += "\n" + "GW40K_StasisCryptCyclePaused".Translate();
+        return DefNameDisplayUtility.ReplaceDefNamesWithLabels(line.Resolve());
     }
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
-        string ejectLabel = "CommandPodEject".Translate();
+        string openLabel = "OpenCryptosleepCasket".Translate();
         foreach (Gizmo gizmo in base.GetGizmos())
         {
-            if (gizmo is Command_Action cmd && cmd.defaultLabel == ejectLabel)
+            if (gizmo is Command_Action cmd && cmd.defaultLabel == openLabel)
             {
                 Action original = cmd.action;
                 cmd.action = delegate
@@ -180,7 +247,29 @@ public class NecronCasket : Building_CryptosleepCasket
                     }
                 };
             }
+            else if (gizmo is Command cmdAny
+                && this.ContainedThing != null
+                && cmdAny.defaultLabel == "CommandUninstall".Translate())
+            {
+                cmdAny.Disable("GW40K_StasisCryptCannotUninstallOccupied".Translate());
+            }
+            else if (gizmo is Command cmdReinstall
+                && this.ContainedThing != null
+                && cmdReinstall.defaultLabel == "CommandReinstall".Translate())
+            {
+                cmdReinstall.Disable("GW40K_StasisCryptCannotReinstallOccupied".Translate());
+            }
             yield return gizmo;
+        }
+
+        if (DebugSettings.godMode && this.ContainedThing is Pawn && this.ticksToFinish > 0)
+        {
+            yield return new Command_Action
+            {
+                defaultLabel = "DEV: Finish stasis now",
+                defaultDesc = "Fast-forwards the stasis cycle to complete safely in a few ticks.",
+                action = delegate { this.ticksToFinish = 2; }
+            };
         }
     }
 }

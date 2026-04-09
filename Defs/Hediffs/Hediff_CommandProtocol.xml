@@ -71,7 +71,9 @@
     <comps>
       <li Class="GW40K_Necrons.HediffCompProperties_NecronCommand">
         <bandwidthMax>6</bandwidthMax>
+        <!-- Fallback when extension omits commandBandwidthCost; per-race overrides on ThingDef modExtension. -->
         <bandwidthCostPerMech>1</bandwidthCostPerMech>
+        <controlRange>20</controlRange>
       </li>
       <li Class="HediffCompProperties_LetterOnDeath">
         <letterDef>NeutralEvent</letterDef>

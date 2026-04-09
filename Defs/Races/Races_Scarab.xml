@@ -8,6 +8,7 @@
     <statBases>
       <MoveSpeed>3.65</MoveSpeed>
       <MarketValue>350</MarketValue>
+      <PsychicSensitivity>1.0</PsychicSensitivity>
       <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.40</ArmorRating_Sharp>
       <ArmorRating_Heat>0.10</ArmorRating_Heat>
@@ -52,6 +53,7 @@
       <trainability>None</trainability>
       <useMeatFrom>Megaspider</useMeatFrom>
       <fleshType>Mechanoid</fleshType>
+      <mechWeightClass MayRequire="Ludeon.RimWorld.Biotech">Light</mechWeightClass>
       <hasCorpse>false</hasCorpse>
       <deathAction Class="GW40K_Necrons.DeathActionProperties_VanishScarab" />
       <lifeStageAges>

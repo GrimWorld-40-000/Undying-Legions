@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <WorkGiverDef>
+    <defName>GW_UD_WorkGiver_CarryToStasisCrypt</defName>
+    <giverClass>GW40K_Necrons.WorkGiver_CarryToStasisCrypt</giverClass>
+    <workType>Doctor</workType>
+    <priorityInType>110</priorityInType>
+    <verb>load</verb>
+    <gerund>loading pawn into stasis crypt</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+      <li>Moving</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+</Defs>

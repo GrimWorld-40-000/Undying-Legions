@@ -3,6 +3,8 @@ using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using Verse.AI;
+using Verse.Sound;
 
 #nullable disable
 namespace GW40K_Necrons;
@@ -38,9 +40,14 @@ public static class HarmonyPatch_NechGizmos
             yield break;
         }
 
+        bool hasCommander = __instance.GetOverseer() != null;
+
         // Strip vanilla mech/overseer gizmos
         foreach (var g in gizmos)
         {
+            if (!hasCommander && g is Command_Toggle ct && ct.icon == TexCommand.Draft)
+                continue;
+
             // Strip by type — CompOverseerSubject and CompMechRepairable gizmos
             if (g.GetType().FullName?.Contains("OverseerSubject") == true) continue;
             if (g.GetType().FullName?.Contains("MechRepair") == true) continue;
@@ -83,12 +90,36 @@ public static class HarmonyPatch_NechGizmos
             }
         };
 
+        // Explicit draft toggle for Nechs (only while bound to a nechinator).
+        if (hasCommander && __instance.drafter != null && __instance.Faction == Faction.OfPlayer)
+        {
+            Command_Toggle toggleDraft = new Command_Toggle();
+            toggleDraft.defaultLabel = "CommandDraftLabel".Translate();
+            toggleDraft.defaultDesc = "CommandDraftDesc".Translate();
+            toggleDraft.icon = TexCommand.Draft;
+            toggleDraft.turnOnSound = SoundDefOf.DraftOn;
+            toggleDraft.turnOffSound = SoundDefOf.DraftOff;
+            toggleDraft.isActive = () => __instance.Drafted;
+            toggleDraft.hotKey = NechCommandHotkeys.DraftToggle();
+            toggleDraft.toggleAction = delegate
+            {
+                bool drafted = !__instance.Drafted;
+                __instance.drafter.Drafted = drafted;
+                if (!drafted)
+                    __instance.jobs?.EndCurrentJob(JobCondition.InterruptForced, false);
+            };
+            yield return toggleDraft;
+        }
+
+        yield return new Gizmo_NechEnergy(__instance);
+
+        // Recharge-from-core gizmo disabled for now (core ↔ gauss transfer UX TBD).
+
         if (!DebugSettings.ShowDevGizmos) yield break;
 
         // ── Dev gizmos ───────────────────────────────────────────────────────
 
-        // DEV: Assign to commander
-        yield return new Command_Action
+        Command_Action devAssign = new Command_Action
         {
             defaultLabel = "DEV: Assign to commander",
             defaultDesc  = "Bind this construct to a commander (nechinator) on the map.",
@@ -99,7 +130,7 @@ public static class HarmonyPatch_NechGizmos
                 {
                     var tracker = HediffComp_NecronCommandTracker.GetTracker(pawn);
                     if (tracker == null) continue;
-                    string label2 = tracker.HasBandwidthFor()
+                    string label2 = tracker.HasBandwidthFor(__instance)
                         ? pawn.LabelCap
                         : $"{pawn.LabelCap} (bandwidth full)";
                     options.Add(new FloatMenuOption(label2, () =>
@@ -112,7 +143,7 @@ public static class HarmonyPatch_NechGizmos
                                 return;
                             }
 
-                            if (__instance.Faction != pawn.Faction)
+                            if (pawn.Faction != null && __instance.Faction != pawn.Faction)
                                 __instance.SetFaction(pawn.Faction);
 
                             tracker.BindMech(__instance);
@@ -142,8 +173,7 @@ public static class HarmonyPatch_NechGizmos
             }
         };
 
-        // DEV: Remove from commander
-        yield return new Command_Action
+        Command_Action devRemove = new Command_Action
         {
             defaultLabel = "DEV: Remove from commander",
             defaultDesc  = "Unbind this construct from its current commander.",
@@ -163,28 +193,12 @@ public static class HarmonyPatch_NechGizmos
             }
         };
 
-        // DEV: Construct energy +5%
-        yield return new Command_Action
-        {
-            defaultLabel = "DEV: Construct energy +5%",
-            defaultDesc  = "Increase this construct's need levels by 5%.",
-            action       = () =>
-            {
-                foreach (Need need in __instance.needs?.AllNeeds ?? Enumerable.Empty<Need>())
-                    need.CurLevel = need.CurLevel + 0.05f;
-            }
-        };
+        // Must be standalone Command_Action gizmos — GizmoGridDrawer calls ProcessInput on the outer Gizmo only.
+        // Gizmo_NecronDevTwin wrapped two Commands but never forwarded ProcessInput, so actions never ran.
+        if (!hasCommander)
+            yield return devAssign;
+        else
+            yield return devRemove;
 
-        // DEV: Construct energy -5%
-        yield return new Command_Action
-        {
-            defaultLabel = "DEV: Construct energy -5%",
-            defaultDesc  = "Decrease this construct's need levels by 5%.",
-            action       = () =>
-            {
-                foreach (Need need in __instance.needs?.AllNeeds ?? Enumerable.Empty<Need>())
-                    need.CurLevel = need.CurLevel - 0.05f;
-            }
-        };
     }
 }

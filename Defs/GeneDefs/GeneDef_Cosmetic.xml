@@ -123,7 +123,29 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	<GeneDef ParentName="GeneJawBase">
+	<!-- Necron head genes: bald + no beard (no separate Hair_BaldOnly xenotype gene). Excludes vanilla hair-colour genes. -->
+	<!-- displayOrderInCategory above all vanilla Cosmetic_Hair colors (max ~190) so head wins "Overridden by" vs Hair_* -->
+	<GeneDef Name="GW_UD_NecronHeadGeneBase" ParentName="GeneJawBase" Abstract="True">
+		<displayOrderInCategory>300</displayOrderInCategory>
+		<hairTagFilter>
+			<whitelist>true</whitelist>
+			<tags>
+				<li>Bald</li>
+			</tags>
+		</hairTagFilter>
+		<beardTagFilter>
+			<whitelist>true</whitelist>
+			<tags>
+				<li>NoBeard</li>
+			</tags>
+		</beardTagFilter>
+		<exclusionTags>
+			<li>Jaw</li>
+			<li>Head</li>
+			<li>HairColor</li>
+		</exclusionTags>
+	</GeneDef>
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronLychguard_Head</defName>
 		<label>Lychguard Head</label>
 		<description>. . .</description>
@@ -131,10 +153,6 @@
 		<forcedHeadTypes>
 			<li>GW40K_LychGuard_HeadType</li>
 		</forcedHeadTypes>
-		<exclusionTags>
-			<li>Head</li>
-		</exclusionTags>
-		<displayOrderInCategory>97</displayOrderInCategory>
 	</GeneDef>
 	
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
@@ -152,7 +170,7 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	<GeneDef ParentName="GeneJawBase">
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronDeathmark_Head</defName>
 		<label>deathmark head</label>
 		<description>. . .</description>
@@ -160,10 +178,6 @@
 		<forcedHeadTypes>
 			<li>GW40K_NecronDeathmark_HeadType</li>
 		</forcedHeadTypes>
-		<exclusionTags>
-			<li>Head</li>
-		</exclusionTags>
-		<displayOrderInCategory>97</displayOrderInCategory>
 	</GeneDef>
 	
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
@@ -181,7 +195,7 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	<GeneDef ParentName="GeneJawBase">
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronCryptek_Head</defName>
 		<label>cryptek head</label>
 		<description>. . .</description>
@@ -189,10 +203,6 @@
 		<forcedHeadTypes>
 			<li>GW40K_NecronCryptek_HeadType</li>
 		</forcedHeadTypes>
-		<exclusionTags>
-			<li>Head</li>
-		</exclusionTags>
-		<displayOrderInCategory>97</displayOrderInCategory>
 	</GeneDef>
 	
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
@@ -210,7 +220,7 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	<GeneDef ParentName="GeneJawBase">
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronOverlord_Head</defName>
 		<label>overlord head</label>
 		<description>. . .</description>
@@ -218,10 +228,6 @@
 		<forcedHeadTypes>
 			<li>GW40K_Overlord_HeadType</li>
 		</forcedHeadTypes>
-		<exclusionTags>
-			<li>Head</li>
-		</exclusionTags>
-		<displayOrderInCategory>97</displayOrderInCategory>
 	</GeneDef>
 
 </Defs>

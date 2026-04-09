@@ -3,7 +3,7 @@
         <defName>GW40K_CoreFlux</defName>
         <needClass>GW40K_Necrons.MaintenanceNeed</needClass>
         <label>core flux</label>
-        <description>Necrons must periodically replenish their core flux — the luminescent energy that powers their living metal body. Without it, a Necron's necrodermis shell and neural engrams begin to degrade.\n\nCore flux can be restored by consuming necrodermis, undergoing scarab repair, or entering a stasis crypt.\n\nGoing too long without replenishing core flux will cause the Necron to enter reanimation protocol.</description>
+        <description>Necrons must maintain their core flux — the luminescent energy that powers their living metal body. Without it, a Necron's necrodermis shell and neural engrams begin to degrade.\n\nCore flux can be restored by consuming necrodermis, undergoing scarab repair, or entering a stasis crypt.\n\nGoing too long without replenishing core flux will cause the Necron to enter reanimation protocol.</description>
         <onlyIfCausedByGene>true</onlyIfCausedByGene>
         <listPriority>50</listPriority>
         <major>true</major>
@@ -21,6 +21,7 @@
 		<listPriority>800</listPriority>
         <major>true</major>
         <showForCaravanMembers>true</showForCaravanMembers>
+		<!-- Stasis crypt burn rate reads this at runtime (÷ necrodermisNutritionPerConsumedUnit in NecronStasisSettings). Keep aligned with rebalance. -->
 		<fallPerDay>0.15</fallPerDay>
 		<modExtensions>
 			<li Class="NecronGeneUtil.NeedExtension_Necron">
@@ -29,5 +30,18 @@
 				<extraNecrodermisFallPerSeverity>0.55</extraNecrodermisFallPerSeverity>
 			</li>
 		</modExtensions>
+      </NeedDef>
+
+    <NeedDef>
+        <defName>GW40K_NechEnergy</defName>
+        <needClass>GW40K_Necrons.Need_NechEnergy</needClass>
+        <label>gauss energy</label>
+        <description>Stored gauss energy reserve used to power Necron construct systems.</description>
+        <onlyIfCausedByGene>false</onlyIfCausedByGene>
+        <listPriority>820</listPriority>
+        <major>true</major>
+        <showOnNeedList>true</showOnNeedList>
+        <showForCaravanMembers>true</showForCaravanMembers>
+        <showUnitTicks>false</showUnitTicks>
       </NeedDef>
 </Defs>

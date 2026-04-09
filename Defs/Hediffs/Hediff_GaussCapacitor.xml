@@ -1,0 +1,49 @@
+<Defs>
+  <HediffDef>
+    <defName>GW40K_GaussCapacitorMicro</defName>
+    <label>gauss capacitor (micro)</label>
+    <description>A compact gauss capacitor matrix providing 50 reserve energy.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_GaussCapacitor">
+        <capacity>50</capacity>
+        <mass>1</mass>
+        <coreFluxCostFull>0.2</coreFluxCostFull>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>GW40K_GaussCapacitorSmall</defName>
+    <label>gauss capacitor (small)</label>
+    <description>A gauss capacitor matrix providing 100 reserve energy.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_GaussCapacitor">
+        <capacity>100</capacity>
+        <mass>5</mass>
+        <coreFluxCostFull>0.25</coreFluxCostFull>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>GW40K_GaussCapacitorLarge</defName>
+    <label>gauss capacitor (large)</label>
+    <description>A heavy gauss capacitor matrix providing 250 reserve energy.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_GaussCapacitor">
+        <capacity>250</capacity>
+        <mass>20</mass>
+        <coreFluxCostFull>0.4</coreFluxCostFull>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

@@ -1,6 +1,7 @@
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 #nullable disable
 namespace GW40K_Necrons;
@@ -50,11 +51,12 @@ public class Gizmo_NecronBandwidth : Gizmo
         Widgets.DrawWindowBackground(main);
 
         // Portrait panel grows upward above the main block
+        bool portraitClickAbsorbed = false;
         if (portraitH > 0f)
         {
             Rect portraitPanel = new Rect(topLeft.x, topLeft.y - portraitH, w, portraitH);
             Widgets.DrawWindowBackground(portraitPanel);
-            DrawPortraits(portraitPanel);
+            portraitClickAbsorbed = DrawPortraits(portraitPanel);
         }
 
         // Title
@@ -81,12 +83,29 @@ public class Gizmo_NecronBandwidth : Gizmo
         Text.Font   = GameFont.Small;
 
         TooltipHandler.TipRegion(main,
-            "Necron command protocol — bandwidth determines how many constructs this commander can directly control.");
+            $"Necron command protocol — bandwidth determines how many constructs this commander can directly control.\nCommand range: {tracker.ControlRange:0.#}");
 
-        return new GizmoResult(GizmoState.Clear);
+        float hitTop = portraitH > 0f ? topLeft.y - portraitH : topLeft.y;
+        float hitH = portraitH + MainH;
+        Rect unionHit = new Rect(topLeft.x, hitTop, w, hitH);
+        bool overBandwidth = Mouse.IsOver(unionHit);
+        if (overBandwidth)
+        {
+            Pawn commander = tracker.CommanderPawn;
+            if (commander != null && commander.Spawned && commander.MapHeld != null)
+                GenDraw.DrawRadiusRing(commander.Position, tracker.ControlRange);
+        }
+
+        GizmoState state = portraitClickAbsorbed
+            ? GizmoState.Interacted
+            : overBandwidth
+                ? GizmoState.Mouseover
+                : GizmoState.Clear;
+        return new GizmoResult(state);
     }
 
-    private void DrawPortraits(Rect panel)
+    /// <summary>Returns true if a portrait click was handled (so the gizmo absorbs the event).</summary>
+    private bool DrawPortraits(Rect panel)
     {
         float x = panel.x + 4f;
         float y = panel.y + PortraitGap;
@@ -112,7 +131,17 @@ public class Gizmo_NecronBandwidth : Gizmo
             GUI.DrawTexture(r, portrait);
             TooltipHandler.TipRegion(r, mech.LabelCap);
 
+            if (Event.current.type == EventType.MouseDown && Event.current.button == 0 && Mouse.IsOver(r))
+            {
+                CameraJumper.TryJumpAndSelect(mech);
+                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
+                Event.current.Use();
+                return true;
+            }
+
             x += PortraitSize + PortraitGap;
         }
+
+        return false;
     }
 }

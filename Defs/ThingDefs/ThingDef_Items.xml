@@ -92,6 +92,7 @@
 				<showUseGizmo>true</showUseGizmo>
 			</li>
 			<li Class="NecronGeneUtil.CompProperties_UseEffectNecrodermisPackConsume">
+				<!-- Must match NecronStasisSettingsDef necrodermisNutritionPerConsumedUnit (stasis crypt fuel math). -->
 				<nutritionPerUnit>0.05</nutritionPerUnit>
 			</li>
 			<li Class="CompProperties_UseEffectPlaySound">

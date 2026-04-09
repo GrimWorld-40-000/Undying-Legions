@@ -64,7 +64,8 @@ public static class DebugActions_UndyingLegions
         if (pawn == null || pawn.Dead)
             return;
 
-        pawn.SetFaction(Faction.OfPlayer);
+        if (pawn.Faction != Faction.OfPlayer)
+            pawn.SetFaction(Faction.OfPlayer);
         pawn.guest?.SetGuestStatus(null);
     }
 }

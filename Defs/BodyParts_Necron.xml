@@ -158,6 +158,12 @@
     </tags>
   </BodyPartDef>
 
+  <BodyPartDef>
+    <defName>GW40K_GaussCapacitor</defName>
+    <label>gauss capacitor</label>
+    <conceptual>true</conceptual>
+  </BodyPartDef>
+
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_Necron_Shoulder</defName>
     <label>shoulder</label>

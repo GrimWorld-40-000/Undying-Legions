@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <NecronStasisSettingsDef Class="GW40K_Necrons.NecronStasisSettingsDef">
+    <defName>GW40K_NecronStasisSettings</defName>
+    <baseStasisHours>12</baseStasisHours>
+    <injuryHoursPerTotalSeverity>6</injuryHoursPerTotalSeverity>
+    <maxInjuryExtraHours>48</maxInjuryExtraHours>
+    <healIntervalTicks>600</healIntervalTicks>
+    <healPointsPerDayWhileInStasis>80</healPointsPerDayWhileInStasis>
+    <stasisNecrodermisBurnMultiplier>2.0</stasisNecrodermisBurnMultiplier>
+    <!-- Must match GW40k_Necron_Necrodermis nutritionPerUnit; fall rate comes from GW_UD_Necrodermis fallPerDay. See NecronStasisFuelUtility remarks. -->
+    <necrodermisNutritionPerConsumedUnit>0.05</necrodermisNutritionPerConsumedUnit>
+  </NecronStasisSettingsDef>
+</Defs>

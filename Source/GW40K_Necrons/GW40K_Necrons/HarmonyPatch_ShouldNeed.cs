@@ -1,5 +1,6 @@
 using HarmonyLib;
 using RimWorld;
+using System.Linq;
 using Verse;
 
 #nullable disable
@@ -32,11 +33,30 @@ public class HarmonyPatch_ShouldNeed
     {
         if (___pawn?.def == null) return;
         NonOrganicPawn nonOrganic = ___pawn.def.GetModExtension<NonOrganicPawn>();
+        bool isNech = ___pawn.def.GetModExtension<NecronMechExtension>() != null;
+        bool hasEternalSlumberGene = ___pawn.genes?.GenesListForReading?.Any(g => g?.def?.defName == "GW_UD_EternalSlumber") == true;
+        bool isNecronNeedProfile = nonOrganic != null || hasEternalSlumberGene;
+        bool isNecronPawn = NechEnergyUtility.IsNecronPawn(___pawn);
 
-        // Core flux is gene-gated (Eternal Slumber → enablesNeeds). Only strip it from organics.
+        // Ensure Necron profile pawns always use core flux instead of rest, even if generation path misses gene-driven need enabling.
         if (nd.defName == "GW40K_CoreFlux")
-            __result = __result && nonOrganic != null;
-        if (nd.defName == "Rest" && nonOrganic != null)
+        {
+            if (isNech)
+            {
+                __result = true;
+                return;
+            }
+            __result = isNecronNeedProfile;
+        }
+        if (nd.defName == "GW_UD_Necrodermis" && isNech)
+            __result = true;
+        if (nd.defName == "GW40K_NechEnergy")
+        {
+            __result = NechEnergyUtility.GetCapacitorComp(___pawn) != null;
+        }
+        if (nd.defName == "MechEnergy" && isNecronPawn)
+            __result = false;
+        if (nd.defName == "Rest" && isNecronNeedProfile)
             __result = false;
         if (nd.defName == "Joy" && nonOrganic != null)
             __result = false;

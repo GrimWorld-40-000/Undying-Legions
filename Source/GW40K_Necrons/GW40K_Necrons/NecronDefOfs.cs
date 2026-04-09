@@ -15,12 +15,18 @@ public class NecronDefOfs
 {
   public static ThingDef GW40K_StasisCrypt;
   public static NeedDef GW40K_CoreFlux;
+  public static NeedDef GW40K_NechEnergy;
   public static JobDef GW40K_Job_LayDown;
+  public static JobDef GW40K_TakeControlOfNech;
   public static HediffDef GW40K_Necron_TiredHediff;
   public static HediffDef GW40K_CoreFluxExhaustion;
   public static HediffDef GW40K_EternalSlumberForced;
   public static HediffDef GW40K_Necron_ResurrectionHediff;
   public static HediffDef GW40K_Necron_HealingHediff;
+  public static HediffDef GW40K_GaussCapacitorMicro;
+  public static HediffDef GW40K_GaussCapacitorSmall;
+  public static HediffDef GW40K_GaussCapacitorLarge;
   public static HediffDef GW_UD_NecrodermisMaintenanceDeficit;
   public static GeneDef GW_UD_ResurrectionProtocol;
+  public static NecronStasisSettingsDef GW40K_NecronStasisSettings;
 }

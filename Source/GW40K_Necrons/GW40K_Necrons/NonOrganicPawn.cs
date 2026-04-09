@@ -16,6 +16,10 @@ public class NonOrganicPawn : DefModExtension
   public bool socialNeed = false;
   public string passion;
   public Passion passionType;
+
+  /// <summary>Core size scalar. Also used as stasis length multiplier; effective hours = global base × this.</summary>
+  public float coreSize = 1f;
+  public float eternalSlumberLengthFactor = 1f; // legacy compatibility
 }
 
 public class GeneExtension_NonOrganic : DefModExtension

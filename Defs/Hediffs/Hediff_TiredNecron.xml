@@ -10,7 +10,7 @@
     <stages>
       <li>
         <minSeverity>0.2</minSeverity>
-        <label>tired</label>
+        <label>nominal</label>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>

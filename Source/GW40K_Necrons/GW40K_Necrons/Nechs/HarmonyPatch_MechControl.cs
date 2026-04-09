@@ -16,8 +16,8 @@ public static class HarmonyPatch_MechControl
     [HarmonyPostfix]
     public static void Postfix(Pawn pawn, Pawn mech, ref AcceptanceReport __result)
     {
-        // Only intervene if the base game already allowed it — don't override an already-failing check
-        if (!__result.Accepted) return;
+        if (mech == null || pawn == null)
+            return;
 
         bool isNecronMech = mech.def.GetModExtension<NecronMechExtension>() != null;
         bool hasCommandProtocol = pawn.health?.hediffSet?.GetFirstHediffOfDef(
@@ -25,24 +25,59 @@ public static class HarmonyPatch_MechControl
         bool hasVanillaMechlink = pawn.health?.hediffSet?.GetFirstHediffOfDef(
             HediffDef.Named("MechlinkImplant")) != null;
 
-        if (isNecronMech && !hasCommandProtocol)
+        if (__result.Accepted)
         {
-            __result = "Necron constructs obey only those who bear the command protocol.";
+            if (isNecronMech && !hasCommandProtocol)
+            {
+                __result = "Necron constructs obey only those who bear the command protocol.";
+                return;
+            }
+
+            if (!isNecronMech && hasCommandProtocol && !hasVanillaMechlink)
+            {
+                __result = "The command protocol governs only Necron constructs.";
+                return;
+            }
+
+            if (isNecronMech && hasCommandProtocol)
+            {
+                HediffComp_NecronCommandTracker tracker = HediffComp_NecronCommandTracker.GetTracker(pawn);
+                if (tracker != null && !tracker.controlledMechs.Contains(mech) && !tracker.HasBandwidthFor(mech))
+                    __result = "GW40K_CommandBandwidthFull".Translate();
+                else if (tracker != null && !tracker.IsWithinControlRange(mech))
+                    __result = "GW40K_CommandOutOfRange".Translate(tracker.ControlRange.ToString("0.#"));
+            }
+
             return;
         }
 
-        if (!isNecronMech && hasCommandProtocol && !hasVanillaMechlink)
+        // Vanilla rejected (typically no Mechlink). Nechinator / Command Protocol can still take unassigned Necron constructs.
+        if (!ModsConfig.BiotechActive)
+            return;
+        if (!isNecronMech || !hasCommandProtocol)
+            return;
+        if (mech.GetOverseer() != null)
+            return;
+        if (mech.Faction != pawn.Faction)
+            return;
+
+        HediffComp_NecronCommandTracker tr = HediffComp_NecronCommandTracker.GetTracker(pawn);
+        if (tr == null)
+            return;
+        if (tr.controlledMechs.Contains(mech))
         {
-            __result = "The command protocol governs only Necron constructs.";
+            __result = AcceptanceReport.WasAccepted;
             return;
         }
 
-        // Bandwidth cap — deny binding a new Necron mech if the tracker is already full
-        if (isNecronMech && hasCommandProtocol)
+        if (tr.HasBandwidthFor(mech))
         {
-            var tracker = HediffComp_NecronCommandTracker.GetTracker(pawn);
-            if (tracker != null && !tracker.controlledMechs.Contains(mech) && !tracker.HasBandwidthFor())
-                __result = "Command bandwidth is at capacity. Destroy or release a construct first.";
+            if (tr.IsWithinControlRange(mech))
+                __result = AcceptanceReport.WasAccepted;
+            else
+                __result = "GW40K_CommandOutOfRange".Translate(tr.ControlRange.ToString("0.#"));
         }
+        else
+            __result = "GW40K_CommandBandwidthFull".Translate();
     }
 }

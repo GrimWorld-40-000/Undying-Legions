@@ -17,17 +17,17 @@ public class HediffCompProperties_GaussCapacitor : HediffCompProperties
 
 public class HediffComp_GaussCapacitor : HediffComp
 {
-    public bool allowBatteryCharge;
+    public bool allowBatteryCharge = true;
 
     /// <summary>When false, manual &quot;Recharge from core&quot; is blocked (Gauss gizmo core toggle).</summary>
-    public bool allowCoreCharge = true;
+    public bool allowCoreCharge;
 
     public HediffCompProperties_GaussCapacitor Props => (HediffCompProperties_GaussCapacitor)props;
 
     public override void CompExposeData()
     {
         base.CompExposeData();
-        Scribe_Values.Look(ref allowBatteryCharge, "allowBatteryCharge", false);
-        Scribe_Values.Look(ref allowCoreCharge, "allowCoreCharge", true);
+        Scribe_Values.Look(ref allowBatteryCharge, "allowBatteryCharge", true);
+        Scribe_Values.Look(ref allowCoreCharge, "allowCoreCharge", false);
     }
 }

@@ -27,6 +27,8 @@ public class NecronDefOfs
   public static HediffDef GW40K_GaussCapacitorSmall;
   public static HediffDef GW40K_GaussCapacitorLarge;
   public static HediffDef GW_UD_NecrodermisMaintenanceDeficit;
+  public static HediffDef GW_UD_DeathmarkOculus;
+  public static HediffDef GW_UD_DynasticResonance;
   public static GeneDef GW_UD_ResurrectionProtocol;
   public static NecronStasisSettingsDef GW40K_NecronStasisSettings;
 }

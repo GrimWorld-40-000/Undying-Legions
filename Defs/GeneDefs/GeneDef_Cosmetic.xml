@@ -106,9 +106,9 @@
 	
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronLychguard</defName>
-		<label>necron lychguard</label>
+		<label>lychguard frame</label>
 		<labelShortAdj>lychguard</labelShortAdj>
-		<description>. . .</description>
+		<description>Carriers of this gene possess a reinforced, self-repairing frame that is fused into a solid chest plate. This "living metal" layer provides unparallelled protection against both high-velocity projectiles and crushing blows. </description>
 		<fur>GW_UD_NecronLychguard</fur>
 		<iconPath>Genes/Machine_body</iconPath>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
@@ -126,7 +126,9 @@
 	<!-- Necron head genes: bald + no beard (no separate Hair_BaldOnly xenotype gene). Excludes vanilla hair-colour genes. -->
 	<!-- displayOrderInCategory above all vanilla Cosmetic_Hair colors (max ~190) so head wins "Overridden by" vs Hair_* -->
 	<GeneDef Name="GW_UD_NecronHeadGeneBase" ParentName="GeneJawBase" Abstract="True">
+		<randomChosen>false</randomChosen>
 		<displayOrderInCategory>300</displayOrderInCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<hairTagFilter>
 			<whitelist>true</whitelist>
 			<tags>
@@ -142,13 +144,13 @@
 		<exclusionTags>
 			<li>Jaw</li>
 			<li>Head</li>
-			<li>HairColor</li>
+			<li>NecronHead</li>
 		</exclusionTags>
 	</GeneDef>
 	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronLychguard_Head</defName>
-		<label>Lychguard Head</label>
-		<description>. . .</description>
+		<label>lychguard crest</label>
+		<description>Carriers of this gene possess a prominment, flared metallic headdress that extends from the skull in an ornate, regal silhouette. /n/nThis "living metal" crown is etched with dynastic glyphs and serves as a hardened protective plate.</description>
 		<iconPath>GW40K/LychGuard/Head/Male_Average_Normal_south</iconPath>
 		<forcedHeadTypes>
 			<li>GW40K_LychGuard_HeadType</li>
@@ -157,11 +159,16 @@
 	
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronDeathmark</defName>
-		<label>necron deathmark</label>
+		<label>deathmark chassis</label>
 		<labelShortAdj>deathmark</labelShortAdj>
-		<description>. . .</description>
+		<description>Carriers of this gene have a hunched skeletal frame of "living metal" covered by a pronounced shroud of armor and industrious shoulder pads. /n/nWhile this frame may be less agile, the sppine is fused with Dimensional Orbs that allow the carrier to momentarily slip into the "hyperspace" between seconds, making them nearly impossible to pin down. </description>
 		<fur>GW_UD_NecronDeathmark</fur>
 		<iconPath>Genes/Machine_body</iconPath>
+		<statOffsets>
+			<MoveSpeed>-0.20</MoveSpeed> <!-- will receive phase teleport ability -->
+			<MeleeDodgeChance>4.0</MeleeDodgeChance> 
+			<HuntingStealth>0.15</HuntingStealth>
+		</statOffsets>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
@@ -172,19 +179,66 @@
 	</GeneDef>
 	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronDeathmark_Head</defName>
-		<label>deathmark head</label>
-		<description>. . .</description>
+		<label>deathmark oculus</label>
+		<description>Carriers of this gene possess a hollow head embedded with a single, multi-spectrum ocular sensor that glows with an eerie emerald light. /n/nThis gene bypasses human sight in favor of a "hunter's mark" system — directly overlaying tactical data onto the user's consciousness to track thermal signatures and synaptic pulses through solid cover. </description>
 		<iconPath>GW40K/Deathmark/Head/Male_Average_Normal_south</iconPath>
+		<geneClass>GW40K_Necrons.Gene_DeathmarkOculus</geneClass>
+		<statOffsets>
+			<ShootingAccuracyPawn>4</ShootingAccuracyPawn>
+		</statOffsets>
+		<capMods>
+			<li>
+				<capacity>Sight</capacity>
+				<offset>0.10</offset>
+			</li>
+		</capMods>
 		<forcedHeadTypes>
 			<li>GW40K_NecronDeathmark_HeadType</li>
 		</forcedHeadTypes>
+		<!-- Lime-green eye glow: additive MoteGlow overlay, only drawn in low-light.
+		     Texture: transparent 256x256 PNG with a centred lime-green radial gradient.
+		     Path: Textures/GW40K/Deathmark/Head/OculusGlow.png (no rotation suffix needed). -->
+		<renderNodeProperties>
+			<li>
+				<nodeClass>PawnRenderNode_AttachmentHead</nodeClass>
+				<workerClass>GW40K_Necrons.PawnRenderNodeWorker_DeathmarkEyeGlow</workerClass>
+				<texPath>GW40K/Deathmark/Head/OculusGlow</texPath>
+				<parentTagDef>Head</parentTagDef>
+				<shaderTypeDef>MoteGlow</shaderTypeDef>
+				<baseLayer>52</baseLayer>
+				<visibleFacing>
+					<li>East</li>
+					<li>South</li>
+					<li>West</li>
+				</visibleFacing>
+			</li>
+		</renderNodeProperties>
 	</GeneDef>
 	
+	<!-- Hidden hediff granted by Gene_DeathmarkOculus. Anchored to the head.
+	     HediffComp_Glower provides the green eye-glow; HarmonyPatch_DeathmarkNightVision
+	     reads HasHediff to suppress the StatPart_NaturalLighting shooting penalty. -->
+	<HediffDef>
+		<defName>GW_UD_DeathmarkOculus</defName>
+		<label>deathmark oculus</label>
+		<description>Multi-spectrum ocular array embedded in the Deathmark's skull. Grants full-spectrum sight regardless of ambient lighting.</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<becomeVisible>false</becomeVisible>
+			</li>
+		</stages>
+		<!-- HediffCompProperties_Glower does not exist in vanilla 1.6; glow removed pending C# CompGlower implementation -->
+
+	</HediffDef>
+
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronCryptek</defName>
-		<label>necron cryptek</label>
+		<label>cryptek lattice</label>
 		<labelShortAdj>Cryptek</labelShortAdj>
-		<description>. . .</description>
+		<description>Carriers of this gene have a crystalline skeletal frame that is infused with arcane energy, granting them enhanced cognitive abilities and the capacity to manipulate reality at a fundamental level. /n/nThis gene allows the carrier to control some Necrons through Canoptek technology and arcane leverage - The user is imbedded with a Command Protocol</description>
 		<fur>GW_UD_NecronCryptek</fur>
 		<iconPath>Genes/Machine_body</iconPath>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
@@ -197,9 +251,13 @@
 	</GeneDef>
 	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronCryptek_Head</defName>
-		<label>cryptek head</label>
-		<description>. . .</description>
+		<label>cryptek cranium</label>
+		<description>Carriers of this gene have asymmetric, multi-lens optics and a logic-core dedicated to technomancy. Their head features a vast array of sensory lenses.</description>
 		<iconPath>GW40K/Cryptek/Head/CryptekH_south</iconPath>
+		<statOffsets>
+			<ResearchSpeed>0.20</ResearchSpeed>
+			<!-- <SocialImpact>-0.50</SocialImpact> -->
+		</statOffsets>
 		<forcedHeadTypes>
 			<li>GW40K_NecronCryptek_HeadType</li>
 		</forcedHeadTypes>
@@ -209,7 +267,7 @@
 		<defName>GW_UD_NecronOverlord</defName>
 		<label>necron overlord</label>
 		<labelShortAdj>Overlord</labelShortAdj>
-		<description>. . .</description>
+		<description>Carriers of this gene have a broad, heavily segmented armored carapace made of "living metal" adorned in royal regalia. /n/nThe decorative tassels and cloaks of "living metal" are known as Sempiternal Weave; Gene carriers are capable of turning away energy blades and plasma bursts.</description>
 		<fur>GW_UD_NecronOverlord</fur>
 		<iconPath>Genes/Machine_body</iconPath>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
@@ -222,8 +280,8 @@
 	</GeneDef>
 	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronOverlord_Head</defName>
-		<label>overlord head</label>
-		<description>. . .</description>
+		<label>overlord crest</label>
+		<description>Carriers of this gene possess a masterpiece, crescent-shaped headdress that extends from the skull in a golden, regal silhouette. This "living metal" crown is embedded with sharp crystalline features to reflect the holder's eternal status as immortal rulers. /n/nThe overlord deathmask is etched with dynastic glyphs and serves as a hardened protective plate.</description>
 		<iconPath>GW40K/Overlord/Head/Male_Average_Normal_south</iconPath>
 		<forcedHeadTypes>
 			<li>GW40K_Overlord_HeadType</li>

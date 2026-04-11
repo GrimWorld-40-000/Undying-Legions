@@ -6,10 +6,17 @@ using Verse.Sound;
 #nullable disable
 namespace GW40K_Necrons;
 
+[StaticConstructorOnStartup]
 public class Gizmo_NechEnergy : Gizmo
 {
     private readonly Pawn pawn;
     private static readonly Color DarkGreenFill = new Color(0.06f, 0.30f, 0.12f);
+    private static readonly Texture2D _overlayTex;
+
+    static Gizmo_NechEnergy()
+    {
+        _overlayTex = ContentFinder<Texture2D>.Get("UI/GW40K_Necron_overlayF", false);
+    }
 
     /// <summary>Vanilla gizmo row cell height — bottom of this gizmo aligns with <c>topLeft.y + this</c>.</summary>
     private const float StandardGizmoRowH = 75f;
@@ -61,6 +68,16 @@ public class Gizmo_NechEnergy : Gizmo
         // Grow upward: share bottom edge with standard 75px gizmo row.
         Rect outRect = new Rect(topLeft.x, topLeft.y + StandardGizmoRowH - totalH, w, totalH);
         Widgets.DrawWindowBackground(outRect);
+        if (_overlayTex != null)
+        {
+            float ow = _overlayTex.width * 0.25f;
+            float oh = _overlayTex.height * 0.25f;
+            Rect overlayRect = new Rect(outRect.x, outRect.y, ow, oh);
+            Color prevColor = GUI.color;
+            GUI.color = new Color(1f, 1f, 1f, 0.5f);
+            GUI.DrawTexture(overlayRect, _overlayTex);
+            GUI.color = prevColor;
+        }
         Rect inner = outRect.ContractedBy(6f);
 
         float barRowBottom = inner.yMax - BarBottomPad;
@@ -98,9 +115,9 @@ public class Gizmo_NechEnergy : Gizmo
         if (hasCap)
         {
             right -= ToggleIcon;
-            battRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIcon, ToggleIcon);
-            right -= ToggleGap + ToggleIcon;
             coreRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIcon, ToggleIcon);
+            right -= ToggleGap + ToggleIcon;
+            battRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIcon, ToggleIcon);
         }
 
         bool absorbed = false;

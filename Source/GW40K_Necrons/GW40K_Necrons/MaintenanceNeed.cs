@@ -109,13 +109,24 @@ public class MaintenanceNeed : Need
         if (CoreFluxReplenishing())
             return tip;
 
-        float extraPerDay = BodyDegradationExtraCoreFluxFallPerDay();
-        if (extraPerDay <= 0f)
-            return tip;
+        System.Text.StringBuilder sb = new System.Text.StringBuilder(tip);
 
-        return tip + "\n" + "GW40K_CoreFluxBodyDegradationOffset"
-            .Translate(extraPerDay.ToStringPercent())
-            .Resolve();
+        float extraPerDay = BodyDegradationExtraCoreFluxFallPerDay();
+        if (extraPerDay > 0f)
+            sb.Append("\n").Append("GW40K_CoreFluxBodyDegradationOffset"
+                .Translate(extraPerDay.ToStringPercent())
+                .Resolve());
+
+        HediffComp_GaussCapacitor cap = NechEnergyUtility.GetCapacitorComp(pawn);
+        if (cap != null && cap.allowCoreCharge)
+        {
+            float drainPerDay = Need_NechEnergy.CoreChargeGainPerDay * cap.Props.coreFluxCostFull;
+            sb.Append("\n").Append("GW40K_CoreFluxCoreChargeDrain"
+                .Translate(drainPerDay.ToStringPercent())
+                .Resolve());
+        }
+
+        return sb.ToString();
     }
 
     /// <summary>Vanilla-style: at zero flux apply exhaustion + forced Eternal Slumber; clear when flux returns or while replenishing.</summary>

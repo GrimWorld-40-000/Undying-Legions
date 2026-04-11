@@ -8,7 +8,8 @@
   <AlertCoreFluxCriticalPawn>{PAWN} core-flux critical</AlertCoreFluxCriticalPawn>
   <AlertCoreFluxCriticalPawns>{NUMCULPRITS} colonists core-flux critical</AlertCoreFluxCriticalPawns>
   <AlertCoreFluxCriticalDesc>These units are nearly out of core flux. If it empties completely they will enter forced Eternal Slumber until recharged in a stasis crypt.\n\nAffected:\n{CULPRITS}</AlertCoreFluxCriticalDesc>
-  <GW40K_CoreFluxBodyDegradationOffset>Body degradation drain offset: +{0}/day</GW40K_CoreFluxBodyDegradationOffset>
+  <GW40K_CoreFluxBodyDegradationOffset>Body degradation drain: +{0}/day</GW40K_CoreFluxBodyDegradationOffset>
+  <GW40K_CoreFluxCoreChargeDrain>Core charge drain: -{0}/day</GW40K_CoreFluxCoreChargeDrain>
 
   <GW40K_EternalSlumberInterrupted>{PAWN_nameDef}'s Eternal Slumber was broken improperly. Engrams spike into uncontrollable aggression.</GW40K_EternalSlumberInterrupted>
   <GW40K_EternalSlumberInterruptedNoTarget>{PAWN_nameDef}'s Eternal Slumber was broken with no core flux, but there is no reachable target for {PAWN_possessive} rage to latch onto.</GW40K_EternalSlumberInterruptedNoTarget>

@@ -4,17 +4,17 @@
 		<label>Necron</label>
 		<displayPriorityInXenotype>990</displayPriorityInXenotype>
 	</GeneCategoryDef>
+
 	<GeneDef>
 		<defName>GW_UD_EternalSlumber</defName>
-		<label>Eternal Slumber</label>
+		<label>eternal slumber</label>
 		<description>Grants the core flux need — the Necron equivalent of deathrest. Core flux depletes while the body is active and must be restored in a stasis crypt, monolith, or compatible suspension.</description>
 		<iconPath>UI/Icons/Genes/Gene_Deathrest</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<enablesNeeds>
 			<li>GW40K_CoreFlux</li>
 		</enablesNeeds>
-		<biostatMet>0</biostatMet>
-		<biostatArc>1</biostatArc>
 		<minAgeActive>3</minAgeActive>
 		<symbolPack>
 			<prefixSymbols>
@@ -27,47 +27,42 @@
 			</suffixSymbols>
 		</symbolPack>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_ResurrectionProtocol</defName>
-		<label>Resurrection Protocal</label>
-		<description>When Necrons sustain critical damage, they enter Resurrection Protocol instead of dying. This allows them to self-repair and rise again as long as their two cores are intact.</description>
-		<!-- <geneClass>Gene_Deathrest</geneClass> -->
+		<label>resurrection protocol</label>
+		<description>When Necrons sustain critical damage they enter Resurrection Protocol instead of dying. This allows them to self-repair and rise again as long as their two cores are intact.</description>
 		<iconPath>Genes/ResurectionProtocol</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
-		<biostatArc>1</biostatArc>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<geneClass>GW40K_Necrons.Gene_ResurrectionProtocol</geneClass>
 		<modExtensions>
 			<li Class="GW40K_Necrons.GeneExtension_Resurrection">
-        <ticksToResurrect>625</ticksToResurrect>
+				<ticksToResurrect>625</ticksToResurrect>
 			</li>
 		</modExtensions>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_BodyDegradation</defName>
-		<label>Body Degradation</label>
+		<label>body degradation</label>
 		<description>Carriers of this gene have undergone Biotransference and are now composed of living metal called necrodermis. As a result they require a constant supply of necrodermis to maintain their body.</description>
-		<!-- <geneClass>Gene_Deathrest</geneClass> -->
 		<enablesNeeds>
 			<li>GW_UD_Necrodermis</li>
 		</enablesNeeds>
 		<iconPath>Genes/BodyDegradation</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
-		<biostatArc>1</biostatArc>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_LifeLess</defName>
-		<label>Lifeless</label>
-		<description>Carriers of this gene cannot feel emotions and are incapable of experiencing passions; This is due to a genetic imperfection that affects their ability to process emotions.</description>
+		<label>lifeless</label>
+		<description>Carriers of this gene are dead emotionally and are incapable of experiencing passions; This is due to a genetic imperfection that affects their ability to process emotions.</description>
 		<geneClass>NecronGeneUtil.Gene_NoInspirationAndPassion</geneClass>
 		<iconPath>Genes/Lifeless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
-		<biostatArc>1</biostatArc>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_Necron_Lifeless</hediffDef>
@@ -75,40 +70,36 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_SlowAdvancement</defName>
-		<label>Slow Advancement</label>
+		<label>slow advancement</label>
 		<description>Carriers of this gene experience a significant slowdown in their work speed; This is due to a genetic imperfection that affects their ability to process information and perform tasks efficiently.</description>
-		<!-- <geneClass>Gene_Deathrest</geneClass> -->
 		<iconPath>Genes/inertia</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
-		<biostatArc>1</biostatArc>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<statFactors>
 			<WorkSpeedGlobal>0.7</WorkSpeedGlobal>
 		</statFactors>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_Hatred</defName>
-		<label>Hatred for the Living</label>
+		<label>hatred for the living</label>
 		<description>Carriers of this gene have an innate hatred for the living. This hatred varies from clinical indifference to obsessive, omnicidal rage depending on the individual's mindset or their specific dynasty.</description>
-		<!-- <geneClass>Gene_Deathrest</geneClass> -->
 		<iconPath>Genes/Hatred for the Living</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
-		<biostatArc>1</biostatArc>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_ApparelRestriction</defName>
-		<label>Apparel Incompatible</label>
+		<label>apparel incompatible</label>
 		<description>Carriers of this gene are restricted from wearing apparel. Whether it's a static frame or fixed exoskeleton, these individuals cannot wear any apparel.</description>
 		<geneClass>NecronGeneUtil.Gene_RemoveAllApparelOnAdd</geneClass>
 		<iconPath>Genes/clotheless</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<allowedApparels>
@@ -116,30 +107,29 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	
-	<!-- unique gene -->
-	
+
+	<!-- unique genes -->
+
 	<GeneDef>
 		<defName>GW_UD_NecronEmissary</defName>
-		<label>Emmisarry</label>
+		<label>emisarry</label>
 		<description>Carriers of this gene have a natural aptitude for diplomacy and social interaction; This allows them to engage in negotiations and social interactions with a higher degree of success.</description>
 		<iconPath>Genes/emmisarry</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
-		<biostatArc>1</biostatArc>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<statFactors>
 			<NegotiationAbility>1.15</NegotiationAbility>
 			<SocialImpact>1.15</SocialImpact>
 		</statFactors>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_Bodyguard</defName>
-		<label>Bodyguard</label>
+		<label>bodyguard</label>
 		<description>Carriers of this gene are melee specialists; They cannot equip ranged weapons but have a 15% bonus to dodge and don't lose experience in the melee skill.</description>
 		<iconPath>Genes/Bodyguard</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<statOffsets>
 			<MeleeDodgeChance>-15</MeleeDodgeChance>
 		</statOffsets>
@@ -149,24 +139,24 @@
 			</li>
 		</forcedTraits>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_CantWork</defName>
-		<label>Can't Work</label>
-		<description>. . .</description>
+		<label>incapable of work</label>
+		<description>Carriers of this gene are incapable of performing work. They are unable to engage in any form of labor or activity that requires critical thinking or physical effort.</description>
 		<iconPath>Genes/inertia</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<disabledWorkTags>AllWork</disabledWorkTags>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_LowBorn</defName>
-		<label>Low Born</label>
-		<description>Necrons that hold this gene are genetically imperfect and thus considered lowborn. They do not possess free will and do not have the mental capacity to desire comfort, recreation, or beautiful surroundings.</description>
+		<label>low born</label>
+		<description>Carriers of this gene are genetically imperfect and thus considered lowborn. They do not possess free will and do not have the mental capacity to desire comfort, recreation, or beautiful surroundings.</description>
 		<iconPath>Genes/lowborn</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<disablesNeeds>
 			<li>Food</li>
 			<li>Comfort</li>
@@ -176,51 +166,51 @@
 			<li>Indoors</li>
 		</disablesNeeds>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_GreaterStagger</defName>
-		<label>Great Stagger</label>
-		<description>. . .</description>
+		<label>instability</label>
+		<description>Carriers of this gene stutter when they are staggered, the lock-up results in increased stagger duration.</description>
 		<iconPath>Genes/greatstagger</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<statFactors>
 			<StaggerDurationFactor>1.15</StaggerDurationFactor>
 		</statFactors>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_Sharpshooter</defName>
-		<label>Sharpshooter</label>
-		<description>. . .</description>
+		<label>sharpshooter</label>
+		<description>Carriers of this gene have a natural aptitude for precision shooting and receive a bonus to shooting accuracy.</description>
 		<iconPath>Genes/sharpshooter</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<statFactors>
 			<ShootingAccuracyFactor_Long>1.5</ShootingAccuracyFactor_Long>
 		</statFactors>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_Workflow</defName>
-		<label>Workflow</label>
-		<description>. . .</description>
+		<label>workflow</label>
+		<description>Carriers of this gene are specialized workers and work with steady, chilling consistency, granting them a bonus to work speed.</description>
 		<iconPath>Genes/workflow</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<statOffsets>
 			<WorkSpeedGlobal>0.15</WorkSpeedGlobal>
 		</statOffsets>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_RecallMemories</defName>
-		<label>Recall memories</label>
-		<description>. . .</description>
+		<label>recall memories</label>
+		<description>Biotransference did not erase the organic self — it left it behind as a debt. Carriers of this gene are haunted by their former lives: phantom sensations, the faces of those long dead, warmth the metal body can never replicate.\n\nThis is Soul-Debt. It accumulates slowly and quietly, and when the ledger comes due, The Sorrow takes hold entirely — plunging the carrier into immersive recollection until the crisis passes.</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<iconPath>Genes/memory</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_Necron_RecallMemories</hediffDef>
@@ -228,23 +218,23 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_TechnoMagic</defName>
-		<label>Techno-Magic</label>
-		<description>. . .</description>
+		<label>etheric science</label>
+		<description>Carriers of this gene have a natural aptitude for Technomancy, allowing them to manipulate etheric energy. /n/nThis gene grants the carrier the ability to manipulate the void to cast spells and use etheric artifacts.</description>
 		<iconPath>Genes/technomagic</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_NobleHabits</defName>
-		<label>Noble habits</label>
-		<description>. . .</description>
+		<label>noble ego</label>
+		<description>Carriers of this gene possess a timeless sense of superiority and mental rigidity. Gene holders possess a commanding presence and zero capacity for the petty doubts of "lessers."</description>
 		<iconPath>Genes/highborn (nobility)</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 	</GeneDef>
 	<ThoughtDef>
 		<defName>GW_UD_NobleHabits</defName>
@@ -256,21 +246,36 @@
 		</requiredGenes>
 		<stages>
 			<li>
-				<label>Noble habits</label>
-				<description>. . .</description>
+				<label>noble ego</label>
+				<description>I hail from a lineage of greatness and superiority; This realm is beneath me.</description>
 				<baseMoodEffect>-15</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+	<ThoughtDef>
+		<defName>GW_UD_NobleDisdain</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>ThoughtWorker_AlwaysActive</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<requiredGenes>
+			<li>GW_UD_NobleHabits</li>
+		</requiredGenes>
+		<stages>
+			<li>
+				<label>unrefined vermin</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
 	<GeneDef>
 		<defName>GW_UD_Royalty</defName>
-		<label>Royalty</label>
-		<description>. . .</description>
+		<label>royalty</label>
+		<description>Carriers of this gene hail from "crown worlds" and have been granted royal status by dynastic decree. /n/nRoyals emerge with full intellect, memories, and personalities intact; They are immortal, calculating, and powerful.</description>
 		<geneClass>NecronGeneUtil.Gene_RoyaltyNeed</geneClass>
 		<iconPath>Genes/royalty</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<disablesNeeds>
 			<li>Food</li>
 			<li>Outdoors</li>
@@ -278,7 +283,7 @@
 		</disablesNeeds>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
-				<hediffDef>AmbrosiaHigh</hediffDef>
+				<hediffDef>GW_UD_DynasticResonance</hediffDef>
 				<!-- <part>Brain</part> -->
 				<severityOnAdd>1.0</severityOnAdd>
 				<threshold>0.9</threshold>
@@ -291,15 +296,15 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_TechnoInterface</defName>
-		<label>Techno-Interface</label>
-		<description>. . .</description>
+		<label>techno-interface</label>
+		<description>The gene carrier's mind is embedded with a specialized interface that allows it to function as a localized node for the dynastic hive-mind. /n/n Carriers of this gene possess a Command Protocol.</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<iconPath>Genes/Techno-interface</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_CommandProtocolImplant</hediffDef>
@@ -308,14 +313,14 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_RoyalHabits</defName>
-		<label>Royal habits</label>
-		<description>. . .</description>
+		<label>ancestral hubris</label>
+		<description>Carriers of this gene possess an arrogance perfected by the absolute masters of the dynasties - an ego so dense and unyielding that mere existence outside of their domain is unbearable.</description>
 		<iconPath>Genes/wat</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 	</GeneDef>
 	<ThoughtDef>
 		<defName>GW_UD_RoyalHabits</defName>
@@ -327,21 +332,21 @@
 		</requiredGenes>
 		<stages>
 			<li>
-				<label>Noble habits</label>
-				<description>. . .</description>
+				<label>ancestral hubris</label>
+				<description>My genetic sequence carries the echoes of ancient kings and star-striding conquerors. Existing in this menial realm is an insult to my being.</description>
 				<baseMoodEffect>-30</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<GeneDef>
 		<defName>GW_UD_Nobility</defName>
-		<label>Nobility</label>
-		<description>. . .</description>
+		<label>nobility</label>
+		<description>Carriers of this gene are part of the highest echelons of the dynasties. /n/nNobles emerge with full intellect, memories, and personalities intact; They are eternal, tactical, and vigilant.</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<iconPath>Genes/highborn (nobility)</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
-		<biostatMet>0</biostatMet>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_Necron_Nobility</hediffDef>
@@ -349,5 +354,5 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
-	
+
 </Defs>

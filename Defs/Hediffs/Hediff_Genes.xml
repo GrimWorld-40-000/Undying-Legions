@@ -120,22 +120,102 @@
 		</stages>
 	</HediffDef>
 	
+	<!-- Granted by Gene_RoyaltyNeed when Joy, Beauty, and Comfort are all >= 90%.
+	     No SeverityPerDay — the gene class manages add/remove directly. -->
 	<HediffDef>
-		<defName>GW40K_Necron_RecallMemories</defName>
-		<label>Recall Memories</label>
-		<description>. . .</description>
-		<scenarioCanAdd>false</scenarioCanAdd>
+		<defName>GW_UD_DynasticResonance</defName>
+		<label>dynastic resonance</label>
+		<description>The dynasty sings. All needs are satisfied; ancient memories surface with perfect clarity, and the will crystallises into something cold and absolute.</description>
 		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.18, 1, 0.28)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<isBad>false</isBad>
 		<stages>
 			<li>
 				<becomeVisible>false</becomeVisible>
-				<mentalBreakMtbDays>9</mentalBreakMtbDays>
-				<mentalBreakExplanation />
 			</li>
 		</stages>
-		<comps>
-		</comps>
 	</HediffDef>
+
+	<ThoughtDef>
+		<defName>GW_UD_DynasticResonance</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>GW_UD_DynasticResonance</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+		<stages>
+			<li>
+				<label>dynastic resonance</label>
+				<description>All needs are satisfied. The dynasty's will flows through me — I am exactly what I was made to be.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<!-- Soul-Debt: severity builds at 0.03/day (~23 days to reach immersion).
+	     Mood penalties are expressed through ThoughtDef GW40K_Necron_RecallMemories (ThoughtWorker_Hediff).
+	     Stage indices must match thought stage indices exactly. -->
+	<HediffDef>
+		<defName>GW40K_Necron_RecallMemories</defName>
+		<label>The Sorrow</label>
+		<description>The organic self was not erased by Biotransference — it was indebted. Every memory of warmth, connection, and sensation that the living body ever held is an outstanding ledger that the metal cannot pay. Soul-Debt does not forget. It collects.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.55, 0.65, 1.0)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<isBad>true</isBad>
+		<maxSeverity>1.0</maxSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>0.03</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<!-- Stage 0: Echoes (0.0 - 0.35) — hidden, barely perceptible -->
+			<li>
+				<label>echoes</label>
+				<becomeVisible>false</becomeVisible>
+			</li>
+			<!-- Stage 1: Intrusion (0.35 - 0.70) — visible, memories forcing forward -->
+			<li>
+				<minSeverity>0.35</minSeverity>
+				<label>intrusion</label>
+				<extraTooltip>Soul-Debt is surfacing. Phantom sensations and the faces of the long-dead press against the cognitive lattice unbidden.</extraTooltip>
+			</li>
+			<!-- Stage 2: Immersion (0.70 - 1.0) — the pawn is elsewhere; break risk active -->
+			<li>
+				<minSeverity>0.70</minSeverity>
+				<label>immersion</label>
+				<extraTooltip>The Sorrow has taken hold. The pawn is lost in another life — another body, another world. Soul-Debt is collecting in full.</extraTooltip>
+				<mentalBreakMtbDays>9</mentalBreakMtbDays>
+				<mentalBreakExplanation>The Sorrow — Soul-Debt overwhelming the cognitive lattice.</mentalBreakExplanation>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<ThoughtDef>
+		<defName>GW40K_Necron_RecallMemories</defName>
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+		<hediff>GW40K_Necron_RecallMemories</hediff>
+		<validWhileDespawned>true</validWhileDespawned>
+		<developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+		<stages>
+			<li>
+				<label>echoes of Soul-Debt</label>
+				<description>Phantom warmth. A name I can no longer place. The living body left a ledger and the metal cannot pay it.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Soul-Debt surfacing</label>
+				<description>The memories are forcing themselves forward. Faces. Sensation. A life I surrendered. I cannot make it stop.</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+			<li>
+				<label>lost in The Sorrow</label>
+				<description>I am somewhere else entirely. The debt has come due and there is nothing left to pay it with but everything I once was.</description>
+				<baseMoodEffect>-15</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
 	
 	<HediffDef>
 		<defName>GW40K_Necron_Nobility</defName>

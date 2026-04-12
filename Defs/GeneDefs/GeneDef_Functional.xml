@@ -222,7 +222,7 @@
 	<GeneDef>
 		<defName>GW_UD_TechnoMagic</defName>
 		<label>etheric science</label>
-		<description>Carriers of this gene have a natural aptitude for Technomancy, allowing them to manipulate etheric energy. /n/nThis gene grants the carrier the ability to manipulate the void to cast spells and use etheric artifacts.</description>
+		<description>Carriers of this gene have a natural aptitude for Technomancy, allowing them to manipulate etheric energy. \n\nThis gene grants the carrier the ability to manipulate the void to cast spells and use etheric artifacts.</description>
 		<iconPath>Genes/technomagic</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
@@ -271,7 +271,7 @@
 	<GeneDef>
 		<defName>GW_UD_Royalty</defName>
 		<label>royalty</label>
-		<description>Carriers of this gene hail from "crown worlds" and have been granted royal status by dynastic decree. /n/nRoyals emerge with full intellect, memories, and personalities intact; They are immortal, calculating, and powerful.</description>
+		<description>Carriers of this gene hail from "crown worlds" and have been granted royal status by dynastic decree.\n\n Royals emerge with full intellect, memories, and personalities intact; They are immortal, calculating, and powerful.</description>
 		<geneClass>NecronGeneUtil.Gene_RoyaltyNeed</geneClass>
 		<iconPath>Genes/royalty</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -300,7 +300,7 @@
 	<GeneDef>
 		<defName>GW_UD_TechnoInterface</defName>
 		<label>techno-interface</label>
-		<description>The gene carrier's mind is embedded with a specialized interface that allows it to function as a localized node for the dynastic hive-mind. /n/n Carriers of this gene possess a Command Protocol.</description>
+		<description>The gene carrier's mind is embedded with a specialized interface that allows it to function as a localized node for the dynastic hive-mind. \n\n Carriers of this gene possess a Command Protocol.</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<iconPath>Genes/Techno-interface</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -342,7 +342,7 @@
 	<GeneDef>
 		<defName>GW_UD_Nobility</defName>
 		<label>nobility</label>
-		<description>Carriers of this gene are part of the highest echelons of the dynasties. /n/nNobles emerge with full intellect, memories, and personalities intact; They are eternal, tactical, and vigilant.</description>
+		<description>Carriers of this gene are part of the highest echelons of the dynasties. \n\nNobles emerge with full intellect, memories, and personalities intact; They are eternal, tactical, and vigilant.</description>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<iconPath>Genes/highborn (nobility)</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>

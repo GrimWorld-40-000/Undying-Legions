@@ -3,7 +3,7 @@
 	<HediffDef>
 		<defName>GW40K_Necron_Lifeless</defName>
 		<label>Lifeless</label>
-		<description>. . .</description>
+		<description>The spark did not transfer. The frame works, but nothing behind it cares — no surge of drive, no moment of clarity, no inspiration ever rises from the lattice. It simply continues.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
@@ -18,7 +18,7 @@
 	<HediffDef>
 		<defName>GW_UD_NecronLychguard</defName>
 		<label>Lych Guard</label>
-		<description>. . .</description>
+		<description>The reinforced necrodermis chassis seals damage faster than lighter frames — wounds clot into slag and re-knit without blood loss. The living metal dedicates significant molecular resources to structural repair, recovering injuries at an accelerated rate.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
@@ -34,8 +34,8 @@
 
 	<HediffDef>
 		<defName>GW_UD_NecronDeathmark</defName>
-		<label>Lych Guard</label>
-		<description>. . .</description>
+		<label>Deathmark chassis</label>
+		<description>The Deathmark frame channels molecular repair into its skeletal lattice — injuries reseal without blood loss and the living metal re-knits at an elevated rate. The chassis is optimized for sustained independent operation deep in hostile territory.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
@@ -51,8 +51,8 @@
 
 	<HediffDef>
 		<defName>GW_UD_NecronCryptek</defName>
-		<label>Lych Guard</label>
-		<description>. . .</description>
+		<label>Cryptek lattice</label>
+		<description>The Cryptek's crystalline frame is threaded with self-correcting molecular architecture — damage is re-knit at an elevated rate and the lattice does not bleed. The same arcane substrate that grants etheric capacity also sustains the body's structural cohesion.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
@@ -68,8 +68,8 @@
 
 	<HediffDef>
 		<defName>GW_UD_NecronOverlord</defName>
-		<label>Lych Guard</label>
-		<description>. . .</description>
+		<label>Overlord carapace</label>
+		<description>The Overlord's Sempiternal Weave is not merely decorative — the layered necrodermis baffles redirect molecular repair to where it is needed most, accelerating wound closure and eliminating blood loss entirely. To wound an Overlord is to inconvenience one.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
@@ -220,7 +220,7 @@
 	<HediffDef>
 		<defName>GW40K_Necron_Nobility</defName>
 		<label>Nobility</label>
-		<description>. . .</description>
+		<description>Noble memory engrams, preserved with perfect fidelity across sixty million years, demand stimulation that this diminished age cannot provide. The intellect is vast; the options are few. Joy bleeds away steadily, and when the ledger of inadequacy reaches its limit, the dynasty's pride fractures into something uglier.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>

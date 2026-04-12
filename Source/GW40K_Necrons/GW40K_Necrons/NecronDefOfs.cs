@@ -31,4 +31,8 @@ public class NecronDefOfs
   public static HediffDef GW_UD_DynasticResonance;
   public static GeneDef GW_UD_ResurrectionProtocol;
   public static NecronStasisSettingsDef GW40K_NecronStasisSettings;
+  public static AbilityDef GW40K_Deathmark_Phase;
+  public static AbilityDef GW40K_Deathmark_HuntersMark;
+  public static HediffDef GW40K_TransDimensional;
+  public static HediffDef GW40K_HuntersMark;
 }

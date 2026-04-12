@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!-- Injected into the vanilla Humanlike tree via Humanlike_PostMentalState.
+       JobGiver_DeathmarkPhase returns null immediately for any pawn that
+       doesn't have the Phase ability, so this is safe for all humanlike pawns. -->
+  <ThinkTreeDef>
+    <defName>GW40K_Deathmark_Phase_Subtree</defName>
+    <insertTag>Humanlike_PostMentalState</insertTag>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="GW40K_Necrons.JobGiver_DeathmarkPhase"/>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
   <ThinkTreeDef>
     <defName>GW40K_Necron_ThinkTree</defName>
     <label>Necron thinktree</label>

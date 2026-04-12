@@ -1,5 +1,61 @@
 <Defs>
 	<AbilityDef>
+		<defName>GW40K_Deathmark_HuntersMark</defName>
+		<label>hunter's mark</label>
+		<description>The Deathmark selects a target for termination. An emerald energy brand is seared into the victim — a halo of cold light visible even through stone and steel. For one hour the marked target cannot hide — the Deathmark's will track them with uncanny precision.</description>
+		<iconPath>UI/Abilities/GW40k_DeathmarkHunt</iconPath>
+		<cooldownTicksRange>30000</cooldownTicksRange><!-- 12 hours -->
+		<aiCanUse>true</aiCanUse>
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<sendMessageOnCooldownComplete>false</sendMessageOnCooldownComplete>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>24.9</range>
+			<warmupTime>1.5</warmupTime>
+			<soundCast>Psy_PsychicLance</soundCast>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetAnimals>true</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>true</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.HuntersMarkAbilityProperties"/>
+		</comps>
+	</AbilityDef>
+
+	<AbilityDef>
+		<defName>GW40K_Deathmark_Phase</defName>
+		<label>phase</label>
+		<description>The Deathmark activates its Arcane Orbs, slipping through the hyperspace between moments to reappear up to 10 cells away. The Deathmark will remain in a pocket dimension briefly to gauge a better position.</description>
+		<iconPath>UI/Abilities/GW40k_DeathmarkPhase</iconPath>
+		<cooldownTicksRange>3750</cooldownTicksRange><!-- 1.5 hours -->
+		<aiCanUse>true</aiCanUse>
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<sendMessageOnCooldownComplete>false</sendMessageOnCooldownComplete>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>10.9</range>
+			<warmupTime>0.5</warmupTime>
+			<soundCast>Psycast_Skip_Entry</soundCast>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+				<canTargetPawns>false</canTargetPawns>
+				<canTargetAnimals>false</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>false</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.TeleportAbilityProperties"/>
+		</comps>
+	</AbilityDef>
+
+	<AbilityDef>
 		<defName>GW40K_Necron_SwapPlaces</defName>
 		<label>swap</label>
 		<description>no description needed</description>

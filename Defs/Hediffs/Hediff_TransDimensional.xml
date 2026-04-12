@@ -1,0 +1,16 @@
+<Defs>
+
+  <HediffDef>
+    <defName>GW40K_TransDimensional</defName>
+    <label>trans-dimensional</label>
+    <description>Out of phase with realspace and cannot be damaged directly. The carrier is momentarily displaced from the physical world — untouchable, but equally unable to act upon it.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>240~240</disappearsAfterTicks><!-- 4 seconds at normal speed -->
+      </li>
+    </comps>
+  </HediffDef>
+
+</Defs>

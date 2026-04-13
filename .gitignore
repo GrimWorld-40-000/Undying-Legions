@@ -31,6 +31,7 @@ scripts/
 
 # Local scratch / AI dumps (not mod content)
 ai_prompt.txt
+ai_prompt.text
 notes.md
 
 # Backup project files

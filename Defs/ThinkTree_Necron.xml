@@ -2,13 +2,16 @@
 <Defs>
 
   <!-- Injected into the vanilla Humanlike tree via Humanlike_PostMentalState.
-       JobGiver_DeathmarkPhase returns null immediately for any pawn that
-       doesn't have the Phase ability, so this is safe for all humanlike pawns. -->
+       Both givers return null immediately for any pawn that doesn't have the
+       relevant ability, so this is safe for all humanlike pawns. -->
   <ThinkTreeDef>
     <defName>GW40K_Deathmark_Phase_Subtree</defName>
     <insertTag>Humanlike_PostMentalState</insertTag>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
+        <!-- Hunter's Mark: 60% chance to mark the current enemy target -->
+        <li Class="GW40K_Necrons.JobGiver_DeathmarkHuntersMark"/>
+        <!-- Phase: teleport to better cover after taking damage -->
         <li Class="GW40K_Necrons.JobGiver_DeathmarkPhase"/>
       </subNodes>
     </thinkRoot>

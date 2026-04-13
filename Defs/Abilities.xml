@@ -12,7 +12,7 @@
 			<verbClass>Verb_CastAbility</verbClass>
 			<range>24.9</range>
 			<warmupTime>1.5</warmupTime>
-			<soundCast>Psy_PsychicLance</soundCast>
+			<soundCast>PsychicShockLanceCast</soundCast>
 			<targetParams>
 				<canTargetLocations>false</canTargetLocations>
 				<canTargetPawns>true</canTargetPawns>

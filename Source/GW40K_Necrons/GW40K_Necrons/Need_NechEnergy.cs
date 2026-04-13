@@ -26,7 +26,7 @@ public class Need_NechEnergy : Need
 
     public override void SetInitialLevel()
     {
-        CurLevel = 0.75f;
+        CurLevel = 1f;
     }
 
     public override int GUIChangeArrow => IsChargingNow() ? 1 : -1;

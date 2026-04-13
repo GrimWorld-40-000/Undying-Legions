@@ -60,4 +60,20 @@
   <GW40K_RechargeFromCoreDisabled>Core-to-gauss transfer is turned off on the Gauss energy panel.</GW40K_RechargeFromCoreDisabled>
   <GW40K_RechargeFromCoreDisabledReason>Core-to-gauss transfer is turned off on the Gauss energy panel.</GW40K_RechargeFromCoreDisabledReason>
 
+  <GW40K_HuntersMark_NotEnemy>Hunter's Mark can only be placed on enemies.</GW40K_HuntersMark_NotEnemy>
+  <GW40K_HuntersMark_AlreadyMarked>{0} is already marked for termination.</GW40K_HuntersMark_AlreadyMarked>
+
+  <GW40K_GaussWeapon_Disabled>Not enough Gauss Energy; Recharge your capacitor.</GW40K_GaussWeapon_Disabled>
+  <GW40K_AlertLowGaussEnergy_Single>{PAWN} — Low Gauss Energy</GW40K_AlertLowGaussEnergy_Single>
+  <GW40K_AlertLowGaussEnergy_Multi>{COUNT} colonists — Low Gauss Energy</GW40K_AlertLowGaussEnergy_Multi>
+  <GW40K_AlertLowGaussEnergyDesc>These colonists have a Gauss weapon equipped but insufficient energy to fire it. Recharge their capacitors.\n\nAffected:\n{CULPRITS}</GW40K_AlertLowGaussEnergyDesc>
+
+  <GW40K_AlertNechUncontrolled_Single>{PAWN} — Uncontrolled</GW40K_AlertNechUncontrolled_Single>
+  <GW40K_AlertNechUncontrolled_Multi>{COUNT} Nechs — Uncontrolled</GW40K_AlertNechUncontrolled_Multi>
+  <GW40K_AlertNechUncontrolledDesc>These Nechs have no valid Nechinator command link. Assign a Nechinator to bring them under control.\n\nAffected:\n{CULPRITS}</GW40K_AlertNechUncontrolledDesc>
+
+  <GW40K_AlertNechDamaged_Single>{PAWN} — Damaged</GW40K_AlertNechDamaged_Single>
+  <GW40K_AlertNechDamaged_Multi>{COUNT} Nechs — Damaged</GW40K_AlertNechDamaged_Multi>
+  <GW40K_AlertNechDamagedDesc>These Nechs have sustained damage and require necrodermis maintenance.\n\nAffected:\n{CULPRITS}</GW40K_AlertNechDamagedDesc>
+
 </LanguageData>

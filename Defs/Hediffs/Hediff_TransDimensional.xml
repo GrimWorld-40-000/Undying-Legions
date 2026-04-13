@@ -3,8 +3,9 @@
   <HediffDef>
     <defName>GW40K_TransDimensional</defName>
     <label>trans-dimensional</label>
-    <description>Out of phase with realspace and cannot be damaged directly. The carrier is momentarily displaced from the physical world — untouchable, but equally unable to act upon it.</description>
+    <description>Out of phase with realspace and cannot be damaged directly. The pawn is momentarily displaced from the physical world — untouchable, but equally unable to act.</description>
     <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.9, 0.65)</defaultLabelColor>
     <isBad>false</isBad>
     <comps>
       <li Class="HediffCompProperties_Disappears">

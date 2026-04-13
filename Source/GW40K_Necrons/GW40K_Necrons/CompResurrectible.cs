@@ -16,7 +16,7 @@ namespace GW40K_Necrons
     public class CompResurrectible : ThingComp
     {
         public CompProperties_Resurrectible Props => (CompProperties_Resurrectible)props;
-        
+
         public bool? canResurrect = null;
 
         public int ticksToResurrect = 625;
@@ -151,7 +151,7 @@ namespace GW40K_Necrons
                             wornApparel[i].Notify_PawnResurrected(pawn);
                         }
                     }
-                    
+
                     PawnDiedOrDownedThoughtsUtility.RemoveDiedThoughts(pawn);
 
                     pawn.royalty?.Notify_Resurrected();
@@ -164,7 +164,7 @@ namespace GW40K_Necrons
                     {
                         pawn.guest.SetNoInteraction();
                     }
-                    
+
                     if (selected && pawn != null)
                     {
                         Find.Selector.Select(pawn, playSound: false, forceDesignatorDeselect: false);

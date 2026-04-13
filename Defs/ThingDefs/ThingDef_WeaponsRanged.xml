@@ -27,7 +27,7 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="BaseBullet">
-		<defName>GW40k_Necron_ChainChargeBullet</defName>
+		<defName>GW40k_Necron_ChainChargeBullet</defName> <!-- Used for emitic -->
 		<label>beam repeater laser</label>
 		<thingClass>ChainProjectiles.ChainProjectile</thingClass>
 		<graphicData>
@@ -36,21 +36,21 @@
 		</graphicData>
 		<projectile>
 		  <damageDef>BeamBypassShields</damageDef>
-		  <damageAmountBase>5</damageAmountBase>
+		  <damageAmountBase>25</damageAmountBase>
 		  <beamMoteDef>Mote_BeamRepeaterLaser</beamMoteDef>
 		  <beamStartOffset>0.5</beamStartOffset>
-		  <armorPenetrationBase>0.5</armorPenetrationBase>
+		  <armorPenetrationBase>1.2</armorPenetrationBase>
 		</projectile>
 		<modExtensions>
 		  <li Class="ChainProjectiles.ChainProjectileModExtension">
-			<chainRange>10</chainRange>
+			<chainRange>4</chainRange> <!-- reduced from 10 to 4 -->
 			<chainMaxCount>4</chainMaxCount>
 		  </li>
 		</modExtensions>
 	</ThingDef>
 	
 	<ThingDef ParentName="BaseBullet">
-		<defName>GW40k_Necron_ChargeBullet</defName>
+		<defName>GW40k_Necron_ChargeBullet</defName> <!-- Used for Flayer and blaster -->
 		<label>charge shot</label>
 		<graphicData>
 			<texPath>Things/Projectile/Charge_Small</texPath>
@@ -58,8 +58,8 @@
 		</graphicData>
 		<projectile>
 			<damageDef>Bullet</damageDef>
-			<damageAmountBase>15</damageAmountBase>
-			<armorPenetrationBase>0.35</armorPenetrationBase>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>1.2</armorPenetrationBase> <!-- 1.0 lore default, astartes plasma cannon = .85, melta = 1.0.-->
 			<speed>70</speed>
 		</projectile>
 	</ThingDef>
@@ -77,6 +77,7 @@
 		<useHitPoints>False</useHitPoints>
 		<neverMultiSelect>True</neverMultiSelect>
 	</ThingDef>
+
 	<ThingDef Abstract="True" Name="GW40k_Necron_BulletLaser" ParentName="BaseBullet">
 		<thingClass>VEF.Weapons.LaserBeam</thingClass>
 		<drawOffscreen>true</drawOffscreen>
@@ -97,6 +98,7 @@
     
 		<seam>0.25</seam>
 	</ThingDef> 
+
 	 <ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VEF.Weapons.LaserBeamDef"> 
 		<defName>GW40k_Necron_Laser</defName>
 		<label>Necron Beam</label>
@@ -106,22 +108,22 @@
 		</textures>
 		<seam>0.1</seam>
 		<causefireChance>0</causefireChance>
-		<beamWidth>1.5</beamWidth>
+		<beamWidth>1.2</beamWidth>
 		<lifetime>60</lifetime>
 		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
 		<projectile>
 			<damageDef>Cut</damageDef>
-			<damageAmountBase>40</damageAmountBase>
-			<armorPenetrationBase>2.10</armorPenetrationBase>
+			<damageAmountBase>37</damageAmountBase>
+			<armorPenetrationBase>1.9</armorPenetrationBase>
 			<stoppingPower>3</stoppingPower>
 		</projectile>
 	</ThingDef> 
 	
-	 <!-- Disintegrator  -->
+	 <!-- Disintegrator - sniper for deathmark, outranged by specialized snipers -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_Disintegrator</defName>
 		<label>Disintegrator</label>
-		<description>Disintegrator.</description>
+		<description>The Synaptic Disintegrator is a long-barreled particle rifle designed for precise targeting and devastating damage. Disintegrators bypass most traditional armor, focusing primarily on destruction of tissue.\n\n &lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/Disintegrator</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -135,17 +137,17 @@
 		<statBases>
 			<WorkToMake>34000</WorkToMake>
 			<Mass>4.5</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyTouch>0.55</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.70</AccuracyMedium>
 			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown> <!-- worse than vanilla sniper -->
 		</statBases>
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
-			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
+			<GW40k_Necron_Component>15</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodermis>150</GW40k_Necron_Necrodermis>
 		</costList>
 		<weaponTags>
 			<li>GW_Necron_Ranged</li>
@@ -156,10 +158,10 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>GW40k_Necron_Laser</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>55</range>
+				<warmupTime>3.5</warmupTime>
+				<range>36</range>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<burstShotCount>1</burstShotCount>  <!--  only 1 - Crazy op -->
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>11</muzzleFlashScale>
@@ -189,16 +191,19 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
+			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
+				<gaussConsumption>0.12</gaussConsumption>
+			</li>
 		</modExtensions>
 	</ThingDef>
-	
-	<!-- Enmitic_Exterminator -->
+
+	<!-- Gauss Flayer infantry assault rifle -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
-		<defName>GW40k_Necron_Enmitic_Exterminator</defName>
-		<label>Enmitic Exterminator</label>
-		<description>Enmitic_Exterminator.</description>
+		<defName>GW40k_Necron_GaussFlayer</defName>
+		<label>Gauss Flayer</label>
+		<description>A rifle-like weapon consisting of a stock, a transparent containment-tube, and a charging mechanism. It emits a charged beam of green energy that disintegrates targets at a molecular level.\n\n &lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
-			<texPath>Things/Items/NecronWeapons/Enmitic_Exterminator</texPath>
+			<texPath>Things/Items/NecronWeapons/GaussFlayer</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1.00</drawSize>
 		</graphicData>
@@ -208,13 +213,13 @@
 			</skillRequirements>
 		</recipeMaker>
 		<statBases>
-			<WorkToMake>34000</WorkToMake>
+			<WorkToMake>24000</WorkToMake>
 			<Mass>4.5</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
-			<AccuracyShort>0.85</AccuracyShort>
-			<AccuracyMedium>0.70</AccuracyMedium>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.675</AccuracyMedium>
 			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
@@ -227,10 +232,10 @@
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>GW40k_Necron_ChargeBullet</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>55</range>
+				<warmupTime>2.0</warmupTime>
+				<range>27</range>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<burstShotCount>1</burstShotCount>
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>11</muzzleFlashScale>
@@ -238,7 +243,7 @@
 		</verbs>
 		<weaponTags>
 			<li>GW_Necron_Ranged</li>
-			<li>GW_Necron_Ranged_Exterminator</li>
+			<li>GW_Necron_Ranged_GaussFlayer</li>
 		</weaponTags>
 		<tools>
 			<li>
@@ -261,14 +266,17 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
+			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
+				<gaussConsumption>0.030</gaussConsumption>
+			</li>
 		</modExtensions>
 	</ThingDef>
-	
-	<!-- GaussBlaster -->
+
+	<!-- Gauss Blaster - infantry battle rifle -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_GaussBlaster</defName>
-		<label>GaussBlaster</label>
-		<description>GaussBlaster.</description>
+		<label>Gauss Blaster</label>
+		<description>A powerful twin-rifle variant of the standard Gauss Flayer. This version features a heavier frame and twin gauss coils. Blasters fire two charged energy beams that disintegrate targets at a molecular level.\n\n &lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/GaussBlaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -280,29 +288,29 @@
 			</skillRequirements>
 		</recipeMaker>
 		<statBases>
-			<WorkToMake>34000</WorkToMake>
-			<Mass>4.5</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
-			<AccuracyShort>0.85</AccuracyShort>
-			<AccuracyMedium>0.70</AccuracyMedium>
-			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+			<WorkToMake>29000</WorkToMake>
+			<Mass>7.5</Mass>
+			<AccuracyTouch>0.58</AccuracyTouch>
+			<AccuracyShort>0.75</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.55</AccuracyLong>
+			<RangedWeapon_Cooldown>2.7</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
-			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
+			<GW40k_Necron_Component>8</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodermis>120</GW40k_Necron_Necrodermis>
 		</costList>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>GW40k_Necron_ChainChargeBullet</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>55</range>
-				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<defaultProjectile>GW40k_Necron_ChargeBullet</defaultProjectile>
+				<warmupTime>2.2</warmupTime>
+				<range>26</range>
+				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>11</muzzleFlashScale>
@@ -336,16 +344,19 @@
 			<li Class="NecronComp.ModExtension_BulletArmorDegrade">
 				<hpDeductAmount>5</hpDeductAmount>
 			</li>
+			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
+				<gaussConsumption>0.050</gaussConsumption>
+			</li>
 		</modExtensions>
 	</ThingDef>
-	
-	<!-- GaussFlayer -->
+
+	<!-- Enmitic_Exterminator  - destroyer -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
-		<defName>GW40k_Necron_GaussFlayer</defName>
-		<label>GaussFlayer</label>
-		<description>GaussFlayer.</description>
+		<defName>GW40k_Necron_Enmitic_Exterminator</defName>
+		<label>Enmitic Exterminator</label>
+		<description>A specialized heavy anti-infantry cannon that fires a pulse of "enmitic" energy that disintegrates targets using molecular repulsion.\n\n &lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
-			<texPath>Things/Items/NecronWeapons/GaussFlayer</texPath>
+			<texPath>Things/Items/NecronWeapons/Enmitic_Exterminator</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1.00</drawSize>
 		</graphicData>
@@ -355,28 +366,28 @@
 			</skillRequirements>
 		</recipeMaker>
 		<statBases>
-			<WorkToMake>34000</WorkToMake>
-			<Mass>4.5</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
+			<WorkToMake>48000</WorkToMake>
+			<Mass>18.5</Mass>
+			<AccuracyTouch>0.45</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.70</AccuracyMedium>
 			<AccuracyLong>0.60</AccuracyLong>
-			<RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
+			<RangedWeapon_Cooldown>4.2</RangedWeapon_Cooldown>
 		</statBases>
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
-			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
+			<GW40k_Necron_Component>18</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodermis>250</GW40k_Necron_Necrodermis>
 		</costList>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>GW40k_Necron_ChargeBullet</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>55</range>
-				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<defaultProjectile>GW40k_Necron_ChainChargeBullet</defaultProjectile>
+				<warmupTime>3.5</warmupTime>
+				<range>35</range>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
 				<burstShotCount>3</burstShotCount>
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
@@ -385,7 +396,7 @@
 		</verbs>
 		<weaponTags>
 			<li>GW_Necron_Ranged</li>
-			<li>GW_Necron_Ranged_GaussFlayer</li>
+			<li>GW_Necron_Ranged_Exterminator</li>
 		</weaponTags>
 		<tools>
 			<li>
@@ -408,14 +419,17 @@
 		</tools>
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
+			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
+				<gaussConsumption>0.36</gaussConsumption>
+			</li>
 		</modExtensions>
 	</ThingDef>
-	
+
 	<!-- TeslaCarbine  -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_TeslaCarbine</defName>
-		<label>TeslaCarbine</label>
-		<description>TeslaCarbine.</description>
+		<label>Tesla Carbine</label>
+		<description>A specialized energy weapon that fires arcs of viridian lightning that bounce between targets. Each hit can chain to nearby targets, bouncing up to 10 times.</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/TeslaCarbine</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -429,7 +443,7 @@
 		<statBases>
 			<WorkToMake>34000</WorkToMake>
 			<Mass>4.5</Mass>
-			<AccuracyTouch>0.90</AccuracyTouch>
+			<AccuracyTouch>0.75</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.70</AccuracyMedium>
 			<AccuracyLong>0.60</AccuracyLong>
@@ -438,16 +452,16 @@
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
-			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
+			<GW40k_Necron_Component>12</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodermis>150</GW40k_Necron_Necrodermis>
 		</costList>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<defaultProjectile>GW40k_Necron_TeslaBeam</defaultProjectile>
-				<warmupTime>2.5</warmupTime>
-				<range>55</range>
+				<warmupTime>2.8</warmupTime>
+				<range>26</range>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Shot_ChargeRifle</soundCast>
@@ -489,7 +503,7 @@
 		<thingClass>ChainProjectiles.ChainProjectile</thingClass>
 		<drawOffscreen>true</drawOffscreen>
 		<graphicData>
-			<texPath>Things/Projectiles/Laser_Red</texPath>
+			<texPath>Things/Projectiles/TeslaCarbineMote</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
       <shaderType>TransparentPostLight</shaderType>
 		</graphicData>
@@ -502,7 +516,7 @@
 		</projectile>
     <modExtensions>
       <li Class="ChainProjectiles.ChainProjectileModExtension">
-        <chainRange>10</chainRange>
+        <chainRange>4</chainRange> <!-- default 10 is crazy -->
         <chainMaxCount>10</chainMaxCount>
       </li>
     </modExtensions>

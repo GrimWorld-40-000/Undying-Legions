@@ -22,21 +22,29 @@ public class HuntersMarkAbility : CompAbilityEffect
 
         targetPawn.health.AddHediff(NecronDefOfs.GW40K_HuntersMark);
 
-        // Departure flash on the caster.
-        EffecterDefOf.ForcedVisible.Spawn(parent.pawn.Position, parent.pawn.MapHeld);
-        // Arrival flash on the target.
-        EffecterDefOf.ForcedVisible.Spawn(targetPawn.Position, targetPawn.MapHeld);
+        // DefDatabase<EffecterDef>.GetNamed("PsycastPsychicEffect", errorOnFail: false)?.Spawn(targetPawn.Position, targetPawn.MapHeld).Cleanup();
     }
 
-    // Prevent casting on already-marked targets (optional quality of life).
     public override bool CanApplyOn(LocalTargetInfo target, LocalTargetInfo dest)
     {
-        if (target.Thing is Pawn p && p.health.hediffSet.HasHediff(NecronDefOfs.GW40K_HuntersMark))
+        if (target.Thing is not Pawn p) return base.CanApplyOn(target, dest);
+
+        // Enemy pawns only.
+        if (!GenHostility.HostileTo(p, parent.pawn))
+        {
+            Messages.Message("GW40K_HuntersMark_NotEnemy".Translate(p.LabelShort),
+                MessageTypeDefOf.RejectInput, false);
+            return false;
+        }
+
+        // Prevent casting on already-marked targets.
+        if (p.health.hediffSet.HasHediff(NecronDefOfs.GW40K_HuntersMark))
         {
             Messages.Message("GW40K_HuntersMark_AlreadyMarked".Translate(p.LabelShort),
                 MessageTypeDefOf.RejectInput, false);
             return false;
         }
+
         return base.CanApplyOn(target, dest);
     }
 }

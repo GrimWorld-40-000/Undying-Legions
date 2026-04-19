@@ -19,10 +19,7 @@ public class Alert_NechUncontrolled : Alert
         defaultPriority = AlertPriority.Medium;
     }
 
-    public override string GetLabel() =>
-        targets.Count == 1
-            ? "GW40K_AlertNechUncontrolled_Single".Translate(labels[0].Named("PAWN"))
-            : "GW40K_AlertNechUncontrolled_Multi".Translate(targets.Count.ToStringCached().Named("COUNT"));
+    public override string GetLabel() => "GW40K_AlertNechUncontrolled".Translate();
 
     public override TaggedString GetExplanation() =>
         "GW40K_AlertNechUncontrolledDesc".Translate(labels.ToLineList("  - ").Named("CULPRITS"));

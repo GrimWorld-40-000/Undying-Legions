@@ -56,7 +56,7 @@ public static class HarmonyPatch_MechControl
             return;
         if (!isNecronMech || !hasCommandProtocol)
             return;
-        if (mech.GetOverseer() != null)
+        if (HediffComp_NecronCommandTracker.GetCommanderOf(mech) != null)
             return;
         if (mech.Faction != pawn.Faction)
             return;

@@ -35,6 +35,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\NecronGeneUtil\NecronGeneUtil.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- Uses $(SteamPath) and $(RimworldPath) environment variables -->
     <Reference Include="0Harmony">
       <HintPath>$(SteamPath)\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>

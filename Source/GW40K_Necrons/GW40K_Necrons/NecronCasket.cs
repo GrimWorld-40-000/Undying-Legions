@@ -18,6 +18,8 @@ public class NecronCasket : Building_CryptosleepCasket
 {
     private const string NecrodermisNeedDefName = "GW_UD_Necrodermis";
     private int ticksToFinish = -1;
+    private int totalStasisTicks = -1;
+    private bool earlyEjectPending = false;
 
     /// <summary>True while a cycle is in progress but fuel, power, or flick prevents advancing (timer and healing hold).</summary>
     public bool StasisCyclePausedForFuelOrPower =>
@@ -27,6 +29,7 @@ public class NecronCasket : Building_CryptosleepCasket
     {
         base.ExposeData();
         Scribe_Values.Look(ref ticksToFinish, "necronStasisTicksToFinish", -1);
+        Scribe_Values.Look(ref totalStasisTicks, "necronStasisTotalTicks", -1);
     }
 
     public override bool Accepts(Thing thing)
@@ -45,15 +48,33 @@ public class NecronCasket : Building_CryptosleepCasket
 
     public override void EjectContents()
     {
+        List<Pawn> earlyEjects = earlyEjectPending ? new List<Pawn>() : null;
         foreach (Thing thing in (IEnumerable<Thing>)this.innerContainer)
         {
             if (thing is Pawn pawn)
+            {
                 PawnComponentsUtility.AddComponentsForSpawn(pawn);
+                earlyEjects?.Add(pawn);
+            }
         }
         if (!this.Destroyed)
             SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(SoundInfo.InMap(new TargetInfo(this.Position, this.Map)));
         this.innerContainer.TryDropAll(this.InteractionCell, this.Map, ThingPlaceMode.Near);
         this.contentsKnown = true;
+        earlyEjectPending = false;
+
+        if (earlyEjects == null)
+            return;
+        bool significantTimeRemaining = totalStasisTicks > 0
+            && ticksToFinish > totalStasisTicks * 0.1f;
+        if (!significantTimeRemaining)
+            return;
+        foreach (Pawn pawn in earlyEjects)
+        {
+            if (pawn.Dead || !pawn.Spawned || pawn.mindState == null)
+                continue;
+            pawn.mindState.mentalStateHandler?.TryStartMentalState(MentalStateDefOf.Berserk, null, forceWake: true);
+        }
     }
 
     // Keep vanilla "Open" command visible while occupied; active-cycle interruption is confirmed in gizmo action wrapper.
@@ -64,6 +85,7 @@ public class NecronCasket : Building_CryptosleepCasket
         this.ticksToFinish = thing is Pawn p
             ? NecronStasisUtility.StasisCycleTicksFor(p)
             : Mathf.Max(1, Mathf.RoundToInt(GenDate.TicksPerDay * (NecronStasisUtility.BaseStasisHours / 24f)));
+        this.totalStasisTicks = this.ticksToFinish;
         return base.TryAcceptThing(thing, true);
     }
 
@@ -79,7 +101,10 @@ public class NecronCasket : Building_CryptosleepCasket
             fuel?.BurnFuelForStasisProcessingTick();
             --this.ticksToFinish;
             if (this.ContainedThing is Pawn necroPawn)
+            {
                 RefillNecrodermisDuringStasis(necroPawn);
+                RefillGaussDuringStasis(necroPawn);
+            }
             if (this.ContainedThing is Pawn healPawn && StasisHealIntervalTicks() > 0
                 && this.IsHashIntervalTick(StasisHealIntervalTicks()))
             {
@@ -96,7 +121,17 @@ public class NecronCasket : Building_CryptosleepCasket
         this.ticksToFinish = -1;
         Pawn pawn = this.innerContainer.First<Thing>() as Pawn;
         if (pawn != null)
+        {
             pawn.needs.TryGetNeed(NecronDefOfs.GW40K_CoreFlux)?.SetInitialLevel();
+            pawn.needs.TryGetNeed(NecronDefOfs.GW40K_NechEnergy)?.SetInitialLevel();
+            // Complete stasis rest resets the reanimation cooldown
+            if (NecronDefOfs.GW40K_ReanimationCooldown != null)
+            {
+                Hediff cooldown = pawn.health?.hediffSet?.GetFirstHediffOfDef(NecronDefOfs.GW40K_ReanimationCooldown);
+                if (cooldown != null)
+                    pawn.health.RemoveHediff(cooldown);
+            }
+        }
         this.Open();
     }
 
@@ -133,8 +168,20 @@ public class NecronCasket : Building_CryptosleepCasket
         if (need == null || need.CurLevel >= 1f)
             return;
 
-        float gainPerDay = NecronStasisFuelUtility.StasisNecrodermisUnitsBurnedPerDay()
-            * NecronStasisFuelUtility.NecrodermisNutritionPerUnitFromSettings();
+        NecronStasisSettingsDef s = NecronDefOfs.GW40K_NecronStasisSettings;
+        float gainPerDay = s != null && s.stasisNecrodermisGainPerDay > 0f ? s.stasisNecrodermisGainPerDay : 1.0f;
+        need.CurLevel = Mathf.Min(1f, need.CurLevel + gainPerDay / GenDate.TicksPerDay);
+    }
+
+    private static void RefillGaussDuringStasis(Pawn pawn)
+    {
+        if (pawn?.needs == null)
+            return;
+        Need need = pawn.needs.TryGetNeed(NecronDefOfs.GW40K_NechEnergy);
+        if (need == null || need.CurLevel >= 1f)
+            return;
+        NecronStasisSettingsDef s = NecronDefOfs.GW40K_NecronStasisSettings;
+        float gainPerDay = s != null && s.stasisGaussGainPerDay > 0f ? s.stasisGaussGainPerDay : 1.2f;
         need.CurLevel = Mathf.Min(1f, need.CurLevel + gainPerDay / GenDate.TicksPerDay);
     }
 
@@ -233,13 +280,17 @@ public class NecronCasket : Building_CryptosleepCasket
                 Action original = cmd.action;
                 cmd.action = delegate
                 {
-                    if (this.ticksToFinish > 0 && this.Faction == Faction.OfPlayer)
+                    if (this.ticksToFinish > 0)
                     {
                         Pawn pawn = this.ContainedThing as Pawn;
                         TaggedString text = pawn != null
                             ? "GW40K_StasisCryptInterruptConfirm".Translate(pawn.Named("PAWN"))
                             : "GW40K_StasisCryptInterruptConfirmNoPawn".Translate();
-                        Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(text, original, destructive: true));
+                        Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(text, delegate
+                        {
+                            earlyEjectPending = true;
+                            original();
+                        }, destructive: true));
                     }
                     else
                     {

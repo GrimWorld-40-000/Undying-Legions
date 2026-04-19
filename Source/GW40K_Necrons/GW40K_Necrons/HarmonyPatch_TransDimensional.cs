@@ -12,9 +12,14 @@ namespace GW40K_Necrons;
 [HarmonyPatch(typeof(Pawn), nameof(Pawn.PreApplyDamage))]
 public static class HarmonyPatch_TransDimensional_AbsorbDamage
 {
-    public static void Prefix(Pawn __instance, ref bool absorbed)
+    // Must be Postfix, not Prefix: Pawn.PreApplyDamage assigns `absorbed` from base + health trackers,
+    // which overwrites any Prefix that set absorbed early. Last priority so we win after other postfixes.
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.Last)]
+    public static void Postfix(Pawn __instance, ref bool absorbed)
     {
         if (absorbed) return;
+        if (__instance?.health?.hediffSet == null) return;
         if (__instance.health.hediffSet.HasHediff(NecronDefOfs.GW40K_TransDimensional))
             absorbed = true;
     }
@@ -32,17 +37,24 @@ public static class HarmonyPatch_TransDimensional_BlockShooting
     }
 }
 
+[StaticConstructorOnStartup]
 [HarmonyPatch(typeof(PawnRenderer), "RenderPawnAt")]
 [HarmonyPatch(new[] { typeof(Vector3), typeof(Rot4?), typeof(bool) })]
 public static class HarmonyPatch_TransDimensional_GreenOverlay
 {
     // Layer 1: plain green gradient — tints the entire unit green.
-    private static Material _baseMat;
-    private static Material BaseMat => _baseMat ??= BuildBaseMat();
+    private static readonly Material _baseMat;
+    private static Material BaseMat => _baseMat;
 
     // Layer 2: hexagonal border pattern drawn on top at ~50% opacity.
-    private static Material _hexMat;
-    private static Material HexMat => _hexMat ??= BuildHexMat();
+    private static readonly Material _hexMat;
+    private static Material HexMat => _hexMat;
+
+    static HarmonyPatch_TransDimensional_GreenOverlay()
+    {
+        _baseMat = BuildBaseMat();
+        _hexMat  = BuildHexMat();
+    }
 
     // ── Layer 1: soft radial green gradient ────────────────────────────────
     private static Material BuildBaseMat()

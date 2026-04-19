@@ -1,7 +1,19 @@
 <LanguageData>
+
 	
 	<NecrodemisInfection>some ore on the map are infected by necrodemis</NecrodemisInfection>
   <MessageNecronResurrection>A corpse is resurrecting on its own.</MessageNecronResurrection>
+
+  <!-- Resurrection Protocol (CompResurrectible letters) -->
+  <GW40K_ResurrectionTriggeredFriendlyTitle>Resurrection protocol engaged</GW40K_ResurrectionTriggeredFriendlyTitle>
+  <GW40K_ResurrectionTriggeredFriendlyDesc>{PAWN_nameDef}'s necrodermis is sealing critical damage. The core is still intact — reanimation will take many hours if the remains are not destroyed.</GW40K_ResurrectionTriggeredFriendlyDesc>
+  <GW40K_ResurrectionCompletedFriendlyTitle>Reanimation complete</GW40K_ResurrectionCompletedFriendlyTitle>
+  <GW40K_ResurrectionCompletedFriendlyDesc>{PAWN_nameDef} has resumed autonomous function. The Resurrection Protocol has restored the lattice from catastrophic failure.</GW40K_ResurrectionCompletedFriendlyDesc>
+  <GW40K_ResurrectionTriggeredEnemyTitle>Hostile reanimating</GW40K_ResurrectionTriggeredEnemyTitle>
+  <GW40K_ResurrectionTriggeredEnemyDesc>An enemy construct is repairing itself. Destroy the remains before it can finish reanimation — this will take many hours.</GW40K_ResurrectionTriggeredEnemyDesc>
+  <GW40K_ResurrectionCompletedEnemyTitle>Hostile reanimated</GW40K_ResurrectionCompletedEnemyTitle>
+  <GW40K_ResurrectionCompletedEnemyDesc>A hostile Necron has restored itself from apparent destruction.</GW40K_ResurrectionCompletedEnemyDesc>
+
   <GW_UD_TranshumanistOnly>Transhumanist only</GW_UD_TranshumanistOnly>
   <GW_UD_NecrodermisNeedOnly>Only units with a necrodermis core can metabolize this.</GW_UD_NecrodermisNeedOnly>
 
@@ -9,6 +21,7 @@
   <AlertCoreFluxCriticalPawns>{NUMCULPRITS} colonists core-flux critical</AlertCoreFluxCriticalPawns>
   <AlertCoreFluxCriticalDesc>These units are nearly out of core flux. If it empties completely they will enter forced Eternal Slumber until recharged in a stasis crypt.\n\nAffected:\n{CULPRITS}</AlertCoreFluxCriticalDesc>
   <GW40K_CoreFluxBodyDegradationOffset>Body degradation drain: +{0}/day</GW40K_CoreFluxBodyDegradationOffset>
+  <GW40K_CoreFluxDownedDrain>Downed drain: +{0}/day</GW40K_CoreFluxDownedDrain>
   <GW40K_CoreFluxCoreChargeDrain>Core charge drain: -{0}/day</GW40K_CoreFluxCoreChargeDrain>
 
   <GW40K_EternalSlumberInterrupted>{PAWN_nameDef}'s Eternal Slumber was broken improperly. Engrams spike into uncontrollable aggression.</GW40K_EternalSlumberInterrupted>
@@ -17,6 +30,11 @@
   <GW40K_EnterStasisCrypt>Enter stasis crypt</GW40K_EnterStasisCrypt>
   <GW40K_LoadIntoStasisCrypt>Load into Stasis Crypt</GW40K_LoadIntoStasisCrypt>
   <GW40K_CannotLoadIntoStasisCrypt>Cannot load into Stasis Crypt</GW40K_CannotLoadIntoStasisCrypt>
+
+  <GW40K_StasisRestoring>↑ restoring</GW40K_StasisRestoring>
+  <GW40K_StasisRestoringTip>Restoring in stasis crypt at +{0} per day.\n{1}</GW40K_StasisRestoringTip>
+  <GW40K_StasisRestoringTipTime>Full in ~{0}h</GW40K_StasisRestoringTipTime>
+  <GW40K_StasisRestoringTipFull>Already full.</GW40K_StasisRestoringTipFull>
 
   <GW40K_StasisCryptTimeRemaining>Time remaining on cycle: {REMAINING}</GW40K_StasisCryptTimeRemaining>
   <GW40K_StasisCryptCyclePaused>Stasis cycle paused — needs necrodermis fuel, power, or the crypt must be switched on.</GW40K_StasisCryptCyclePaused>
@@ -32,7 +50,7 @@
   <GW40K_TakeCommandOfNech>Take command of {0}</GW40K_TakeCommandOfNech>
   <GW40K_CommandBandwidthFull>Command bandwidth is at capacity. Destroy or release a construct first.</GW40K_CommandBandwidthFull>
   <GW40K_CommandOutOfRange>Target is outside command range ({0} tiles).</GW40K_CommandOutOfRange>
-  <GW40K_CommandOutOfRangeDraftedOnlyMove>That order is outside command range ({0} tiles) of the commander.</GW40K_CommandOutOfRangeDraftedOnlyMove>
+  <GW40K_CommandOutOfRangeDraftedOnlyMove>Target is outside command range ({0} tiles) of the commander.</GW40K_CommandOutOfRangeDraftedOnlyMove>
   <GW40K_NechAlreadyCommanded>{0} already has a commander.</GW40K_NechAlreadyCommanded>
   <GW40K_TakeCommandSuccess>{0} has successfully taken command of {1}.</GW40K_TakeCommandSuccess>
   <GW40K_ReleaseCommandOfNech>Release command of {0}</GW40K_ReleaseCommandOfNech>
@@ -44,6 +62,8 @@
   <GW40K_NechCommanderLine>Commander: {0}</GW40K_NechCommanderLine>
   <GW40K_NechUncontrolledLine>Uncontrolled {0}s</GW40K_NechUncontrolledLine>
   <GW40K_NechCannotDraftUncontrolled>{0} is uncontrolled and cannot be drafted. Assign a nechinator first.</GW40K_NechCannotDraftUncontrolled>
+  <GW40K_NechCannotOrderUncontrolled>{0} is uncontrolled and cannot be given orders. Assign a nechinator first.</GW40K_NechCannotOrderUncontrolled>
+  <GW40K_NechMustDraftToAttack>Pawn is undrafted.</GW40K_NechMustDraftToAttack>
   <GW40K_NechCoreFluxLine>Core flux: {0}</GW40K_NechCoreFluxLine>
   <GW40K_NechNecrodermisLine>Necrodermis: {0}</GW40K_NechNecrodermisLine>
   <GW40K_NechEnergyLine>Nech energy: {0}</GW40K_NechEnergyLine>
@@ -68,12 +88,28 @@
   <GW40K_AlertLowGaussEnergy_Multi>{COUNT} colonists — Low Gauss Energy</GW40K_AlertLowGaussEnergy_Multi>
   <GW40K_AlertLowGaussEnergyDesc>These colonists have a Gauss weapon equipped but insufficient energy to fire it. Recharge their capacitors.\n\nAffected:\n{CULPRITS}</GW40K_AlertLowGaussEnergyDesc>
 
-  <GW40K_AlertNechUncontrolled_Single>{PAWN} — Uncontrolled</GW40K_AlertNechUncontrolled_Single>
-  <GW40K_AlertNechUncontrolled_Multi>{COUNT} Nechs — Uncontrolled</GW40K_AlertNechUncontrolled_Multi>
+  <GW40K_AlertNechUncontrolled>Uncontrolled nechs</GW40K_AlertNechUncontrolled>
   <GW40K_AlertNechUncontrolledDesc>These Nechs have no valid Nechinator command link. Assign a Nechinator to bring them under control.\n\nAffected:\n{CULPRITS}</GW40K_AlertNechUncontrolledDesc>
 
   <GW40K_AlertNechDamaged_Single>{PAWN} — Damaged</GW40K_AlertNechDamaged_Single>
   <GW40K_AlertNechDamaged_Multi>{COUNT} Nechs — Damaged</GW40K_AlertNechDamaged_Multi>
   <GW40K_AlertNechDamagedDesc>These Nechs have sustained damage and require necrodermis maintenance.\n\nAffected:\n{CULPRITS}</GW40K_AlertNechDamagedDesc>
+
+  <!-- Dysphorakh acquisition (letter sent after The Sorrow completes its full cycle) -->
+  <GW40K_TheSorrow_DysphorakhTitle>New Trait: Dysphorakh</GW40K_TheSorrow_DysphorakhTitle>
+  <GW40K_TheSorrow_DysphorakhDesc>The Sorrow left a scar in {PAWN_nameDef}'s neural engrams. Surfacing from Soul-Debt immersion, the mind carried phantom-biological sensations it could not shed — and now cannot stop generating.\n\n{PAWN_nameDef} has developed Dysphorakh: the cascading phantom-biological condition unique to Necrons who could not fully suppress the memory of what they once were. Expect recurring episodes of phantom suffocation, starvation, and sensory horror.\n\nIn the most severe cases, Dysphorakh is the first step toward the Flaying Curse.</GW40K_TheSorrow_DysphorakhDesc>
+
+  <!-- Dysphorakh episodes -->
+  <GW40K_Dysphorakh_Suffocation>{PAWN_nameDef} is seized by phantom suffocation — drowning in lungs that no longer exist.</GW40K_Dysphorakh_Suffocation>
+  <GW40K_Dysphorakh_PhantomHunger>{PAWN_nameDef} is wracked by phantom hunger — desperately seeking food for a stomach the living metal cannot provide.</GW40K_Dysphorakh_PhantomHunger>
+  <GW40K_Dysphorakh_SensoryDisconnect>{PAWN_nameDef} has entered sensory disconnect — buried alive in a sarcophagus with no skin, no heartbeat, no warmth.</GW40K_Dysphorakh_SensoryDisconnect>
+  <GW40K_Dysphorakh_Clawing>{PAWN_nameDef} has begun tearing at their own frame — compulsively clawing to clear obstructions that are not there. Intervene before the Flaying Curse takes hold.</GW40K_Dysphorakh_Clawing>
+  <GW40K_Dysphorakh_Clawing_Stage2>{PAWN_nameDef}'s clawing has intensified to mid-stage. The Flaying Curse is strengthening. Intervention is becoming critical.</GW40K_Dysphorakh_Clawing_Stage2>
+  <GW40K_Dysphorakh_Clawing_Stage3>{PAWN_nameDef}'s clawing has reached critical intensity — the Flaying Curse can no longer be talked down. Only downing the pawn can stop it. A Flayed One may be imminent.</GW40K_Dysphorakh_Clawing_Stage3>
+  <GW40K_Dysphorakh_FlayedConversion>{PAWN_nameDef} has succumbed to the Flaying Curse. The Necron is no more — only a Flayed One remains. The rage will pass; after that, they can be brought under command.</GW40K_Dysphorakh_FlayedConversion>
+
+  <GW40K_RechargeGauss>Recharge gauss capacitor</GW40K_RechargeGauss>
+  <GW40K_RechargeGaussNoEnergy>Cannot recharge gauss capacitor (battery empty)</GW40K_RechargeGaussNoEnergy>
+  <GW40K_RechargeGaussNoPath>Cannot recharge gauss capacitor (no path)</GW40K_RechargeGaussNoPath>
 
 </LanguageData>

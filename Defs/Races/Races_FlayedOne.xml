@@ -1,5 +1,9 @@
 <Defs>
 
+  <!-- DO NOT MODIFY — The Flayed One is the only Necron with 4 unique directional head textures
+       (north/south/east/west). Vanilla Graphic_Multi loads _west.png directly when present.
+       The _west.png is pre-flipped horizontally so it renders correctly without a Harmony patch.
+       Changing graphicPath or removing any of the 4 textures will break west-facing rendering. -->
   <HeadTypeDef ParentName="AverageBase">
     <defName>GW40K_FlayedOne_HeadType</defName>
     <graphicPath>GW40K/FlayedOne/Head/Male_Average_Normal</graphicPath>
@@ -9,10 +13,11 @@
 	<!-- <selectionWeight>0</selectionWeight> -->
   </HeadTypeDef>
 
-  <ThingDef Name="GW40K_NecronFlayedOne" ParentName="BasePawn">
+  <!-- Not spawned: Nech/faction/monolith use UD_Necron_FlayedOne; this race is only applied by Dysphorakh Flayed One conversion. -->
+  <ThingDef Name="GW40K_NecronFlayedOne" ParentName="GW40K_BaseNecronSoldier">
     <defName>GW40K_NecronFlayedOne</defName>
     <label>necron flayed one</label>
-    <description>asd</description>
+    <description>a corrupted Necron, driven to madness by an ancient, infectious curse. Flayed Ones are devolving ghouls who yearn for the biological bodies they lost millions of years ago, draping themselves in the rotting skin of their victims in a futile attempt to feel alive again.</description>
     <statBases>
       <MarketValue>1750</MarketValue>
       <MoveSpeed>4.6</MoveSpeed>
@@ -22,7 +27,7 @@
       <LeatherAmount>0</LeatherAmount>
       <Wildness>0.0</Wildness>
       <MeleeCooldownFactor>0.8</MeleeCooldownFactor>
-      <AimingDelayFactor>20</AimingDelayFactor>
+      <AimingDelayFactor>1</AimingDelayFactor>
       <ShootingAccuracyPawn>0.01</ShootingAccuracyPawn>
     </statBases>
     <tools>
@@ -47,36 +52,37 @@
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>
     </tools>
+    <comps>
+      <!-- Tracks how long the Flayed One has lacked a Nechinator command link (for inspect UI + future uncontrolled behaviour). -->
+      <li Class="GW40K_Necrons.CompProperties_NechUncontrolledTimer" />
+    </comps>
     <race>
-      <thinkTreeMain>Humanlike</thinkTreeMain>
-      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
-      <intelligence>Humanlike</intelligence>
-      <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>10000</lifeExpectancy>
-      <bloodDef>GW40K_Filth_NecronBlood</bloodDef>
-      <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
-      <nameCategory>HumanStandard</nameCategory>
-      <body>GW40K_NecronBody</body>
-      <renderTree>Humanlike</renderTree>
-      <baseBodySize>1</baseBodySize>
-      <baseHealthScale>1.5</baseHealthScale>
-      <foodType>OmnivoreHuman</foodType>
-      <meatMarketValue>0</meatMarketValue>
-      <manhunterOnDamageChance>0</manhunterOnDamageChance>
-      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+      <!-- Uses the stripped Flayed One think tree: no work/joy/mood breaks; flesh-seek + Nechinator lord duty only. -->
+      <thinkTreeMain>GW40K_FlayedOne_ThinkTree</thinkTreeMain>
+      <!-- Flayed Ones can only consume raw flesh and corpses — the curse drives hunger for organic matter. -->
+      <foodType>Meat, Corpse</foodType>
+      <!-- 75% of a standard colonist's hunger rate — living metal, but the phantom hunger is real. -->
+      <baseHungerRate>0.75</baseHungerRate>
+      <!-- Explicit mechanoid sounds. Scyther chosen: fast, blade-armed, matches the Flayed One's predatory profile.
+           Stated here directly rather than relying on inheritance — humanlike pawns can bypass lifeStage sounds. -->
+      <soundCallIntervalRange>1000~2000</soundCallIntervalRange>
+      <soundCallIntervalFriendlyFactor>2</soundCallIntervalFriendlyFactor>
       <lifeStageAges>
         <li>
           <def>HumanlikeAdult</def>
           <minAge>0</minAge>
+          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
       </lifeStageAges>
-      <hediffGiverSets>
-        <li>OrganicStandard</li>
-        <li>GW40K_Necron_HediffGiverSet</li>
-      </hediffGiverSets>
     </race>
-
     <modExtensions>
+      <!-- Registers the Flayed One with the Nechinator command system. Cost 1 bandwidth — same as a standard Nech. -->
+      <li Class="GW40K_Necrons.NecronMechExtension">
+        <commandBandwidthCost>1</commandBandwidthCost>
+        <coreSize>1</coreSize>
+      </li>
       <li Class="GW40K_Necrons.NonOrganicPawn">
         <passion>Minor</passion>
         <passionType>Minor</passionType>

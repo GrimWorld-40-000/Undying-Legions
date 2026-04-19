@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using LudeonTK;
 using RimWorld;
 using Verse;
@@ -12,21 +11,39 @@ namespace GW40K_Necrons;
 /// </summary>
 public static class DebugActions_UndyingLegions
 {
-    private static IEnumerable<PawnKindDef> UdTestPawnKinds()
+    /// <summary>
+    /// Ordered list for bulk dev spawn — humanlike UD kinds, xeno Flayed colonist, all playable Nechs, scarab.
+    /// Not the same as <see cref="UdXenoDevTools.IsUdXenoPawnKind"/> (that only matches races with <c>NecronMechExtension</c>).
+    /// </summary>
+    private static readonly string[] BulkTestPawnKindDefNames =
+    [
+        "UD_NecronCryptek",
+        "UD_NecronOverlord",
+        "UD_NecronLychguard",
+        "UD_NecronLychguard_2",
+        "UD_NecronDeathmark",
+        "GW40K_NecronFlayedOnePawnKind_Colonist",
+        "UD_Necron_Warrior",
+        "UD_Necron_Cryptothrall",
+        "UD_Necron_Immortal",
+        "GW40K_ScarabSwarm",
+    ];
+
+    private static IEnumerable<PawnKindDef> BulkTestPawnKinds()
     {
-        return DefDatabase<PawnKindDef>.AllDefsListForReading
-            .Where(pk =>
-                pk.defName.StartsWith("UD_")
-                && pk.defName.IndexOf("Unused", System.StringComparison.OrdinalIgnoreCase) < 0
-                && !pk.defName.StartsWith("UD_Unused", System.StringComparison.OrdinalIgnoreCase)
-                && pk.race != null);
+        foreach (string defName in BulkTestPawnKindDefNames)
+        {
+            PawnKindDef def = DefDatabase<PawnKindDef>.GetNamedSilentFail(defName);
+            if (def != null)
+                yield return def;
+        }
     }
 
     /// <summary>
     /// Use <see cref="DebugActionType.Action"/> — RimWorld 1.6's ToolMap delegate signature does not match
     /// <c>void Method(IntVec3)</c> here and breaks the Actions debug menu.
     /// </summary>
-    [DebugAction("Undying Legions", "Spawn all UD_ kinds + join player (at mouse cell)", actionType = DebugActionType.Action,
+    [DebugAction("Undying Legions", "Spawn all test pawn kinds + join player (at mouse cell)", actionType = DebugActionType.Action,
         allowedGameStates = AllowedGameStates.PlayingOnMap)]
     public static void SpawnAllUdPawns()
     {
@@ -37,7 +54,7 @@ public static class DebugActions_UndyingLegions
         IntVec3 cell = UI.MouseCell();
         Faction player = Faction.OfPlayer;
         int tile = map.Tile;
-        List<PawnKindDef> kinds = UdTestPawnKinds().OrderBy(pk => pk.defName).ToList();
+        List<PawnKindDef> kinds = new List<PawnKindDef>(BulkTestPawnKinds());
         int i = 0;
         foreach (PawnKindDef kind in kinds)
         {
@@ -56,7 +73,7 @@ public static class DebugActions_UndyingLegions
             i++;
         }
 
-        Messages.Message($"Spawned {i} UD_ pawn kinds near {cell}.", MessageTypeDefOf.TaskCompletion, false);
+        Messages.Message($"Spawned {i} Undying Legions test pawn kinds near {cell}.", MessageTypeDefOf.TaskCompletion, false);
     }
 
     private static void JoinPlayerColony(Pawn pawn)
@@ -67,5 +84,20 @@ public static class DebugActions_UndyingLegions
         if (pawn.Faction != Faction.OfPlayer)
             pawn.SetFaction(Faction.OfPlayer);
         pawn.guest?.SetGuestStatus(null);
+    }
+
+    /// <summary>
+    /// Next time silhouettes are drawn, logs heuristics for <see cref="DynamicDrawManager.DrawThings"/> (missing texPath, Graphic throws).
+    /// Zoom out first if the error only happens at max zoom.
+    /// </summary>
+    [DebugAction("Undying Legions", "Diagnose silhouette / dynamic draw list (next silhouette draw)", actionType = DebugActionType.Action,
+        allowedGameStates = AllowedGameStates.PlayingOnMap)]
+    public static void DiagnoseSilhouetteDrawList()
+    {
+        DynamicDrawSilhouetteDiagnostics.PendingScan = true;
+        Messages.Message(
+            "Undying Legions: will scan DynamicDrawManager.DrawThings on the next silhouette draw. Zoom out if needed, then check the log.",
+            MessageTypeDefOf.CautionInput,
+            false);
     }
 }

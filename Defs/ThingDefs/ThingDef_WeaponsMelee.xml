@@ -41,6 +41,7 @@
 		<statBases>
 			<WorkToMake>22000</WorkToMake>
 			<Mass>2.0</Mass>
+			<MarketValue>3200</MarketValue>
 		</statBases>
 		<equippedAngleOffset>-30</equippedAngleOffset>
 		<stuffCategories>
@@ -51,7 +52,7 @@
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>5</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodermis>100</GW40k_Necron_Necrodermis>
+			<GW40k_Necron_Necrodermis>175</GW40k_Necron_Necrodermis>
 		</costList>
 		<weaponTags>
 			<li>GW_Necron_Melee_HyperSword</li>
@@ -63,17 +64,16 @@
 				<li>Blunt</li>
 			</capacities>
 			<power>9</power>
-			<cooldownTime>2.5</cooldownTime>
-			<armorPenetration>0.4</armorPenetration>
+			<cooldownTime>1.6</cooldownTime>
 			</li>
 			<li>
 			<label>point</label>
 			<capacities>
 				<li>Stab</li>
 			</capacities>
-			<power>36</power>
-			<cooldownTime>1.0</cooldownTime>
-			<armorPenetration>1.8</armorPenetration>
+			<power>33</power>
+			<cooldownTime>2.0</cooldownTime>
+			<armorPenetration>1.4</armorPenetration>
 			</li>
 			<li>
 			<label>edge</label>
@@ -81,8 +81,8 @@
 				<li>Cut</li>
 			</capacities>
 			<power>26</power>
-			<cooldownTime>2</cooldownTime>
-			<armorPenetration>1.2</armorPenetration>
+			<cooldownTime>2.0</cooldownTime>
+			<armorPenetration>1.4</armorPenetration>
 			</li>
 		</tools>		
 	</ThingDef>
@@ -97,10 +97,11 @@
 			<graphicClass>Graphic_Single</graphicClass>
 			<drawSize>1.8</drawSize>
 		</graphicData>
-		<uiIconScale>1.0</uiIconScale>				
+		<uiIconScale>0.75</uiIconScale>				
 		<statBases>
 			<WorkToMake>42000</WorkToMake>
 			<Mass>5.9</Mass>
+			<MarketValue>3900</MarketValue>
 		</statBases>
 		<!-- <equippedAngleOffset>-30</equippedAngleOffset> -->
 		<stuffCategories>
@@ -131,7 +132,7 @@
 			<capacities>
 				<li>Stab</li>
 			</capacities>
-			<power>55</power>
+			<power>57</power>
 			<cooldownTime>2.5</cooldownTime>
 			<armorPenetration>2.2</armorPenetration>
 			</li>
@@ -140,8 +141,8 @@
 			<capacities>
 				<li>Cut</li>
 			</capacities>
-			<power>55</power>
-			<cooldownTime>2.85</cooldownTime>
+			<power>57</power>
+			<cooldownTime>2.65</cooldownTime>
 			<armorPenetration>2.2</armorPenetration>
 			</li>
 		</tools>
@@ -155,8 +156,8 @@
 	
 	<!-- Claw -->
 	<ThingDef ParentName="GW40k_Necron_MeleeMakeable">
-		<defName>GW40k_Necron_Claws</defName>
-		<label>necron claws</label>
+		<defName>GW40k_Necron_Claw</defName>
+		<label>necron claw</label>
 		<description>Long, thin, razor-sharp talons designed to strip flesh from bone.</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/Necron_Claws</texPath>
@@ -167,6 +168,7 @@
 		<statBases>
 			<WorkToMake>28000</WorkToMake>
 			<Mass>1.85</Mass>
+			<MarketValue>2275</MarketValue>
 		</statBases>
 		<equippedAngleOffset>-30</equippedAngleOffset>
 		<stuffCategories>
@@ -177,7 +179,7 @@
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>4</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodermis>175</GW40k_Necron_Necrodermis>
+			<GW40k_Necron_Necrodermis>150</GW40k_Necron_Necrodermis>
 		</costList>
 		<weaponTags>
 			<li>GW_Necron_Melee_Claw</li>
@@ -188,21 +190,72 @@
 			<capacities>
 				<li>Stab</li>
 			</capacities>
-			<power>40</power>
-			<cooldownTime>1.0</cooldownTime>
-			<armorPenetration>0.2</armorPenetration>
+			<power>26</power>
+			<cooldownTime>1.6</cooldownTime>
+			<armorPenetration>0.1</armorPenetration>
 			</li>
 			<li>
 			<label>edge</label>
 			<capacities>
 				<li>Cut</li>
 			</capacities>
-			<power>25</power>
-			<cooldownTime>2</cooldownTime>
-			<armorPenetration>0.2</armorPenetration>
+			<power>22</power>
+			<cooldownTime>1.6</cooldownTime>
+			<armorPenetration>0.1</armorPenetration>
 			</li>
 		</tools>		
 	</ThingDef>
 
+<!-- talon -->
+	<ThingDef ParentName="GW40k_Necron_MeleeMakeable">
+		<defName>GW40k_Necron_Scythe</defName>
+		<label>necron scythe</label>
+		<description>Long, serrated, metallic talons designed to cut through flesh and armor alike.</description>
+		<graphicData>
+			<texPath>Things/Items/NecronWeapons/warscythe</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.0</drawSize>
+		</graphicData>
+		<uiIconScale>1.0</uiIconScale>				
+		<statBases>
+			<WorkToMake>30000</WorkToMake>
+			<Mass>3.25</Mass>
+			<MarketValue>2700</MarketValue>
+		</statBases>
+		<equippedAngleOffset>-30</equippedAngleOffset>
+		<stuffCategories>
+			<!-- <li>Imperial_Metals</li> -->
+		</stuffCategories>
+		<!-- <costStuffCount>200</costStuffCount> -->
+		<costList>
+			<ComponentSpacer>15</ComponentSpacer>
+			<ComponentIndustrial>30</ComponentIndustrial>
+			<GW40k_Necron_Component>6</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodermis>175</GW40k_Necron_Necrodermis>
+		</costList>
+		<weaponTags>
+			<li>GW_Necron_Melee_Scythe</li>
+		</weaponTags>
+		<tools>
+			<li>
+			<label>talon</label>
+			<capacities>
+				<li>Stab</li>
+			</capacities>
+			<power>36</power>
+			<cooldownTime>1.8</cooldownTime>
+			<armorPenetration>0.4</armorPenetration>
+			</li>
+			<li>
+			<label>edge</label>
+			<capacities>
+				<li>Cut</li>
+			</capacities>
+			<power>28</power>
+			<cooldownTime>2</cooldownTime>
+			<armorPenetration>0.3</armorPenetration>
+			</li>
+		</tools>		
+	</ThingDef>
 
 </Defs>

@@ -10,6 +10,15 @@
       </JobDef>
 
     <JobDef>
+        <defName>GW40K_Job_RechargeFromBattery</defName>
+        <driverClass>GW40K_Necrons.JobDriver_RechargeFromBattery</driverClass>
+        <reportString>recharging gauss energy.</reportString>
+        <casualInterruptible>true</casualInterruptible>
+        <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+        <neverShowWeapon>true</neverShowWeapon>
+      </JobDef>
+
+    <JobDef>
         <defName>GW40K_TakeControlOfNech</defName>
         <driverClass>GW40K_Necrons.JobDriver_TakeControlOfNech</driverClass>
         <reportString>taking command of nech.</reportString>

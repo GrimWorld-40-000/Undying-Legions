@@ -26,21 +26,19 @@ public static class HarmonyPatch_StasisCryptLoadLabel
         }
 
         // Right-clicking the downed pawn (not the building) still builds "carry to cryptosleep casket" from JobDefOf;
-        // only run this path when a stasis crypt is actually reachable for the sleeper so vanilla casket orders stay unchanged.
+        // relabel whenever a stasis crypt is actually reachable for the sleeper so vanilla casket orders stay unchanged.
         if (!relabelCarryToCryptosleep && context.FirstSelectedPawn != null)
         {
             for (int i = 0; i < context.ClickedThings.Count; i++)
             {
                 if (context.ClickedThings[i] is not Pawn sleeper)
                     continue;
-                if (sleeper.health?.hediffSet?.GetFirstHediffOfDef(NecronDefOfs.GW40K_EternalSlumberForced) == null)
-                    continue;
                 if (
                     NecroCasketUtility.FindNecroCasket(
                         sleeper,
                         context.FirstSelectedPawn,
                         checkSocialProperness: true,
-                        ignoreOtherReservations: false,
+                        ignoreOtherReservations: true,
                         guestStatus: sleeper.GuestStatus)
                     == null)
                     continue;

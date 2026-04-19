@@ -2,6 +2,13 @@
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
         <defName>GW40K_NecronLychGuardPawnKind_Colonist</defName>
         <label>necron lych guard</label>
+        <lifeStages>
+          <li>
+            <bodyGraphicData>
+              <drawSize>1.1</drawSize>
+            </bodyGraphicData>
+          </li>
+        </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronLychGuard</race>
         <combatPower>60</combatPower>

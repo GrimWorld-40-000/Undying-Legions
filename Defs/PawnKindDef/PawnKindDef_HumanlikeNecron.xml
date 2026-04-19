@@ -49,29 +49,63 @@
   <PawnKindDef ParentName="UD_NecronRangedBase">
     <defName>UD_NecronCryptek</defName>
     <label>Cryptek</label>
+    <!-- Reference only — Biotech fur uses GW_UD_NecronCryptek renderNodeProperties/drawSize.
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <drawSize>0.95</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    -->
     <combatPower>100</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
+    <weaponMoney>3800~5000</weaponMoney>
     <weaponTags>
       <li>GW_Necron_Melee_Staff</li>
     </weaponTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categories>
+          <li>NecronCryptek</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
 	<xenotypeSet Inherit="False">
 		<xenotypeChances>
 			<GW_UD_NecronCryptek>1</GW_UD_NecronCryptek>
 		</xenotypeChances>
 	</xenotypeSet>
   </PawnKindDef>
-  
+
   <PawnKindDef ParentName="UD_NecronRangedBase">
     <defName>UD_NecronOverlord</defName>
     <label>Overlord</label>
+    <!-- Reference only — Biotech fur uses GW_UD_NecronOverlord renderNodeProperties/drawSize.
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <drawSize>1.2</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    -->
 	<factionLeader>true</factionLeader>
     <combatPower>100</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
+    <weaponMoney>3900~5000</weaponMoney>
     <weaponTags>
       <li>GW_Necron_Melee_Warscythe</li>
     </weaponTags>
+    <backstoryFiltersOverride>
+      <li>
+        <categories>
+          <li>NecronOverlord</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
 	<xenotypeSet Inherit="False">
 		<xenotypeChances>
 			<GW_UD_NecronOverlord>1</GW_UD_NecronOverlord>
@@ -79,31 +113,115 @@
 	</xenotypeSet>
   </PawnKindDef>
   
-  <PawnKindDef ParentName="UD_NecronRangedBase">
+  <!-- Abstract base for lowborn Necron pawnkinds. Forces the NecronLowborn backstory pool
+       (GW_UD_PurgedMemories_Child / Adult). Lychguard and Deathmark add their own backstory categories. -->
+  <PawnKindDef Name="UD_NecronLowbornBase" ParentName="UD_NecronRangedBase" Abstract="True">
+    <backstoryFiltersOverride>
+      <li>
+        <categories>
+          <li>NecronLowborn</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="UD_NecronLowbornBase">
     <defName>UD_NecronLychguard</defName>
     <label>Lychguard</label>
+    <!-- Reference only — both Lychguard pawn kinds share GW_UD_NecronLychguard fur drawSize (1.2).
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <drawSize>1.2</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    -->
     <combatPower>100</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
+    <weaponMoney>3200~4500</weaponMoney>
     <weaponTags>
       <li>GW_Necron_Melee_HyperSword</li>
     </weaponTags>
+    <apparelRequired>
+      <li>GM40k_Necron_Shield</li>
+    </apparelRequired>
+    <backstoryFiltersOverride Inherit="False">
+      <li>
+        <categories>
+          <li>NecronLowborn</li>
+          <li>NecronLychguard</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
 	<xenotypeSet Inherit="False">
 		<xenotypeChances>
 			<GW_UD_NecronLychguard>1</GW_UD_NecronLychguard>
 		</xenotypeChances>
 	</xenotypeSet>
   </PawnKindDef>
-  
-  <PawnKindDef ParentName="UD_NecronRangedBase">
+
+  <PawnKindDef ParentName="UD_NecronLowbornBase">
+    <defName>UD_NecronLychguard_2</defName>
+    <label>Lychguard</label>
+    <!-- Reference only — same body gene/xenotype as UD_NecronLychguard; drawSize 1.2 on GW_UD_NecronLychguard.
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <drawSize>1.2</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    -->
+    <combatPower>100</combatPower>
+    <canBeSapper>true</canBeSapper>
+    <isGoodBreacher>true</isGoodBreacher>
+    <weaponMoney>3900~5000</weaponMoney>
+    <weaponTags>
+      <li>GW_Necron_Melee_Warscythe</li>
+    </weaponTags>
+    <backstoryFiltersOverride Inherit="False">
+      <li>
+        <categories>
+          <li>NecronLowborn</li>
+          <li>NecronLychguard</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
+	<xenotypeSet Inherit="False">
+		<xenotypeChances>
+			<GW_UD_NecronLychguard>1</GW_UD_NecronLychguard>
+		</xenotypeChances>
+	</xenotypeSet>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="UD_NecronLowbornBase">
     <defName>UD_NecronDeathmark</defName>
     <label>Deathmark</label>
+    <!-- Reference only — Biotech fur uses GW_UD_NecronDeathmark renderNodeProperties/drawSize.
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <drawSize>0.85</drawSize>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    -->
     <combatPower>100</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
     <weaponTags>
       <li>GW_Necron_Ranged_Disintegrator</li>
     </weaponTags>
+    <backstoryFiltersOverride Inherit="False">
+      <li>
+        <categories>
+          <li>NecronLowborn</li>
+          <li>NecronDeathmark</li>
+        </categories>
+      </li>
+    </backstoryFiltersOverride>
 	<xenotypeSet Inherit="False">
 		<xenotypeChances>
 			<GW_UD_NecronDeathmark>1</GW_UD_NecronDeathmark>

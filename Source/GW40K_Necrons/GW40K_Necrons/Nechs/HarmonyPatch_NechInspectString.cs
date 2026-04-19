@@ -71,7 +71,7 @@ public static class HarmonyPatch_NechInspectString
         bool commanded = NechInspectStringUtility.IsNechProperlyCommanded(__instance);
         if (commanded)
         {
-            Pawn commander = __instance.GetOverseer();
+            Pawn commander = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
             if (commander != null)
                 sb.AppendLine("GW40K_NechCommanderLine".Translate(commander.LabelShortCap).Resolve());
         }

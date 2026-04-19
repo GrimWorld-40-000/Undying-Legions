@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 #nullable disable
 namespace GW40K_Necrons;
@@ -97,11 +98,18 @@ public class HediffComp_NecronCommandTracker : HediffComp
     {
         if (mech == null || controlledMechs.Contains(mech)) return;
         controlledMechs.Add(mech);
+        mech.TryGetComp<CompNechUncontrolledTimer>()?.NotifyCommandLinkGained();
     }
 
     public void UnbindMech(Pawn mech)
     {
-        controlledMechs.Remove(mech);
+        if (mech == null || !controlledMechs.Remove(mech)) return;
+        if (!mech.Destroyed && mech.drafter != null && mech.Drafted)
+        {
+            mech.drafter.Drafted = false;
+            mech.jobs?.EndCurrentJob(JobCondition.InterruptForced, false);
+        }
+        mech.TryGetComp<CompNechUncontrolledTimer>()?.NotifyCommandLinkLost();
     }
 
     public override void CompPostTick(ref float severityAdjustment)
@@ -160,6 +168,17 @@ public class HediffComp_NecronCommandTracker : HediffComp
         comm.rotationTracker?.FaceCell(faceTarget.Position);
     }
 
+    public override void Notify_PawnDied(DamageInfo? dinfo, Hediff culprit)
+    {
+        for (int i = controlledMechs.Count - 1; i >= 0; i--)
+        {
+            Pawn nech = controlledMechs[i];
+            if (nech != null && !nech.Dead && !nech.Destroyed)
+                nech.TryGetComp<CompNechUncontrolledTimer>()?.NotifyCommandLinkLost();
+        }
+        controlledMechs.Clear();
+    }
+
     public override void CompExposeData()
     {
         Scribe_Collections.Look(ref controlledMechs, "controlledMechs", LookMode.Reference);
@@ -178,5 +197,22 @@ public class HediffComp_NecronCommandTracker : HediffComp
         return pawn?.health?.hediffSet?
             .GetFirstHediffOfDef(HediffDef.Named("GW40K_CommandProtocolImplant"))
             ?.TryGetComp<HediffComp_NecronCommandTracker>();
+    }
+
+    /// <summary>
+    /// Finds the Nechinator currently commanding <paramref name="nech"/>.
+    /// Replaces <c>pawn.GetOverseer()</c> for Nechs — no vanilla relation required.
+    /// </summary>
+    public static Pawn GetCommanderOf(Pawn nech)
+    {
+        if (nech == null) return null;
+        foreach (Pawn candidate in PawnsFinder.AllMapsCaravansAndTravellingTransporters_AliveSpawned)
+        {
+            if (candidate.def.GetModExtension<NecronMechExtension>() != null) continue;
+            HediffComp_NecronCommandTracker t = GetTracker(candidate);
+            if (t != null && t.controlledMechs.Contains(nech))
+                return candidate;
+        }
+        return null;
     }
 }

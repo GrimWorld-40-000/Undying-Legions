@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
@@ -15,7 +16,9 @@ namespace GW40K_Necrons;
 ///     CompMechRepairable, and Pawn_MechanitorTracker.
 ///   - Injects Nechinator equivalents.
 /// </summary>
+/// <summary>Run after other <see cref="Pawn.GetGizmos"/> postfixes so we can strip draft toggles they pass through.</summary>
 [HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
+[HarmonyPriority(Priority.Last)]
 public static class HarmonyPatch_NechGizmos
 {
     // Vanilla gizmo labels to suppress (case-insensitive substring match)
@@ -36,16 +39,19 @@ public static class HarmonyPatch_NechGizmos
     {
         if (__instance.def.GetModExtension<NecronMechExtension>() == null)
         {
-            foreach (var g in gizmos) yield return g;
+            foreach (var g in GizmoEnumerationSafety.PassThroughWithSafety(gizmos, __instance, "NechPassthrough"))
+                yield return g;
             yield break;
         }
 
-        bool hasCommander = __instance.GetOverseer() != null;
+        bool hasCommander = HediffComp_NecronCommandTracker.GetCommanderOf(__instance) != null;
 
         // Strip vanilla mech/overseer gizmos
-        foreach (var g in gizmos)
+        foreach (var g in GizmoEnumerationSafety.PassThroughWithSafety(gizmos, __instance, "NechStrip"))
         {
-            if (!hasCommander && g is Command_Toggle ct && ct.icon == TexCommand.Draft)
+            // Always strip upstream draft toggles; we inject exactly one Nech draft when commanded (none when uncontrolled).
+            // Vanilla may still emit a colonist-style draft (disabled / wrong tooltip) if icon or class name differs by version.
+            if (IsUpstreamDraftToggleGizmo(g))
                 continue;
 
             // Strip by type — CompOverseerSubject and CompMechRepairable gizmos
@@ -65,6 +71,28 @@ public static class HarmonyPatch_NechGizmos
             }
             if (strip) continue;
 
+            // Vanilla disables verb-targeting gizmos (ranged attack etc.) via IsPlayerControlled.
+            // Nechs don't use the vanilla mech system, so fix up the disabled state here when commanded.
+            if (hasCommander && g is Command_VerbTarget cvt)
+            {
+                var tr = Traverse.Create(cvt);
+                if (tr.Field("disabled").GetValue<bool>())
+                {
+                    if (__instance.Drafted)
+                    {
+                        // Commanded + drafted: fully re-enable. Range gating is in HarmonyPatch_NechOrderedJobRange.
+                        tr.Field("disabled").SetValue(false);
+                        tr.Field("disabledReason").SetValue((string)null);
+                    }
+                    else
+                    {
+                        // Commanded but undrafted: keep disabled, replace confusing vanilla reason.
+                        // Field is string; Translate() returns TaggedString (reflection SetValue won't coerce).
+                        tr.Field("disabledReason").SetValue("GW40K_NechMustDraftToAttack".Translate().ToString());
+                    }
+                }
+            }
+
             yield return g;
         }
 
@@ -78,7 +106,7 @@ public static class HarmonyPatch_NechGizmos
             icon         = TexCommand.SelectCarriedPawn,
             action       = () =>
             {
-                Pawn overseer = __instance.GetOverseer();
+                Pawn overseer = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
                 if (overseer != null)
                 {
                     CameraJumper.TryJumpAndSelect(overseer);
@@ -90,8 +118,9 @@ public static class HarmonyPatch_NechGizmos
             }
         };
 
-        // Explicit draft toggle for Nechs (only while bound to a nechinator).
-        if (hasCommander && __instance.drafter != null && __instance.Faction == Faction.OfPlayer)
+        // Explicit draft toggle — only when a Nechinator command link exists and pawn is not in a mental break.
+        if (hasCommander && __instance.drafter != null && __instance.Faction == Faction.OfPlayer
+            && !__instance.InMentalState)
         {
             Command_Toggle toggleDraft = new Command_Toggle();
             toggleDraft.defaultLabel = "CommandDraftLabel".Translate();
@@ -103,6 +132,7 @@ public static class HarmonyPatch_NechGizmos
             toggleDraft.hotKey = NechCommandHotkeys.DraftToggle();
             toggleDraft.toggleAction = delegate
             {
+                if (__instance.InMentalState) return;
                 bool drafted = !__instance.Drafted;
                 __instance.drafter.Drafted = drafted;
                 if (!drafted)
@@ -111,7 +141,8 @@ public static class HarmonyPatch_NechGizmos
             yield return toggleDraft;
         }
 
-        yield return new Gizmo_NechEnergy(__instance);
+        if (NechEnergyUtility.GetCapacitorComp(__instance) != null)
+            yield return new Gizmo_NechEnergy(__instance);
 
         // Recharge-from-core gizmo disabled for now (core ↔ gauss transfer UX TBD).
 
@@ -135,36 +166,21 @@ public static class HarmonyPatch_NechGizmos
                         : $"{pawn.LabelCap} (bandwidth full)";
                     options.Add(new FloatMenuOption(label2, () =>
                     {
-                        try
-                        {
-                            if (pawn?.relations == null || __instance?.relations == null)
-                            {
-                                Messages.Message("Pawn relations not ready.", MessageTypeDefOf.RejectInput, false);
-                                return;
-                            }
+                        if (pawn.Faction != null && __instance.Faction != pawn.Faction)
+                            __instance.SetFaction(pawn.Faction);
 
-                            if (pawn.Faction != null && __instance.Faction != pawn.Faction)
-                                __instance.SetFaction(pawn.Faction);
+                        // Unbind from any existing commander first
+                        Pawn old = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
+                        HediffComp_NecronCommandTracker.GetTracker(old)?.UnbindMech(__instance);
 
-                            tracker.BindMech(__instance);
+                        tracker.BindMech(__instance);
 
-                            Pawn old = __instance.GetOverseer();
-                            old?.relations?.TryRemoveDirectRelation(PawnRelationDefOf.Overseer, __instance);
-                            pawn.relations.TryRemoveDirectRelation(PawnRelationDefOf.Overseer, __instance);
-                            __instance.relations.TryRemoveDirectRelation(PawnRelationDefOf.Overseer, pawn);
-                            pawn.relations.AddDirectRelation(PawnRelationDefOf.Overseer, __instance);
-                            int used = (int)tracker.BandwidthUsed;
-                            int max = (int)tracker.BandwidthMax;
-                            Messages.Message(
-                                $"{__instance.LabelCap} assigned to {pawn.LabelCap}. Bandwidth: {used}/{max}.",
-                                MessageTypeDefOf.TaskCompletion,
-                                false);
-                        }
-                        catch (System.Exception ex)
-                        {
-                            Log.Warning($"Necron assign to commander: {ex}");
-                            Messages.Message("Could not assign overseer relation (see log).", MessageTypeDefOf.RejectInput, false);
-                        }
+                        int used = (int)tracker.BandwidthUsed;
+                        int max = (int)tracker.BandwidthMax;
+                        Messages.Message(
+                            $"{__instance.LabelCap} assigned to {pawn.LabelCap}. Bandwidth: {used}/{max}.",
+                            MessageTypeDefOf.TaskCompletion,
+                            false);
                     }));
                 }
                 if (options.Count == 0)
@@ -179,11 +195,10 @@ public static class HarmonyPatch_NechGizmos
             defaultDesc  = "Unbind this construct from its current commander.",
             action       = () =>
             {
-                Pawn overseer = __instance.GetOverseer();
+                Pawn overseer = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
                 if (overseer != null)
                 {
                     HediffComp_NecronCommandTracker.GetTracker(overseer)?.UnbindMech(__instance);
-                    overseer.relations.RemoveDirectRelation(PawnRelationDefOf.Overseer, __instance);
                     Messages.Message($"{__instance.LabelCap} unbound from {overseer.LabelCap}.", MessageTypeDefOf.NeutralEvent, false);
                 }
                 else
@@ -200,5 +215,36 @@ public static class HarmonyPatch_NechGizmos
         else
             yield return devRemove;
 
+    }
+
+    /// <summary>True for vanilla (or mod) draft UI coming from the enumerator — never pass through for Nech-pipeline pawns.</summary>
+    private static bool IsUpstreamDraftToggleGizmo(Gizmo g)
+    {
+        if (g is not Command_Toggle ct)
+            return false;
+        if (ct.icon == TexCommand.Draft)
+            return true;
+        string typeName = ct.GetType().Name ?? string.Empty;
+        if (typeName.IndexOf("Draft", StringComparison.OrdinalIgnoreCase) >= 0)
+            return true;
+        string fullName = ct.GetType().FullName ?? string.Empty;
+        if (fullName.IndexOf("Draft", StringComparison.OrdinalIgnoreCase) >= 0)
+            return true;
+
+        string label = (ct.defaultLabel ?? string.Empty).ToString();
+        string draftLabel = "CommandDraftLabel".Translate().Resolve();
+        if (label.Length > 0 && draftLabel.Length > 0 && string.Equals(label, draftLabel, StringComparison.Ordinal))
+            return true;
+
+        string desc = (ct.defaultDesc ?? string.Empty).ToString();
+        string draftDesc = "CommandDraftDesc".Translate().Resolve();
+        if (desc.Length > 8 && draftDesc.Length > 8 && string.Equals(desc, draftDesc, StringComparison.Ordinal))
+            return true;
+
+        KeyBindingDef draftKey = NechCommandHotkeys.DraftToggle();
+        if (draftKey != null && ct.hotKey == draftKey)
+            return true;
+
+        return false;
     }
 }

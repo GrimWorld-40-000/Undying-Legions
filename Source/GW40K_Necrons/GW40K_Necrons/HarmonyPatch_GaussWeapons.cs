@@ -45,6 +45,7 @@ public static class HarmonyPatch_GaussWeapon_VerbAvailable
 }
 
 // ── Ranged — grey out the player attack gizmo and supply a rejection message ──
+// Only touches Command_VerbTarget after gizmos exist; does not call FloatMenuUtility.UseRangedAttack.
 
 [HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
 public static class HarmonyPatch_GaussWeapon_GizmoDisable
@@ -54,14 +55,22 @@ public static class HarmonyPatch_GaussWeapon_GizmoDisable
         // Resolve energy once; avoids repeated need lookups per gizmo.
         float energy = GaussWeaponUtil.GaussEnergy(__instance);
 
-        foreach (Gizmo g in gizmos)
+        foreach (Gizmo g in GizmoEnumerationSafety.PassThroughWithSafety(gizmos, __instance, "GaussWeapon"))
         {
             if (g is Command_VerbTarget cvt)
             {
-                ModExtension_GaussWeapon ext = GaussWeaponUtil.RangedExt(cvt.verb?.EquipmentSource);
-                if (ext != null && GaussWeaponUtil.IsInsufficient(energy, ext))
-                    cvt.Disable("GW40K_GaussWeapon_Disabled".Translate());
+                try
+                {
+                    ModExtension_GaussWeapon ext = GaussWeaponUtil.RangedExt(cvt.verb?.EquipmentSource);
+                    if (ext != null && GaussWeaponUtil.IsInsufficient(energy, ext))
+                        cvt.Disable("GW40K_GaussWeapon_Disabled".Translate());
+                }
+                catch
+                {
+                    // Bad verb/equipment from another mod; keep gizmo unchanged.
+                }
             }
+
             yield return g;
         }
     }

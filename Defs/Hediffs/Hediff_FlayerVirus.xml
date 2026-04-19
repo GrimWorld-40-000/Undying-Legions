@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Persistent infection: grants phase-cloak ability (GW40K_Nech_FlayedCloak). Mirrors Lych chassis hediff pacing for repair; lore — Flayer Curse / Llandu'gor echo. -->
+  <HediffDef>
+    <defName>GW40K_FlayerVirus</defName>
+    <label>Flayer virus</label>
+    <description>The Flayer curse — an echo of the slain C'tan Llandu'gor — gnaws at the mind and lattice alike. Afflicted units hunger for organic matter they can never digest, drape themselves in trophy-flesh, and slip unpredictably through the Ghostwind between moments. The necrodermis still knits damage closed, but every repair feeds the hunger.\n\nCombat protocols exploit dimensional bleed: a short-lived veil that breaks weapon locks and sightlines, as Crypteks once catalogued among fully turned Flayed Ones.</description>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.72, 0.35, 0.38)</defaultLabelColor>
+    <isBad>true</isBad>
+    <stages>
+      <li>
+        <regeneration>10</regeneration>
+        <naturalHealingFactor>1.5</naturalHealingFactor>
+        <!-- <totalBleedFactor>0</totalBleedFactor>  necrons dont bleed in the vanilla sense -->
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>GW40K_Nech_FlayedCloak</li>
+        </abilityDefs>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

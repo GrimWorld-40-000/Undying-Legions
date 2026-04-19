@@ -30,15 +30,16 @@
 
 	<GeneDef>
 		<defName>GW_UD_ResurrectionProtocol</defName>
-		<label>resurrection protocol</label>
-		<description>When Necrons sustain critical damage they enter Resurrection Protocol instead of dying. This allows them to self-repair and rise again as long as their two cores are intact.</description>
+		<label>reanimation protocol</label>
+		<description>When Necrons sustain critical damage they enter Reanimation Protocol instead of dying. This allows them to self-repair and rise again as long as their two cores are intact.</description>
 		<iconPath>Genes/ResurectionProtocol</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<geneClass>GW40K_Necrons.Gene_ResurrectionProtocol</geneClass>
 		<modExtensions>
 			<li Class="GW40K_Necrons.GeneExtension_Resurrection">
-				<ticksToResurrect>625</ticksToResurrect>
+				<!-- Total game ticks until reanimation (~1/4 day at 60k ticks/day); still scaled by coreSize in CompResurrectible. -->
+				<ticksToResurrect>15000</ticksToResurrect>
 			</li>
 		</modExtensions>
 	</GeneDef>
@@ -103,6 +104,7 @@
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<allowedApparels>
+					<li>GM40k_Necron_Shield</li>
 				</allowedApparels>
 			</li>
 		</modExtensions>
@@ -112,7 +114,7 @@
 
 	<GeneDef>
 		<defName>GW_UD_NecronEmissary</defName>
-		<label>emisarry</label>
+		<label>emissary</label>
 		<description>Carriers of this gene have a natural aptitude for diplomacy and social interaction; This allows them to engage in negotiations and social interactions with a higher degree of success.</description>
 		<iconPath>Genes/emmisarry</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -131,7 +133,7 @@
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<statOffsets>
-			<MeleeDodgeChance>-15</MeleeDodgeChance>
+			<MeleeDodgeChance>0.15</MeleeDodgeChance>
 		</statOffsets>
 		<forcedTraits>
 			<li>
@@ -159,6 +161,26 @@
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<disablesNeeds>
 			<li>Food</li>
+			<li>Comfort</li>
+			<li>Joy</li>
+			<li>Beauty</li>
+			<li>Outdoors</li>
+			<li>Indoors</li>
+		</disablesNeeds>
+	</GeneDef>
+
+	<!-- Flayed One variant: identical to GW_UD_LowBorn but keeps the Food need enabled — the Flayer curse
+	     leaves phantom hunger intact, and starvation death feeds correctly into reanimation protocol.
+	     AllWork is disabled: the Flayed One is Nech-controlled and incapable of directed labour. -->
+	<GeneDef>
+		<defName>GW_UD_LowBorn_FlayedOne</defName>
+		<label>low born (flayer-cursed)</label>
+		<description>Carriers of this gene are genetically imperfect and thus considered lowborn. They do not possess free will and do not have the mental capacity to desire comfort, recreation, or beautiful surroundings.\n\nUnlike other lowborn Necrons, the Flayer curse leaves a phantom hunger that cannot be suppressed — an echo of the organic body lost to Biotransference. The mind is too consumed by the curse to perform directed labor.</description>
+		<iconPath>Genes/lowborn</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<disabledWorkTags>AllWork</disabledWorkTags>
+		<disablesNeeds>
 			<li>Comfort</li>
 			<li>Joy</li>
 			<li>Beauty</li>
@@ -214,7 +236,7 @@
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_Necron_RecallMemories</hediffDef>
-				<severityOnAdd>1.0</severityOnAdd>
+				<severityOnAdd>0.1</severityOnAdd>
 			</li>
 		</modExtensions>
 	</GeneDef>
@@ -308,7 +330,7 @@
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_CommandProtocolImplant</hediffDef>
-				<part>Brain</part>
+				<part>GW40K_Necron_Head</part>
 				<severityOnAdd>1.0</severityOnAdd>
 			</li>
 		</modExtensions>
@@ -336,8 +358,32 @@
 				<description>My genetic sequence carries the echoes of ancient kings and star-striding conquerors. Existing in this menial realm is an insult to my being.</description>
 				<baseMoodEffect>-30</baseMoodEffect>
 			</li>
+			<li>
+				<label>inferior scum</label>
+				<baseOpinionOffset>-30</baseOpinionOffset>
+			</li>
 		</stages>
 	</ThoughtDef>
+
+	<!-- Granted to high-tier Necrons (Deathmark, Cryptek, Lychguard, Overlord).
+	     The social matrix is an engram-routing implant enabling nuanced communication.
+	     Lowborn Necrons lack this hardware and communicate only via basic vox-emission. -->
+	<GeneDef>
+		<defName>GW_UD_SocialMatrix</defName>
+		<label>social matrix</label>
+		<description>Carriers of this gene possess an advanced social matrix — internal engram-routing hardware enabling nuanced communication and diplomatic processing beyond the basic vox-emission of lowborn Necrons.</description>
+		<iconPath>Genes/emmisarry</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW40K_Necron_SocialMatrix_Active</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+				<part>GW40K_Necron_Skull</part>
+			</li>
+		</modExtensions>
+	</GeneDef>
 
 	<GeneDef>
 		<defName>GW_UD_Nobility</defName>

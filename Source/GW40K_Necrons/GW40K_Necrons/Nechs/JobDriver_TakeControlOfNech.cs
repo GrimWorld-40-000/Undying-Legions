@@ -32,7 +32,7 @@ public class JobDriver_TakeControlOfNech : JobDriver
         this.AddFinishAction(delegate { CleanupControlEffecter(); });
 
         this.FailOnDespawnedNullOrForbidden(TargetNechInd);
-        this.FailOn(() => TargetNech == null || TargetNech.GetOverseer() != null);
+        this.FailOn(() => TargetNech == null || HediffComp_NecronCommandTracker.GetCommanderOf(TargetNech) != null);
         this.FailOn(() => TargetNech != null && TargetNech.Faction != pawn.Faction);
 
         yield return Toils_Goto.GotoThing(TargetNechInd, PathEndMode.Touch);
@@ -55,7 +55,7 @@ public class JobDriver_TakeControlOfNech : JobDriver
         control.tickAction = delegate
         {
             Pawn target = TargetNech;
-            if (target == null || target.GetOverseer() != null)
+            if (target == null || HediffComp_NecronCommandTracker.GetCommanderOf(target) != null)
             {
                 ReadyForNextToil();
                 return;
@@ -70,6 +70,12 @@ public class JobDriver_TakeControlOfNech : JobDriver
             controlEffecter?.EffectTick(new TargetInfo(pawn), new TargetInfo(target));
         };
         control.AddFinishAction(CleanupControlEffecter);
+        control.AddFinishAction(delegate
+        {
+            Pawn target = TargetNech;
+            if (target != null && target.Spawned)
+                target.jobs?.EndCurrentJob(JobCondition.InterruptForced, true);
+        });
         yield return control;
 
         yield return Toils_General.Do(BindTargetNech);
@@ -100,7 +106,7 @@ public class JobDriver_TakeControlOfNech : JobDriver
         HediffComp_NecronCommandTracker tracker = HediffComp_NecronCommandTracker.GetTracker(pawn);
         if (target == null || tracker == null)
             return;
-        if (target.GetOverseer() != null)
+        if (HediffComp_NecronCommandTracker.GetCommanderOf(target) != null)
             return;
         if (!tracker.HasBandwidthFor(target))
         {
@@ -119,12 +125,6 @@ public class JobDriver_TakeControlOfNech : JobDriver
         }
 
         tracker.BindMech(target);
-        pawn.relations?.TryRemoveDirectRelation(PawnRelationDefOf.Overseer, target);
-        target.relations?.TryRemoveDirectRelation(PawnRelationDefOf.Overseer, pawn);
-        pawn.relations?.AddDirectRelation(PawnRelationDefOf.Overseer, target);
-        if (target.drafter != null)
-            target.drafter.Drafted = false;
-        target.jobs?.EndCurrentJob(JobCondition.InterruptForced, false);
         SoundDef complete = DefDatabase<SoundDef>.GetNamedSilentFail("ControlMech_Complete");
         if (complete != null && target.MapHeld != null)
             complete.PlayOneShot(SoundInfo.InMap(target));

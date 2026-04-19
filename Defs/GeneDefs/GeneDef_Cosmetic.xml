@@ -28,6 +28,13 @@
 			<Thin>GW40K/Overlord/Body/Naked_Male</Thin>
 		</bodyTypeGraphicPaths>
 	</FurDef>
+	<FurDef MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_NecronFlayedOne</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/FlayedOne/Body/Naked_Male</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
 	
 	<GeneDef Name="GW_UD_NecronBodyGeneBase" Abstract="True">
 		<displayCategory>GW_UD_NecronGene</displayCategory>
@@ -49,18 +56,8 @@
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<fur>GW_UD_NecronLychguard</fur>
 		<bodyType>Thin</bodyType>
-		<renderNodeProperties>
-			<li>
-				<nodeClass>PawnRenderNode_Fur</nodeClass>
-				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
-				<baseLayer>5</baseLayer>
-				<colorType>Skin</colorType>
-				<useSkinShader>true</useSkinShader>
-				<shaderTypeDef>CutoutComplex</shaderTypeDef>
-				<rotDrawMode>Fresh, Rotting</rotDrawMode>
-				<parentTagDef>Body</parentTagDef>
-			</li>
-		</renderNodeProperties>
+		<!-- Biotech fur ignores PawnKindDef bodyGraphicData; each concrete body gene sets renderNodeProperties/drawSize.
+		     PawnKindDef_HumanlikeNecron.xml keeps matching values in comments for reference. -->
 		<!-- Linear adult aging: active from 18 through ancient necron ages. -->
 		<biologicalAgeTickFactorFromAgeCurve>
 			<points>
@@ -76,6 +73,7 @@
 		<statOffsets>
 			<LeatherAmount>0</LeatherAmount>
 			<ToxicResistance>1.00</ToxicResistance>
+			<ToxicEnvironmentResistance>1.00</ToxicEnvironmentResistance>
 			<ComfyTemperatureMin>-20</ComfyTemperatureMin>
 			<ComfyTemperatureMax>20</ComfyTemperatureMax>
 			<MoveSpeed>-0.2</MoveSpeed>
@@ -85,6 +83,11 @@
 			<InjuryHealingFactor>2.5</InjuryHealingFactor>
 		</statFactors>
 		<missingGeneRomanceChanceFactor>0.2</missingGeneRomanceChanceFactor>
+		<forcedTraits>
+			<li>
+				<def>Asexual</def>
+			</li>
+		</forcedTraits>
 		<hairTagFilter>
 			<whitelist>true</whitelist>
 			<tags>
@@ -110,6 +113,19 @@
 		<labelShortAdj>lychguard</labelShortAdj>
 		<description>Carriers of this gene possess a reinforced, self-repairing frame that is fused into a solid chest plate. This "living metal" layer provides unparallelled protection against both high-velocity projectiles and crushing blows.\n\n Gene carriers have an increase physical resistance at the expense of movement speed.</description>
 		<fur>GW_UD_NecronLychguard</fur>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<drawSize>1.18</drawSize>
+			</li>
+		</renderNodeProperties>
 		<iconPath>Genes/Machine_body</iconPath>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<statOffsets>
@@ -120,6 +136,56 @@
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW_UD_NecronLychguard</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_NecronFlayedOne</defName>
+		<label>flayed chassis</label>
+		<labelShortAdj>flayed</labelShortAdj>
+		<description>Carriers bear the Flayer curse in the lattice: reinforced necrodermis plates with the same hunger-echo that drove the ancient courts mad — a need for flesh they cannot sate, draped in trophy-skin and stalking through the red Ghostwind between heartbeats.\n\n The frame still knits damage like heavier infantry, but the infection grants no peace — only the veil-flash that lets a Flayed One vanish from firing solutions for a few seconds, as Imperial observers once attributed to Llandu'gor's get.</description>
+		<fur>GW_UD_NecronFlayedOne</fur>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<!-- 1×: fur mesh scale must match the humanlike Head node (vanilla tree has no gene-driven head drawSize).
+				     PawnKindDef lifeStage bodyGraphicData/drawSize does not apply to Biotech fur. -->
+				<drawSize>1</drawSize>
+			</li>
+		</renderNodeProperties>
+		<!-- GeneIcon_FlayedBody is a copy of the pre-shift backup south texture — DO NOT replace with Naked_Male_south, which was modified for in-game rendering. -->
+		<iconPath>GW40K/FlayedOne/Body/GeneIcon_FlayedBody</iconPath>
+		<geneClass>GW40K_Necrons.Gene_FlayedOneChassis</geneClass>
+		<forcedTraits>
+			<li>
+				<def>GW40K_Dysphorakh</def>
+			</li>
+			<li>
+				<!-- "Staggeringly ugly" degree (-2) — the maximum on the Beauty spectrum. -->
+				<def>Beauty</def>
+				<degree>-2</degree>
+			</li>
+		</forcedTraits>
+		<!-- Flayed Ones retain the vanilla food need — the Flayer curse drives phantom hunger. -->
+		<disablesNeeds Inherit="False" />
+		<statOffsets>
+			<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+			<MoveSpeed>-0.20</MoveSpeed>
+			<!-- Trophy-flesh draping: worse than a fresh corpse (-50), approaching rotting (-150). -->
+			<PawnBeauty>-75</PawnBeauty>
+		</statOffsets>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW40K_FlayerVirus</hediffDef>
 				<severityOnAdd>1.0</severityOnAdd>
 			</li>
 		</modExtensions>
@@ -152,9 +218,20 @@
 		<defName>GW_UD_NecronLychguard_Head</defName>
 		<label>lychguard crest</label>
 		<description>Carriers of this gene possess a prominment, flared metallic headdress that extends from the skull in an ornate, regal silhouette.\n\n This "living metal" crown is etched with dynastic glyphs and serves as a hardened protective plate.</description>
-		<iconPath>GW40K/LychGuard/Head/Male_Average_Normal_south</iconPath>
+		<iconPath>GW40K/LychGuard/Head/GeneIcon_LychguardHead</iconPath>
 		<forcedHeadTypes>
 			<li>GW40K_LychGuard_HeadType</li>
+		</forcedHeadTypes>
+	</GeneDef>
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_NecronFlayedOne_Head</defName>
+		<label>flayed mask</label>
+		<description>Carriers of this gene wear a hollow, leering skull-face of living metal — the same death-grin silhouette that Flayed Ones show when the curse takes the last of their restraint.\n\n Dynastic art depicts these masks as warnings; on the field they are nothing but promise.</description>
+		<!-- DO NOT MODIFY — dedicated 1.2× scaled icon; forcedHeadTypes must stay GW40K_FlayedOne_HeadType
+		     (only Necron head with 4 unique directional textures, _west.png pre-flipped horizontally). -->
+		<iconPath>GW40K/FlayedOne/GeneIcon_FlayedMask</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_FlayedOne_HeadType</li>
 		</forcedHeadTypes>
 	</GeneDef>
 	
@@ -164,7 +241,20 @@
 		<labelShortAdj>deathmark</labelShortAdj>
 		<description>Carriers of this gene have a hunched skeletal frame of "living metal" covered by a pronounced shroud of armor and industrious shoulder pads.\n\n While this frame may be less agile, the sppine is fused with Dimensional Orbs that allow the carrier to momentarily slip into the "hyperspace" between seconds, making them nearly impossible to pin down. </description>
 		<fur>GW_UD_NecronDeathmark</fur>
-		<iconPath>Genes/Machine_body</iconPath>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<drawSize>0.88</drawSize>
+			</li>
+		</renderNodeProperties>
+		<iconPath>GW40K/Deathmark/Body/Naked_Male_south</iconPath>
 		<abilities>
 			<li>GW40K_Deathmark_Phase</li>
 			<li>GW40K_Deathmark_HuntersMark</li>
@@ -186,7 +276,7 @@
 		<defName>GW_UD_NecronDeathmark_Head</defName>
 		<label>deathmark oculus</label>
 		<description>Carriers of this gene possess a hollow head embedded with a single, multi-spectrum ocular sensor that glows with an eerie emerald light.\n\n This gene bypasses human sight in favor of a "hunter's mark" system — directly overlaying tactical data onto the user's consciousness to track thermal signatures and synaptic pulses through solid cover. </description>
-		<iconPath>GW40K/Deathmark/Head/Male_Average_Normal_south</iconPath>
+		<iconPath>GW40K/Deathmark/Head/GeneIcon_DeathmarkHead</iconPath>
 		<geneClass>GW40K_Necrons.Gene_DeathmarkOculus</geneClass>
 		<statOffsets>
 			<ShootingAccuracyPawn>0.4</ShootingAccuracyPawn>
@@ -245,7 +335,20 @@
 		<labelShortAdj>Cryptek</labelShortAdj>
 		<description>Carriers of this gene have a crystalline skeletal frame that is infused with arcane energy, granting them enhanced cognitive abilities and the capacity to manipulate reality at a fundamental level.\n\n This gene allows the carrier to control some Necrons through Canoptek technology and arcane leverage - The user is imbedded with a Command Protocol</description>
 		<fur>GW_UD_NecronCryptek</fur>
-		<iconPath>Genes/Machine_body</iconPath>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<drawSize>0.98</drawSize>
+			</li>
+		</renderNodeProperties>
+		<iconPath>GW40K/Cryptek/Body/Cryptek_south</iconPath>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
@@ -258,7 +361,7 @@
 		<defName>GW_UD_NecronCryptek_Head</defName>
 		<label>cryptek cranium</label>
 		<description>Carriers of this gene have asymmetric, multi-lens optics and a logic-core dedicated to technomancy. Their head features a vast array of sensory lenses.</description>
-		<iconPath>GW40K/Cryptek/Head/CryptekH_south</iconPath>
+		<iconPath>GW40K/Cryptek/Head/GeneIcon_CryptekHead</iconPath>
 		<statOffsets>
 			<ResearchSpeed>0.20</ResearchSpeed>
 			<!-- <SocialImpact>-0.50</SocialImpact> -->
@@ -274,8 +377,24 @@
 		<labelShortAdj>Overlord</labelShortAdj>
 		<description>Carriers of this gene have a broad, heavily armored carapace made of "living metal" and adorned in royal regalia. \n\nThe decorative tassels and cloaks of "living metal" are known as Sempiternal Weave; Gene carriers are capable of turning away energy blades and plasma bursts.</description>
 		<fur>GW_UD_NecronOverlord</fur>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<drawSize>1.2</drawSize>
+			</li>
+		</renderNodeProperties>
 		<iconPath>Genes/Machine_body</iconPath>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<statFactors>
+			<InjuryHealingFactor>1.2</InjuryHealingFactor>
+		</statFactors>
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW_UD_NecronOverlord</hediffDef>
@@ -287,7 +406,7 @@
 		<defName>GW_UD_NecronOverlord_Head</defName>
 		<label>overlord crest</label>
 		<description>Carriers of this gene possess a masterpiece, crescent-shaped headdress that extends from the skull in a golden, regal silhouette. This "living metal" crown is embedded with sharp crystalline features to reflect the holder's eternal status as immortal rulers.\n\n The overlord deathmask is etched with dynastic glyphs and serves as a hardened protective plate.</description>
-		<iconPath>GW40K/Overlord/Head/Male_Average_Normal_south</iconPath>
+		<iconPath>GW40K/Overlord/Head/GeneIcon_OverlordHead</iconPath>
 		<forcedHeadTypes>
 			<li>GW40K_Overlord_HeadType</li>
 		</forcedHeadTypes>

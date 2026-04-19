@@ -19,8 +19,8 @@
 	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
 		<defName>GW_UD_NecronLychguard</defName>
 		<label>Lychguard</label>
-		<description>. . .</description>
-		<descriptionShort>. . .</descriptionShort>
+		<description>The elite protectors and emissaries of the Necron nobility. Unlike the mindless rank-and-file, Lychguard were gifted with high-quality living metal necrodermis bodies equal in resilience to those of their Overlords. Their personalities and intellect were largely preserved during bio-transference to allow them to serve as loyal envoys and military lieutenants, though the capacity for disobedience was surgically removed.\n\nOn the battlefield, Lychguard are patient perfectionists who favor single, devastating strikes over a flurry of blows. They are utterly dedicated to their charges, serving as an incorruptible bulwark against both external threats and the treacherous machinations of rival nobles. Their massive frames and ancient armor make them nearly impervious to standard small arms fire.</description>
+		<descriptionShort>The elite protectors and emissaries of the Necron nobility.</descriptionShort>
 		<iconPath>Genes/weird3</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
@@ -29,7 +29,31 @@
 			<li>GW_UD_Bodyguard</li>
 			<li>GW_UD_CantWork</li>
 			<li>GW_UD_LowBorn</li>
+			<li>GW_UD_SocialMatrix</li>
 			<li>GW_UD_NecronEmissary</li>
+			<li>WoundHealing_Fast</li>
+			<li>MeleeDamage_Strong</li>
+			<li>Robust</li>
+			<li>Unstoppable</li>
+			<li>AptitudeRemarkable_Melee</li>
+			<li>AptitudeStrong_Social</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_NecronFlayedOne</defName>
+		<label>Flayed One</label>
+		<description>Necrons who have succumbed to the Flayer curse — an echo of the destroyed C'tan Llandu'gor — hunger for blood and trophy-flesh they cannot eat, and slip through the Ghostwind to ambush prey. Other dynastsies loathe and fear them; on the field they are nothing but claws, masks, and dimensional bleed.</description>
+		<descriptionShort>Horrific melee specialists driven by a viral madness. They are obsessed with harvesting flesh and skin using terrifying claw-like appendages. They excel at stealth and psychological warfare but are socially repulsive and prone to uncontrollable bloodlust.</descriptionShort>
+		<iconPath>Genes/Flayer</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_NecronFlayedOne</li>
+			<li>GW_UD_NecronFlayedOne_Head</li>
+			<li>GW_UD_Bodyguard</li>
+			<li>GW_UD_CantWork</li>
+			<li>GW_UD_LowBorn_FlayedOne</li>
+			<!-- <li>GW_UD_NecronEmissary</li> what the hell-iante -->
 			<li>WoundHealing_Fast</li>
 			<li>MeleeDamage_Strong</li>
 			<li>Robust</li>
@@ -42,13 +66,14 @@
 	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
 		<defName>GW_UD_NecronDeathmark</defName>
 		<label>Deathmark</label>
-		<description>. . .</description>
-		<descriptionShort>. . .</descriptionShort>
+		<description>Cold, patient, and terrifyingly efficient — the Deathmarks are the professional assassins of the Necron dynasties. While most Necrons are bound to the material plane, Deathmarks possess the unique ability to slip into "hyperspace" pocket dimensions, allowing them to observe their prey while remaining completely untraceable. They do not charge into battle; they wait for the perfect moment to phase back into reality and deliver a single, lethal shot from their synaptic disintegrators.\n\nThough their capacity for empathy was discarded during bio-transference, they retain a high degree of tactical autonomy and professional pride. They follow ancient codes of honor that forbid their use against "worthy" opponents like Necron nobility, but they view all other life forms as mere vermin to be exterminated. In a colony, they are silent, solitary workers who excel at long-range elimination and staying out of sight until the killing blow is required.</description>
+		<descriptionShort>Interdimensional snipers and assassins. They possess extreme tactical independence and the ability to phase out of normal space.</descriptionShort>
 		<iconPath>Genes/weird2</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
 			<li>GW_UD_GreaterStagger</li>
 			<li>GW_UD_LowBorn</li>
+			<li>GW_UD_SocialMatrix</li>
 			<li>GW_UD_Sharpshooter</li>
 			<li>GW_UD_NecronDeathmark</li>
 			<li>Delicate</li>
@@ -61,8 +86,8 @@
 	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
 		<defName>GW_UD_NecronCryptek</defName>
 		<label>Cryptek</label>
-		<description>. . .</description>
-		<descriptionShort>. . .</descriptionShort>
+		<description>The masters of hyper-technology and keepers of the dynasties' arcane secrets. Crypteks are not part of the traditional Necron nobility, yet they wield immense power through their absolute mastery over the physical sciences. While their kin rely on brute force, a Cryptek views the battlefield as a laboratory, manipulating time, gravity, and elemental forces to achieve their ends.\n\nPossessing a level of sentience and ego that rivals the highest Overlords, Crypteks often spend millennia obsessing over singular scientific breakthroughs. They are the only ones capable of maintaining the complex stasis-crypts and resurrection protocols of their tomb worlds. In a colony, they are cold, aloof intellectuals who view biological life as little more than a collection of chemical reactions to be studied or rearranged. Though physically less robust than a Lychguard, their ability to repair their peers and bend reality makes them the indispensable backbone of any Necron hierarchy.</description>
+		<descriptionShort>Elite techno-scientists and support specialists. They possess high intellect and the ability to manipulate physical laws. They excel at research, construction, and battlefield repairs, though they lack the raw durability of combat-focused castes.</descriptionShort>
 		<iconPath>Genes/weird</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
@@ -72,6 +97,7 @@
 			<li>GW_UD_TechnoInterface</li>
 			<li>GW_UD_TechnoMagic</li>
 			<li>GW_UD_Workflow</li>
+			<li>GW_UD_SocialMatrix</li>
 			<li>GW_UD_NecronCryptek</li>
 			<li>GW_UD_NecronCryptek_Head</li>
 			<li>Learning_Fast</li>
@@ -84,7 +110,7 @@
 	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
 		<defName>GW_UD_NecronOverlord</defName>
 		<label>Overlord</label>
-		<description>. . .</description>
+		<description>The supreme rulers of the Necron dynasties, Overlords are ancient grandmasters of war and politics who have retained the full breadth of their personality and ambition through the long sleep. Clad in the finest living metal bodies ever forged, they possess a physical strength and resilience that few biological entities can comprehend. An Overlord does not merely lead; they dominate, their sheer force of will transmitted through the command protocols that bind their legions to their service.\n\nMillennia of isolation and the trauma of bio-transference have left many Overlords with eccentricities ranging from obsessive codes of honor to delusions of grandeur. They view the younger races as unruly children or encroaching pests upon their eternal empires. In a colony, an Overlord is a peerless strategist and a terrifying combatant, though their haughty nature and demand for absolute subservience can make them difficult to manage alongside those they deem "inferior."</description>
 		<descriptionShort>. . .</descriptionShort>
 		<iconPath>Genes/weird4</iconPath>
 		<inheritable>true</inheritable>
@@ -93,6 +119,7 @@
 			<li>GW_UD_RecallMemories</li>
 			<li>GW_UD_RoyalHabits</li>
 			<li>GW_UD_Royalty</li>
+			<li>GW_UD_SocialMatrix</li>
 			<li>GW_UD_NecronOverlord</li>
 			<li>Aggression_HyperAggressive</li>
 			<li>KillThirst</li>

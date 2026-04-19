@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 <!--
-    Based on BaseMechanoid / walkers / heavy (Core + Biotech).
-    Vanilla CompOverseerSubject + CompMechRepairable are required: RimWorld's Overseer
-    relation and GetOverseer() assume this comp exists; without it, AddDirectRelation NREs
-    and Nechinator bandwidth never updates. Gizmo/UI isolation is done in Harmony (NechGizmos).
+    Nechs are fully independent of the vanilla mech/mechanitor system.
+    No CompOverseerSubject or CompMechRepairable — the Necron Command Protocol
+    tracker handles all command, bandwidth, and uncontrolled logic directly.
   -->
 
   <!-- Mirrors BaseMechanoid (Core) + Biotech overseer/repair comps -->
@@ -43,12 +42,6 @@
         <wakeUpCheckRadius>30</wakeUpCheckRadius>
         <wakeUpSound>MechanoidsWakeUp</wakeUpSound>
       </li>
-      <li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_OverseerSubject">
-        <delayUntilFeralCheck>60000</delayUntilFeralCheck>
-        <feralMtbDays>10</feralMtbDays>
-        <feralCascadeRadialDistance>25</feralCascadeRadialDistance>
-      </li>
-      <li MayRequire="Ludeon.RimWorld.Biotech" Class="CompProperties_MechRepairable" />
       <li Class="GW40K_Necrons.CompProperties_NechUncontrolledTimer" />
     </comps>
     <modExtensions>
@@ -156,7 +149,7 @@
 		<defName>UD_Necron_Warrior</defName>
 		<!-- NecronMechExtension inherited from BaseNech -->
 		<label>Necron Warrior</label>
-		<description>. . .</description>
+		<description>A skeletal machine soldier of the ancient Necron legions. This is the base combat model for the Necrons.</description>
 		<statBases>
 			<MoveSpeed>2.5</MoveSpeed>
 			<BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
@@ -260,7 +253,7 @@
 		<defName>UD_Necron_Cryptothrall</defName>
 		<!-- NecronMechExtension inherited from BaseNech -->
 		<label>Cryptothrall</label>
-		<description>. . .</description>
+		<description>These purpose-built bodyguards are drawn directly from the Cryptek's own reserves aboard a nearby Necron starship, their blade-limbs already primed for slaughter.</description>
 		<tools>
 			<li>
 				<label>left blade</label>
@@ -367,7 +360,7 @@
 			</li>
 		</modExtensions>
 		<label>immortal</label>
-		<description>. . .</description>
+		<description>Immortals are the elite infantry of the tombworld, their bodies reinforced with heavier necrodermis plating over millions of years.</description>
 		<race>
 			<mechWeightClass>Medium</mechWeightClass>
 			<body>Lancer</body>
@@ -435,7 +428,46 @@
       </li>
     </modExtensions>
     <label>Flayed One</label>
-    <description>. . .</description>
+    <description>a corrupted Necron, driven to madness by an ancient, infectious curse. Flayed Ones are devolving ghouls who yearn for the biological bodies they lost millions of years ago, draping themselves in the rotting skin of their victims in a futile attempt to feel alive again.</description>
+    <tools>
+      <li>
+        <label>left flaying claw</label>
+        <labelNoLocation>flaying claw</labelNoLocation>
+        <capacities>
+          <li>Cut</li>
+          <li>Scratch</li>
+        </capacities>
+        <power>16</power>
+        <cooldownTime>1.8</cooldownTime>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+      </li>
+      <li>
+        <label>right flaying claw</label>
+        <labelNoLocation>flaying claw</labelNoLocation>
+        <capacities>
+          <li>Cut</li>
+          <li>Scratch</li>
+        </capacities>
+        <power>16</power>
+        <cooldownTime>1.8</cooldownTime>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+      </li>
+      <li>
+        <label>head</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>8</power>
+        <cooldownTime>2</cooldownTime>
+        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <chanceFactor>0.2</chanceFactor>
+      </li>
+    </tools>
     <statBases>
       <MoveSpeed>1.9</MoveSpeed>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
@@ -445,7 +477,7 @@
       <EnergyShieldEnergyMax>2.5</EnergyShieldEnergyMax>
     </statBases>
     <race>
-      <body>Mech_Tunneler</body>
+      <body>GW40K_NecronBody</body>
       <baseBodySize>3.5</baseBodySize>
       <baseHealthScale>1.5</baseHealthScale>
       <lifeStageAges>
@@ -479,35 +511,11 @@
         </li>
       </detritusLeavings>
     </race>
-    <tools>
-      <li>
-        <label>left power claw</label>
-        <labelNoLocation>power claw</labelNoLocation>
-        <capacities>
-          <li>Scratch</li>
-        </capacities>
-        <power>22</power>
-        <cooldownTime>2.9</cooldownTime>
-        <linkedBodyPartsGroup>LeftPowerClaw</linkedBodyPartsGroup>
-        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      </li>
-      <li>
-        <label>right power claw</label>
-        <labelNoLocation>power claw</labelNoLocation>
-        <capacities>
-          <li>Scratch</li>
-        </capacities>
-        <power>22</power>
-        <cooldownTime>2.9</cooldownTime>
-        <linkedBodyPartsGroup>RightPowerClaw</linkedBodyPartsGroup>
-        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-      </li>
-    </tools>
     <comps>
       <li Class="CompProperties_Shield" />
     </comps>
   </ThingDef>
-  
+
   <PawnKindDef ParentName="UD_NecronHeavyMechPawnKindBase">
     <defName>UD_Necron_FlayedOne</defName>
     <label>flayed one</label>
@@ -520,17 +528,24 @@
           <texPath>Things/Pawn/Mechanoid/FlayedOne/NecronFlayedOne_Hulk</texPath>
           <shaderType>CutoutWithOverlay</shaderType>
           <graphicClass>Graphic_Multi</graphicClass>
-          <drawSize>1.8</drawSize>
+          <drawSize>1.5</drawSize>
           <shadowData>
             <volume>(0.6, 0.8, 0.6)</volume>
           </shadowData>
         </bodyGraphicData>
       </li>
-    </lifeStages>      
+    </lifeStages>
+    <!-- Ability GW40K_Nech_FlayedCloak is granted by GW40K_FlayerVirus (HediffComp_GiveAbility), not listed here. -->
+    <!--
     <abilities>
-      <li>SmokepopMech</li>
+      <li>GW40K_Nech_FlayedCloak</li>
     </abilities>
-    <controlGroupPortraitZoom>1</controlGroupPortraitZoom>  
+    -->
+    <weaponMoney>9999~9999</weaponMoney>
+    <weaponTags>
+      <li>GW_Necron_Melee_Claw</li>
+    </weaponTags>
+    <controlGroupPortraitZoom>1</controlGroupPortraitZoom>
   </PawnKindDef>
   
   <!-- CryptekMech -->
@@ -542,7 +557,7 @@
       </li>
     </modExtensions>
     <label>Cryptek</label>
-    <description>. . .</description>
+    <description>Crypteks are the cryptographers and technomancers of the Necron courts — scholars of science so advanced it is indistinguishable from sorcery. Their frames are crystalline skeletons infused with arcane energy, supporting intellects that can bend reality at its roots. Asymmetric multi-lens optics and a logic-core devoted to technomancy feed a dense lattice of sensory data. Through Canoptek interfaces they bind lesser constructs, anchored by the same Command Protocol that shackles the legions to their masters.</description>
     <statBases>
       <ArmorRating_Blunt>0.40</ArmorRating_Blunt>
       <ArmorRating_Sharp>0.80</ArmorRating_Sharp>

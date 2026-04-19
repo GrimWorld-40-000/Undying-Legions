@@ -33,7 +33,7 @@
 				<reflectDamageChance>0.20</reflectDamageChance>
 				
 				<isKnockbackAttacker>true</isKnockbackAttacker>
-				<knockbackDistance>2.0</knockbackDistance>
+				<knockbackDistance>1.0</knockbackDistance>
 				
 				<isReflectProjectile>true</isReflectProjectile>
 				<reflectProjectileChance>0.20</reflectProjectileChance>

@@ -1,5 +1,6 @@
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 #nullable disable
 namespace GW40K_Necrons;
@@ -39,16 +40,30 @@ public class CompNechUncontrolledTimer : ThingComp
             SyncCommandState();
     }
 
-    /// <summary>Clear timer when commanded; start clock once when uncontrolled (spawn / first tick).</summary>
+    /// <summary>Clear timer when commanded; start clock once when uncontrolled (spawn / first tick).
+    /// Also auto-undrafts the Nech if it is drafted without a commander, so it doesn't get stuck in
+    /// a drafted-but-unorderable limbo (e.g. after the commander dies).</summary>
     public void SyncCommandState()
     {
         Pawn p = parent as Pawn;
         if (p == null)
             return;
         if (NechInspectStringUtility.IsNechProperlyCommanded(p))
+        {
             uncontrolledSinceTick = -1;
-        else if (uncontrolledSinceTick < 0)
-            uncontrolledSinceTick = Find.TickManager.TicksGame;
+        }
+        else
+        {
+            if (uncontrolledSinceTick < 0)
+                uncontrolledSinceTick = Find.TickManager.TicksGame;
+
+            // Nech lost its commander while drafted — undraft so it can fight autonomously.
+            if (p.Drafted && p.drafter != null)
+            {
+                p.drafter.Drafted = false;
+                p.jobs?.EndCurrentJob(JobCondition.InterruptForced, false);
+            }
+        }
     }
 
     /// <summary>Call when overseer link is removed — restart uncontrolled duration from now.</summary>

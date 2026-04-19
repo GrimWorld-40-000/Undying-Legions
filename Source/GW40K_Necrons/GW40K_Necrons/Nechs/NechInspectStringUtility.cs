@@ -1,4 +1,3 @@
-using RimWorld;
 using Verse;
 
 #nullable disable
@@ -8,10 +7,6 @@ internal static class NechInspectStringUtility
 {
     public static bool IsNechProperlyCommanded(Pawn nech)
     {
-        if (nech == null)
-            return false;
-        Pawn commander = nech.GetOverseer();
-        return commander != null
-            && HediffComp_NecronCommandTracker.GetTracker(commander)?.controlledMechs?.Contains(nech) == true;
+        return HediffComp_NecronCommandTracker.GetCommanderOf(nech) != null;
     }
 }

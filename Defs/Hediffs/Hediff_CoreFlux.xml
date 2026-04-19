@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
+
+  <!-- Replaces vanilla BloodLoss for any pawn whose bloodDef is GW40K_Filth_NecronBlood.
+       HarmonyPatch_RedirectBloodLossToFluxLoss redirects HealthUtility.AdjustSeverity so
+       this accumulates instead of BloodLoss. Stage thresholds and capMods are identical to
+       vanilla BloodLoss — only the labels and description differ. -->
+  <HediffDef>
+    <defName>GW40K_CoreFluxLoss</defName>
+    <label>core flux leak</label>
+    <description>Core flux — the living energy that animates Necron living metal — is draining from breached structural conduits. Minor leakage has limited effect, but sustained loss degrades engram coherence and motive power. Catastrophic flux drain leads to total systemic shutdown.\n\nFlux loss gradually self-seals as the living metal rewrites damaged conduits.</description>
+    <lethalSeverity>1</lethalSeverity>
+    <defaultLabelColor>(0.7, 0.87, 0.67)</defaultLabelColor>
+    <stages>
+      <li>
+        <label>minor</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.15</minSeverity>
+        <label>minor</label>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.30</minSeverity>
+        <label>moderate</label>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.45</minSeverity>
+        <label>severe</label>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.4</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.60</minSeverity>
+        <label>critical</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.4</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
   <!-- DeathrestExhaustion analogue: applied when GW40K_CoreFlux hits empty (see MaintenanceNeed). -->
   <HediffDef>
     <defName>GW40K_CoreFluxExhaustion</defName>

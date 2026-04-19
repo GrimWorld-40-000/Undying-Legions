@@ -143,6 +143,7 @@
           </subNodes>
         </li>
         <li Class="GW40K_Necrons.JobGiver_GetMaintenance" />
+        <li Class="GW40K_Necrons.JobGiver_GaussRechargeFromBattery" />
         <!-- Prisoner -->
         <li Class="ThinkNode_ConditionalPrisoner">
           <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
@@ -501,6 +502,136 @@
     </thinkRoot>
   </ThinkTreeDef>
 
+  <!-- Stripped think tree for the humanlike Flayed One (GW40K_NecronFlayedOne).
+       Removes all humanlike social/work/joy behaviour. Keeps critical responses,
+       Nechinator lord duty, Necrodermis maintenance, flesh-seeking, and wandering.
+       Vanilla mood breaks are intentionally absent — Dysphorakh episodes are triggered
+       directly from C# (HediffCompProperties_DysphorakhEpisodes) and bypass this tree. -->
+  <ThinkTreeDef>
+    <defName>GW40K_FlayedOne_ThinkTree</defName>
+    <label>Flayed One think tree</label>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+
+        <!-- Downed -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Downed</treeDef>
+        </li>
+        <!-- Burning panic -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>BurningResponse</treeDef>
+        </li>
+        <!-- Critical mental states (fire panic, etc.) only — NOT MentalStateNonCritical. -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>MentalStateCritical</treeDef>
+        </li>
+        <!-- Escape abilities (Biotech) -->
+        <li Class="ThinkNode_Subtree" MayRequire="Ludeon.RimWorld.Biotech">
+          <treeDef>Abilities_Escape</treeDef>
+        </li>
+        <!-- React to close melee threat -->
+        <li Class="JobGiver_ReactToCloseMeleeThreat" />
+        <!-- Queued job (drafted orders from Nechinator) -->
+        <li Class="ThinkNode_QueuedJob" />
+        <!-- Draft + attack orders when commanded -->
+        <li Class="ThinkNode_ConditionalColonist">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>DraftedOrder</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_MoveToStandable" />
+                <li Class="JobGiver_Orders" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- High-priority Nechinator lord duty (formation, attack target, etc.) -->
+        <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
+          <dutyHook>HighPriority</dutyHook>
+          <subNodes>
+            <li Class="ThinkNode_Subtree">
+              <treeDef>LordDuty</treeDef>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Necrodermis maintenance -->
+        <li Class="GW40K_Necrons.JobGiver_GetMaintenance" />
+
+        <!-- Flesh-seek (pre-starvation corpse/meat scavenge) and flesh-hunt (living prey) -->
+        <li Class="GW40K_Necrons.JobGiver_FlayedOneFleshSeek" />
+
+        <!-- Starvation fallback — GetFood with FoodType gating -->
+        <li Class="ThinkNode_ConditionalStarving">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>SatisfyingNeeds</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_GetFood">
+                  <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Medium-priority Nechinator lord duty -->
+        <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
+          <dutyHook>MediumPriority</dutyHook>
+          <subNodes>
+            <li Class="ThinkNode_Subtree">
+              <treeDef>LordDuty</treeDef>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Allowed area constraint -->
+        <li Class="JobGiver_SeekAllowedArea" />
+
+        <!-- Exit the map if not a colonist (e.g. released prisoner conversion) -->
+        <li Class="ThinkNode_ConditionalColonist">
+          <invert>true</invert>
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Misc</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_ExitMapBest">
+                  <defaultLocomotion>Walk</defaultLocomotion>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Idle: wander the colony when colonist -->
+        <li Class="ThinkNode_ConditionalColonist">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Idle</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_WanderColony">
+                  <maxDanger>None</maxDanger>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+        <!-- Idle fallback: wander anywhere -->
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Idle</tagToGive>
+          <subNodes>
+            <li Class="JobGiver_WanderAnywhere">
+              <maxDanger>Deadly</maxDanger>
+            </li>
+          </subNodes>
+        </li>
+
+        <li Class="JobGiver_IdleError" />
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
   <ThinkTreeDef>
     <defName>GW40K_ScarabSwarm</defName>
     <thinkRoot Class="ThinkNode_Priority">
@@ -539,13 +670,19 @@
             <!-- Flee explosion -->
             <li Class="JobGiver_FleePotentialExplosion" />
 
+            <!-- Avoid vacuums (skipped for pawns with VacuumResistance=1, e.g. Necrons) -->
+            <li Class="JobGiver_FindOxygen" />
+
+            <!-- Board/leave gravship -->
+            <li Class="JobGiver_BoardOrLeaveGravship" />
+
             <!-- Join auto joinable caravan -->
             <li Class="ThinkNode_Subtree">
               <treeDef>JoinAutoJoinableCaravan</treeDef>
             </li>
 
-            <!-- Hostility response -->
-            <li Class="JobGiver_ConfigurableHostilityResponse" />
+            <!-- Necrons always attack — no configurable flee/ignore -->
+            <li Class="GW40K_Necrons.JobGiver_NecronAutoAttack" />
 
             <!-- Stop crawling -->
             <li Class="ThinkNode_ConditionalIsCrawling">

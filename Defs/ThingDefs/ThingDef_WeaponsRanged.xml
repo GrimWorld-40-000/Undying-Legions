@@ -101,10 +101,10 @@
 
 	 <ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VEF.Weapons.LaserBeamDef"> 
 		<defName>GW40k_Necron_Laser</defName>
-		<label>Necron Beam</label>
-		<description>beam</description>
+		<label>beam</label>
+		<description>a viridian-green charged particle beam.</description>
 		<textures>
-			<li>Things/Projectiles/Laser_Red</li>
+			<li>Things/Projectiles/Laser_Green</li>
 		</textures>
 		<seam>0.1</seam>
 		<causefireChance>0</causefireChance>
@@ -113,9 +113,29 @@
 		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
 		<projectile>
 			<damageDef>Cut</damageDef>
-			<damageAmountBase>37</damageAmountBase>
+			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationBase>1.9</armorPenetrationBase>
 			<stoppingPower>3</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VEF.Weapons.LaserBeamDef"> 
+		<defName>GW40k_Necron_Gauss</defName>
+		<label>Particle Beam</label>
+		<description>beam</description>
+		<textures>
+			<li>Things/Projectiles/TeslaCarbineMote</li>
+		</textures>
+		<seam>0.1</seam>
+		<causefireChance>0</causefireChance>
+		<beamWidth>1.0</beamWidth>
+		<lifetime>70</lifetime>
+		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
+		<projectile>
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>37</damageAmountBase>
+			<armorPenetrationBase>1.2</armorPenetrationBase>
+			<!-- <stoppingPower>3</stoppingPower> -->
 		</projectile>
 	</ThingDef> 
 	
@@ -123,7 +143,7 @@
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_Disintegrator</defName>
 		<label>Disintegrator</label>
-		<description>The Synaptic Disintegrator is a long-barreled particle rifle designed for precise targeting and devastating damage. Disintegrators bypass most traditional armor, focusing primarily on destruction of tissue.\n\n &lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
+		<description>The Synaptic Disintegrator is a long-barreled particle rifle designed for precise targeting and devastating damage. Disintegrators bypass most traditional armor, focusing primarily on destruction of tissue.\n\n&lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/Disintegrator</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -137,6 +157,7 @@
 		<statBases>
 			<WorkToMake>34000</WorkToMake>
 			<Mass>4.5</Mass>
+			<MarketValue>4600</MarketValue>
 			<AccuracyTouch>0.55</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.70</AccuracyMedium>
@@ -201,7 +222,7 @@
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_GaussFlayer</defName>
 		<label>Gauss Flayer</label>
-		<description>A rifle-like weapon consisting of a stock, a transparent containment-tube, and a charging mechanism. It emits a charged beam of green energy that disintegrates targets at a molecular level.\n\n &lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
+		<description>A rifle-like weapon consisting of a stock, a transparent containment-tube, and a charging mechanism. It emits a charged beam of green energy that disintegrates targets at a molecular level.\n\n&lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/GaussFlayer</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -215,6 +236,7 @@
 		<statBases>
 			<WorkToMake>24000</WorkToMake>
 			<Mass>4.5</Mass>
+			<MarketValue>3375</MarketValue>
 			<AccuracyTouch>0.60</AccuracyTouch>
 			<AccuracyShort>0.75</AccuracyShort>
 			<AccuracyMedium>0.675</AccuracyMedium>
@@ -231,7 +253,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>GW40k_Necron_ChargeBullet</defaultProjectile>
+				<defaultProjectile>GW40k_Necron_Gauss</defaultProjectile> <!-- changed from ChargeBullet-->
 				<warmupTime>2.0</warmupTime>
 				<range>27</range>
 				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
@@ -276,7 +298,7 @@
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_GaussBlaster</defName>
 		<label>Gauss Blaster</label>
-		<description>A powerful twin-rifle variant of the standard Gauss Flayer. This version features a heavier frame and twin gauss coils. Blasters fire two charged energy beams that disintegrate targets at a molecular level.\n\n &lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
+		<description>A powerful twin-rifle variant of the standard Gauss Flayer. This version features a heavier frame and twin gauss coils. Blasters fire two charged energy beams that disintegrate targets at a molecular level.\n\n&lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/GaussBlaster</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -290,6 +312,7 @@
 		<statBases>
 			<WorkToMake>29000</WorkToMake>
 			<Mass>7.5</Mass>
+			<MarketValue>4250</MarketValue>
 			<AccuracyTouch>0.58</AccuracyTouch>
 			<AccuracyShort>0.75</AccuracyShort>
 			<AccuracyMedium>0.65</AccuracyMedium>
@@ -306,7 +329,7 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>GW40k_Necron_ChargeBullet</defaultProjectile>
+				<defaultProjectile>GW40k_Necron_Gauss</defaultProjectile> <!-- changed from ChargeBullet-->
 				<warmupTime>2.2</warmupTime>
 				<range>26</range>
 				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
@@ -368,6 +391,7 @@
 		<statBases>
 			<WorkToMake>48000</WorkToMake>
 			<Mass>18.5</Mass>
+			<MarketValue>5600</MarketValue>
 			<AccuracyTouch>0.45</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.70</AccuracyMedium>
@@ -443,6 +467,7 @@
 		<statBases>
 			<WorkToMake>34000</WorkToMake>
 			<Mass>4.5</Mass>
+			<MarketValue>5000</MarketValue>
 			<AccuracyTouch>0.75</AccuracyTouch>
 			<AccuracyShort>0.85</AccuracyShort>
 			<AccuracyMedium>0.70</AccuracyMedium>

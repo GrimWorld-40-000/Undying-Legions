@@ -1,5 +1,21 @@
 <Defs>
 
+	<!-- Granted by GW_UD_SocialMatrix gene on high-tier Necrons (Lychguard, Deathmark, Cryptek, Overlord).
+	     Indicates the pawn's vox-routing engrams are fully intact for nuanced communication.
+	     No functional capacity change — all Necrons have basic talking via the Jaw (TalkingSource).
+	     The hediff is visible in the health tab as confirmation of the implant. -->
+	<HediffDef>
+		<defName>GW40K_Necron_SocialMatrix_Active</defName>
+		<label>social matrix</label>
+		<description>An advanced engram-routing matrix wired into the jaw assembly, enabling nuanced communication and diplomatic processing beyond basic vox-emission.</description>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<hediffClass>HediffWithComps</hediffClass>
+		<isBad>false</isBad>
+		<stages>
+			<li />
+		</stages>
+	</HediffDef>
+
 	<HediffDef>
 		<defName>GW40K_Necron_Lifeless</defName>
 		<label>Lifeless</label>
@@ -18,7 +34,7 @@
 	<HediffDef>
 		<defName>GW_UD_NecronLychguard</defName>
 		<label>Lych Guard</label>
-		<description>The reinforced necrodermis chassis seals damage faster than lighter frames — wounds clot into slag and re-knit without blood loss. The living metal dedicates significant molecular resources to structural repair, recovering injuries at an accelerated rate.</description>
+		<description>The reinforced necrodermis chassis seals damage faster than lighter frames — wounds clot into slag and re-knit without core flux loss. The living metal dedicates significant molecular resources to structural repair, recovering injuries at an accelerated rate.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
@@ -35,7 +51,7 @@
 	<HediffDef>
 		<defName>GW_UD_NecronDeathmark</defName>
 		<label>Deathmark chassis</label>
-		<description>The Deathmark frame channels molecular repair into its skeletal lattice — injuries reseal without blood loss and the living metal re-knits at an elevated rate. The chassis is optimized for sustained independent operation deep in hostile territory.</description>
+		<description>The Deathmark frame channels molecular repair into its skeletal lattice — injuries reseal without core flux loss and the living metal re-knits at an elevated rate. The chassis is optimized for sustained independent operation deep in hostile territory.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
@@ -69,12 +85,12 @@
 	<HediffDef>
 		<defName>GW_UD_NecronOverlord</defName>
 		<label>Overlord carapace</label>
-		<description>The Overlord's Sempiternal Weave is not merely decorative — the layered necrodermis baffles redirect molecular repair to where it is needed most, accelerating wound closure and eliminating blood loss entirely. To wound an Overlord is to inconvenience one.</description>
+		<description>The Overlord's Sempiternal Weave is not merely decorative — the layered necrodermis baffles redirect molecular repair to where it is needed most, accelerating wound closure and eliminating core flux loss entirely. To wound an Overlord is to inconvenience one.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
 		<stages>
 			<li>
-				<regeneration>10</regeneration>
+				<regeneration>9</regeneration>
 				<naturalHealingFactor>1.5</naturalHealingFactor>
 				<totalBleedFactor>0</totalBleedFactor>
 			</li>
@@ -153,6 +169,8 @@
 	</ThoughtDef>
 
 	<!-- Soul-Debt: severity builds at 0.03/day (~23 days to reach immersion).
+	     The Sorrow break (HediffComp_TheSorrow) drains severity back to 0.05 (Echoes floor) over ~4 days,
+	     then the cycle restarts. The hediff is never removed — Soul-Debt does not leave, it only goes quiet.
 	     Mood penalties are expressed through ThoughtDef GW40K_Necron_RecallMemories (ThoughtWorker_Hediff).
 	     Stage indices must match thought stage indices exactly. -->
 	<HediffDef>
@@ -168,12 +186,17 @@
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>0.03</severityPerDay>
 			</li>
+			<!-- Triggers GW40K_TheSorrow mental state at MTB 9 days while in Immersion (severity >= 0.70) -->
+			<li Class="GW40K_Necrons.HediffCompProperties_TheSorrow">
+				<mtbDays>9</mtbDays>
+				<minSeverity>0.70</minSeverity>
+			</li>
 		</comps>
 		<stages>
-			<!-- Stage 0: Echoes (0.0 - 0.35) — hidden, barely perceptible -->
+			<!-- Stage 0: Echoes (0.0 - 0.35) — visible, barely perceptible -->
 			<li>
 				<label>echoes</label>
-				<becomeVisible>false</becomeVisible>
+				<becomeVisible>true</becomeVisible>
 			</li>
 			<!-- Stage 1: Intrusion (0.35 - 0.70) — visible, memories forcing forward -->
 			<li>
@@ -181,13 +204,11 @@
 				<label>intrusion</label>
 				<extraTooltip>Soul-Debt is surfacing. Phantom sensations and the faces of the long-dead press against the cognitive lattice unbidden.</extraTooltip>
 			</li>
-			<!-- Stage 2: Immersion (0.70 - 1.0) — the pawn is elsewhere; break risk active -->
+			<!-- Stage 2: Immersion (0.70 - 1.0) — the pawn is elsewhere; HediffComp_TheSorrow fires the break -->
 			<li>
 				<minSeverity>0.70</minSeverity>
 				<label>immersion</label>
 				<extraTooltip>The Sorrow has taken hold. The pawn is lost in another life — another body, another world. Soul-Debt is collecting in full.</extraTooltip>
-				<mentalBreakMtbDays>9</mentalBreakMtbDays>
-				<mentalBreakExplanation>The Sorrow — Soul-Debt overwhelming the cognitive lattice.</mentalBreakExplanation>
 			</li>
 		</stages>
 	</HediffDef>
@@ -234,6 +255,28 @@
 			<li Class="HediffCompProperties_ChangeNeed">
 				<needDef>Joy</needDef>
 				<percentPerDay>-0.1</percentPerDay>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<!-- Applied after reanimation protocol fires. Decays over 30 days (severityPerDay = -1/30).
+	     While present, a second core-destruction event will result in permanent death instead of another reanimation.
+	     Removed immediately on successful stasis crypt completion. -->
+	<HediffDef>
+		<defName>GW40K_ReanimationCooldown</defName>
+		<label>reanimation cooldown</label>
+		<description>The reanimation protocol has recently fired. The living metal matrix requires thirty days of continuous operation — or a complete stasis cycle — to rebuild the stored energy needed to reassemble from critical damage a second time.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<isBad>true</isBad>
+		<initialSeverity>1.0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
+		<stages>
+			<li><label>reanimation cooldown</label></li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.03334</severityPerDay>
 			</li>
 		</comps>
 	</HediffDef>

@@ -12,13 +12,16 @@
     <defName>GW40K_ScarabSwarm_Chassis</defName>
     <label>swarm chassis</label>
     <hitPoints>10</hitPoints>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
   </BodyPartDef>
 
   <!-- One body part per scarab — each is vital so losing it degrades the swarm -->
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_ScarabUnit</defName>
     <label>scarab</label>
-    <hitPoints>15</hitPoints>
+    <hitPoints>750</hitPoints>
+    <bleedRate>0</bleedRate>
     <frostbiteVulnerability>0.01</frostbiteVulnerability>
     <tags>
       <li>MovingLimbCore</li>

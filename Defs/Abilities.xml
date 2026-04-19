@@ -207,8 +207,8 @@
 
 	<AbilityDef ParentName="AbilityTouchBase">
 		<defName>GW40k_Necron_Transmute</defName>
-		<label>transmute necrodemis</label>
-		<description>making necrodemis out of stuff</description>
+		<label>transmute necrodermis</label>
+		<description>convert the targeted materials into necrodermis using techno-magic.</description>
 		<iconPath>Things/Projectile/LauncherShot</iconPath>
 		<cooldownTicksRange>50000</cooldownTicksRange><!-- 20 hours -->
 		<showPsycastEffects>false</showPsycastEffects>

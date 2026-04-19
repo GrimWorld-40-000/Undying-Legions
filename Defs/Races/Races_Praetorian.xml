@@ -9,10 +9,10 @@
 	<!-- <selectionWeight>0</selectionWeight> -->
   </HeadTypeDef>
 
-  <ThingDef Name="GW40K_NecronPraetorian" ParentName="BasePawn">
+  <ThingDef Name="GW40K_NecronPraetorian" ParentName="GW40K_BaseNecronSoldier">
     <defName>GW40K_NecronPraetorian</defName>
     <label>necron praetorian</label>
-    <description>asd</description>
+    <description>Praetorians are the ancient judges and enforcers of Necron law. They are sworn to hte Triarch and are meant to preserve the Necron empire as a whole.</description>
 
     <statBases>
       <MarketValue>1750</MarketValue>
@@ -48,37 +48,6 @@
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>
     </tools>
-
-    <race>
-      <thinkTreeMain>Humanlike</thinkTreeMain>
-      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
-      <intelligence>Humanlike</intelligence>
-      <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>10000</lifeExpectancy>
-      <bloodDef>GW40K_Filth_NecronBlood</bloodDef>
-      <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
-      <nameCategory>HumanStandard</nameCategory>
-      <body>GW40K_NecronBody</body>
-      <renderTree>Humanlike</renderTree>
-      <baseBodySize>1</baseBodySize>
-      <baseHealthScale>1.5</baseHealthScale>
-      <foodType>OmnivoreHuman</foodType>
-      <meatMarketValue>0</meatMarketValue>
-      <manhunterOnDamageChance>0</manhunterOnDamageChance>
-      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
-
-      <lifeStageAges>
-        <li>
-          <def>HumanlikeAdult</def>
-          <minAge>0</minAge>
-        </li>
-      </lifeStageAges>
-
-      <hediffGiverSets>
-        <li>OrganicStandard</li>
-        <li>GW40K_Necron_HediffGiverSet</li>
-      </hediffGiverSets>
-    </race>
 
     <modExtensions>
       <li Class="GW40K_Necrons.NonOrganicPawn">

@@ -3,16 +3,17 @@
 	<ThingDef ParentName="GW40k_Necron_MeleeMakeable">
 		<defName>GW40k_Necron_Staff</defName>
 		<label>necron staff</label>
-		<description>The staff of light is the quintessential symbol of nobility and a marvel of technology. The head of the staff is embedded with a microscopic power matrix that captures and stores the energy of stars. In combat it is a versatile weapon that can be switched between melee and ranged mode. This staff is configured for melee attacks.\n\n The staff of light is a status symbol, only to be carried by Lords and Overlords. Carriers are often looked upon as a vengeful god wielding the power of the sun.</description>
+		<description>The staff of light is the quintessential symbol of nobility and a marvel of technology. The head of the staff is embedded with a microscopic power matrix that captures and stores the energy of stars. In combat it is a versatile weapon that can be switched between melee and ranged mode. This staff is configured for swift melee attacks.\n\n The staff of light is a status symbol, only to be carried by Lords and Overlords. Carriers are often looked upon as a vengeful god wielding the power of the sun.</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/Necron_Staff</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.0</drawSize>
+			<drawSize>1.5</drawSize>
 		</graphicData>
-		<uiIconScale>1.0</uiIconScale>				
+		<uiIconScale>0.8</uiIconScale>				
 		<statBases>
 			<WorkToMake>50000</WorkToMake>
 			<Mass>2.85</Mass>
+			<MarketValue>3800</MarketValue>
 		</statBases>
 		<equippedAngleOffset>-30</equippedAngleOffset>
 		<stuffCategories>
@@ -35,7 +36,7 @@
 				<li>Blunt</li>
 			</capacities>
 			<power>9</power>
-			<cooldownTime>2.5</cooldownTime>
+			<cooldownTime>1.5</cooldownTime>
 			<armorPenetration>0.2</armorPenetration>
 			</li>
 			<li>
@@ -43,8 +44,8 @@
 			<capacities>
 				<li>Stab</li>
 			</capacities>
-			<power>40</power>
-			<cooldownTime>1.0</cooldownTime>
+			<power>32</power>
+			<cooldownTime>1.2</cooldownTime>
 			<armorPenetration>1.1</armorPenetration>
 			</li>
 			<li>
@@ -53,7 +54,7 @@
 				<li>Cut</li>
 			</capacities>
 			<power>29</power>
-			<cooldownTime>2</cooldownTime>
+			<cooldownTime>1.5</cooldownTime>
 			<armorPenetration>0.8</armorPenetration>
 			</li>
 		</tools>	
@@ -72,17 +73,19 @@
 	</ThingDef>
 	<ThingDef ParentName="GW40k_Necron_MeleeMakeable">
 		<defName>GW40k_Necron_StaffR</defName>
-		<label>necron staff(ranged)</label>
+		<label>necron staff</label>
 		<description>The staff of light is the quintessential symbol of nobility and a marvel of technology. The head of the staff is embedded with a microscopic power matrix that captures and stores the energy of stars. In combat it is a versatile weapon that can be switched between melee and ranged mode. This staff is configured for powerful short-range attacks.\n\n The staff of light is a status symbol, only to be carried by Lords and Overlords. Carriers are often looked upon as a vengeful god wielding the power of the sun.</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/Necron_Staff</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>1.0</drawSize>
+			<drawSize>1.5</drawSize>
 		</graphicData>
-		<uiIconScale>1.0</uiIconScale>				
+		<uiIconScale>0.8</uiIconScale>				
 		<statBases>
 			<WorkToMake>50000</WorkToMake>
 			<Mass>2.85</Mass>
+			<MarketValue>3800</MarketValue>
+			<RangedWeapon_Cooldown>3.5</RangedWeapon_Cooldown>
 		</statBases>
 		<equippedAngleOffset>-30</equippedAngleOffset>
 		<stuffCategories>
@@ -103,10 +106,10 @@
 				<range>19.9</range>
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<burstShotCount>2</burstShotCount>
-				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<ticksBetweenBurstShots>18</ticksBetweenBurstShots>
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
-				<warmupTime>0.5</warmupTime>
+				<warmupTime>0.8</warmupTime>
 			</li>
 		</verbs>
 		<tools>
@@ -124,9 +127,9 @@
 			<capacities>
 				<li>Stab</li>
 			</capacities>
-			<power>40</power>
-			<cooldownTime>1.0</cooldownTime>
-			<armorPenetration>1.2</armorPenetration>
+			<power>32</power>
+			<cooldownTime>2.3</cooldownTime>
+			<armorPenetration>0.4</armorPenetration>
 			</li>
 			<li>
 			<label>edge</label>
@@ -134,8 +137,8 @@
 				<li>Cut</li>
 			</capacities>
 			<power>29</power>
-			<cooldownTime>2</cooldownTime>
-			<armorPenetration>0.8</armorPenetration>
+			<cooldownTime>2.5</cooldownTime>
+			<armorPenetration>0.4</armorPenetration>
 			</li>
 		</tools>	
 		<comps>

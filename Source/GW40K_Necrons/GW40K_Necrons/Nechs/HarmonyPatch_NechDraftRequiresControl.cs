@@ -6,7 +6,7 @@ using Verse;
 namespace GW40K_Necrons;
 
 /// <summary>
-/// Nechs without a command-protocol overseer cannot be drafted (blocks gizmo, hotkeys, and other callers).
+/// DOUBLE-CHECK before modifying behavior!! Nechs without a command-protocol overseer cannot be drafted (blocks gizmo, hotkeys, and other callers).
 /// </summary>
 [HarmonyPatch(typeof(Pawn_DraftController), nameof(Pawn_DraftController.Drafted), MethodType.Setter)]
 public static class HarmonyPatch_NechDraftRequiresControl
@@ -20,7 +20,7 @@ public static class HarmonyPatch_NechDraftRequiresControl
         Pawn p = __instance?.pawn;
         if (p == null || p.def.GetModExtension<NecronMechExtension>() == null)
             return true;
-        if (p.GetOverseer() != null)
+        if (HediffComp_NecronCommandTracker.GetCommanderOf(p) != null)
             return true;
 
         Messages.Message(

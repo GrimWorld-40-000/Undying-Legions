@@ -21,6 +21,7 @@
 		<listPriority>800</listPriority>
         <major>true</major>
         <showForCaravanMembers>true</showForCaravanMembers>
+		<baseLevel>0.8</baseLevel>
 		<!-- Stasis crypt burn rate reads this at runtime (÷ necrodermisNutritionPerConsumedUnit in NecronStasisSettings). Keep aligned with rebalance. -->
 		<fallPerDay>0.15</fallPerDay>
 		<modExtensions>
@@ -36,6 +37,7 @@
         <defName>GW40K_NechEnergy</defName>
         <needClass>GW40K_Necrons.Need_NechEnergy</needClass>
         <label>gauss energy</label>
+        <baseLevel>1.0</baseLevel>
         <description>Stored gauss energy reserve used to power Necron construct systems.</description>
         <onlyIfCausedByGene>false</onlyIfCausedByGene>
         <listPriority>820</listPriority>

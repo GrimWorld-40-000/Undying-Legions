@@ -7,8 +7,9 @@ namespace GW40K_Necrons;
 /// <summary>
 /// Draws the Deathmark ocular glow overlay only when ambient light is low.
 /// North facing is suppressed via <visibleFacing> in XML (back of head).
-/// Offset values place the glow at the ocular sensor position — tweak if the
-/// head art shifts the eye from the default center-face position.
+/// Offset nudges are authored at ~1× render scale; they are multiplied by
+/// <see cref="PawnRenderNodeWorker.ScaleFor"/> so the glow stays on the eye when the
+/// Deathmark chassis/head is drawn smaller (e.g. body <c>drawSize</c> 0.88).
 /// </summary>
 public class PawnRenderNodeWorker_DeathmarkEyeGlow : PawnRenderNodeWorker
 {
@@ -29,15 +30,17 @@ public class PawnRenderNodeWorker_DeathmarkEyeGlow : PawnRenderNodeWorker
     {
         Vector3 offset = base.OffsetFor(node, parms, out pivot);
 
-        // Nudge glow to the ocular sensor position on the Deathmark head.
+        // Nudge glow to the ocular sensor position on the Deathmark head (1×-space).
         // Rot4: North=0, East=1, South=2, West=3.
-        // Adjust x/z if the eye sits off-centre in the head texture.
-        offset += parms.facing.AsInt switch
+        Vector3 nudge = parms.facing.AsInt switch
         {
-            1 => new Vector3( 0.43f, 0f, 0.05f), // East  – face points right, eye at +X
-            3 => new Vector3(-0.43f, 0f, 0.05f), // West  – face points left, eye at -X
-            _ => new Vector3( 0.00f, 0f, 0.06f), // South – single centred oculus
+            1 => new Vector3(0.35f, 0f, 0.04f), // East  – face points right, eye at +X
+            3 => new Vector3(-0.35f, 0f, 0.04f), // West  – face points left, eye at -X
+            _ => new Vector3(0f, 0f, 0.05f), // South – single centred oculus
         };
+
+        Vector3 scale = base.ScaleFor(node, parms);
+        offset += Vector3.Scale(nudge, scale);
 
         return offset;
     }

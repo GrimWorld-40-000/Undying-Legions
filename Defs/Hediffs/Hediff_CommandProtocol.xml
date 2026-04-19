@@ -49,7 +49,7 @@
       </li>
       <li Class="CompProperties_UseEffectInstallImplant">
         <hediffDef>GW40K_CommandProtocolImplant</hediffDef>
-        <bodyPart>Brain</bodyPart>
+        <bodyPart>GW40K_Necron_Head</bodyPart>
         <requiresPsychicallySensitive>false</requiresPsychicallySensitive>
       </li>
       <li Class="CompProperties_UseEffectPlaySound">
@@ -75,12 +75,14 @@
         <bandwidthCostPerMech>1</bandwidthCostPerMech>
         <controlRange>20</controlRange>
       </li>
+      <!-- Command Protocol is fused to the bearer — no removable mechlink notification on death
       <li Class="HediffCompProperties_LetterOnDeath">
         <letterDef>NeutralEvent</letterDef>
         <letterLabel>Reusable {HEDIFF_label} available</letterLabel>
         <letterText>{PAWN} has died with a {HEDIFF_label} installed. This can be removed and installed by someone else.</letterText>
         <onlyIfNoMechanitorDied>true</onlyIfNoMechanitorDied>
       </li>
+      -->
     </comps>
   </HediffDef>
 

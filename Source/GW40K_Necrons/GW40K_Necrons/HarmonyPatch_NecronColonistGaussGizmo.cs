@@ -15,7 +15,7 @@ public static class HarmonyPatch_NecronColonistGaussGizmo
 {
     public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> gizmos, Pawn __instance)
     {
-        foreach (Gizmo g in gizmos)
+        foreach (Gizmo g in GizmoEnumerationSafety.PassThroughWithSafety(gizmos, __instance, "ColonistGauss"))
             yield return g;
 
         if (__instance?.def?.GetModExtension<NecronMechExtension>() != null)

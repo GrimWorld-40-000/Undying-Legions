@@ -1,0 +1,57 @@
+<Defs>
+
+  <!-- Permanent condition hediff added by Gene_Dysphorakh.
+       Has no severity stages — it simply exists and drives the episode comp. -->
+  <HediffDef>
+    <defName>GW40K_Dysphorakh</defName>
+    <label>Dysphorakh</label>
+    <description>The phantom-biological condition of Biotransference — episodes of suffocation, phantom hunger, and sensory horror cycle beneath the surface of the living-metal mind. In the worst cases, the Flaying Curse will take hold.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.45, 0.25)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <isBad>true</isBad>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_DysphorakhEpisodes">
+        <!-- MTB between random non-clawing episodes (suffocation, hunger, catatonia) -->
+        <episodeMtbDays>7</episodeMtbDays>
+        <!-- MTB for a compulsive clawing episode (separate roll) -->
+        <clawingMtbDays>18</clawingMtbDays>
+        <!-- Cooldown after any episode before the next can fire -->
+        <episodeCooldownDays>3</episodeCooldownDays>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <becomeVisible>true</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Brief consciousness penalty applied during a Suffocation episode.
+       Decays at 2.5/day — expires on its own in ~10 hours. -->
+  <HediffDef>
+    <defName>GW40K_Dysphorakh_SuffocationShock</defName>
+    <label>suffocation shock</label>
+    <description>The mind is convinced it is asphyxiating. Neural resources flood the non-existent respiratory system in a futile override cascade, pulling cognition offline.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.5, 0.75, 1.0)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <isBad>true</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-2.5</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

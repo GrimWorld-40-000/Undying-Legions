@@ -39,9 +39,7 @@ public static class HarmonyPatch_NechRightClickControl
             if (!controller.CanReach(target, PathEndMode.Touch, Danger.Deadly))
                 continue;
 
-            Pawn overseer = target.GetOverseer();
-            bool commandedByController = overseer == controller
-                && tracker.controlledMechs != null
+            bool commandedByController = tracker.controlledMechs != null
                 && tracker.controlledMechs.Contains(target);
             if (commandedByController)
             {
@@ -50,22 +48,20 @@ public static class HarmonyPatch_NechRightClickControl
                     new FloatMenuOption(releaseLabel, delegate
                     {
                         tracker.UnbindMech(target);
-                        controller.relations?.TryRemoveDirectRelation(PawnRelationDefOf.Overseer, target);
-                        target.relations?.TryRemoveDirectRelation(PawnRelationDefOf.Overseer, controller);
                         Messages.Message("GW40K_ReleaseCommandSuccess".Translate(target.LabelShortCap), MessageTypeDefOf.TaskCompletion, false);
                     }),
                     controller,
                     target));
                 break;
             }
-            if (overseer != null)
+            if (HediffComp_NecronCommandTracker.GetCommanderOf(target) != null)
                 continue;
 
             string optionLabel = "GW40K_TakeCommandOfNech".Translate(target.LabelShortCap);
             __result.Add(FloatMenuUtility.DecoratePrioritizedTask(
                 new FloatMenuOption(optionLabel, delegate
                 {
-                    if (target.GetOverseer() != null)
+                    if (HediffComp_NecronCommandTracker.GetCommanderOf(target) != null)
                     {
                         Messages.Message("GW40K_NechAlreadyCommanded".Translate(target.LabelShortCap), MessageTypeDefOf.RejectInput, false);
                         return;

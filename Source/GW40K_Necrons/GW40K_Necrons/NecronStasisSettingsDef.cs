@@ -22,7 +22,10 @@ public class NecronStasisSettingsDef : Def
     /// <summary>Hit points of injury healing budget per in-game day while in stasis (scaled by deathrest efficiency when <see cref="Gene_Deathrest"/> is present).</summary>
     public float healPointsPerDayWhileInStasis = 80f;
 
-    /// <summary>Stasis crypt burns this × (pawn daily necrodermis need in stack units).</summary>
+    /// <summary>
+    /// Stasis crypt burns this × (pawn daily necrodermis need in stack units) while actively processing.
+    /// At fallPerDay=0.15 and nutritionPerUnit=0.05, pawn daily need = 3 units → multiplier 3.34 ≈ 10 units/day.
+    /// </summary>
     public float stasisNecrodermisBurnMultiplier = 1.33f;
 
     /// <summary>
@@ -30,4 +33,16 @@ public class NecronStasisSettingsDef : Def
     /// Burn math also uses <c>GW_UD_Necrodermis.fallPerDay</c> from Need defs — change both together when rebalancing.
     /// </summary>
     public float necrodermisNutritionPerConsumedUnit = 0.05f;
+
+    /// <summary>
+    /// How much of the pawn's GW_UD_Necrodermis need (0–1) is restored per in-game day while inside the crypt.
+    /// Independent of burn rate. Default 1.0 = 50% restored in a 12-hour base cycle.
+    /// </summary>
+    public float stasisNecrodermisGainPerDay = 1.0f;
+
+    /// <summary>
+    /// How much of the pawn's GW40K_NechEnergy need (0–1) is restored per in-game day while inside the crypt.
+    /// Default 1.2 = 60% restored in a 12-hour base cycle.
+    /// </summary>
+    public float stasisGaussGainPerDay = 1.2f;
 }

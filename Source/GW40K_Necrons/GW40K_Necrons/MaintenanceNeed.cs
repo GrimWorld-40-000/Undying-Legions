@@ -16,6 +16,9 @@ public class MaintenanceNeed : Need
     public const float FallPerDay = 1f / 30f;
     public const float GainPerDayReplenishing = 0.2f;
 
+    /// <summary>Extra core flux lost per day while the pawn is downed (and not replenishing in stasis/deathrest).</summary>
+    public const float DownedFallPerDay = 1f;
+
     /// <summary>Need ticks every 150 game ticks; same 400 divisor as <see cref="Need_Deathrest.NeedInterval"/>.</summary>
     private const float IntervalsPerDay = 400f;
 
@@ -36,6 +39,8 @@ public class MaintenanceNeed : Need
 
     /// <summary>Matches vanilla deathrest alert band (10%).</summary>
     public const float LevelForCriticalAlert = 0.1f;
+    private const float CoreFluxCollapseThreshold = 0.001f;
+    private const float CoreFluxRecoveredThreshold = 0.05f;
 
     public RestCategory CurCategory
     {
@@ -98,7 +103,11 @@ public class MaintenanceNeed : Need
         CurLevel += delta;
 
         if (!CoreFluxReplenishing())
+        {
             CurLevel -= BodyDegradationExtraCoreFluxFallPerInterval() / coreMul;
+            if (pawn.Downed)
+                CurLevel -= DownedFallPerDay / IntervalsPerDay / coreMul;
+        }
 
         CheckForCoreFluxState();
     }
@@ -110,6 +119,11 @@ public class MaintenanceNeed : Need
             return tip;
 
         System.Text.StringBuilder sb = new System.Text.StringBuilder(tip);
+
+        if (pawn.Downed)
+            sb.Append("\n").Append("GW40K_CoreFluxDownedDrain"
+                .Translate(DownedFallPerDay.ToStringPercent())
+                .Resolve());
 
         float extraPerDay = BodyDegradationExtraCoreFluxFallPerDay();
         if (extraPerDay > 0f)
@@ -137,14 +151,17 @@ public class MaintenanceNeed : Need
         if (NecronDefOfs.GW40K_CoreFluxExhaustion == null || NecronDefOfs.GW40K_EternalSlumberForced == null)
             return;
 
-        bool depleted = CurLevel <= 0f;
+        bool depleted = CurLevel <= CoreFluxCollapseThreshold;
         bool recovering = CoreFluxReplenishing();
 
-        if (!depleted || recovering)
+        // Hysteresis prevents add/remove thrash around zero from tiny float drift and mixed refill/drain pulses.
+        if (recovering || CurLevel >= CoreFluxRecoveredThreshold)
         {
             RemoveZeroFluxHediffs();
             return;
         }
+        if (!depleted)
+            return;
 
         if (pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_CoreFluxExhaustion) == null)
             pawn.health.AddHediff(NecronDefOfs.GW40K_CoreFluxExhaustion);

@@ -4,8 +4,9 @@
 
   <BodyPartDef Abstract="True" Name="GW40K_Necron_BodyPartBase">
     <canScarify>false</canScarify>
-    <bleedRate>0</bleedRate>
-    <solid>true</solid>
+    <!-- Living metal leaks core flux when breached. Internal/structural parts override solid+bleedRate below. -->
+    <bleedRate>0.15</bleedRate>
+    <solid>false</solid>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
     <canSuggestAmputation>false</canSuggestAmputation>
     <frostbiteVulnerability>0</frostbiteVulnerability>
@@ -23,15 +24,29 @@
     <label>skull</label>
     <hitPoints>25</hitPoints>
     <skinCovered>false</skinCovered>
+    <solid>true</solid>
     <destroyableByDamage>false</destroyableByDamage>
+    <bleedRate>0</bleedRate>
   </BodyPartDef>
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
-    <defName>GW40K_Necron_Brain</defName>
-    <label>brain</label>
-    <hitPoints>10</hitPoints>
+    <defName>GW40K_Necron_Skull_Heavy</defName>
+    <label>skull</label>
+    <hitPoints>35</hitPoints>
+    <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <destroyableByDamage>false</destroyableByDamage>
+    <bleedRate>0</bleedRate>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_MindCore</defName>
+    <label>mind core</label>
+    <hitPoints>13</hitPoints>
     <delicate>true</delicate>
     <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
     <tags>
       <li>ConsciousnessSource</li>
     </tags>
@@ -39,7 +54,7 @@
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_Necron_Eye</defName>
-    <label>eye</label>
+    <label>optical sensor</label>
     <hitPoints>10</hitPoints>
     <delicate>true</delicate>
     <skinCovered>false</skinCovered>
@@ -56,8 +71,44 @@
   </BodyPartDef>
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Eye_Heavy</defName>
+    <label>optical sensor</label>
+    <hitPoints>14</hitPoints>
+    <delicate>true</delicate>
+    <skinCovered>false</skinCovered>
+    <socketed>true</socketed>
+    <tags>
+      <li>SightSource</li>
+    </tags>
+    <hitChanceFactors>
+      <li>
+        <key>Blunt</key>
+        <value>0</value>
+      </li>
+    </hitChanceFactors>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Ocular</defName>
+    <label>phase ocular</label>
+    <hitPoints>22</hitPoints>
+    <delicate>true</delicate>
+    <skinCovered>false</skinCovered>
+    <socketed>true</socketed>
+    <tags>
+      <li>SightSource</li>
+    </tags>
+    <hitChanceFactors>
+      <li>
+        <key>Blunt</key>
+        <value>0</value>
+      </li>
+    </hitChanceFactors>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_Necron_Ear</defName>
-    <label>ear</label>
+    <label>hearing sensor</label>
     <hitPoints>12</hitPoints>
     <skinCovered>true</skinCovered>
     <tags>
@@ -66,9 +117,26 @@
   </BodyPartDef>
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Ear_Heavy</defName>
+    <label>hearing sensor</label>
+    <hitPoints>17</hitPoints>
+    <skinCovered>true</skinCovered>
+    <tags>
+      <li>HearingSource</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_Necron_Nose</defName>
-    <label>nose</label>
+    <label>chemical analyzer</label>
     <hitPoints>10</hitPoints>
+    <skinCovered>true</skinCovered>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Nose_Heavy</defName>
+    <label>chemical analyzer</label>
+    <hitPoints>14</hitPoints>
     <skinCovered>true</skinCovered>
   </BodyPartDef>
 
@@ -77,10 +145,35 @@
     <label>jaw</label>
     <hitPoints>20</hitPoints>
     <skinCovered>false</skinCovered>
+    <bleedRate>0</bleedRate>
     <tags>
       <li>EatingSource</li>
       <li>TalkingSource</li>
     </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Jaw_Heavy</defName>
+    <label>jaw</label>
+    <hitPoints>28</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0</bleedRate>
+    <tags>
+      <li>EatingSource</li>
+      <li>TalkingSource</li>
+    </tags>
+  </BodyPartDef>
+
+  <!-- Engram/vox routing matrix for nuanced social speech. Not a native body part — granted as a hediff
+       (GW40K_Necron_SocialMatrix_Active) by the GW_UD_SocialMatrix gene on high-tier Necrons. -->
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_SocialMatrix</defName>
+    <label>social matrix</label>
+    <hitPoints>8</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0</bleedRate>
+    <beautyRelated>false</beautyRelated>
+    <destroyableByDamage>false</destroyableByDamage>
   </BodyPartDef>
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
@@ -97,10 +190,38 @@
   </BodyPartDef>
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Neck_Heavy</defName>
+    <label>neck</label>
+    <hitPoints>35</hitPoints>
+    <skinCovered>true</skinCovered>
+    <tags>
+      <li>BreathingPathway</li>
+      <li>EatingPathway</li>
+      <li>TalkingPathway</li>
+    </tags>
+    <executionPartPriority>1000</executionPartPriority>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_Necron_Ribcage</defName>
     <label>ribcage</label>
     <hitPoints>30</hitPoints>
     <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
+    <tags>
+      <li>BreathingSourceCage</li>
+    </tags>
+    <destroyableByDamage>false</destroyableByDamage>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Ribcage_Heavy</defName>
+    <label>ribcage</label>
+    <hitPoints>42</hitPoints>
+    <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
     <tags>
       <li>BreathingSourceCage</li>
     </tags>
@@ -112,6 +233,20 @@
     <label>spine</label>
     <hitPoints>25</hitPoints>
     <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
+    <tags>
+      <li>Spine</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Spine_Heavy</defName>
+    <label>spine</label>
+    <hitPoints>35</hitPoints>
+    <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
     <tags>
       <li>Spine</li>
     </tags>
@@ -121,7 +256,8 @@
     <defName>GW40K_Necron_Leg</defName>
     <label>leg</label>
     <hitPoints>30</hitPoints>
-    <skinCovered>true</skinCovered>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.30</bleedRate>
     <tags>
       <li>MovingLimbCore</li>
     </tags>
@@ -131,8 +267,8 @@
     <defName>GW40K_Necron_Foot</defName>
     <label>foot</label>
     <hitPoints>25</hitPoints>
-    <frostbiteVulnerability>0.5</frostbiteVulnerability>
-    <skinCovered>true</skinCovered>
+    <frostbiteVulnerability>0.01</frostbiteVulnerability>
+    <skinCovered>false</skinCovered>
     <tags>
       <li>MovingLimbSegment</li>
     </tags>
@@ -142,19 +278,56 @@
     <defName>GW40K_Necron_Tongue</defName>
     <label>tongue</label>
     <skinCovered>false</skinCovered>
+    <bleedRate>0</bleedRate>
     <tags>
       <li>Tongue</li>
     </tags>
   </BodyPartDef>
+
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_Necron_Torso</defName>
     <label>torso</label>
     <hitPoints>40</hitPoints>
-    <skinCovered>true</skinCovered>
+    <skinCovered>false</skinCovered>
     <executionPartPriority>400</executionPartPriority>
     <!-- No kidneys in body graph: single filtration anchor for blood filtration capacity -->
     <tags>
       <li>BloodFiltrationSource</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Torso_Medium</defName>
+    <label>torso</label>
+    <hitPoints>50</hitPoints>
+    <skinCovered>false</skinCovered>
+    <executionPartPriority>400</executionPartPriority>
+    <!-- No kidneys in body graph: single filtration anchor for blood filtration capacity -->
+    <tags>
+      <li>BloodFiltrationSource</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Torso_Heavy</defName>
+    <label>torso</label>
+    <hitPoints>65</hitPoints>
+    <skinCovered>false</skinCovered>
+    <executionPartPriority>400</executionPartPriority>
+    <!-- No kidneys in body graph: single filtration anchor for blood filtration capacity -->
+    <tags>
+      <li>BloodFiltrationSource</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_CentralCore</defName>
+    <label>central core</label>
+    <hitPoints>26</hitPoints>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
+    <tags>
+      <li>BloodPumpingSource</li>
     </tags>
   </BodyPartDef>
 
@@ -168,7 +341,29 @@
     <defName>GW40K_Necron_Shoulder</defName>
     <label>shoulder</label>
     <hitPoints>30</hitPoints>
-    <skinCovered>true</skinCovered>
+    <skinCovered>false</skinCovered>
+    <tags>
+      <li>ManipulationLimbSegment</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+    <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Shoulder_Medium</defName>
+    <label>shoulder</label>
+    <hitPoints>36</hitPoints>
+    <skinCovered>false</skinCovered>
+    <tags>
+      <li>ManipulationLimbSegment</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Shoulder_Heavy</defName>
+    <label>shoulder</label>
+    <hitPoints>47</hitPoints>
+    <skinCovered>false</skinCovered>
     <tags>
       <li>ManipulationLimbSegment</li>
       <li>Mirrored</li>
@@ -179,7 +374,32 @@
     <defName>GW40K_Necron_Arm</defName>
     <label>arm</label>
     <hitPoints>30</hitPoints>
-    <skinCovered>true</skinCovered>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.30</bleedRate>
+    <tags>
+      <li>ManipulationLimbCore</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Arm_Medium</defName>
+    <label>arm</label>
+    <hitPoints>39</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.30</bleedRate>
+    <tags>
+      <li>ManipulationLimbCore</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Arm_Heavy</defName>
+    <label>arm</label>
+    <hitPoints>51</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.30</bleedRate>
     <tags>
       <li>ManipulationLimbCore</li>
       <li>Mirrored</li>
@@ -190,16 +410,88 @@
     <defName>GW40K_Necron_Hand</defName>
     <label>hand</label>
     <hitPoints>20</hitPoints>
-    <skinCovered>true</skinCovered>
+    <skinCovered>false</skinCovered>
     <tags>
       <li>ManipulationLimbSegment</li>
     </tags>
   </BodyPartDef>
 
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Hand_Medium</defName>
+    <label>hand</label>
+    <hitPoints>26</hitPoints>
+    <skinCovered>false</skinCovered>
+    <tags>
+      <li>ManipulationLimbSegment</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Hand_Heavy</defName>
+    <label>hand</label>
+    <hitPoints>34</hitPoints>
+    <skinCovered>false</skinCovered>
+    <tags>
+      <li>ManipulationLimbSegment</li>
+    </tags>
+  </BodyPartDef>
+
+<!--   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Claw</defName>
+    <label>claw</label>
+    <hitPoints>20</hitPoints>
+    <skinCovered>false</skinCovered>
+    <tags>
+      <li>ManipulationLimbSegment</li>
+    </tags>
+    <tools>
+			<li>
+			<label>talon</label>
+			<capacities>
+				<li>Stab</li>
+			</capacities>
+			<power>40</power>
+			<cooldownTime>1.0</cooldownTime>
+			<armorPenetration>0.2</armorPenetration>
+			</li>
+			<li>
+			<label>edge</label>
+			<capacities>
+				<li>Cut</li>
+			</capacities>
+			<power>25</power>
+			<cooldownTime>2</cooldownTime>
+			<armorPenetration>0.2</armorPenetration>
+			</li>
+		</tools>
+  </BodyPartDef> -->
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_Necron_Finger</defName>
     <label>finger</label>
     <hitPoints>8</hitPoints>
+    <skinCovered>true</skinCovered>
+    <tags>
+      <li>ManipulationLimbDigit</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Finger_Medium</defName>
+    <label>finger</label>
+    <hitPoints>9</hitPoints>
+    <skinCovered>true</skinCovered>
+    <tags>
+      <li>ManipulationLimbDigit</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Finger_Heavy</defName>
+    <label>finger</label>
+    <hitPoints>12</hitPoints>
     <skinCovered>true</skinCovered>
     <tags>
       <li>ManipulationLimbDigit</li>
@@ -223,4 +515,60 @@
       <li>Mirrored</li>
     </tags>
   </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Toe_Heavy</defName>
+    <label>toe</label>
+    <hitPoints>11</hitPoints>
+    <skinCovered>true</skinCovered>
+    <tags>
+      <li>MovingLimbDigit</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Leg_Medium</defName>
+    <label>leg</label>
+    <hitPoints>39</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.30</bleedRate>
+    <tags>
+      <li>MovingLimbCore</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Leg_Heavy</defName>
+    <label>leg</label>
+    <hitPoints>51</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.30</bleedRate>
+    <tags>
+      <li>MovingLimbCore</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Foot_Medium</defName>
+    <label>foot</label>
+    <hitPoints>28</hitPoints>
+    <frostbiteVulnerability>0.01</frostbiteVulnerability>
+    <skinCovered>false</skinCovered>
+    <tags>
+      <li>MovingLimbSegment</li>
+    </tags>
+  </BodyPartDef>
+
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Necron_Foot_Heavy</defName>
+    <label>foot</label>
+    <hitPoints>36</hitPoints>
+    <frostbiteVulnerability>0.01</frostbiteVulnerability>
+    <skinCovered>false</skinCovered>
+    <tags>
+      <li>MovingLimbSegment</li>
+    </tags>
+  </BodyPartDef>
+
 </Defs>

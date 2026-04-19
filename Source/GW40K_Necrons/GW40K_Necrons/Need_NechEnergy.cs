@@ -7,11 +7,9 @@ namespace GW40K_Necrons;
 
 public class Need_NechEnergy : Need
 {
-    private const float FallPerDay = 0.9f;
+    private const float FallPerDay = 0.87f;
     private const float ChargerGainPerDayHalfRate = 0.5f;
     private const float MonolithGainPerDay = 1.0f;
-    private const float BatteryGainPerDayHalfRate = 0.35f;
-    private const float BatteryDrainWdPerDay = 1200f;
     private const float IntervalsPerDay = 400f;
 
     /// <summary>How fast core charging fills the gauss meter (full 0→100% in half a game day).</summary>
@@ -45,8 +43,6 @@ public class Need_NechEnergy : Need
             delta += ChargerGainPerDayHalfRate / IntervalsPerDay;
         if (IsNearPoweredMonolith())
             delta += MonolithGainPerDay / IntervalsPerDay;
-        if (TryDrainBatteryForCharge())
-            delta += BatteryGainPerDayHalfRate / IntervalsPerDay;
         delta += TryCoreChargeGain();
 
         CurLevel += delta;
@@ -54,8 +50,15 @@ public class Need_NechEnergy : Need
 
     public bool IsChargingNow() =>
         IsUsingVanillaChargeJob() || IsNearPoweredMonolith()
-        || (NechEnergyUtility.AllowBatteryCharge(pawn) && HasBatteryToDrain())
+        || IsUsingBatteryRechargeJob()
         || NechEnergyUtility.AllowCoreRecharge(pawn);
+
+    private bool IsUsingBatteryRechargeJob()
+    {
+        if (NecronDefOfs.GW40K_Job_RechargeFromBattery == null)
+            return false;
+        return pawn?.CurJobDef == NecronDefOfs.GW40K_Job_RechargeFromBattery;
+    }
 
     /// <summary>
     /// Applies passive core-flux-to-gauss charging. Returns the gauss gain delta for this interval.
@@ -125,42 +128,5 @@ public class Need_NechEnergy : Need
                 return true;
         }
         return false;
-    }
-
-    private bool TryDrainBatteryForCharge()
-    {
-        if (!NechEnergyUtility.AllowBatteryCharge(pawn))
-            return false;
-        CompPowerBattery battery = FindClosestBattery();
-        if (battery == null)
-            return false;
-        float drainPerInterval = BatteryDrainWdPerDay / IntervalsPerDay;
-        if (battery.StoredEnergy <= drainPerInterval)
-            return false;
-        battery.DrawPower(drainPerInterval);
-        return true;
-    }
-
-    private bool HasBatteryToDrain() => FindClosestBattery() != null;
-
-    private CompPowerBattery FindClosestBattery()
-    {
-        if (!pawn.Spawned || pawn.Map == null)
-            return null;
-        CompPowerBattery best = null;
-        float bestDist = float.MaxValue;
-        foreach (Building b in pawn.Map.listerBuildings.allBuildingsColonist)
-        {
-            CompPowerBattery c = b?.GetComp<CompPowerBattery>();
-            if (c == null || c.StoredEnergy <= 1f)
-                continue;
-            float d = b.Position.DistanceTo(pawn.Position);
-            if (d < bestDist && d <= 20f)
-            {
-                best = c;
-                bestDist = d;
-            }
-        }
-        return best;
     }
 }

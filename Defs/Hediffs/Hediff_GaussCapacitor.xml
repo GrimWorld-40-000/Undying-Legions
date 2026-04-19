@@ -2,7 +2,7 @@
   <HediffDef>
     <defName>GW40K_GaussCapacitorMicro</defName>
     <label>gauss capacitor (micro)</label>
-    <description>A compact gauss capacitor matrix providing 50 reserve energy.</description>
+    <description>A compact particle energy capacitor matrix providing 50 gauss energy.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
     <isBad>false</isBad>
@@ -18,7 +18,7 @@
   <HediffDef>
     <defName>GW40K_GaussCapacitorSmall</defName>
     <label>gauss capacitor (small)</label>
-    <description>A gauss capacitor matrix providing 100 reserve energy.</description>
+    <description>A particle energy capacitor matrix providing 100 gauss energy.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
     <isBad>false</isBad>
@@ -34,7 +34,7 @@
   <HediffDef>
     <defName>GW40K_GaussCapacitorLarge</defName>
     <label>gauss capacitor (large)</label>
-    <description>A heavy gauss capacitor matrix providing 250 reserve energy.</description>
+    <description>A heavy particle energy capacitor matrix providing 250 gauss energy.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
     <isBad>false</isBad>

@@ -1,0 +1,11 @@
+<Defs>
+
+    <JobDef>
+        <defName>GW40K_Job_FinishOffNecron</defName>
+        <driverClass>GW40K_Necrons.JobDriver_FinishOffNecron</driverClass>
+        <reportString>finishing off a downed Necron.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    </JobDef>
+
+</Defs>

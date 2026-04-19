@@ -27,4 +27,36 @@
           </li>
         </comps>
       </HediffDef>
+
+    <!-- Applied to inner pawn while corpse countdown is active; progresses through 3 stages then triggers resurrection. -->
+    <HediffDef>
+        <defName>GW40K_Necron_ResurrectionActive</defName>
+        <hediffClass>GW40K_Necrons.Hediff_ResurrectionActive</hediffClass>
+        <label>resurrection protocol</label>
+        <description>The Resurrection Protocol is actively reknitting this construct's necrodermis and reloading its engrams. Consciousness will return.</description>
+        <isBad>false</isBad>
+        <scenarioCanAdd>false</scenarioCanAdd>
+        <everCurableByItem>false</everCurableByItem>
+        <makesSickThought>false</makesSickThought>
+        <initialSeverity>0.01</initialSeverity>
+        <maxSeverity>1.0</maxSeverity>
+        <stages>
+            <li>
+                <minSeverity>0</minSeverity>
+                <label>scanning</label>
+                <overrideLabel>reanimation</overrideLabel>
+            </li>
+            <li>
+                <minSeverity>0.33</minSeverity>
+                <label>rebuilding</label>
+                <overrideLabel>reanimation</overrideLabel>
+            </li>
+            <li>
+                <minSeverity>0.66</minSeverity>
+                <label>rebooting</label>
+                <overrideLabel>reanimation</overrideLabel>
+            </li>
+        </stages>
+    </HediffDef>
+
 </Defs>

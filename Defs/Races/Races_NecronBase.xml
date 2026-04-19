@@ -11,7 +11,7 @@
     </statBases>
     <graphicData>
       <texPath>Things/Filth/Spatter</texPath>
-      <color>(180, 202, 176, 180)</color>
+      <color>(55, 220, 85, 220)</color>
     </graphicData>
     <filth>
       <ignoreFilthMultiplierStat>true</ignoreFilthMultiplierStat>
@@ -28,7 +28,7 @@
     <label>core flux smear</label>
     <graphicData>
       <texPath>Things/Filth/CrawlSmear</texPath>
-      <color>(180, 202, 176, 165)</color>
+      <color>(55, 220, 85, 185)</color>
       <graphicClass>Graphic_ClusterTight</graphicClass>
       <drawSize>0.9</drawSize>
     </graphicData>
@@ -43,7 +43,7 @@
 	<!-- <selectionWeight>0</selectionWeight> -->
   </HeadTypeDef>
 
-  <ThingDef Name="GW40K_NecronWarrior" ParentName="BasePawn">
+  <ThingDef Name="GW40K_NecronWarrior" ParentName="GW40K_BaseNecronSoldier">
     <defName>GW40K_NecronWarrior</defName>
     <label>necron warrior</label>
     <description>A skeletal machine soldier of the ancient Necron legions.</description>
@@ -82,23 +82,8 @@
     </tools>
 
     <race>
-      <thinkTreeMain>Humanlike</thinkTreeMain>
-      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
-      <intelligence>Humanlike</intelligence>
-      <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>10000</lifeExpectancy>
-      <bloodDef>GW40K_Filth_NecronBlood</bloodDef>
-      <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
-      <nameCategory>HumanStandard</nameCategory>
-      <body>GW40K_NecronBody</body>
-      <renderTree>Humanlike</renderTree>
-      <baseBodySize>1</baseBodySize>
-      <baseHealthScale>1.5</baseHealthScale>
-      <foodType>OmnivoreHuman</foodType>
-      <meatMarketValue>0</meatMarketValue>
-      <manhunterOnDamageChance>0</manhunterOnDamageChance>
-      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
-      <!-- Child/adult split at 18 matches minGenerationAge on necron pawn kinds; adult-at-0 breaks gene age validation ("Tried 300 times..."). -->
+      <!-- Child/adult split at 18 matches minGenerationAge on necron pawn kinds;
+           adult-at-0 breaks gene age validation ("Tried 300 times..."). -->
       <lifeStageAges>
         <li>
           <def>HumanlikeChild</def>
@@ -107,12 +92,11 @@
         <li>
           <def>HumanlikeAdult</def>
           <minAge>18</minAge>
+          <soundWounded>Pawn_Mech_Pikeman_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Pikeman_Death</soundDeath>
+          <soundCall>Pawn_Mech_Pikeman_Call</soundCall>
         </li>
       </lifeStageAges>
-      <hediffGiverSets>
-        <li>OrganicStandard</li>
-        <li>GW40K_Necron_HediffGiverSet</li>
-      </hediffGiverSets>
     </race>
 
     <modExtensions>

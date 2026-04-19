@@ -14,10 +14,10 @@
 					<offset>(0.0, 0.0, 0.0)</offset>
 				</dataSouth>
                 <dataWest>
-                    <offset>(-0.25, 0.0, 0.0)</offset>
+                    <offset>(-0.1, 0.0, 0.0)</offset>
                 </dataWest>
                 <dataEast>
-                    <offset>(0.25, 0.0, 0.0)</offset>
+                    <offset>(0.1, 0.0, 0.0)</offset>
                 </dataEast>
                 <scale>1.0</scale>
                 <childScale>1.0</childScale>
@@ -26,6 +26,7 @@
 		<statBases>
 			<WorkToMake>15000</WorkToMake>
 			<MaxHitPoints>2000</MaxHitPoints>
+			<MarketValue>2300</MarketValue>
 		</statBases>
 		<recipeMaker>
 			<recipeUsers>
@@ -36,7 +37,8 @@
 	
 	<ThingDef ParentName="GWNecronShieldBase">
 		<defName>GM40k_Necron_Shield</defName>
-		<label>necron shield</label>
+		<label>dispersion shield</label>
+		<description>A large, curved shield of living metal that can be deployed to protect the bearer from incoming attacks. The shield's surface is embedded with a complex array of energy-dispersing nodes that can absorb and redirect kinetic and energy-based projectiles, providing temporary invulnerability to the wielder at the cost of reduced mobility and offensive capability. The shield's regenerative properties allow it to recover from damage over time, making it an invaluable asset for frontline combatants who rely on durability and defense.</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/Shield</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -54,13 +56,8 @@
 		<costList>
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
-			<GW_ComponentRelic>1</GW_ComponentRelic>
-			<Plasteel>100</Plasteel>
-			<Steel>230</Steel>
-			<Gold>10</Gold>
-			<HP_Ceramite>100</HP_Ceramite>
-			<HP_Adamantium>90</HP_Adamantium>
-			<HP_Auramite>20</HP_Auramite>
+			<GW40k_Necron_Component>6</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodermis>200</GW40k_Necron_Necrodermis>
 		</costList>
 		<stuffCategories Inherit="False">
 			<li>Metallic_Necron</li>

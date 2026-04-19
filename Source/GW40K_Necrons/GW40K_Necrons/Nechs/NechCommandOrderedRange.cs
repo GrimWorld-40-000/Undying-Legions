@@ -15,7 +15,7 @@ public static class NechCommandOrderedRange
         if (job == null || tracker == null)
             return true;
 
-        Pawn comm = nech.GetOverseer();
+        Pawn comm = HediffComp_NecronCommandTracker.GetCommanderOf(nech);
         if (comm == null || !comm.Spawned || nech.MapHeld == null || comm.MapHeld != nech.MapHeld)
             return true;
 

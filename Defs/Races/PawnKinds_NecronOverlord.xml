@@ -2,6 +2,13 @@
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
         <defName>GW40K_NecronOverlordPawnKind_Colonist</defName>
         <label>necron overlord</label>
+        <lifeStages>
+          <li>
+            <bodyGraphicData>
+              <drawSize>1.2</drawSize>
+            </bodyGraphicData>
+          </li>
+        </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronOverlord</race>
         <combatPower>100</combatPower>

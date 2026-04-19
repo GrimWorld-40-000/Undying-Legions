@@ -27,6 +27,13 @@ public class HarmonyPatch_ShouldBeDead
         if (___pawn.def?.GetModExtension<NonOrganicPawn>() != null
             && ___pawn.health?.hediffSet?.GetBrain() == null)
         {
+            // If any core is destroyed the Necron must die so CompResurrectible can trigger reanimation.
+            // If the cooldown is already active and any core is destroyed, it's permanent — stay dead.
+            if (CompResurrectible.IsAnyCoreDestroyed(___pawn))
+            {
+                __result = true;
+                return false;
+            }
             __result = false;
             return false;
         }
@@ -41,6 +48,15 @@ public class HarmonyPatch_ShouldBeDead
             return;
         if (___pawn.health?.hediffSet?.GetBrain() == null)
             return;
+
+        // Both cores gone: permanent death — leave vanilla __result (usually true) so Kill can run.
+        if (CompResurrectible.IsBothCoresDestroyed(___pawn))
+            return;
+
+        // Reanimation protocol: allow lethal ShouldBeDead → Kill → corpse → CompResurrectible (do not force immortal).
+        if (CompResurrectible.CanEnterResurrectionProtocol(___pawn))
+            return;
+
         __result = false;
     }
 }

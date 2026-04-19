@@ -1,12 +1,35 @@
 <Defs>
+    <!-- Not spawned: matches GW40K_NecronFlayedOne (conversion-only); Nech spawns use UD_Necron_FlayedOne. -->
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
         <defName>GW40K_NecronFlayedOnePawnKind_Colonist</defName>
         <label>necron flayed one</label>
+        <lifeStages>
+          <li>
+            <bodyGraphicData>
+              <drawSize>1.0</drawSize>
+            </bodyGraphicData>
+          </li>
+        </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronFlayedOne</race>
         <combatPower>60</combatPower>
+        <!-- Always spawn with Flayer Claws; no other melee weapons should be generated. -->
+        <weaponMoney>9999~9999</weaponMoney>
+        <weaponTags>
+          <li>GW_Necron_Melee_Claw</li>
+        </weaponTags>
+        <!-- No apparel — Flayed One is Nech-controlled and wears nothing but trophied flesh. -->
+        <apparelTags Inherit="False" />
+        <apparelMoney>0</apparelMoney>
         <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
         <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+        <backstoryFiltersOverride>
+          <li>
+            <categories>
+              <li>NecronFlayedOne</li>
+            </categories>
+          </li>
+        </backstoryFiltersOverride>
         <techHediffsChance>0.03</techHediffsChance>
         <techHediffsMoney>50~800</techHediffsMoney>
         <techHediffsTags>
@@ -18,5 +41,10 @@
           <li>PainCauser</li>
         </techHediffsDisallowTags>
         <initialResistanceRange>13~21</initialResistanceRange>
+        <xenotypeSet Inherit="False" MayRequire="Ludeon.RimWorld.Biotech">
+          <xenotypeChances>
+            <GW_UD_NecronFlayedOne>1</GW_UD_NecronFlayedOne>
+          </xenotypeChances>
+        </xenotypeSet>
       </PawnKindDef>
 </Defs>

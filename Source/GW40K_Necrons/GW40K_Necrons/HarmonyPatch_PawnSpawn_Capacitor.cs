@@ -17,6 +17,9 @@ public static class HarmonyPatch_PawnSpawn_Capacitor
         if (__instance.health?.hediffSet == null)
             return;
 
+        EnsureFlayerVirus(__instance);
+        EnsureDysphorakhForFlayed(__instance);
+
         HediffDef target = PickDefaultCapacitor(__instance);
         if (target == null)
             return;
@@ -29,11 +32,34 @@ public static class HarmonyPatch_PawnSpawn_Capacitor
         __instance.needs?.AddOrRemoveNeedsAsAppropriate();
         Need gauss = __instance.needs?.TryGetNeed(NecronDefOfs.GW40K_NechEnergy);
         if (gauss != null)
-            gauss.CurLevel = 0.75f;
+            gauss.CurLevel = 1.0f;
+    }
+
+    private static void EnsureFlayerVirus(Pawn pawn)
+    {
+        if (pawn?.def?.defName != "UD_Necron_FlayedOne")
+            return;
+        HediffDef virus = NecronDefOfs.GW40K_FlayerVirus;
+        if (virus == null || pawn.health.hediffSet.HasHediff(virus))
+            return;
+        pawn.health.AddHediff(virus);
+    }
+
+    private static void EnsureDysphorakhForFlayed(Pawn pawn)
+    {
+        if (pawn?.def?.defName != "UD_Necron_FlayedOne")
+            return;
+        HediffDef dysphorakh = NecronDefOfs.GW40K_Dysphorakh;
+        if (dysphorakh == null || pawn.health.hediffSet.HasHediff(dysphorakh))
+            return;
+        pawn.health.AddHediff(dysphorakh);
     }
 
     private static HediffDef PickDefaultCapacitor(Pawn p)
     {
+        string defName = p?.def?.defName;
+        if (defName == "UD_Necron_FlayedOne" || defName == "GW40K_NecronFlayedOne")
+            return null;
         if (NechEnergyUtility.IsOverlord(p))
             return NechEnergyUtility.CapacitorLargeDef;
         if (NechEnergyUtility.IsScarab(p))

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- GW40K_Nech_FlayedCloak must stay as an active Def: HediffCompProperties_GiveAbility on GW40K_FlayerVirus references it. Do not XML-comment this AbilityDef or the game will fail to resolve the ability. -->
+  <!-- Cast applies GW40K_FlayedOne_Stealth (ghostwind / short invisibility). -->
+  <AbilityDef>
+    <defName>GW40K_Nech_FlayedCloak</defName>
+    <label>ghostwind</label>
+    <description>Briefly slip the hull through the Ghostwind — the same targeting suppression as Imperial invisibility field tech, driven by veil hardware and the Flayer curse rather than psyker power.</description>
+    <!-- Core path so icon resolves without Royalty/Biotech DLC assets -->
+    <iconPath>Things/Projectile/LauncherShot</iconPath>
+    <cooldownTicksRange>3000</cooldownTicksRange>
+    <writeCombatLog>True</writeCombatLog>
+    <hotKey>Misc12</hotKey>
+    <targetRequired>false</targetRequired>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_Duration>15</Ability_Duration>
+    </statBases>
+    <!-- Verb matches Biotech SmokepopMech-style self abilities: small range + self-only targetParams so the gizmo casts immediately on click (no second targeting step). -->
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <drawAimPie>false</drawAimPie>
+      <requireLineOfSight>false</requireLineOfSight>
+      <warmupTime>1</warmupTime>
+      <range>-1</range>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+        <canTargetPawns>false</canTargetPawns>
+        <canTargetLocations>false</canTargetLocations>
+        <canTargetItems>false</canTargetItems>
+        <canTargetBuildings>false</canTargetBuildings>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>GW40K_FlayedOne_Stealth</hediffDef>
+        <psychic>False</psychic>
+        <applyToSelf>true</applyToSelf>
+        <applicableToMechs>true</applicableToMechs>
+      </li>
+    </comps>
+  </AbilityDef>
+</Defs>

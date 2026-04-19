@@ -7,8 +7,13 @@
     <maxInjuryExtraHours>48</maxInjuryExtraHours>
     <healIntervalTicks>600</healIntervalTicks>
     <healPointsPerDayWhileInStasis>80</healPointsPerDayWhileInStasis>
-    <stasisNecrodermisBurnMultiplier>2.0</stasisNecrodermisBurnMultiplier>
+    <!-- fallPerDay=0.15, nutritionPerUnit=0.05 → pawn needs 3 units/day → 3.34×3 ≈ 10 units/day consumed while processing. -->
+    <stasisNecrodermisBurnMultiplier>3.34</stasisNecrodermisBurnMultiplier>
     <!-- Must match GW40k_Necron_Necrodermis nutritionPerUnit; fall rate comes from GW_UD_Necrodermis fallPerDay. See NecronStasisFuelUtility remarks. -->
     <necrodermisNutritionPerConsumedUnit>0.05</necrodermisNutritionPerConsumedUnit>
+    <!-- 1.0/day → pawn gains 50% necrodermis need in a 12h base cycle. Independent of burn rate. -->
+    <stasisNecrodermisGainPerDay>1.0</stasisNecrodermisGainPerDay>
+    <!-- 1.2/day → pawn gains 60% gauss energy in a 12h base cycle. -->
+    <stasisGaussGainPerDay>1.2</stasisGaussGainPerDay>
   </NecronStasisSettingsDef>
 </Defs>

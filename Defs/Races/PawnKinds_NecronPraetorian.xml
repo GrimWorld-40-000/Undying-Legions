@@ -2,6 +2,13 @@
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
         <defName>GW40K_NecronPraetorianPawnKind_Colonist</defName>
         <label>necron praetorian</label>
+        <lifeStages>
+          <li>
+            <bodyGraphicData>
+              <drawSize>1.1</drawSize>
+            </bodyGraphicData>
+          </li>
+        </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronPraetorian</race>
         <combatPower>100</combatPower>

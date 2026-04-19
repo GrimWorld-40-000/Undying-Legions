@@ -1,61 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-    <!--<AlienRace.RaceSettings>
-        <defName>GW40K_NecronWarriorSettings</defName>
-        <pawnKindSettings>
-            <alienslavekinds>
-                <li>
-                    <kindDefs>
-                        <li>GW40K_NecronBasePawnKind_Tribesperson</li>
-                    </kindDefs>
-                    <chance>5.0</chance>
-                </li>
-            </alienslavekinds>
+  <!-- Green-silver hit effect: copies Damage_HitFlesh structure but recolored to Necron core-flux green.
+       AirPuff  = dark green mist; BloodSplash = bright flux-green droplets; BodyImpact = soft glow flash. -->
+  <EffecterDef>
+    <defName>GW40K_Damage_HitNecron</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <positionRadius>0.4</positionRadius>
+        <fleckDef>AirPuff</fleckDef>
+        <burstCount>4~5</burstCount>
+        <speed>0.4~0.8</speed>
+        <scale>1.0~1.1</scale>
+        <color>(30, 160, 70)</color>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <positionRadius>0.1</positionRadius>
+        <fleckDef>BloodSplash</fleckDef>
+        <burstCount>2~3</burstCount>
+        <scale>1.1~1.4</scale>
+        <color>(80, 240, 110)</color>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <positionRadius>0.0</positionRadius>
+        <fleckDef>BodyImpact</fleckDef>
+        <burstCount>1</burstCount>
+        <scale>0.4</scale>
+        <color>(80, 240, 110, 60)</color>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+    </children>
+    <offsetTowardsTarget>0.25~0.25</offsetTowardsTarget>
+    <positionRadius>0.1</positionRadius>
+  </EffecterDef>
 
-            <alienrefugeekinds>
-                <li>
-                    <kindDefs>
-                        <li>GW40K_NecronBasePawnKind_Tribesperson</li>
-                    </kindDefs>
-                    <chance>5.0</chance>
-                </li>
-            </alienrefugeekinds>
+  <!-- Living-metal flesh type — replaces the default "Normal" (organic) flesh type on all Necron races.
+       Uses flesh wound textures tinted Necron green-silver, and the custom green hit effector.
+       isOrganic=false suppresses infection/disease givers — Necrons are machines, not organic. -->
+  <FleshTypeDef>
+    <defName>GW40K_NecronFlesh</defName>
+    <label>living metal</label>
+    <damageEffecter>GW40K_Damage_HitNecron</damageEffecter>
+    <!-- true keeps Pawn_RelationTracker initialised for humanlike Necrons; disease immunity comes from
+         the custom GW40K_Necron_HediffGiverSet not including HediffGiverSet_Standard, not from this flag. -->
+    <isOrganic>true</isOrganic>
+    <genericWounds>
+      <li>
+        <texture>Things/Pawn/Wounds/WoundFleshA</texture>
+        <color>(0.22, 0.86, 0.33)</color>
+      </li>
+      <li>
+        <texture>Things/Pawn/Wounds/WoundFleshB</texture>
+        <color>(0.22, 0.86, 0.33)</color>
+      </li>
+      <li>
+        <texture>Things/Pawn/Wounds/WoundFleshC</texture>
+        <color>(0.22, 0.86, 0.33)</color>
+      </li>
+    </genericWounds>
+    <bandagedWounds>
+      <li>
+        <texture>Things/Pawn/Wounds/BandagedA</texture>
+        <color>(0.78, 0.82, 0.82)</color>
+      </li>
+      <li>
+        <texture>Things/Pawn/Wounds/BandagedB</texture>
+        <color>(0.78, 0.82, 0.82)</color>
+      </li>
+      <li>
+        <texture>Things/Pawn/Wounds/BandagedC</texture>
+        <color>(0.78, 0.82, 0.82)</color>
+      </li>
+    </bandagedWounds>
+  </FleshTypeDef>
 
-            <startingColonists>
-                <li>
-                    <pawnKindEntries>
-                        <li>
-                            <kindDefs>
-                                <li>GW40K_NecronBasePawnKind_Colonist</li>
-                                <li>GW40K_NecronBasePawnKind_Tribesperson</li>
-                            </kindDefs>
-                            <chance>10.0</chance>
-                        </li>
-                    </pawnKindEntries>
-                    <factionDefs>
-                        <li>PlayerColony</li>
-                        <li>PlayerTribe</li>
-                    </factionDefs>
-                </li>
-            </startingColonists>
+  <!-- ===== Abstract Necron humanlike race parents ===== -->
 
-            <alienwandererkinds>
-                <li>
-                    <pawnKindEntries>
-                        <li>
-                            <kindDefs>
-                                <li>GW40K_NecronBasePawnKind_Tribesperson</li>
-                            </kindDefs>
-                            <chance>5.0</chance>
-                        </li>
-                    </pawnKindEntries>
-                    <factionDefs>
-                        <li>PlayerColony</li>
-                        <li>PlayerTribe</li>
-                    </factionDefs>
-                </li>
-            </alienwandererkinds>
-        </pawnKindSettings>
-    </AlienRace.RaceSettings> -->
+  <!-- Common race block for ALL standard (humanlike) Necron types.
+       Body, blood, AI trees, hediff sets, and base sizes are set here so individual
+       race defs only need statBases, tools, and modExtensions. -->
+  <ThingDef Name="GW40K_BaseNecronRace" ParentName="BasePawn" Abstract="True">
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <comps>
+      <li Class="GW40K_Necrons.CompProperties_NecronShieldMemory"/>
+    </comps>
+    <statBases>
+      <VacuumResistance>1</VacuumResistance>
+      <ToxicResistance>1</ToxicResistance>
+      <ToxicEnvironmentResistance>1</ToxicEnvironmentResistance>
+    </statBases>
+    <race>
+      <thinkTreeMain>GW40K_Necron_ThinkTree</thinkTreeMain>
+      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
+      <intelligence>Humanlike</intelligence>
+      <makesFootprints>true</makesFootprints>
+      <lifeExpectancy>10000</lifeExpectancy>
+      <fleshType>GW40K_NecronFlesh</fleshType>
+      <bloodDef>GW40K_Filth_NecronBlood</bloodDef>
+      <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
+      <nameCategory>HumanStandard</nameCategory>
+      <body>GW40K_NecronBody</body>
+      <renderTree>Humanlike</renderTree>
+      <baseBodySize>1</baseBodySize>
+      <baseHealthScale>1.5</baseHealthScale>
+      <foodType>OmnivoreHuman</foodType>
+      <meatMarketValue>0</meatMarketValue>
+      <manhunterOnDamageChance>0</manhunterOnDamageChance>
+      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+      <lifeStageAges>
+        <li>
+          <def>HumanlikeAdult</def>
+          <minAge>0</minAge>
+        </li>
+      </lifeStageAges>
+      <hediffGiverSets>
+        <li>GW40K_Necron_HediffGiverSet</li>
+      </hediffGiverSets>
+    </race>
+  </ThingDef>
+
+  <!-- Extends the base with mech ambient sounds.
+       Use for soldier-class Necrons: Warrior, Deathmark, Destroyer, Flayed One, Praetorian.
+       Overlord and Lych Guard inherit GW40K_BaseNecronRace — no ambient sounds. -->
+  <ThingDef Name="GW40K_BaseNecronSoldier" ParentName="GW40K_BaseNecronRace" Abstract="True">
+    <race>
+      <soundCallIntervalRange>1000~2000</soundCallIntervalRange>
+      <soundCallIntervalFriendlyFactor>2</soundCallIntervalFriendlyFactor>
+      <lifeStageAges>
+        <li>
+          <def>HumanlikeAdult</def>
+          <minAge>0</minAge>
+          <soundWounded>Pawn_Mech_Pikeman_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Pikeman_Death</soundDeath>
+          <soundCall>Pawn_Mech_Pikeman_Call</soundCall>
+        </li>
+      </lifeStageAges>
+    </race>
+  </ThingDef>
+
 </Defs>

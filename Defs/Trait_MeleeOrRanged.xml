@@ -29,4 +29,174 @@
           </li>
         </degreeDatas>
       </TraitDef>
+
+  <!-- Backstory-granted traits. commonality 0 — never randomly generated.
+       Each is forced by a specific BackstoryDef via forcedTraits. -->
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Marksman</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>apprentice marksman</label>
+        <description>{PAWN_nameDef} trained for years in the stillness and patience of an elite hunter's guild. Aim settles faster than any untrained soldier.</description>
+        <statOffsets>
+          <AimingDelayFactor>-0.1</AimingDelayFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_ShadowHyperspace</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>shadow of the hyperspace</label>
+        <description>{PAWN_nameDef} has spent centuries flickering through the pocket dimension between moments. Phase transit is as natural as breathing once was — the orbs cycle faster, the re-entry is colder.</description>
+        <!-- Phase cooldown reduction requires C# — no valid StatDef exists for per-ability cooldown in vanilla/VEF.
+             Implement via a StatPart on GW40K_Deathmark_Phase reading this trait. -->
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_EternalBulwark</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>eternal bulwark</label>
+        <description>{PAWN_nameDef} served as a lieutenant and diplomat in a Necron dynasty. Retained personality and tactical wit after Biotransference.</description>
+        <statOffsets>
+          <SocialImpact>0.15</SocialImpact>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Protector</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>lychguard protector</label>
+        <description>{PAWN_nameDef} is a veteran of a thousand wars, hardened by millennia of close-quarters battle in heavy necrodermis plate.</description>
+        <statOffsets>
+          <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+          <MeleeDodgeChance>-0.15</MeleeDodgeChance>
+          <MoveSpeed>-0.05</MoveSpeed>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Astromancer</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>apprentice astromancer</label>
+        <description>{PAWN_nameDef} was a prodigy of the mathematical colleges in the flesh-times, absorbing knowledge at an accelerated rate.</description>
+        <statOffsets>
+          <GlobalLearningFactor>0.05</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_TechMaster</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>master of technomancy</label>
+        <description>{PAWN_nameDef} has spent eons refining hyper-technology. Their etheric sensitivity and precision of manipulation far exceed the Necrontyr norm.</description>
+        <statOffsets>
+          <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+          <PsychicSensitivity>1.5</PsychicSensitivity>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Scion</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>scion of the dynasty</label>
+        <description>{PAWN_nameDef} was raised from birth to rule. Courtly education sharpened their influence and capacity to absorb new knowledge.</description>
+        <statOffsets>
+          <SocialImpact>0.15</SocialImpact>
+          <GlobalLearningFactor>0.05</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Wardis</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>courtly wardispatcher</label>
+        <description>{PAWN_nameDef} mastered the Seven Honorable Cuts in the flesh-times. Combat instincts, pain tolerance, and movement were honed to a noble ideal.</description>
+        <statOffsets>
+          <MeleeHitChance>0.05</MeleeHitChance>
+          <MeleeDodgeChance>0.05</MeleeDodgeChance>
+          <MoveSpeed>0.05</MoveSpeed>
+          <PainShockThreshold>0.1</PainShockThreshold>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Tyrant</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>awakened tyrant</label>
+        <description>{PAWN_nameDef} commanded legions across a thousand worlds. Their presence commands submission — but awareness of how far the galaxy has fallen weighs on the engrams.</description>
+        <statOffsets>
+          <SocialImpact>0.15</SocialImpact>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+  <ThoughtDef>
+    <defName>GW_UD_Thought_Tyrant</defName>
+    <workerClass>ThoughtWorker_AlwaysActive</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <requiredTraits>
+      <li>GW_UD_Trait_Tyrant</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>awakened tyrant</label>
+        <description>The weight of a thousand conquered worlds presses on my memory. This realm is a ruin of what the galaxy should be.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Codekeeper</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>keeper of the code</label>
+        <description>{PAWN_nameDef} emerged from the Long Sleep with honor calcified into law. Melee discipline and commanding presence are exceptional; ranged precision is sacrificed for it.</description>
+        <statOffsets>
+          <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+          <MeleeDodgeChance>0.05</MeleeDodgeChance>
+          <SocialImpact>0.2</SocialImpact>
+          <ShootingAccuracyPawn>-0.1</ShootingAccuracyPawn>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
 </Defs>

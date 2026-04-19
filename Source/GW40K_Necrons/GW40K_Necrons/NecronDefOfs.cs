@@ -22,6 +22,7 @@ public class NecronDefOfs
   public static HediffDef GW40K_CoreFluxExhaustion;
   public static HediffDef GW40K_EternalSlumberForced;
   public static HediffDef GW40K_Necron_ResurrectionHediff;
+  public static HediffDef GW40K_Necron_ResurrectionActive;
   public static HediffDef GW40K_Necron_HealingHediff;
   public static HediffDef GW40K_GaussCapacitorMicro;
   public static HediffDef GW40K_GaussCapacitorSmall;
@@ -35,4 +36,18 @@ public class NecronDefOfs
   public static AbilityDef GW40K_Deathmark_HuntersMark;
   public static HediffDef GW40K_TransDimensional;
   public static HediffDef GW40K_HuntersMark;
+  public static MentalStateDef GW40K_TheSorrow;
+
+  // Dysphorakh
+  public static HediffDef GW40K_Dysphorakh;
+  public static HediffDef GW40K_Dysphorakh_SuffocationShock;
+  public static MentalStateDef GW40K_Dysphorakh_Suffocation;
+  public static MentalStateDef GW40K_Dysphorakh_PhantomHunger;
+  public static MentalStateDef GW40K_Dysphorakh_Clawing;
+  public static ThoughtDef GW40K_WitnessedFlayerVirus;
+  public static ThoughtDef GW40K_WitnessedFlayerVirus_Psychopath;
+
+  public static HediffDef GW40K_FlayerVirus;
+  public static HediffDef GW40K_ReanimationCooldown;
+  public static JobDef GW40K_Job_RechargeFromBattery;
 }

@@ -2,10 +2,10 @@
 
   
 
-  <ThingDef Name="GW40K_NecronLychGuard" ParentName="BasePawn">
+  <ThingDef Name="GW40K_NecronLychGuard" ParentName="GW40K_BaseNecronRace">
     <defName>GW40K_NecronLychGuard</defName>
-    <label>necron lych guard</label>
-    <description>asd</description>
+    <label>necron lychguard</label>
+    <description>Lychguards are the elite wardens and personal bodyguards of the Necron nobility, serving as an unwavering shield for Lords and Overlords. Unlike the mindless constructs, Lychguards retained a significant portion of their personality and intellect during bio-transferrence.</description>
     <statBases>
       <MarketValue>1750</MarketValue>
       <MoveSpeed>4.6</MoveSpeed>
@@ -39,35 +39,6 @@
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>
     </tools>
-    <race>
-      <thinkTreeMain>Humanlike</thinkTreeMain>
-      <thinkTreeConstant>HumanlikeConstant</thinkTreeConstant>
-      <intelligence>Humanlike</intelligence>
-      <makesFootprints>true</makesFootprints>
-      <lifeExpectancy>10000</lifeExpectancy>
-      <bloodDef>GW40K_Filth_NecronBlood</bloodDef>
-      <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
-      <nameCategory>HumanStandard</nameCategory>
-      <body>GW40K_NecronBody</body>
-      <renderTree>Humanlike</renderTree>
-      <baseBodySize>1</baseBodySize>
-      <baseHealthScale>1.5</baseHealthScale>
-      <foodType>OmnivoreHuman</foodType>
-      <meatMarketValue>0</meatMarketValue>
-      <manhunterOnDamageChance>0</manhunterOnDamageChance>
-      <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
-      <lifeStageAges>
-        <li>
-          <def>HumanlikeAdult</def>
-          <minAge>0</minAge>
-        </li>
-      </lifeStageAges>
-      <hediffGiverSets>
-        <li>OrganicStandard</li>
-        <li>GW40K_Necron_HediffGiverSet</li>
-      </hediffGiverSets>
-    </race>
-
     <modExtensions>
       <li Class="GW40K_Necrons.NonOrganicPawn">
         <passion>Minor</passion>

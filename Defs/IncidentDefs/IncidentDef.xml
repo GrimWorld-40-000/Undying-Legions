@@ -2,7 +2,7 @@
 
 	<IncidentDef>
     <defName>GW40k_Necron_NecrodermisSpread</defName>
-    <label>necrodemis spread</label>
+    <label>necrodermis spread</label>
     <category>Misc</category>
     <targetTags>
       <li>Map_PlayerHome</li>

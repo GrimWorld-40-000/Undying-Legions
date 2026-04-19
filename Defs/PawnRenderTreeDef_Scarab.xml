@@ -68,15 +68,6 @@
             </li>
 
             <li>
-              <debugLabel>Wounds</debugLabel>
-              <nodeClass>PawnRenderNode_AnimalPart</nodeClass>
-              <workerClass>PawnRenderNodeWorker_OverlayWounds</workerClass>
-              <overlayLayer>Body</overlayLayer>
-              <useGraphic>false</useGraphic>
-              <baseLayer>3</baseLayer>
-            </li>
-
-            <li>
               <debugLabel>Firefoam</debugLabel>
               <nodeClass>PawnRenderNode_AnimalPart</nodeClass>
               <workerClass>PawnRenderNodeWorker_OverlayFirefoam</workerClass>

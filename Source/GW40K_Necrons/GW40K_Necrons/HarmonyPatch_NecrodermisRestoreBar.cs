@@ -56,6 +56,66 @@ public static class HarmonyPatch_StasisRestoreTip
     }
 }
 
+// ── Dispersion shield repair indicator ───────────────────────────────────────
+// Overlays an amber "⚙ repairing" label on the GW_UD_Necrodermis need bar while
+// the pawn wears a damaged dispersion shield, and appends drain-rate info to the tooltip.
+
+[HarmonyPatch(typeof(Need), nameof(Need.DrawOnGUI))]
+public static class HarmonyPatch_ShieldRegenBar
+{
+    [HarmonyPostfix]
+    public static void Postfix(Need __instance, Rect rect, Pawn ___pawn)
+    {
+        if (!ShieldRegenBarUtil.IsRepairingShield(__instance, ___pawn))
+            return;
+
+        Color prevColor = GUI.color;
+        TextAnchor prevAnchor = Text.Anchor;
+        GameFont prevFont = Text.Font;
+
+        GUI.color = new Color(1f, 0.72f, 0.2f, 0.95f);
+        Text.Font = GameFont.Tiny;
+        Text.Anchor = TextAnchor.MiddleRight;
+        Widgets.Label(rect, "GW40K_ShieldRepairing".Translate() + "  ");
+
+        GUI.color = prevColor;
+        Text.Anchor = prevAnchor;
+        Text.Font = prevFont;
+    }
+}
+
+[HarmonyPatch(typeof(Need), nameof(Need.GetTipString))]
+public static class HarmonyPatch_ShieldRegenTip
+{
+    [HarmonyPostfix]
+    public static void Postfix(Need __instance, ref string __result, Pawn ___pawn)
+    {
+        if (!ShieldRegenBarUtil.IsRepairingShield(__instance, ___pawn))
+            return;
+
+        float extraPerDay = __instance.def.fallPerDay * HarmonyPatch_NecrodermisShieldRegen.ExtraDrainFactor;
+        __result += "\n\n" + "GW40K_ShieldRepairingTip".Translate(
+            extraPerDay.ToStringPercent(),
+            HarmonyPatch_NecrodermisShieldRegen.HpPerDay.ToString("0"));
+    }
+}
+
+internal static class ShieldRegenBarUtil
+{
+    private const string NecrodermisDefName = "GW_UD_Necrodermis";
+
+    internal static bool IsRepairingShield(Need need, Pawn pawn)
+    {
+        if (pawn?.apparel == null) return false;
+        if (need.def?.defName != NecrodermisDefName) return false;
+        foreach (Apparel a in pawn.apparel.WornApparel)
+            if (a.def.defName == HarmonyPatch_NecrodermisShieldRegen.ShieldDefName
+                && a.HitPoints < a.MaxHitPoints)
+                return true;
+        return false;
+    }
+}
+
 internal static class StasisRestoreBarUtil
 {
     private const string NecrodermisDefName = "GW_UD_Necrodermis";

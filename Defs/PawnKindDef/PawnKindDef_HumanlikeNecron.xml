@@ -199,6 +199,7 @@
   <PawnKindDef ParentName="UD_NecronLowbornBase">
     <defName>UD_NecronDeathmark</defName>
     <label>Deathmark</label>
+    <preventIdeo MayRequire="Ludeon.RimWorld.Ideology">true</preventIdeo>
     <!-- Reference only — Biotech fur uses GW_UD_NecronDeathmark renderNodeProperties/drawSize.
     <lifeStages>
       <li>

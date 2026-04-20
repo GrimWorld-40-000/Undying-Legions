@@ -16,8 +16,9 @@ public class TeleportAbility : CompAbilityEffect
         // Visual: flash at departure point
         EffecterDefOf.ForcedVisible.Spawn(pawn.Position, pawn.MapHeld);
 
-        // Move
+        // Move — Notify_Teleported resets the tweener so no snap-back on next move order.
         pawn.Position = cell;
+        pawn.Notify_Teleported(endCurrentJob: false);
 
         // Apply trans-dimensional invulnerability for 2 seconds
         pawn.health.AddHediff(NecronDefOfs.GW40K_TransDimensional);

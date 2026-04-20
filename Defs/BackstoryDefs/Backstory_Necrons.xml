@@ -14,6 +14,7 @@
     <description>Before Biotransference, [PAWN_nameDef] lived a mortal life — breathed air, ate food, felt warmth. None of it survived the process.\n\nWhen the engrams were sealed into living metal, the continuity broke. Childhood, family, fear, joy — all of it is gone now, scrubbed clean by sixty million years of deep storage and the cold indifference of the machines that rebuilt [PAWN_objective]. What remains is function: the body moves, the weapon fires, the protocol executes. The rest is silence.</description>
     <spawnCategories>
       <li>NecronLowborn</li>
+      <li>NecronWarrior</li>
       <li>NecronFlayedOne</li>
     </spawnCategories>
   </BackstoryDef>
@@ -27,6 +28,7 @@
     <description>Whatever [PAWN_nameDef] was before the Great Sleep — craftsman, soldier, noble, slave — the engram record is blank.\n\nThe Biotransference process was never designed to preserve the low-caste; their minds were archived as combat-capable patterns, stripped of the biographical weight that would slow a weapon down. Name, dynasty, cause — all purged. Only the reflex and the hunger remain.</description>
     <spawnCategories>
       <li>NecronLowborn</li>
+      <li>NecronWarrior</li>
     </spawnCategories>
   </BackstoryDef>
 

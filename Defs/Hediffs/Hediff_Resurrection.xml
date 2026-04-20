@@ -57,6 +57,7 @@
                 <overrideLabel>reanimation</overrideLabel>
             </li>
         </stages>
+        <!-- Stage labels are overridden by Hediff_ResurrectionActive.LabelInBrackets when isFailing = true -->
     </HediffDef>
 
 </Defs>

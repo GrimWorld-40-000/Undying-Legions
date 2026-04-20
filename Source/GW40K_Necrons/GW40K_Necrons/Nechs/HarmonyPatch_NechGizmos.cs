@@ -141,7 +141,7 @@ public static class HarmonyPatch_NechGizmos
             yield return toggleDraft;
         }
 
-        if (NechEnergyUtility.GetCapacitorComp(__instance) != null)
+        if (NechEnergyUtility.GetCapacitorComp(__instance) != null && GaussWeaponUtil.HasEquippedGaussWeapon(__instance))
             yield return new Gizmo_NechEnergy(__instance);
 
         // Recharge-from-core gizmo disabled for now (core ↔ gauss transfer UX TBD).

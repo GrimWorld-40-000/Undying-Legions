@@ -11,6 +11,7 @@
     <initialWillRange>0~0</initialWillRange>
     <humanPregnancyChance>0.0</humanPregnancyChance>
     <allowOldAgeInjuries>false</allowOldAgeInjuries>
+    <preventIdeo MayRequire="Ludeon.RimWorld.Ideology">true</preventIdeo>
   </PawnKindDef>
 
   <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">

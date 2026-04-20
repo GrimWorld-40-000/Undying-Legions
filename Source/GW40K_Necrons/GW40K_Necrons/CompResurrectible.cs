@@ -241,6 +241,8 @@ namespace GW40K_Necrons
 
         // SeverityPerDay comp doesn't tick on corpse inner pawns — drive it manually here.
         private const float ResurrectionSeverityPerDay = 4f;
+        private const float ResurrectionDecaySeverityPerDay = 1f;
+        private const float NecrodermisFailThreshold = 0.5f;
 
         public override void CompTickRare()
         {
@@ -262,11 +264,22 @@ namespace GW40K_Necrons
                 Hediff h = pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_Necron_ResurrectionActive);
                 if (h != null)
                 {
-                    h.Severity = Mathf.Min(1f, h.Severity + (250f / 60000f) * ResurrectionSeverityPerDay);
-                    if (h.Severity >= 1f)
+                    bool necrodermisOk = NecrodermisAboveThreshold(pawn);
+                    if (h is Hediff_ResurrectionActive ra)
+                        ra.isFailing = !necrodermisOk;
+
+                    if (necrodermisOk)
                     {
-                        CompleteResurrection();
-                        return;
+                        h.Severity = Mathf.Min(1f, h.Severity + (250f / 60000f) * ResurrectionSeverityPerDay);
+                        if (h.Severity >= 1f)
+                        {
+                            CompleteResurrection();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        h.Severity = Mathf.Max(0.01f, h.Severity - (250f / 60000f) * ResurrectionDecaySeverityPerDay);
                     }
                 }
             }
@@ -275,6 +288,14 @@ namespace GW40K_Necrons
             InitiateCanResurrect();
             if (canResurrect != true)
                 RemoveResurrectionActiveHediff();
+        }
+
+        private static bool NecrodermisAboveThreshold(Pawn pawn)
+        {
+            if (NecronDefOfs.GW_UD_Necrodermis == null) return true;
+            Need need = pawn?.needs?.TryGetNeed(NecronDefOfs.GW_UD_Necrodermis);
+            if (need == null) return true;
+            return need.CurLevelPercentage >= NecrodermisFailThreshold;
         }
 
         internal void CompleteResurrection()

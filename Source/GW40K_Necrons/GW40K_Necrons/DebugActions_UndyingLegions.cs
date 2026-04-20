@@ -23,6 +23,7 @@ public static class DebugActions_UndyingLegions
         "UD_NecronLychguard_2",
         "UD_NecronDeathmark",
         "GW40K_NecronFlayedOnePawnKind_Colonist",
+        "GW40K_NecronWarriorPawnKind_Colonist",
         "UD_Necron_Warrior",
         "UD_Necron_Cryptothrall",
         "UD_Necron_Immortal",

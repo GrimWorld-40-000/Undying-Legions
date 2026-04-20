@@ -11,7 +11,7 @@
         </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronDeathmark</race>
-        <combatPower>60</combatPower>
+        <combatPower>180</combatPower>
         <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
         <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
         <techHediffsChance>0.03</techHediffsChance>

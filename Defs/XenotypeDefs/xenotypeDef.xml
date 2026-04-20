@@ -59,7 +59,27 @@
 			<li>Robust</li>
 			<li>Unstoppable</li>
 			<li>AptitudeRemarkable_Melee</li>
-			<li>AptitudeStrong_Social</li>
+			<li>AptitudeTerrible_Social</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_NecronWarrior</defName>
+		<label>Warrior</label>
+		<description>A hollowed-out husk of a person, the Necron Warrior is a biological tragety converted into a flux-driven machine.\n\nThey do not eat, they do not sleep, and they do not feel. They exist only to march forward and fire until the battlefield is silent.</description>
+		<descriptionShort>Expendable ancient super-soldiers. They are terrifyingly durable, infinitely patient, but socially and intellectially hollowed out.</descriptionShort>
+		<iconPath>Genes/Warrior</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_NecronWarrior</li>
+			<li>GW_UD_NecronWarrior_Head</li>
+			<li>GW_UD_CantWork</li>
+			<li>GW_UD_LowBorn</li>
+			<li>WoundHealing_Fast</li>
+			<li>Robust</li>
+			<li>Unstoppable</li>
+			<li>AptitudeRemarkable_Shooting</li>
+			<li>AptitudeTerrible_Social</li>
 		</genes>
 	</XenotypeDef>
 

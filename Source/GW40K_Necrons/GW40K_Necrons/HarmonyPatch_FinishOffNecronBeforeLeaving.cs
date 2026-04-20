@@ -42,7 +42,7 @@ public static class HarmonyPatch_FinishOffNecronBeforeLeaving
         if (Find.TickManager.TicksGame - lastNotificationTick > 2500)
         {
             Messages.Message(
-                "Raiders are finishing off your Necrons before preparing to leave.",
+                "Raiders are finishing off your Necrons before leaving.",
                 target,
                 MessageTypeDefOf.ThreatSmall);
             lastNotificationTick = Find.TickManager.TicksGame;

@@ -11,7 +11,7 @@
         </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronLychGuard</race>
-        <combatPower>60</combatPower>
+        <combatPower>300</combatPower>
         <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
         <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
         <techHediffsChance>0.03</techHediffsChance>
@@ -25,6 +25,7 @@
           <li>PainCauser</li>
         </techHediffsDisallowTags>
         <initialResistanceRange>13~21</initialResistanceRange>
+        <preventIdeo MayRequire="Ludeon.RimWorld.Ideology">false</preventIdeo>
         <abilities>
           <li>GW40K_Necron_SwapPlaces</li>
         </abilities>

@@ -16,6 +16,7 @@ public class NecronDefOfs
   public static ThingDef GW40K_StasisCrypt;
   public static NeedDef GW40K_CoreFlux;
   public static NeedDef GW40K_NechEnergy;
+  public static NeedDef GW_UD_Necrodermis;
   public static JobDef GW40K_Job_LayDown;
   public static JobDef GW40K_TakeControlOfNech;
   public static HediffDef GW40K_Necron_TiredHediff;

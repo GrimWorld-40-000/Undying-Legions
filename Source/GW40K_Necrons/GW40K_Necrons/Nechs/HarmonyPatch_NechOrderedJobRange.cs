@@ -53,7 +53,7 @@ public static class HarmonyPatch_NechOrderedJobRange
             return true;
 
         // Ability casts (JobDriver_CastAbility*) carry world/cell targets that are not "commander to nech"
-        // distance; blocking them breaks self-buffs (e.g. Flayed ghostwalk) and shows range errors.
+        // distance; blocking them breaks self-buffs (e.g. Flayed ghostwind) and shows range errors.
         if (IsAbilityCastJob(job))
         {
             // Self-buffs and other ability casts should fire immediately on click for Nechs.

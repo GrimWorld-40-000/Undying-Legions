@@ -9,19 +9,19 @@ namespace GW40K_Necrons;
 //   2. They cannot fire projectiles.
 //   3. They render with a semi-transparent green tint + darker hex pattern on top.
 
-[HarmonyPatch(typeof(Pawn), nameof(Pawn.PreApplyDamage))]
+[HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
 public static class HarmonyPatch_TransDimensional_AbsorbDamage
 {
-    // Must be Postfix, not Prefix: Pawn.PreApplyDamage assigns `absorbed` from base + health trackers,
-    // which overwrites any Prefix that set absorbed early. Last priority so we win after other postfixes.
-    [HarmonyPostfix]
-    [HarmonyPriority(Priority.Last)]
-    public static void Postfix(Pawn __instance, ref bool absorbed)
+    // Intercept at TakeDamage so we skip the entire damage pipeline — PreApplyDamage,
+    // armor calculations, hediff application — before any of it runs.
+    [HarmonyPrefix]
+    public static bool Prefix(Thing __instance, ref DamageWorker.DamageResult __result)
     {
-        if (absorbed) return;
-        if (__instance?.health?.hediffSet == null) return;
-        if (__instance.health.hediffSet.HasHediff(NecronDefOfs.GW40K_TransDimensional))
-            absorbed = true;
+        if (__instance is not Pawn pawn) return true;
+        if (pawn.health?.hediffSet == null) return true;
+        if (!pawn.health.hediffSet.HasHediff(NecronDefOfs.GW40K_TransDimensional)) return true;
+        __result = new DamageWorker.DamageResult();
+        return false;
     }
 }
 

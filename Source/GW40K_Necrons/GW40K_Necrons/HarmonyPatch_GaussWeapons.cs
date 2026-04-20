@@ -22,6 +22,15 @@ internal static class GaussWeaponUtil
 
     internal static bool IsInsufficient(float energy, ModExtension_GaussWeapon ext) =>
         energy <= 0f || (ext.gaussConsumption > 0f && energy < ext.gaussConsumption);
+
+    /// <summary>True when the pawn's equipped weapon has a gauss extension with showEnergyGizmo = true.</summary>
+    internal static bool HasEquippedGaussWeapon(Pawn pawn)
+    {
+        ThingWithComps primary = pawn?.equipment?.Primary;
+        if (primary?.def == null) return false;
+        var ext = primary.def.GetModExtension<ModExtension_GaussWeapon>();
+        return ext != null && ext.showEnergyGizmo;
+    }
 }
 
 // ── Ranged — block AI from picking a gauss verb when energy is too low ────────
@@ -160,5 +169,31 @@ public static class HarmonyPatch_GaussWeapon_MeleeDamage
             dinfo.Instigator,
             dinfo.HitPart,
             dinfo.Weapon);
+    }
+}
+
+// ── Colonist Necron bios — inject Gauss Energy gizmo when a gauss weapon is equipped ──
+
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]
+[HarmonyPriority(Priority.Last)]
+public static class HarmonyPatch_GaussWeapon_ColonistGizmo
+{
+    public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> gizmos, Pawn __instance)
+    {
+        foreach (Gizmo g in GizmoEnumerationSafety.PassThroughWithSafety(gizmos, __instance, "ColonistGauss"))
+            yield return g;
+
+        if (__instance?.def?.GetModExtension<NecronMechExtension>() != null)
+            yield break;
+        if (__instance?.def?.GetModExtension<NonOrganicPawn>() == null)
+            yield break;
+        if (NechEnergyUtility.GetCapacitorComp(__instance) == null)
+            yield break;
+        if (__instance.Faction != Faction.OfPlayer)
+            yield break;
+        if (!GaussWeaponUtil.HasEquippedGaussWeapon(__instance))
+            yield break;
+
+        yield return new Gizmo_NechEnergy(__instance);
     }
 }

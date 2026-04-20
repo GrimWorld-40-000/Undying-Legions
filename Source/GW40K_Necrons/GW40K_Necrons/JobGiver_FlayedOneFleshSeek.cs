@@ -22,11 +22,27 @@ public class JobGiver_FlayedOneFleshSeek : ThinkNode_JobGiver
     private const float HuntThreshold = 0.40f;
     private const float SearchRadius   = 30f;
 
+    // Tracks pawns that have already received a seeking notification this episode.
+    private static readonly System.Collections.Generic.HashSet<int> _notifiedPawns = new();
+
     protected override Job TryGiveJob(Pawn pawn)
     {
+        if (pawn.Downed) return null;
+
         Need_Food food = pawn.needs?.food;
         if (food == null || food.CurLevelPercentage >= SeekThreshold)
+        {
+            _notifiedPawns.Remove(pawn.thingIDNumber);
             return null;
+        }
+
+        if (_notifiedPawns.Add(pawn.thingIDNumber) && PawnUtility.ShouldSendNotificationAbout(pawn))
+        {
+            Messages.Message(
+                "GW40K_FlayedOneSeekingFlesh".Translate(pawn.Named("PAWN")),
+                pawn,
+                MessageTypeDefOf.NegativeEvent);
+        }
 
         // Phase 1: eat nearby flesh (corpse / raw meat chunk)
         Thing flesh = FindNearbyFlesh(pawn);
@@ -53,7 +69,8 @@ public class JobGiver_FlayedOneFleshSeek : ThinkNode_JobGiver
             PathEndMode.ClosestTouch,
             TraverseParms.For(pawn),
             SearchRadius,
-            t => !t.IsForbidden(pawn)
+            t => t.IngestibleNow
+              && !t.IsForbidden(pawn)
               && pawn.CanReserve(t)
               && pawn.WillEat(t)
               && !(t is Pawn { Dead: false })); // living pawns go through hunting, not direct ingestion

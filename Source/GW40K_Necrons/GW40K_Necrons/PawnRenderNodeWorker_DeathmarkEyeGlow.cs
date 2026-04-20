@@ -21,6 +21,7 @@ public class PawnRenderNodeWorker_DeathmarkEyeGlow : PawnRenderNodeWorker
         if (!base.CanDrawNow(node, parms)) return false;
         if (parms.Portrait) return false;
         if (parms.pawn.Map == null) return false;
+        if (parms.pawn.Downed) return false;
 
         float light = parms.pawn.Map.glowGrid.GroundGlowAt(parms.pawn.Position);
         return light < LightThreshold;
@@ -34,9 +35,9 @@ public class PawnRenderNodeWorker_DeathmarkEyeGlow : PawnRenderNodeWorker
         // Rot4: North=0, East=1, South=2, West=3.
         Vector3 nudge = parms.facing.AsInt switch
         {
-            1 => new Vector3(0.35f, 0f, 0.04f), // East  – face points right, eye at +X
-            3 => new Vector3(-0.35f, 0f, 0.04f), // West  – face points left, eye at -X
-            _ => new Vector3(0f, 0f, 0.05f), // South – single centred oculus
+            1 => new Vector3(0.35f, 0f, 0.037f), // East  – face points right, eye at +X
+            3 => new Vector3(-0.35f, 0f, 0.037f), // West  – face points left, eye at -X
+            _ => new Vector3(0f, 0f, 0.047f), // South – single centred oculus
         };
 
         Vector3 scale = base.ScaleFor(node, parms);

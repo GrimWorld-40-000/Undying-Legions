@@ -16,4 +16,7 @@ public class ModExtension_GaussWeapon : DefModExtension
     //   - never fully disabled; instead reduces damage by 80% when energy is zero.
     //   - no per-shot consumption.
     public bool isMeleeGaussWeapon = false;
+
+    // When true, the Gauss Energy gizmo is shown while this weapon is equipped.
+    public bool showEnergyGizmo = true;
 }

@@ -4,7 +4,7 @@
         <label>necron destroyer</label>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronDestroyer</race>
-        <combatPower>100</combatPower>
+        <combatPower>300</combatPower>
         <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
         <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
         <techHediffsChance>0.03</techHediffsChance>

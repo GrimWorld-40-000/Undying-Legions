@@ -3,6 +3,8 @@
 	
 	<NecrodemisInfection>some ore on the map are infected by necrodemis</NecrodemisInfection>
   <MessageNecronResurrection>A corpse is resurrecting on its own.</MessageNecronResurrection>
+  <GW40K_NecronReconstructed>{PAWN_nameDef} has reconstructed a body part.</GW40K_NecronReconstructed>
+  <GW40K_FlayedOneSeekingFlesh>{PAWN_nameDef} is hunting to satisfy their flesh cravings.</GW40K_FlayedOneSeekingFlesh>
 
   <!-- Resurrection Protocol (CompResurrectible letters) -->
   <GW40K_ResurrectionTriggeredFriendlyTitle>Resurrection protocol engaged</GW40K_ResurrectionTriggeredFriendlyTitle>
@@ -35,6 +37,9 @@
   <GW40K_StasisRestoringTip>Restoring in stasis crypt at +{0} per day.\n{1}</GW40K_StasisRestoringTip>
   <GW40K_StasisRestoringTipTime>Full in ~{0}h</GW40K_StasisRestoringTipTime>
   <GW40K_StasisRestoringTipFull>Already full.</GW40K_StasisRestoringTipFull>
+
+  <GW40K_ShieldRepairing>⚙ repairing</GW40K_ShieldRepairing>
+  <GW40K_ShieldRepairingTip>Dispersion shield repair active.\n\nThe living metal is self-repairing at {1} HP/day, consuming additional necrodermis in the process.\n\nExtra drain: +{0}/day</GW40K_ShieldRepairingTip>
 
   <GW40K_StasisCryptTimeRemaining>Time remaining on cycle: {REMAINING}</GW40K_StasisCryptTimeRemaining>
   <GW40K_StasisCryptCyclePaused>Stasis cycle paused — needs necrodermis fuel, power, or the crypt must be switched on.</GW40K_StasisCryptCyclePaused>

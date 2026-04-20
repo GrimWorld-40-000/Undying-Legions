@@ -1,5 +1,11 @@
 <Defs>
-
+	<FurDef>
+		<defName>GW_UD_NecronWarrior</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/NecronWarrior/Body/Naked_Male</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
 	<FurDef>
 		<defName>GW_UD_NecronLychguard</defName>
 		<noGraphic>true</noGraphic>
@@ -107,6 +113,52 @@
 		</modExtensions>
 	</GeneDef>
 	
+	<!-- Warrior -->
+
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
+		<defName>GW_UD_NecronWarrior</defName>
+		<label>warrior frame</label>
+		<labelShortAdj>warrior</labelShortAdj>
+		<description>Carriers of this gene possess a rudimentary, self-repairing skeletal frame. This is the most common and lowest-quality chassis.\n\nThese frames often suffer from eons of corrosion and misfining synapsesc resulting in slow, jerky movements.</description>
+		<fur>GW_UD_NecronWarrior</fur>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<drawSize>1</drawSize>
+			</li>
+		</renderNodeProperties>
+		<iconPath>Genes/Machine_body</iconPath>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<statOffsets>
+			<MoveSpeed>-0.20</MoveSpeed>
+		</statOffsets>
+<!--		<modExtensions>
+ 			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW_UD_NecronLychguard</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li> 
+		</modExtensions> -->
+	</GeneDef>
+
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
+		<defName>GW_UD_NecronWarrior_Head</defName>
+		<label>warrior head</label>
+		<description>Carriers of this gene possess a "deathmask" skull head, made of "living metal."</description>
+		<iconPath>GW40K/NecronWarrior/Head/GeneIcon_WarriorHead</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_NecronWarrior_HeadType</li>
+		</forcedHeadTypes>
+	</GeneDef>
+
+	<!-- Lychguard -->
+
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronLychguard</defName>
 		<label>lychguard frame</label>
@@ -140,6 +192,19 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
+
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
+		<defName>GW_UD_NecronLychguard_Head</defName>
+		<label>lychguard crest</label>
+		<description>Carriers of this gene possess a prominment, flared metallic headdress that extends from the skull in an ornate, regal silhouette.\n\n This "living metal" crown is etched with dynastic glyphs and serves as a hardened protective plate.</description>
+		<iconPath>GW40K/LychGuard/Head/GeneIcon_LychguardHead</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_LychGuard_HeadType</li>
+		</forcedHeadTypes>
+	</GeneDef>
+
+	<!-- Flayed One  -->
+
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>GW_UD_NecronFlayedOne</defName>
 		<label>flayed chassis</label>
@@ -214,15 +279,7 @@
 			<li>NecronHead</li>
 		</exclusionTags>
 	</GeneDef>
-	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
-		<defName>GW_UD_NecronLychguard_Head</defName>
-		<label>lychguard crest</label>
-		<description>Carriers of this gene possess a prominment, flared metallic headdress that extends from the skull in an ornate, regal silhouette.\n\n This "living metal" crown is etched with dynastic glyphs and serves as a hardened protective plate.</description>
-		<iconPath>GW40K/LychGuard/Head/GeneIcon_LychguardHead</iconPath>
-		<forcedHeadTypes>
-			<li>GW40K_LychGuard_HeadType</li>
-		</forcedHeadTypes>
-	</GeneDef>
+
 	<GeneDef ParentName="GW_UD_NecronHeadGeneBase" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>GW_UD_NecronFlayedOne_Head</defName>
 		<label>flayed mask</label>
@@ -235,6 +292,8 @@
 		</forcedHeadTypes>
 	</GeneDef>
 	
+	<!-- Deathmark -->
+
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronDeathmark</defName>
 		<label>deathmark chassis</label>
@@ -329,6 +388,8 @@
 
 	</HediffDef>
 
+	<!-- Cryptek -->
+
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronCryptek</defName>
 		<label>cryptek lattice</label>
@@ -371,6 +432,8 @@
 		</forcedHeadTypes>
 	</GeneDef>
 	
+	<!-- Overlord -->
+
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronOverlord</defName>
 		<label>necron overlord</label>

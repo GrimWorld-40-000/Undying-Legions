@@ -104,7 +104,7 @@
 		<label>beam</label>
 		<description>a viridian-green charged particle beam.</description>
 		<textures>
-			<li>Things/Projectiles/Laser_Green</li>
+			<li>Things/Projectiles/TeslaCarbineMote</li>
 		</textures>
 		<seam>0.1</seam>
 		<causefireChance>0</causefireChance>
@@ -113,8 +113,28 @@
 		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
 		<projectile>
 			<damageDef>Cut</damageDef>
-			<damageAmountBase>20</damageAmountBase>
-			<armorPenetrationBase>1.9</armorPenetrationBase>
+			<damageAmountBase>37</damageAmountBase>
+			<armorPenetrationBase>2.6</armorPenetrationBase>
+			<stoppingPower>3</stoppingPower>
+		</projectile>
+	</ThingDef>
+
+		 <ThingDef ParentName="GW40k_Necron_BulletLaser" Class="VEF.Weapons.LaserBeamDef"> 
+		<defName>GW40k_Necron_Reaper</defName>
+		<label>beam</label>
+		<description>a viridian-green charged particle beam.</description>
+		<textures>
+			<li>Things/Projectiles/Laser_Green</li>
+		</textures>
+		<seam>0.1</seam>
+		<causefireChance>0</causefireChance>
+		<beamWidth>0.9</beamWidth>
+		<lifetime>55</lifetime>
+		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
+		<projectile>
+			<damageDef>Cut</damageDef>
+			<damageAmountBase>14</damageAmountBase>
+			<armorPenetrationBase>2.25</armorPenetrationBase>
 			<stoppingPower>3</stoppingPower>
 		</projectile>
 	</ThingDef>
@@ -124,7 +144,7 @@
 		<label>Particle Beam</label>
 		<description>beam</description>
 		<textures>
-			<li>Things/Projectiles/TeslaCarbineMote</li>
+			<li>Things/Projectiles/Laser_Green</li>
 		</textures>
 		<seam>0.1</seam>
 		<causefireChance>0</causefireChance>
@@ -133,7 +153,7 @@
 		<!-- <explosionEffect>Ring_ExpandY</explosionEffect> -->
 		<projectile>
 			<damageDef>Cut</damageDef>
-			<damageAmountBase>37</damageAmountBase>
+			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationBase>1.2</armorPenetrationBase>
 			<!-- <stoppingPower>3</stoppingPower> -->
 		</projectile>
@@ -213,7 +233,7 @@
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
 			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
-				<gaussConsumption>0.12</gaussConsumption>
+				<gaussConsumption>0.112</gaussConsumption>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -222,7 +242,7 @@
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_GaussFlayer</defName>
 		<label>Gauss Flayer</label>
-		<description>A rifle-like weapon consisting of a stock, a transparent containment-tube, and a charging mechanism. It emits a charged beam of green energy that disintegrates targets at a molecular level.\n\n&lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
+		<description>A rifle-like weapon consisting of a stock, a transparent containment-tube, and a charging mechanism. An axe is fashioned on it's tip. It emits a charged beam of green energy that disintegrates targets at a molecular level.\n\n&lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/GaussFlayer</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -279,10 +299,17 @@
 			<li>
 				<label>barrel</label>
 				<capacities>
-					<li>Blunt</li>
-					<li>Poke</li>
+					<li>Stab</li>
 				</capacities>
 				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>blade</label>
+				<capacities>
+					<li>Cut</li>
+				</capacities>
+				<power>10</power>
 				<cooldownTime>2</cooldownTime>
 			</li>
 		</tools>
@@ -293,6 +320,82 @@
 			</li>
 		</modExtensions>
 	</ThingDef>
+
+	<!-- Gauss Reaper infantry shot-gauss -->
+	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
+		<defName>GW40k_Necron_GaussReaper</defName>
+		<label>Gauss Reaper</label>
+		<description>A heavy double-barreled variant of the Gauss Flayer; it trades long-range for devastating stopping power.\n\n&lt;color=#39C814&gt;Requires Gauss energy.&lt;/color&gt;</description>
+		<graphicData>
+			<texPath>Things/Items/NecronWeapons/GW40k_Reaper</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>1.00</drawSize>
+		</graphicData>
+		<recipeMaker>
+			<skillRequirements>
+				<Crafting>18</Crafting>
+			</skillRequirements>
+		</recipeMaker>
+		<statBases>
+			<WorkToMake>24500</WorkToMake>
+			<Mass>5.4</Mass>
+			<MarketValue>3675</MarketValue>
+			<AccuracyTouch>0.80</AccuracyTouch>
+			<AccuracyShort>0.87</AccuracyShort>
+			<AccuracyMedium>0.77</AccuracyMedium>
+			<AccuracyLong>0.64</AccuracyLong>
+			<RangedWeapon_Cooldown>1.9</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<ComponentSpacer>15</ComponentSpacer>
+			<ComponentIndustrial>30</ComponentIndustrial>
+			<GW40k_Necron_Component>5</GW40k_Necron_Component>
+			<GW40k_Necron_Necrodermis>120</GW40k_Necron_Necrodermis>
+		</costList>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>GW40k_Necron_Reaper</defaultProjectile>
+				<warmupTime>2.0</warmupTime>
+				<range>15.9</range>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<burstShotCount>2</burstShotCount>
+				<soundCast>Shot_ChargeRifle</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>18</muzzleFlashScale>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>GW_Necron_Ranged</li>
+			<li>GW_Necron_Ranged_GaussReaper</li>
+		</weaponTags>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2.3</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Stab</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2.3</cooldownTime>
+			</li>
+		</tools>
+		<equippedAngleOffset>45</equippedAngleOffset>
+		<modExtensions>
+			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
+				<gaussConsumption>0.030</gaussConsumption>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
 
 	<!-- Gauss Blaster - infantry battle rifle -->
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
@@ -323,13 +426,13 @@
 			<ComponentSpacer>15</ComponentSpacer>
 			<ComponentIndustrial>30</ComponentIndustrial>
 			<GW40k_Necron_Component>8</GW40k_Necron_Component>
-			<GW40k_Necron_Necrodermis>120</GW40k_Necron_Necrodermis>
+			<GW40k_Necron_Necrodermis>140</GW40k_Necron_Necrodermis>
 		</costList>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
-				<defaultProjectile>GW40k_Necron_Gauss</defaultProjectile> <!-- changed from ChargeBullet-->
+				<defaultProjectile>GW40k_Necron_Reaper</defaultProjectile> <!-- changed from ChargeBullet-->
 				<warmupTime>2.2</warmupTime>
 				<range>26</range>
 				<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
@@ -412,7 +515,7 @@
 				<warmupTime>3.5</warmupTime>
 				<range>35</range>
 				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-				<burstShotCount>3</burstShotCount>
+				<burstShotCount>6</burstShotCount>
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>11</muzzleFlashScale>
@@ -453,7 +556,7 @@
 	<ThingDef ParentName="GW40k_Necron_BaseMakeableGun">
 		<defName>GW40k_Necron_TeslaCarbine</defName>
 		<label>Tesla Carbine</label>
-		<description>A specialized energy weapon that fires arcs of viridian lightning that bounce between targets. Each hit can chain to nearby targets, bouncing up to 10 times.</description>
+		<description>A specialized energy weapon that fires arcs of viridian lightning that bounce between targets. Each hit can chain to nearby targets, bouncing up to 10 times. Tesla arcs can hit friendlies so exercise caution.</description>
 		<graphicData>
 			<texPath>Things/Items/NecronWeapons/TeslaCarbine</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -542,7 +645,7 @@
     <modExtensions>
       <li Class="ChainProjectiles.ChainProjectileModExtension">
         <chainRange>4</chainRange> <!-- default 10 is crazy -->
-        <chainMaxCount>10</chainMaxCount>
+        <chainMaxCount>10</chainMaxCount> <!-- default 10 (bounce reduction fixed in Framework)  -->
       </li>
     </modExtensions>
 	</ThingDef>

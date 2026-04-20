@@ -1,8 +1,8 @@
 <Defs>
-    <!-- Not spawned: matches GW40K_NecronFlayedOne (conversion-only); Nech spawns use UD_Necron_FlayedOne. -->
+    <!-- Necron Warrior Colonist-based Pawn -->
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
-        <defName>GW40K_NecronFlayedOnePawnKind_Colonist</defName>
-        <label>necron flayed one</label>
+        <defName>GW40K_NecronWarriorPawnKind_Colonist</defName>
+        <label>necron warrior</label>
         <lifeStages>
           <li>
             <bodyGraphicData>
@@ -11,14 +11,15 @@
           </li>
         </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
-        <race>GW40K_NecronFlayedOne</race>
-        <combatPower>150</combatPower>
-        <!-- Always spawn with Flayer Claws; no other melee weapons should be generated. -->
-        <weaponMoney>9999~9999</weaponMoney>
+        <race>GW40K_NecronWarrior</race>
+        <combatPower>120</combatPower>
+        <!-- Always spawn with Gauss Flayer/Reaper -->
+        <weaponMoney>3000~4000</weaponMoney>
         <weaponTags>
-          <li>GW_Necron_Melee_Claw</li>
+          <li>GW_Necron_GaussFlayer</li>
+          <li>GW_Necron_GaussReaper</li>
         </weaponTags>
-        <!-- No apparel — Flayed One is Nech-controlled and wears nothing but trophied flesh. -->
+        <!-- No apparel — Warrior is Nech-controlled and wears nothing but trophied flesh. -->
         <apparelTags Inherit="False" />
         <apparelMoney>0</apparelMoney>
         <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
@@ -26,12 +27,13 @@
         <backstoryFiltersOverride>
           <li>
             <categories>
-              <li>NecronFlayedOne</li>
+              <li>NecronWarrior</li>
+              <li>NecronLowborn</li>
             </categories>
           </li>
         </backstoryFiltersOverride>
-        <techHediffsChance>0.03</techHediffsChance>
-        <techHediffsMoney>50~800</techHediffsMoney>
+        <techHediffsChance>0.00</techHediffsChance> <!--Disabled - default 0.03 -->
+        <techHediffsMoney>0</techHediffsMoney> <!--Disabled - default 50~800 -->
         <techHediffsTags>
           <li>Poor</li>
           <li>Simple</li>
@@ -43,7 +45,7 @@
         <initialResistanceRange>13~21</initialResistanceRange>
         <xenotypeSet Inherit="False" MayRequire="Ludeon.RimWorld.Biotech">
           <xenotypeChances>
-            <GW_UD_NecronFlayedOne>1</GW_UD_NecronFlayedOne>
+            <GW_UD_NecronWarrior>1</GW_UD_NecronWarrior>
           </xenotypeChances>
         </xenotypeSet>
       </PawnKindDef>

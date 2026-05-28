@@ -67,6 +67,7 @@ public static class HarmonyPatch_NechGizmos
         bool hasControlNode = HediffComp_ControlNodeTracker.GetTracker(__instance) != null;
         bool isCommandable = hasCommander || hasControlNode;
         bool isSpyder = ControlNodeUtility.IsSpyder(__instance);
+        bool isHumanlike = __instance.RaceProps?.Humanlike == true;
         // Spyders should only expose draft when they are actively commanded.
         bool canShowDraft = isSpyder ? hasCommander : isCommandable;
         bool sawAttackVerbGizmo = false;
@@ -141,27 +142,32 @@ public static class HarmonyPatch_NechGizmos
             yield return g;
         }
 
-        // ── Always-visible gizmos ────────────────────────────────────────────
+        // ── Always-visible gizmos (humanlike Necrons only) ───────────────────
+        // Scarabs, Spyders, and other non-humanlike constructs are excluded from
+        // commander-selection and command-group UI.
 
-        // Select commander — Command_SelectCommander draws the command-range ring on mouseover.
-        yield return new Command_SelectCommander(__instance)
+        if (isHumanlike)
         {
-            defaultLabel = "Select commander",
-            defaultDesc  = "Select this construct's commanding nechinator.",
-            icon         = TexCommand.SelectCarriedPawn,
-            action       = () =>
+            // Select commander — Command_SelectCommander draws the command-range ring on mouseover.
+            yield return new Command_SelectCommander(__instance)
             {
-                Pawn overseer = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
-                if (overseer != null)
+                defaultLabel = "Select commander",
+                defaultDesc  = "Select this construct's commanding nechinator.",
+                icon         = TexCommand.SelectCarriedPawn,
+                action       = () =>
                 {
-                    CameraJumper.TryJumpAndSelect(overseer);
+                    Pawn overseer = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
+                    if (overseer != null)
+                    {
+                        CameraJumper.TryJumpAndSelect(overseer);
+                    }
+                    else
+                    {
+                        Messages.Message($"{__instance.LabelCap} has no commander.", MessageTypeDefOf.RejectInput, false);
+                    }
                 }
-                else
-                {
-                    Messages.Message($"{__instance.LabelCap} has no commander.", MessageTypeDefOf.RejectInput, false);
-                }
-            }
-        };
+            };
+        }
 
         // Explicit draft toggle — only when a Nechinator command link exists and pawn is not in a mental break.
         if (canShowDraft && __instance.drafter != null && __instance.Faction == Faction.OfPlayer
@@ -205,8 +211,9 @@ public static class HarmonyPatch_NechGizmos
             yield return cg;
 
         if (!DebugSettings.ShowDevGizmos) yield break;
+        if (!isHumanlike && !isSpyder) yield break;
 
-        // ── Dev gizmos ───────────────────────────────────────────────────────
+        // ── Dev gizmos (humanlike Necrons only) ─────────────────────────────
 
         Command_Action devAssign = new Command_Action
         {

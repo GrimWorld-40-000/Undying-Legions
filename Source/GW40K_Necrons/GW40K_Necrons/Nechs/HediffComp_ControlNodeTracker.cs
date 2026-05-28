@@ -133,6 +133,11 @@ public class HediffComp_ControlNodeTracker : HediffComp
         modes?.SetMode(scarab, mode);
         // Controlled scarabs should enter with auto mode enabled.
         modes?.SetAutoMode(scarab, true);
+        // Auto-assign to Scarab Group A if not already in any scarab group.
+        NecronCommandGroupManager grpMgr = NecronCommandGroupManager.Instance;
+        if (grpMgr != null && grpMgr.GetScarabGroupOf(scarab) < 0)
+            grpMgr.AssignToScarabGroup(scarab, 0);
+
         // On control-link gain, secondary color tracks commander's preferred color.
         scarab.TryGetComp<CompScarabPaint>()?.QueueCommanderFavoriteTint(CommanderPawn);
         return true;

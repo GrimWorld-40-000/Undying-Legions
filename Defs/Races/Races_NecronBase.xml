@@ -99,12 +99,6 @@
           <soundCall>Pawn_Mech_Pikeman_Call</soundCall>
         </li>
       </lifeStageAges>
-      <!-- Brawler forces a ranged-weapon ban — inappropriate for Warriors who are ranged infantry.
-           Nerves (nervous/iron-willed family) makes no sense on emotionless constructs. -->
-      <disallowedTraits>
-        <li>Brawler</li>
-        <li>Nerves</li>
-      </disallowedTraits>
     </race>
 
     <modExtensions>
@@ -159,12 +153,6 @@
     <description>A Cryptek — keeper of the dynasties' arcane technologies and ancient sciences.</description>
     <race>
       <hasGenders>true</hasGenders>
-      <!-- Crypteks are high-intellect nobles and retain full personality variance.
-           Inherit="False" clears the Warrior's Nerves disallow; Brawler still suppressed
-           since Crypteks use ranged/arcane weapons. -->
-      <disallowedTraits Inherit="False">
-        <li>Brawler</li>
-      </disallowedTraits>
     </race>
     <!-- Cryptek should not inherit the Nech uncontrolled timer from Warrior.
          CompProperties_CanoptekRepairPolicy provides the master template pushed to linked scarabs. -->
@@ -208,12 +196,6 @@
         <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
       </li>
     </tools>
-    <!-- Cryptothralls are melee constructs and cannot meaningfully use ranged weapons. -->
-    <race>
-      <disallowedTraits>
-        <li>ShootingAccuracy</li>
-      </disallowedTraits>
-    </race>
   </ThingDef>
 
   <HeadTypeDef ParentName="AverageBase">

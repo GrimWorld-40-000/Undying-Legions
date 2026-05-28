@@ -42,10 +42,6 @@
     <race>
       <hasGenders>false</hasGenders>
       <body>GW40K_NecronBody_H</body>
-      <!-- Overlords are command/melee lords — shooting precision traits don't fit the archetype. -->
-      <disallowedTraits>
-        <li>ShootingAccuracy</li>
-      </disallowedTraits>
     </race>
     <modExtensions>
       <li Class="GW40K_Necrons.NonOrganicPawn">

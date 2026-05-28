@@ -14,6 +14,12 @@
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronImmortal</race>
         <combatPower>130</combatPower>
+        <!-- Brawler forces a ranged-weapon ban — inappropriate for ranged infantry.
+             Nerves makes no sense on emotionless constructs. -->
+        <disallowedTraits>
+          <li>Brawler</li>
+          <li>Nerves</li>
+        </disallowedTraits>
         <weaponMoney>4250~5600</weaponMoney>
         <weaponTags>
           <li>GW_Necron_Ranged_GaussBlaster</li>
@@ -73,6 +79,12 @@
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronCryptothrall</race>
         <combatPower>100</combatPower>
+        <!-- Cryptothralls are melee-only constructs — ShootingAccuracy traits are meaningless.
+             Nerves makes no sense on emotionless constructs. -->
+        <disallowedTraits>
+          <li>ShootingAccuracy</li>
+          <li>Nerves</li>
+        </disallowedTraits>
         <weaponMoney>0~0</weaponMoney>
         <weaponTags Inherit="False" />
         <apparelTags Inherit="False" />

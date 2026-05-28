@@ -22,11 +22,20 @@ public class NecronCommandGroupManager : GameComponent
         "Command Group 2",
     };
 
+    // ── Scarab group constants ──────────────────────────────────────────────
+
+    public const int ScarabGroupCount = 2;
+    public static readonly string[] ScarabGroupLabels = { "A", "B" };
+
     // ── State ───────────────────────────────────────────────────────────────
 
-    // Backing store serialised individually per-group for safe expansion.
+    // Nech command groups
     private List<Pawn> _group0 = new List<Pawn>();
     private List<Pawn> _group1 = new List<Pawn>();
+
+    // Scarab groups (independent, A/B)
+    private List<Pawn> _scarabGroupA = new List<Pawn>();
+    private List<Pawn> _scarabGroupB = new List<Pawn>();
 
     // ── Construction ─────────────────────────────────────────────────────────
 
@@ -62,7 +71,38 @@ public class NecronCommandGroupManager : GameComponent
         return -1;
     }
 
-    // ── Mutation ─────────────────────────────────────────────────────────────
+    // ── Scarab group query ───────────────────────────────────────────────────
+
+    public List<Pawn> GetScarabGroup(int index) => index switch { 0 => _scarabGroupA, 1 => _scarabGroupB, _ => null };
+    public string GetScarabLabel(int index) => (uint)index < (uint)ScarabGroupLabels.Length ? ScarabGroupLabels[index] : $"Scarab {index + 1}";
+
+    public int GetScarabGroupOf(Pawn pawn)
+    {
+        if (pawn == null) return -1;
+        if (_scarabGroupA.Contains(pawn)) return 0;
+        if (_scarabGroupB.Contains(pawn)) return 1;
+        return -1;
+    }
+
+    // ── Scarab group mutation ─────────────────────────────────────────────────
+
+    public void AssignToScarabGroup(Pawn pawn, int index)
+    {
+        if (pawn == null) return;
+        RemoveFromAllScarabGroups(pawn);
+        List<Pawn> target = GetScarabGroup(index);
+        if (target != null && !target.Contains(pawn))
+            target.Add(pawn);
+    }
+
+    public void RemoveFromAllScarabGroups(Pawn pawn)
+    {
+        if (pawn == null) return;
+        _scarabGroupA.Remove(pawn);
+        _scarabGroupB.Remove(pawn);
+    }
+
+    // ── Nech group mutation ───────────────────────────────────────────────────
 
     public void AssignToGroup(Pawn pawn, int groupIndex)
     {
@@ -88,20 +128,28 @@ public class NecronCommandGroupManager : GameComponent
         if (Find.TickManager.TicksGame % 240 != 0) return;
         _group0.RemoveAll(p => p == null || p.Dead || p.Destroyed);
         _group1.RemoveAll(p => p == null || p.Dead || p.Destroyed);
+        _scarabGroupA.RemoveAll(p => p == null || p.Dead || p.Destroyed);
+        _scarabGroupB.RemoveAll(p => p == null || p.Dead || p.Destroyed);
     }
 
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Collections.Look(ref _group0, "cmdGroup0", LookMode.Reference);
-        Scribe_Collections.Look(ref _group1, "cmdGroup1", LookMode.Reference);
+        Scribe_Collections.Look(ref _group0,      "cmdGroup0",   LookMode.Reference);
+        Scribe_Collections.Look(ref _group1,      "cmdGroup1",   LookMode.Reference);
+        Scribe_Collections.Look(ref _scarabGroupA, "scarabGroupA", LookMode.Reference);
+        Scribe_Collections.Look(ref _scarabGroupB, "scarabGroupB", LookMode.Reference);
 
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
-            _group0 ??= new List<Pawn>();
-            _group1 ??= new List<Pawn>();
+            _group0       ??= new List<Pawn>();
+            _group1       ??= new List<Pawn>();
+            _scarabGroupA ??= new List<Pawn>();
+            _scarabGroupB ??= new List<Pawn>();
             _group0.RemoveAll(p => p == null || p.Dead || p.Destroyed);
             _group1.RemoveAll(p => p == null || p.Dead || p.Destroyed);
+            _scarabGroupA.RemoveAll(p => p == null || p.Dead || p.Destroyed);
+            _scarabGroupB.RemoveAll(p => p == null || p.Dead || p.Destroyed);
         }
     }
 }

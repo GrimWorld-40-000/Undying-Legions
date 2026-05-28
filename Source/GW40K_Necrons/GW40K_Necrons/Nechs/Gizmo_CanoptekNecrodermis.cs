@@ -39,7 +39,9 @@ public class Gizmo_CanoptekNecrodermis : Gizmo
 
         ThingComp_CanoptekConsumePolicy consumeComp = pawn.TryGetComp<ThingComp_CanoptekConsumePolicy>();
         bool linkedByNode = consumeComp?.IsLinkedByCommandNode() == true;
-        Rect main = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), MainH);
+        // Shift upward so bottom aligns with standard gizmo baseline (grows upward).
+        const float StdH = 75f;
+        Rect main = new Rect(topLeft.x, topLeft.y + StdH - MainH, GetWidth(maxWidth), MainH);
         Widgets.DrawWindowBackground(main);
 
         Text.Font = GameFont.Tiny;

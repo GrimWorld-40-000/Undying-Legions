@@ -88,10 +88,6 @@
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
       </lifeStageAges>
-      <!-- Flayed Ones are melee-only — shooting accuracy traits are meaningless and misleading. -->
-      <disallowedTraits>
-        <li>ShootingAccuracy</li>
-      </disallowedTraits>
     </race>
     <modExtensions>
       <!-- Registers the Flayed One with the Nechinator command system. Cost 1 bandwidth — same as a standard Nech. -->

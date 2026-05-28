@@ -180,6 +180,7 @@
   <GW40K_NechPanel_MechsBackTip>Close the Necrons panel and return to the vanilla Mechs view.</GW40K_NechPanel_MechsBackTip>
   <GW40K_NechPanel_AllNecrons>All Necrons</GW40K_NechPanel_AllNecrons>
   <GW40K_NechPanel_Unbound>Unbound</GW40K_NechPanel_Unbound>
+  <GW40K_NechPanel_ControlNode>Control Node</GW40K_NechPanel_ControlNode>
   <!-- Column headers -->
   <GW40K_NechPanel_ColName>Name</GW40K_NechPanel_ColName>
   <GW40K_NechPanel_ColCoreFlux>Core Flux</GW40K_NechPanel_ColCoreFlux>

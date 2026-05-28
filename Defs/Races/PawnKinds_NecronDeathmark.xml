@@ -1,4 +1,5 @@
 <Defs>
+    <!-- MARKED FOR REMOVAL
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
         <defName>GW40K_NecronDeathmarkPawnKind_Colonist</defName>
         <label>necron deathmark</label>
@@ -25,8 +26,19 @@
           <li>PainCauser</li>
         </techHediffsDisallowTags>
         <initialResistanceRange>13~21</initialResistanceRange>
+        <invNutrition>0</invNutrition>
+        <inventoryOptions Inherit="False">
+          <skipChance>0</skipChance>
+          <subOptionsChooseOne>
+            <li>
+              <thingDef>GW40K_GaussCore</thingDef>
+              <countRange>2</countRange>
+            </li>
+          </subOptionsChooseOne>
+        </inventoryOptions>
         <abilities>
           <li>GW40K_Necron_Teleport</li>
         </abilities>
       </PawnKindDef>
+    -->
 </Defs>

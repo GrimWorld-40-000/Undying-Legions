@@ -14,6 +14,7 @@
     <preventIdeo MayRequire="Ludeon.RimWorld.Ideology">true</preventIdeo>
   </PawnKindDef>
 
+  <!-- MARKED FOR REMOVAL
   <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
     <defName>GW40K_NecronBasePawnKind_Colonist</defName>
     <label>necron warrior</label>
@@ -45,5 +46,6 @@
     <techHediffsChance>0.02</techHediffsChance>
     <initialResistanceRange>9~15</initialResistanceRange>
   </PawnKindDef>
+  -->
 
 </Defs>

@@ -55,8 +55,20 @@
     <comps>
       <!-- Tracks how long the Flayed One has lacked a Nechinator command link (for inspect UI + future uncontrolled behaviour). -->
       <li Class="GW40K_Necrons.CompProperties_NechUncontrolledTimer" />
+      <!-- Work mode: same combat modes as Warrior — no Work mode (Flayed Ones are combat units). -->
+      <li Class="GW40K_Necrons.CompProperties_NechWorkMode">
+        <availableModes>
+          <li>GW40K_NechMode_Patrol</li>
+          <li>GW40K_NechMode_Escort</li>
+          <li>GW40K_NechMode_Maintain</li>
+          <li>GW40K_NechMode_Hold</li>
+        </availableModes>
+        <defaultMode>GW40K_NechMode_Patrol</defaultMode>
+      </li>
     </comps>
     <race>
+      <hasGenders>false</hasGenders>
+      <nameCategory>HumanStandard</nameCategory>
       <!-- Uses the stripped Flayed One think tree: no work/joy/mood breaks; flesh-seek + Nechinator lord duty only. -->
       <thinkTreeMain>GW40K_FlayedOne_ThinkTree</thinkTreeMain>
       <!-- Flayed Ones can only consume raw flesh and corpses — the curse drives hunger for organic matter. -->
@@ -76,6 +88,10 @@
           <soundCall>Pawn_Mech_Scyther_Call</soundCall>
         </li>
       </lifeStageAges>
+      <!-- Flayed Ones are melee-only — shooting accuracy traits are meaningless and misleading. -->
+      <disallowedTraits>
+        <li>ShootingAccuracy</li>
+      </disallowedTraits>
     </race>
     <modExtensions>
       <!-- Registers the Flayed One with the Nechinator command system. Cost 1 bandwidth — same as a standard Nech. -->

@@ -14,8 +14,10 @@ public static class HarmonyPatch_NechInspectString
     [HarmonyPostfix]
     public static void Postfix(Pawn __instance, ref string __result)
     {
-        if (__instance?.def?.GetModExtension<NecronMechExtension>() == null)
+        if (!NechUtility.IsNechControlled(__instance))
             return;
+
+        NecronLearning.OnInspectNechConstruct(__instance);
 
         NeedDef mechEnergyDef = DefDatabase<NeedDef>.GetNamedSilentFail("MechEnergy");
         string mechEnergyLabel = mechEnergyDef?.label;
@@ -68,18 +70,22 @@ public static class HarmonyPatch_NechInspectString
         foreach (string j in jobLines)
             sb.AppendLine(j);
 
-        bool commanded = NechInspectStringUtility.IsNechProperlyCommanded(__instance);
-        if (commanded)
+        // Crypteks / Overlords etc. share NonOrganicPawn with Warrior but are not Nechs — no commander / uncontrolled UI.
+        if (NechUtility.IsNechControlled(__instance) && __instance.Faction == Faction.OfPlayer)
         {
-            Pawn commander = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
-            if (commander != null)
-                sb.AppendLine("GW40K_NechCommanderLine".Translate(commander.LabelShortCap).Resolve());
-        }
-        else
-        {
-            int sec = __instance.TryGetComp<CompNechUncontrolledTimer>()?.UncontrolledSecondsAtTick(Find.TickManager.TicksGame) ?? 0;
-            string uncontrolled = "GW40K_NechUncontrolledLine".Translate(sec).Resolve();
-            sb.AppendLine(ColoredText.Colorize(uncontrolled, new Color(0.92f, 0.28f, 0.28f)));
+            bool commanded = NechInspectStringUtility.IsNechProperlyCommanded(__instance);
+            if (commanded)
+            {
+                Pawn commander = HediffComp_NecronCommandTracker.GetCommanderOf(__instance);
+                if (commander != null)
+                    sb.AppendLine("GW40K_NechCommanderLine".Translate(commander.LabelShortCap).Resolve());
+            }
+            else
+            {
+                int sec = __instance.TryGetComp<CompNechUncontrolledTimer>()?.UncontrolledSecondsAtTick(Find.TickManager.TicksGame) ?? 0;
+                string uncontrolled = "GW40K_NechUncontrolledLine".Translate(sec).Resolve();
+                sb.AppendLine(ColoredText.Colorize(uncontrolled, new Color(0.92f, 0.28f, 0.28f)));
+            }
         }
 
         if (__instance.needs != null)

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RaidStrategyDef>
+    <defName>NecronSiege</defName>
+    <workerClass>GW40K_Necrons.RaidStrategyWorker_NecronSiege</workerClass>
+    <minPawns>4</minPawns>
+    <pointsFactorCurve>
+      <points>
+        <li>0, 0.80</li>
+        <li>5000, 0.65</li>
+      </points>
+    </pointsFactorCurve>
+    <selectionWeightPerPointsCurve>
+      <points>
+        <li>(800,  0)</li>
+        <li>(1200, 1.2)</li>
+      </points>
+    </selectionWeightPerPointsCurve>
+    <!-- EdgeDrop removed: it fires vanilla drop pods (steel slag craters) at the map edge.
+         LordToil_NecronSiegeDrop handles all pod visuals itself. EdgeWalkIn silently
+         places pawns on the map edge so the lord can immediately de-spawn and re-drop them. -->
+    <arriveModes>
+      <li>EdgeWalkIn</li>
+    </arriveModes>
+    <letterLabelEnemy>Necron Siege</letterLabelEnemy>
+    <arrivalTextEnemy>A Canoptek Spyder has taken up a siege position. Scarab swarms and particle beamer blasts will rain down on the colony until it falls — or the Spyder is destroyed.</arrivalTextEnemy>
+    <layerWhitelist>
+      <li>Surface</li>
+    </layerWhitelist>
+  </RaidStrategyDef>
+
+</Defs>

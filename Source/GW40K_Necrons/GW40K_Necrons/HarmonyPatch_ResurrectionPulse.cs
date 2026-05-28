@@ -24,9 +24,10 @@ public static class HarmonyPatch_ResurrectionPulse
         if (pawn?.health?.hediffSet == null)
             return;
 
-        if (!pawn.health.hediffSet.HasHediff(NecronDefOfs.GW40K_Necron_ResurrectionActive))
+        Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(NecronDefOfs.GW40K_Necron_ResurrectionActive);
+        if (hediff == null)
             return;
 
-        ResurrectionProtocolVisuals.DrawPawnPulse(drawLoc);
+        ResurrectionProtocolVisuals.DrawPawnPulse(drawLoc, hediff.Severity);
     }
 }

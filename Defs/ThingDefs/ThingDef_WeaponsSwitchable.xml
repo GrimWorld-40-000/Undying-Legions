@@ -110,8 +110,12 @@
 				<soundCastTail>GunTail_Heavy</soundCastTail>
 				<muzzleFlashScale>9</muzzleFlashScale>
 				<warmupTime>0.8</warmupTime>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 			</li>
 		</verbs>
+		<weaponTags>
+			<li>GW_Necron_Ranged_Staff</li>
+		</weaponTags>
 		<tools>
 			<li>
 			<label>handle</label>

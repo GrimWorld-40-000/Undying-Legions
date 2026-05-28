@@ -2,6 +2,17 @@
 <Defs>
 
 
+  <!-- Exclusive apparel layer for Necron Overlord artifacts -->
+  <ApparelLayerDef>
+    <defName>GW40K_Artifact</defName>
+    <label>artifact</label>
+  </ApparelLayerDef>
+
+  <BodyPartGroupDef>
+    <defName>GW40K_ArtifactSlot</defName>
+    <label>artifact slot</label>
+  </BodyPartGroupDef>
+
   <BodyDef>
     <defName>GW40K_NecronBody</defName>
     <label>necron</label>
@@ -1118,6 +1129,7 @@
       <depth>Outside</depth>
       <groups>
         <li>Torso</li>
+        <li>GW40K_ArtifactSlot</li>
       </groups>
       <parts>
         <li>
@@ -1656,6 +1668,13 @@
               </parts>
             </li>
           </parts>
+        </li>
+        <li>
+          <def>GW40K_NecronArtifactNode</def>
+          <coverage>0</coverage>
+          <groups>
+            <li>GW40K_ArtifactSlot</li>
+          </groups>
         </li>
       </parts>
     </corePart>

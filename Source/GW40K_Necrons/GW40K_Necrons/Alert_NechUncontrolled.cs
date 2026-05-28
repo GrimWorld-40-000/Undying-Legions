@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace GW40K_Necrons;
@@ -14,9 +16,19 @@ public class Alert_NechUncontrolled : Alert
     private readonly List<GlobalTargetInfo> targets = new();
     private readonly List<string> labels = new();
 
+    // Pulsing orange background — mirrors Alert_Critical's red pulse but tinted orange.
+    protected override Color BGColor
+    {
+        get
+        {
+            float num = Pulser.PulseBrightness(0.5f, Pulser.PulseBrightness(0.5f, 0.6f));
+            return new Color(num, num * 0.45f, 0f);
+        }
+    }
+
     public Alert_NechUncontrolled()
     {
-        defaultPriority = AlertPriority.Medium;
+        defaultPriority = AlertPriority.High;
     }
 
     public override string GetLabel() => "GW40K_AlertNechUncontrolled".Translate();
@@ -34,12 +46,14 @@ public class Alert_NechUncontrolled : Alert
     {
         targets.Clear();
         labels.Clear();
+        int ticks = Find.TickManager.TicksGame;
 
-        foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravellingTransporters_AliveSpawned)
+        foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravellingTransporters_AliveSpawned.ToList())
         {
             if (pawn.Faction != Faction.OfPlayer) continue;
-            if (pawn.def.GetModExtension<NecronMechExtension>() == null) continue;
+            if (!NechUtility.IsNechControlled(pawn)) continue;
             if (NechInspectStringUtility.IsNechProperlyCommanded(pawn)) continue;
+            if (Alert_NechHostileLockoutImminent.MatchesHostileLockoutImminent(pawn, ticks)) continue;
 
             targets.Add(pawn);
             labels.Add(pawn.LabelShortCap);

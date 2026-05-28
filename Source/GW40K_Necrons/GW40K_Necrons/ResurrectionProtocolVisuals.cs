@@ -111,10 +111,35 @@ public static class ResurrectionProtocolVisuals
     /// Additive green pulse drawn directly over the pawn body while resurrection is active.
     /// Called from a PawnRenderer.RenderPawnAt postfix so it fires on the pawn render layer.
     /// </summary>
-    public static void DrawPawnPulse(Vector3 drawLoc)
+    /// <param name="progress">Hediff severity 0–1. Drives pulse speed, solidity, and final shrink.</param>
+    public static void DrawPawnPulse(Vector3 drawLoc, float progress)
     {
-        float pulse = Mathf.PingPong(Time.time * 1.8f, 1f);
-        float alpha = 0.18f + 0.38f * pulse;
+        progress = Mathf.Clamp01(progress);
+
+        const float solidThreshold = 0.95f;
+        const float baseAlpha      = 0.18f;
+        const float pulseRange     = 0.38f;
+
+        float alpha;
+        float scaleMult;
+
+        if (progress >= solidThreshold)
+        {
+            // Last 5%: solid at peak alpha, shrinks to nothing as it completes.
+            alpha     = baseAlpha + pulseRange; // fully lit
+            float t   = Mathf.InverseLerp(solidThreshold, 1f, progress); // 0 → 1 over last 5%
+            scaleMult = 1f - t;                 // 1.0 → 0.0
+        }
+        else
+        {
+            // 0–95%: pulse frequency ramps from 1.8 rad/s up to 9.0 rad/s, reaching max at 92%.
+            float freq = Mathf.Lerp(1.8f, 9.0f, Mathf.Min(progress / 0.92f, 1f));
+            float pulse = Mathf.PingPong(Time.time * freq, 1f);
+            alpha     = baseAlpha + pulseRange * pulse;
+            scaleMult = 1f;
+        }
+
+        if (scaleMult <= 0f) return;
 
         PropBlock.SetColor("_Color", new Color(0.1f, 1f, 0.28f, alpha));
 
@@ -123,7 +148,7 @@ public static class ResurrectionProtocolVisuals
 
         Graphics.DrawMesh(
             MeshPool.plane10,
-            Matrix4x4.TRS(pos, Quaternion.identity, new Vector3(0.72f, 1f, 1.08f)),
+            Matrix4x4.TRS(pos, Quaternion.identity, new Vector3(0.72f * scaleMult, 1f, 1.08f * scaleMult)),
             BodyPulseMat,
             0, null, 0, PropBlock);
     }

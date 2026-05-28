@@ -14,6 +14,8 @@ public static class NecrodermisInjectorIngestApplier
     {
         if (user == null || unit == null || unit.Destroyed)
             return;
+        if (NecrodermisIngestionUtility.IsCanoptek(user))
+            return;
 
         float wanted = NutritionWantedFor(user);
         float gained = unit.Ingested(user, wanted);
@@ -34,6 +36,8 @@ public static class NecrodermisInjectorIngestApplier
     public static void ApplyVirtualInjectorDose(Pawn user)
     {
         if (user == null || FMJ_DefOf.GW_NecrodermisInjector == null)
+            return;
+        if (NecrodermisIngestionUtility.IsCanoptek(user))
             return;
         Thing unit = ThingMaker.MakeThing(FMJ_DefOf.GW_NecrodermisInjector);
         unit.stackCount = 1;

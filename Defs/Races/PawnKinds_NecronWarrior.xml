@@ -1,7 +1,7 @@
 <Defs>
     <!-- Necron Warrior Colonist-based Pawn -->
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
-        <defName>GW40K_NecronWarriorPawnKind_Colonist</defName>
+        <defName>GW_UL_NecronWarriorPawnKind_Colonist</defName>
         <label>necron warrior</label>
         <lifeStages>
           <li>
@@ -12,12 +12,12 @@
         </lifeStages>
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronWarrior</race>
-        <combatPower>120</combatPower>
+        <combatPower>100</combatPower>
         <!-- Always spawn with Gauss Flayer/Reaper -->
-        <weaponMoney>3000~4000</weaponMoney>
+        <weaponMoney>3375~4000</weaponMoney>
         <weaponTags>
-          <li>GW_Necron_GaussFlayer</li>
-          <li>GW_Necron_GaussReaper</li>
+          <li>GW_Necron_Ranged_GaussFlayer</li>
+          <li>GW_Necron_Ranged_GaussReaper</li>
         </weaponTags>
         <!-- No apparel — Warrior is Nech-controlled and wears nothing but trophied flesh. -->
         <apparelTags Inherit="False" />
@@ -43,6 +43,16 @@
           <li>PainCauser</li>
         </techHediffsDisallowTags>
         <initialResistanceRange>13~21</initialResistanceRange>
+        <invNutrition>0</invNutrition>
+        <inventoryOptions>
+          <skipChance>0</skipChance>
+          <subOptionsChooseOne>
+            <li>
+              <thingDef>GW40K_GaussCore</thingDef>
+              <countRange>1</countRange>
+            </li>
+          </subOptionsChooseOne>
+        </inventoryOptions>
         <xenotypeSet Inherit="False" MayRequire="Ludeon.RimWorld.Biotech">
           <xenotypeChances>
             <GW_UD_NecronWarrior>1</GW_UD_NecronWarrior>

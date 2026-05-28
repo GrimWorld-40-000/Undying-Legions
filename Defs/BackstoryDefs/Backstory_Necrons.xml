@@ -32,10 +32,130 @@
     </spawnCategories>
   </BackstoryDef>
 
+  <!-- Warrior -->
+
+  <BackstoryDef>
+    <defName>GW_UD_Pristine_Adult</defName>
+    <title>pristine sentinel</title>
+    <titleShort>warrior</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>Unlike the rusted, shambling masses of the dynastic legions, [PAWN_nameDef] emerged from the tomb-stasis in flawless condition. [PAWN_possessive] motor-actuators have been preserved by a high-functioning stasis-crypt, allowing for a fluidity of movement that borders on supernatural. With neural-links to the gauss flayer still perfectly intact, [PAWN_nameDef] calculates windage and target lead-times with the cold efficiency of a master executioner. To [PAWN_nameDef], the battlefield is not a place of chaos, but a grid of optimal firing solutions.</description>
+    <skillGains>
+      <Shooting>4</Shooting>
+      <Melee>2</Melee>
+    </skillGains>
+    <forcedTraits>
+      <ShootingAccuracy>1</ShootingAccuracy>
+      <GW_UD_Trait_PristineFrame>0</GW_UD_Trait_PristineFrame>
+    </forcedTraits>
+    <spawnCategories>
+      <li>NecronWarrior</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_Degraded_Adult</defName>
+    <title>degraded frame</title>
+    <titleShort>warrior</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>A critical malfunction forced [PAWN_nameDef] to emerge from stasis prematurely. [PAWN_possessive] frame is plagued from millions of years of bit rot and mechanical decay due to poor crypt maintenance, resulting in damaged internal servos and corrupted sub-routines.\n\n[PAWN_possessive] damage causes [PAWN_possessive] to incur a movement and targeting speed penalty.</description>
+    <skillGains>
+      <Shooting>-2</Shooting>
+    </skillGains>
+    <forcedTraits>
+      <GW_UD_Trait_DegradedFrame>0</GW_UD_Trait_DegradedFrame>
+    </forcedTraits>
+    <spawnCategories>
+      <li>NecronWarrior</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_Warrior_Adult</defName>
+    <title>purged memories</title>
+    <titleShort>warrior</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>[PAWN_nameDef]’s biological adulthood was deleted during the Great Sleep. Millions of years of solar radiation and bit-rot have scoured [PAWN_possessive] neural engrams until only "white noise" remains. When [PAWN_pronoun] tries to recall a home or a face, [PAWN_pronoun] finds only a void of static and the cold, hard-coded directives of the Necron Overlords. [PAWN_pronoun] is a ghost in a shell, performing tasks with a hollow, mechanical precision that suggests a life once lived, but never remembered.</description>
+    <spawnCategories>
+      <li>NecronWarrior</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <!-- Immortal -->
+
+  <BackstoryDef>
+    <defName>GW_UD_Immortal_Adult</defName>
+    <title>purged memories</title>
+    <titleShort>immortal</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>As a professional soldier, [PAWN_nameDef] was granted a higher-tier biotransference. While the masses were mindless cattle, [PAWN_pronoun] remained conscious as the green fires stripped away [PAWN_possessive] flesh. [PAWN_pronoun] remembers the silence of [PAWN_possessive] last breath and the cold click of [PAWN_possessive] first mechanical thought. Now, only the instinct for war remains, trapped in a body that can no longer feel.</description>
+    <spawnCategories>
+      <li>NecronImmortal</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+    <BackstoryDef>
+    <defName>GW_UD_Pristine_AdultI</defName>
+    <title>pristine sentinel</title>
+    <titleShort>immortal</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>Unlike the rusted, shambling masses of the dynastic legions, [PAWN_nameDef] emerged from the tomb-stasis in flawless condition. [PAWN_possessive] motor-actuators have been preserved by a high-functioning stasis-crypt, allowing for a fluidity of movement that borders on supernatural. With neural-links to the gauss flayer still perfectly intact, [PAWN_nameDef] calculates windage and target lead-times with the cold efficiency of a master executioner. To [PAWN_nameDef], the battlefield is not a place of chaos, but a grid of optimal firing solutions.</description>
+    <skillGains>
+      <Shooting>4</Shooting>
+      <Melee>2</Melee>
+    </skillGains>
+    <forcedTraits>
+      <ShootingAccuracy>1</ShootingAccuracy>
+      <GW_UD_Trait_PristineFrame>0</GW_UD_Trait_PristineFrame>
+    </forcedTraits>
+    <spawnCategories>
+      <li>NecronImmortal</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_Degraded_AdultI</defName>
+    <title>degraded frame</title>
+    <titleShort>immortal</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>A critical malfunction forced [PAWN_nameDef] to emerge from stasis prematurely. [PAWN_possessive] frame is plagued from millions of years of bit rot and mechanical decay due to poor crypt maintenance, resulting in damaged internal servos and corrupted sub-routines.\n\n[PAWN_possessive] damage causes [PAWN_possessive] to incur a movement and targeting speed penalty.</description>
+    <skillGains>
+      <Shooting>-2</Shooting>
+    </skillGains>
+    <forcedTraits>
+      <GW_UD_Trait_DegradedFrame>0</GW_UD_Trait_DegradedFrame>
+    </forcedTraits>
+    <spawnCategories>
+      <li>NecronImmortal</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <!-- Cryptothrall -->
+
+  <BackstoryDef>
+    <defName>GW_UD_CryptoThrall_Adult</defName>
+    <title>purged memories</title>
+    <titleShort>cryptothrall</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>[PAWN_nameDef] was once a low-ranking servant, repurposed into a Cryptothrall to serve as a Cryptek's mindless enforcer. During biotransference, [PAWN_possessive] individuality wasn't just suppressed—it was surgically lobotomized. All that remains is a flicker of primal fear, buried under layers of sub-routines that force [PAWN_possessive] to intercept blows and strike with mindless, insectile precision.</description>
+    <spawnCategories>
+      <li>NecronCryptothrall</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <!-- Lychguard -->
+
   <BackstoryDef>
     <defName>GW_UD_EternalBulwark_Ad</defName>
     <title>eternal bulwark</title>
-    <titleShort>bulwark</titleShort>
+    <titleShort>lychguard</titleShort>
     <slot>Adulthood</slot>
     <shuffleable>true</shuffleable>
     <description>After the shedding of flesh, [PAWN_nameDef]’s mind was encased in a superior chassis of living metal. While the common soldiery became mindless husks, [PAWN_nameDef] was allowed to keep [PAWN_possessive] tactical wit and personality—specifically so [PAWN_pronoun] could serve as a lieutenant and diplomat in the Lord's name. For sixty million years, [PAWN_nameDef] stood at the threshold of a stasis-crypt, never moving, never sleeping, until the tomb-alarms finally signaled the dawn of a new conquest.</description>
@@ -54,7 +174,7 @@
   <BackstoryDef>
     <defName>GW_UD_Protector_Ad</defName>
     <title>Lychguard Protector</title>
-    <titleShort>Protector</titleShort>
+    <titleShort>lychguard</titleShort>
     <slot>Adulthood</slot>
     <shuffleable>true</shuffleable>
     <description>A veteran of a thousand wars and a million years of silent vigil. [PAWN_nameDef] is a master of the hyperphase sword and dispersion shield. [PAWN_pronoun] views the 'younger races' of the rimworld with a mix of clinical detachment and cold disdain, seeing them as obstacles to the restoration of [PAWN_possessive] dynasty.</description>
@@ -72,7 +192,7 @@
   <BackstoryDef>
     <defName>GW_UD_Astromancer_Ch</defName>
     <title>Apprentice Astromancer</title>
-    <titleShort>Astromancer</titleShort>
+    <titleShort>cryptek</titleShort>
     <slot>Childhood</slot>
     <shuffleable>true</shuffleable>
     <description>In the final years of the flesh-times, [PAWN_nameDef] was a prodigy of the mathematical colleges. While [PAWN_possessive] peers focused on politics and conquest, [PAWN_nameDef] spent nights charting the movements of stars and the decay of atoms. When the bio-transference began, [PAWN_pronoun] did not fear the forge; [PAWN_pronoun] welcomed it as the only way to gain the immortality required to finish [PAWN_possessive] calculations.</description>
@@ -107,9 +227,88 @@
   </BackstoryDef>
 
   <BackstoryDef>
+    <defName>GW_UD_CuriousEngineer_Ch</defName>
+    <title>The Curious Engineer</title>
+    <titleShort>cryptek</titleShort>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <description>As a Necrontyr youth, [PAWN_nameDef] was found more often beneath collapsed automaton workshops than at court with [PAWN_possessive] peers. While others coveted rank and land, [PAWN_pronoun] coveted schematics — spending [PAWN_possessive] formative years dismantling and rebuilding anything [PAWN_pronoun] could get [PAWN_possessive] hands on. The Crypteks took notice, and [PAWN_nameDef] began [PAWN_possessive] formal apprenticeship long before bio-transference made [PAWN_possessive] mind the most sophisticated machine [PAWN_pronoun] had ever worked on.</description>
+    <skillGains>
+      <Intellectual>2</Intellectual>
+      <Crafting>2</Crafting>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronCryptek</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_ForbiddenConstants_Ad</defName>
+    <title>Seeker of Forbidden Constants</title>
+    <titleShort>cryptek</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>The eons of the Long Sleep were not wasted on [PAWN_nameDef]. Where lesser minds fragmented into madness, [PAWN_pronoun] spent those millennia cataloguing anomalies in the flow of time and energy that [PAWN_possessive] sleeping mind perceived as ripples in a dream. Upon awakening, [PAWN_nameDef] emerged not as an instrument of the dynasty, but as a seeker — convinced that somewhere in the laws of this broken universe lies a constant the Necrontyr never discovered.</description>
+    <skillGains>
+      <Intellectual>3</Intellectual>
+      <Shooting>1</Shooting>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronCryptek</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_ChronomanticPupil_Ch</defName>
+    <title>Chronomantic Pupil</title>
+    <titleShort>cryptek</titleShort>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <description>Selected at a young age to serve under a Chronomancer of considerable renown, [PAWN_nameDef] learned to perceive time not as a river but as a landscape — something to be mapped, folded, and occasionally stepped around. [PAWN_possessive] earliest memories are of watching [PAWN_possessive] master rewind the death of a star to study its collapse. By the time of bio-transference, [PAWN_nameDef] had already begun to see the present as simply one layer of a much older equation.</description>
+    <skillGains>
+      <Intellectual>3</Intellectual>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronCryptek</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_Plasmancer_Ad</defName>
+    <title>Plasmancer of the Undying Courts</title>
+    <titleShort>cryptek</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>Eons ago, [PAWN_nameDef] mastered the manipulation of stellar plasma — shaping the death-light of collapsing suns into weapons, instruments, and barriers that defied conventional physics. [PAWN_pronoun] regards organic life with the detached curiosity of a scientist observing an interesting but ultimately temporary phenomenon. To [PAWN_nameDef], the RimWorld is simply the latest in a long series of laboratories, and its inhabitants excellent test subjects for theories that have waited millions of years to be proven.</description>
+    <skillGains>
+      <Intellectual>2</Intellectual>
+      <Shooting>2</Shooting>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronCryptek</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_Conquerors_Progeny_Ch</defName>
+    <title>The Conqueror's Progeny</title>
+    <titleShort>overlord</titleShort>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <description>In the age of flesh, [PAWN_nameDef] was raised in the shadow of a conquering dynasty. Where other Necrontyr children played at war, [PAWN_pronoun] studied it — maps of enemy star systems covered [PAWN_possessive] walls and [PAWN_possessive] tutors were retired generals rather than courtiers. Bio-transference was, to [PAWN_nameDef], simply the next phase of an education that had always been pointed toward one end: absolute dominion.</description>
+    <skillGains>
+      <Shooting>2</Shooting>
+      <Social>1</Social>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronOverlord</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
     <defName>GW_UD_Scion_Ch</defName>
     <title>Scion of the Dynasty</title>
-    <titleShort>Scion</titleShort>
+    <titleShort>scion</titleShort>
     <slot>Childhood</slot>
     <shuffleable>true</shuffleable>
     <description>Born into the highest echelons of the Necrontyr nobility, [PAWN_nameDef] was raised to believe that the galaxy was [PAWN_possessive] by birthright. From the moment [PAWN_pronoun] could speak, [PAWN_pronoun] was tutored in the arts of grand strategy, courtly manipulation, and the cold logic of absolute rule. [PAWN_nameDef] never knew the touch of toil; [PAWN_possessive] only responsibility was to prepare for a crown that would eventually span across star systems.</description>
@@ -128,7 +327,7 @@
   <BackstoryDef>
     <defName>GW_UD_Wardis_Ch</defName>
     <title>Courtly Wardispatcher</title>
-    <titleShort>Wardispatcher</titleShort>
+    <titleShort>wardispatcher</titleShort>
     <slot>Childhood</slot>
     <shuffleable>true</shuffleable>
     <description>Even as a flesh-and-blood prince, [PAWN_nameDef] was obsessed with the ancient codes of the Necrontyr. While other nobles played at politics, [PAWN_pronoun] mastered the ‘Seven Honorable Cuts’ and studied the formal challenges of old. [PAWN_nameDef] was raised to believe that a ruler’s legitimacy was not found in a crown, but in the tip of a Warscythe and the courage to face any foe in single combat.</description>
@@ -146,7 +345,7 @@
   <BackstoryDef>
     <defName>GW_UD_Tyrant_Ad</defName>
     <title>Awakened Tyrant</title>
-    <titleShort>Tyrant</titleShort>
+    <titleShort>tyrant</titleShort>
     <slot>Adulthood</slot>
     <shuffleable>true</shuffleable>
     <description>After eons of dreaming in a stasis-crypt, [PAWN_nameDef] has awakened to find the galaxy infested with ‘lesser’ biological vermin. As a supreme commander of the Necron legions, [PAWN_pronoun] views this RimWorld not as a home, but as a lost province to be reclaimed. [PAWN_nameDef] carries the weight of a thousand conquered worlds in [PAWN_possessive] engrammatic memory, leading with a mix of tactical genius and a staggering arrogance that demands total submission from all who cross [PAWN_possessive] path.</description>
@@ -165,7 +364,7 @@
   <BackstoryDef>
     <defName>GW_UD_Codekeeper_Ad</defName>
     <title>Keeper of the Code</title>
-    <titleShort>Tyrant</titleShort>
+    <titleShort>codekeeper</titleShort>
     <slot>Adulthood</slot>
     <shuffleable>true</shuffleable>
     <description>While the Long Sleep drove many of [PAWN_possessive] peers into madness or cruelty, [PAWN_nameDef] emerged with [PAWN_possessive] sense of honor perfectly preserved—and perhaps calcified. [PAWN_pronoun] refuses to strike a ‘lesser’ foe from afar if a challenge can be issued, and views the chaotic, lawless nature of the RimWorld as a personal insult to the order of the galaxy. To [PAWN_nameDef], every raid is a formal engagement, and every enemy leader is a potential peer to be bested in the dirt.</description>
@@ -182,9 +381,69 @@
   </BackstoryDef>
 
   <BackstoryDef>
+    <defName>GW_UD_AwakenedCommander_Ad</defName>
+    <title>The Awakened Commander</title>
+    <titleShort>overlord</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>[PAWN_nameDef] commanded the Fourth Phalanx of [PAWN_possessive] dynasty's greatest tombworld before the Long Sleep claimed [PAWN_possessive] people. [PAWN_pronoun] awoke to find [PAWN_possessive] legions scattered, [PAWN_possessive] tomb cracked by geological violence, and the stars teeming with alien life. [PAWN_possessive] response was the same as it had always been to setbacks: methodical, patient, and absolute in [PAWN_possessive] intent to reclaim what was lost.</description>
+    <skillGains>
+      <Shooting>2</Shooting>
+      <Melee>2</Melee>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronOverlord</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_WarCreche_Ch</defName>
+    <title>Child of the War-Crèche</title>
+    <titleShort>overlord</titleShort>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <description>[PAWN_nameDef] was not born into luxury. [PAWN_possessive] household was a military institution — three generations of commanders who had bled the Old Ones back across a dozen stars. While the court dynasties traded favours, [PAWN_possessive] family traded victories. [PAWN_pronoun] learned to read a warfront before [PAWN_pronoun] could recite the noble codes, and came to view politics as simply another form of campaign — one fought with words instead of Warscythes, but no less lethal.</description>
+    <skillGains>
+      <Melee>2</Melee>
+      <Intellectual>2</Intellectual>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronOverlord</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_Subjugator_Ad</defName>
+    <title>The Cold Subjugator</title>
+    <titleShort>overlord</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>Before the Long Sleep, [PAWN_nameDef] never needed to destroy a world outright. [PAWN_possessive] preferred method was subtler — severing supply lines, assassinating coordinators, broadcasting the inevitability of defeat until the enemy's will simply collapsed. Entire civilisations surrendered to [PAWN_nameDef] without a shot fired. Awakened to a galaxy full of new civilisations, [PAWN_pronoun] views the RimWorld as a familiar puzzle: disassemble the will, and the body follows.</description>
+    <skillGains>
+      <Social>3</Social>
+      <Shooting>1</Shooting>
+    </skillGains>
+    <spawnCategories>
+      <li>NecronOverlord</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
+    <defName>GW_UD_ReluctantEternal_Ad</defName>
+    <title>The Reluctant Eternal</title>
+    <titleShort>overlord</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>Among [PAWN_possessive] caste, [PAWN_nameDef] was one of the few to understand precisely what the C'tan's bargain entailed — not because [PAWN_pronoun] was a fool, but because [PAWN_pronoun] was not. [PAWN_pronoun] underwent bio-transference not out of ambition or faith, but because to refuse was to be left behind: soft, mortal, and brief in a dynasty that would soon have none of those things.\n\nThe sixty million years of the Long Sleep did not grant [PAWN_nameDef] peace. They granted [PAWN_pronoun] time — time for dreaming circuitry to process, in its cold and recursive way, exactly what had been surrendered. [PAWN_pronoun] awoke precise, capable, and hollowed in a manner no engrammatic archive had been designed to record. [PAWN_pronoun] leads because [PAWN_pronoun] was built to. [PAWN_pronoun] conquers because there is nothing else left to do.</description>
+    <spawnCategories>
+      <li>NecronOverlord</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <BackstoryDef>
     <defName>GW_UD_Marksman_Ch</defName>
     <title>Apprentice Marksman</title>
-    <titleShort>Marksman</titleShort>
+    <titleShort>deathmark</titleShort>
     <slot>Childhood</slot>
     <shuffleable>true</shuffleable>
     <description>In the ancient times of the Flesh, [PAWN_nameDef] was a low-ranking member of an elite guild of hunters. While the nobility feasted, [PAWN_pronoun] was trained to sit motionless in the desert heat for days, waiting for a single target to emerge. The bio-transference took [PAWN_possessive] breath and [PAWN_possessive] heartbeat, but it perfected [PAWN_possessive] stillness, turning a talented tracker into a living weapon of absolute precision.</description>
@@ -203,7 +462,7 @@
   <BackstoryDef>
     <defName>GW_UD_Shadow_Ad</defName>
     <title>Shadow of the Hyperspace</title>
-    <titleShort>Shadow</titleShort>
+    <titleShort>deathmark</titleShort>
     <slot>Adulthood</slot>
     <shuffleable>true</shuffleable>
     <description>Now a master of the synaptic disintegrator, [PAWN_nameDef] exists in the 'spaces between spaces.' [PAWN_pronoun] has spent centuries observing the galaxy from a pocket dimension, watching the rise and fall of civilizations with the detached interest of a predator. To [PAWN_nameDef], time and distance are mere suggestions; [PAWN_pronoun] arrives only when the mark is in sight, and vanishes the moment the kill is confirmed. [PAWN_pronoun] speaks rarely, and when [PAWN_pronoun] does, it is with the hollow, echoing voice of one who has forgotten what it feels like to be part of the material world.</description>
@@ -237,12 +496,57 @@
   <BackstoryDef>
     <defName>GW_UD_FlayedOne_Adult</defName>
     <title>Flayed One</title>
-    <titleShort>flayed</titleShort>
+    <titleShort>flayed one</titleShort>
     <slot>Adulthood</slot>
     <shuffleable>true</shuffleable>
     <description>Whatever [PAWN_nameDef] was before the Great Sleep — craftsman, soldier, noble, slave — the engram record is blank. The Flaying Curse claimed whatever was left.\n\nThe curse is not understood, only feared. It rewrites the behavioural substrate, replacing duty with obsession, restraint with compulsion. [PAWN_nameDef] drapes the living metal frame in biological trophies now — trophies that rot. The other Necrons do not speak of it.</description>
     <spawnCategories>
       <li>NecronFlayedOne</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <!-- Childhood backstory for Vekh Thralls — suppresses "No shuffled Childhood found" warning. -->
+  <BackstoryDef>
+    <defName>GW_UL_VekhHost_Ch</defName>
+    <title>Taken Young</title>
+    <titleShort>vekh</titleShort>
+    <slot>Childhood</slot>
+    <shuffleable>true</shuffleable>
+    <description>[PAWN_nameDef] was taken before [PAWN_pronoun] could become much of anything. The Necron legions do not distinguish between ages when selecting hosts — a young body grows necrodermis just as efficiently as an old one. Whatever childhood [PAWN_nameDef] might have had was forfeit the moment [PAWN_pronoun] was chosen.</description>
+    <skillGains>
+      <Mining>1</Mining>
+      <Construction>1</Construction>
+    </skillGains>
+    <spawnCategories>
+      <li>VekhThrall</li>
+    </spawnCategories>
+  </BackstoryDef>
+
+  <!-- Adult backstory forced onto all Vekh Thrall pawnkinds. -->
+  <BackstoryDef>
+    <defName>GW_UL_VekhHost_Ad</defName>
+    <title>Vekh Thrall</title>
+    <titleShort>vekh</titleShort>
+    <slot>Adulthood</slot>
+    <shuffleable>true</shuffleable>
+    <description>[PAWN_nameDef] was taken — one of countless nameless bodies conscripted by the Necron legions as a living substrate for necrodermis growth. The "living metal" was cultivated through [PAWN_possessive] tissue in a series of surgical procedures that severed most pain pathways and stripped away the higher cognition the Necrontyr deemed unnecessary for a work-thrall. [PAWN_pronoun] can still feel, after a fashion. The Necrontyr found it easier to preserve enough sensation to keep subjects mobile than to reconstruct the nervous system entirely. What remains is muted, distant — enough to know something is wrong, never enough to stop working.</description>
+    <workDisables>
+      <li>Artistic</li>
+      <li>Intellectual</li>
+      <li>Social</li>
+    </workDisables>
+    <skillGains>
+      <Mining>5</Mining>
+      <Construction>4</Construction>
+      <Crafting>3</Crafting>
+      <Plants>2</Plants>
+      <Cooking>2</Cooking>
+    </skillGains>
+    <forcedTraits>
+      <GW_UL_VekhThrall>0</GW_UL_VekhThrall>
+    </forcedTraits>
+    <spawnCategories>
+      <li>VekhThrall</li>
     </spawnCategories>
   </BackstoryDef>
 

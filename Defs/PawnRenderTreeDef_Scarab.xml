@@ -17,11 +17,12 @@
 
             <li Class="PawnRenderNodeProperties_Spastic">
               <linkedBodyPartsGroup>GW40K_ScarabA</linkedBodyPartsGroup>
+              <workerClass>GW40K_Necrons.PawnRenderNodeWorker_ScarabPaint</workerClass>
               <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
               <rotDrawMode>Fresh, Rotting</rotDrawMode>
               <rotateFacing>false</rotateFacing>
-              <offsetRangeX>-0.35~0.35</offsetRangeX>
-              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <offsetRangeX>-0.55~0.55</offsetRangeX>
+              <offsetRangeZ>-0.55~0.55</offsetRangeZ>
               <durationTicksRange>10~35</durationTicksRange>
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>
@@ -30,11 +31,12 @@
 
             <li Class="PawnRenderNodeProperties_Spastic">
               <linkedBodyPartsGroup>GW40K_ScarabB</linkedBodyPartsGroup>
+              <workerClass>GW40K_Necrons.PawnRenderNodeWorker_ScarabPaint</workerClass>
               <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
               <rotDrawMode>Fresh, Rotting</rotDrawMode>
               <rotateFacing>false</rotateFacing>
-              <offsetRangeX>-0.35~0.35</offsetRangeX>
-              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <offsetRangeX>-0.55~0.55</offsetRangeX>
+              <offsetRangeZ>-0.55~0.55</offsetRangeZ>
               <durationTicksRange>10~35</durationTicksRange>
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>
@@ -43,11 +45,12 @@
 
             <li Class="PawnRenderNodeProperties_Spastic">
               <linkedBodyPartsGroup>GW40K_ScarabC</linkedBodyPartsGroup>
+              <workerClass>GW40K_Necrons.PawnRenderNodeWorker_ScarabPaint</workerClass>
               <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
               <rotDrawMode>Fresh, Rotting</rotDrawMode>
               <rotateFacing>false</rotateFacing>
-              <offsetRangeX>-0.35~0.35</offsetRangeX>
-              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <offsetRangeX>-0.55~0.55</offsetRangeX>
+              <offsetRangeZ>-0.55~0.55</offsetRangeZ>
               <durationTicksRange>10~35</durationTicksRange>
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>
@@ -56,11 +59,12 @@
 
             <li Class="PawnRenderNodeProperties_Spastic">
               <linkedBodyPartsGroup>GW40K_ScarabD</linkedBodyPartsGroup>
+              <workerClass>GW40K_Necrons.PawnRenderNodeWorker_ScarabPaint</workerClass>
               <texPath>GW40K/Scarab/GW40k_Scarab</texPath>
               <rotDrawMode>Fresh, Rotting</rotDrawMode>
               <rotateFacing>false</rotateFacing>
-              <offsetRangeX>-0.35~0.35</offsetRangeX>
-              <offsetRangeZ>-0.35~0.35</offsetRangeZ>
+              <offsetRangeX>-0.55~0.55</offsetRangeX>
+              <offsetRangeZ>-0.55~0.55</offsetRangeZ>
               <durationTicksRange>10~35</durationTicksRange>
               <nextSpasmTicksRange>0~15</nextSpasmTicksRange>
               <drawSize>1.6</drawSize>

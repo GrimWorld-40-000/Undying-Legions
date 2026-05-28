@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using NecronGeneUtil;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -33,7 +34,8 @@ public class JobDriver_TakeControlOfNech : JobDriver
 
         this.FailOnDespawnedNullOrForbidden(TargetNechInd);
         this.FailOn(() => TargetNech == null || HediffComp_NecronCommandTracker.GetCommanderOf(TargetNech) != null);
-        this.FailOn(() => TargetNech != null && TargetNech.Faction != pawn.Faction);
+        this.FailOn(() => TargetNech != null && !NechTakeControlJobUtility.IsFriendlyTakeControlTarget(pawn, TargetNech));
+        this.FailOn(() => NechTakeControlJobUtility.TakeControlTargetNoLongerValid(TargetNech, pawn));
 
         yield return Toils_Goto.GotoThing(TargetNechInd, PathEndMode.Touch);
 
@@ -104,7 +106,9 @@ public class JobDriver_TakeControlOfNech : JobDriver
     {
         Pawn target = TargetNech;
         HediffComp_NecronCommandTracker tracker = HediffComp_NecronCommandTracker.GetTracker(pawn);
-        if (target == null || tracker == null)
+        if (target == null)
+            return;
+        if (tracker == null)
             return;
         if (HediffComp_NecronCommandTracker.GetCommanderOf(target) != null)
             return;
@@ -114,8 +118,11 @@ public class JobDriver_TakeControlOfNech : JobDriver
             return;
         }
 
-        if (pawn.Faction != null && target.Faction != pawn.Faction)
-            target.SetFaction(pawn.Faction);
+        if (!NechTakeControlJobUtility.IsFriendlyTakeControlTarget(pawn, target))
+        {
+            Messages.Message("GW40K_TakeControlNotFriendly".Translate(), MessageTypeDefOf.RejectInput, false);
+            return;
+        }
 
         float failChance = ControlFailChance(tracker, target);
         if (Rand.Chance(failChance))
@@ -125,6 +132,20 @@ public class JobDriver_TakeControlOfNech : JobDriver
         }
 
         tracker.BindMech(target);
+
+        // On take-control, run the same auto-mode decision as TickAutoMode so a newly
+        // bound scarab with full necro doesn't idle in Consume mode.
+        GameComponent_CanoptekConstructModes modes = GameComponent_CanoptekConstructModes.Current;
+        if (modes != null && modes.GetMode(target) == ControlNodeMode.Consume)
+        {
+            Need_Necrodermis necroNeed = target.needs?.TryGetNeed<Need_Necrodermis>();
+            if (necroNeed != null && necroNeed.CurLevelPercentage > 0.95f)
+            {
+                bool hasRepair = JobGiver_CanoptekRepair.HasAnyRepairTarget(target);
+                modes.SetMode(target, hasRepair ? ControlNodeMode.Repair : ControlNodeMode.Work);
+            }
+        }
+
         SoundDef complete = DefDatabase<SoundDef>.GetNamedSilentFail("ControlMech_Complete");
         if (complete != null && target.MapHeld != null)
             complete.PlayOneShot(SoundInfo.InMap(target));

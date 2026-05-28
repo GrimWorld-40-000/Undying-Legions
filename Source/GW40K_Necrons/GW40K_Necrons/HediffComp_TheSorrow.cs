@@ -37,6 +37,8 @@ public class HediffComp_TheSorrow : HediffComp
         Pawn pawn = parent.pawn;
         if (pawn == null || pawn.Dead || !pawn.Spawned)
             return;
+        if (pawn.Downed || !pawn.Awake())
+            return;
         if (parent.Severity < Props.minSeverity)
             return;
         if (pawn.MentalStateDef != null)

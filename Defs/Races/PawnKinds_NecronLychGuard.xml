@@ -1,4 +1,5 @@
 <Defs>
+    <!-- MARKED FOR REMOVAL
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
         <defName>GW40K_NecronLychGuardPawnKind_Colonist</defName>
         <label>necron lych guard</label>
@@ -30,4 +31,5 @@
           <li>GW40K_Necron_SwapPlaces</li>
         </abilities>
       </PawnKindDef>
+    -->
 </Defs>

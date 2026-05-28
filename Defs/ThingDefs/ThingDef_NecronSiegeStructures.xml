@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Custom skyfaller for Necron siege raiders. Holds a Pawn reference directly —
+       no ActiveDropPod wrapper — so DropPodIncomingMechanoidRapid's cast-to-ActiveDropPod
+       is never reached. -->
+  <ThingDef ParentName="DropPodIncoming">
+    <defName>GW_UL_NecronPawnPod</defName>
+    <thingClass>GW40K_Necrons.Skyfaller_NecronPawn</thingClass>
+    <graphicData>
+      <texPath>Things/Special/DropPodMechanoid</texPath>
+    </graphicData>
+    <skyfaller>
+      <anticipationSound>DropPod_Fall_Mechanoid</anticipationSound>
+      <impactSound>DropPod_Impact</impactSound>
+    </skyfaller>
+  </ThingDef>
+
+  <!-- Custom skyfaller for Necron siege walls. Carries no inner cargo so no
+       InvalidCastException during descent. Stores the building def and places
+       it in Impact() — same visual as the mechanoid drop pod. -->
+  <ThingDef ParentName="DropPodIncoming">
+    <defName>GW_UL_NecronWallPod</defName>
+    <thingClass>GW40K_Necrons.Skyfaller_NecronWall</thingClass>
+    <graphicData>
+      <texPath>Things/Special/DropPodMechanoid</texPath>
+    </graphicData>
+    <skyfaller>
+      <anticipationSound>DropPod_Fall_Mechanoid</anticipationSound>
+      <impactSound>DropPod_Impact</impactSound>
+    </skyfaller>
+  </ThingDef>
+
+
+  <!-- ===== Necron Phase Barrier =====
+       A necrodermis pylon that projects a phase-disruption field, deflecting incoming
+       projectiles. Drops with the siege; no recharge — when the hit pool is exhausted
+       the field collapses. Green tint distinguishes it from the grey mech shield. -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>GW_UL_NecronPhaseBarrier</defName>
+    <label>necron phase barrier</label>
+    <description>A Canoptek pylon that projects a phase-disruption bubble. The living-metal lattice within bends incoming projectiles out of phase with realspace, dissipating their kinetic energy before impact. Once the lattice is saturated it collapses — the pylon cannot self-repair in the field.\n\nEMP pulses temporarily override the phase-inversion frequency, disabling the field without destroying it.</description>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <tickerType>Normal</tickerType>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <drawOffscreen>true</drawOffscreen>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Flammability>0</Flammability>
+    </statBases>
+    <graphicData>
+      <!-- Mechanoid shield generator emitter, tinted to match the gauss capacitor pack. 2× scale. -->
+      <texPath>Things/Building/Mech/ShieldGeneratorBullet</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1, 1)</drawSize>
+      <color>(168, 228, 160)</color>
+      <shadowData>
+        <volume>(0.6, 0.5, 0.6)</volume>
+        <offset>(0, 0, -0.3)</offset>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>0.25</fillPercent>
+    <selectable>true</selectable>
+    <rotatable>false</rotatable>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <designationCategory Inherit="False" />
+    <building>
+      <paintable>false</paintable>
+    </building>
+    <comps>
+      <li Class="CompProperties_ProjectileInterceptor">
+        <radius>12</radius>
+        <interceptGroundProjectiles>true</interceptGroundProjectiles>
+        <interceptNonHostileProjectiles>true</interceptNonHostileProjectiles>
+        <!-- Necron green — clearly distinct from the grey mechanoid mech shield -->
+        <color>(0.15, 0.85, 0.35)</color>
+        <reactivateEffect>BulletShieldGenerator_Reactivate</reactivateEffect>
+        <activeSound>BulletShield_Ambience</activeSound>
+        <hitPoints>200</hitPoints>
+        <!-- No recharge: the field collapses permanently when exhausted -->
+        <chargeDurationTicks>999999</chargeDurationTicks>
+        <drawWithNoSelection>true</drawWithNoSelection>
+        <disarmedByEmpForTicks>600</disarmedByEmpForTicks>
+        <minAlpha>0.4</minAlpha>
+        <gizmoTipKey>ProjectileInterceptorTip</gizmoTipKey>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(30, 220, 80, 0)</glowColor>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===== Necron Siege Structures — Placeholders =====
+       Not player-buildable. Placed by the Necron siege blueprint system only.
+       Textures intentionally reuse vanilla steel wall graphics until custom art is ready.
+       Resources don't drop on death — siege structures vanish with the raid. -->
+
+  <ThingDef ParentName="Wall">
+    <defName>GW_UL_NecronWall</defName>
+    <label>necron wall</label>
+    <description>A section of ancient Necrontyr construction — interlocking plates of living metal that self-seal around minor breaches. Virtually immune to fire and far more durable than any conventional material.</description>
+    <graphicData>
+      <texPath>Things/Building/Linked/Wall</texPath>
+      <graphicClass>Graphic_Appearances</graphicClass>
+      <linkType>CornerFiller</linkType>
+      <linkFlags>
+        <li>Wall</li>
+        <li>Rock</li>
+      </linkFlags>
+      <color>(0.30, 0.38, 0.33)</color>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+        <edgeTop>Damage/Edge</edgeTop>
+        <edgeBot>Damage/Edge</edgeBot>
+        <edgeLeft>Damage/Edge</edgeLeft>
+        <edgeRight>Damage/Edge</edgeRight>
+      </damageData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>600</MaxHitPoints>
+      <WorkToBuild>300</WorkToBuild>
+      <Flammability>0</Flammability>
+    </statBases>
+    <!-- Fixed steel cost — siege AI places these directly, cost just determines drop on death -->
+    <costStuffCount Inherit="False">0</costStuffCount>
+    <costList>
+      <Steel>10</Steel>
+    </costList>
+    <stuffCategories Inherit="False" />
+    <useStuffTerrainAffordance>false</useStuffTerrainAffordance>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <!-- Not player-buildable -->
+    <designationCategory Inherit="False" />
+    <building>
+      <paintable>false</paintable>
+    </building>
+  </ThingDef>
+
+  <!-- Partial-fill firing port: passable by shots, impassable by pawns.
+       fillPercent < 1 + blockLight = false is what allows ranged fire through. -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>GW_UL_NecronEmbrasure</defName>
+    <label>necron embrasure</label>
+    <description>A section of Necrontyr wall with a precision-machined firing port. The aperture allows gauss fire to pass through while presenting a solid barrier to movement and return fire.</description>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Things/Building/Linked/Wall</texPath>
+      <graphicClass>Graphic_Appearances</graphicClass>
+      <linkType>CornerFiller</linkType>
+      <linkFlags>
+        <li>Wall</li>
+        <li>Rock</li>
+      </linkFlags>
+      <color>(0.35, 0.42, 0.38)</color>
+      <damageData>
+        <cornerTL>Damage/Corner</cornerTL>
+        <cornerTR>Damage/Corner</cornerTR>
+        <cornerBL>Damage/Corner</cornerBL>
+        <cornerBR>Damage/Corner</cornerBR>
+        <edgeTop>Damage/Edge</edgeTop>
+        <edgeBot>Damage/Edge</edgeBot>
+        <edgeLeft>Damage/Edge</edgeLeft>
+        <edgeRight>Damage/Edge</edgeRight>
+      </damageData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>450</MaxHitPoints>
+      <WorkToBuild>200</WorkToBuild>
+      <Flammability>0</Flammability>
+    </statBases>
+    <costList>
+      <Steel>8</Steel>
+    </costList>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>0.5</fillPercent>
+    <coversFloor>true</coversFloor>
+    <drawStyleCategory>Walls</drawStyleCategory>
+    <tickerType>Never</tickerType>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <holdsRoof>true</holdsRoof>
+    <staticSunShadowHeight>1.0</staticSunShadowHeight>
+    <blockLight>false</blockLight>
+    <!-- Not player-buildable -->
+    <building>
+      <isInert>true</isInert>
+      <canPlaceOverWall>true</canPlaceOverWall>
+      <ai_chillDestination>false</ai_chillDestination>
+      <blueprintGraphicData>
+        <texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
+      </blueprintGraphicData>
+      <paintable>false</paintable>
+    </building>
+    <disableImpassableShotOverConfigError>true</disableImpassableShotOverConfigError>
+  </ThingDef>
+
+</Defs>

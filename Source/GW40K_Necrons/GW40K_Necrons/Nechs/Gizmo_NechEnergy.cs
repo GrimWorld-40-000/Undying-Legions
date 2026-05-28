@@ -29,23 +29,45 @@ public class Gizmo_NechEnergy : Gizmo
     private const float DevBtnGap = 2f;
     private const float DevHitSlop = 4f;
     private const float ToggleIcon = 32f;
+    private const float ToggleIconW = 20f;
     private const float ToggleGap = 4f;
     private const float DevAdjustStep = 0.25f;
 
-    private const string TexBattOn = "UI/Gizmo/GW40k_W_BattOn32";
-    private const string TexBattOff = "UI/Gizmo/GW40k_W_BattOff32";
-    private const string TexCoreOn = "UI/Gizmo/GW40k_W_CoreOn32";
-    private const string TexCoreOff = "UI/Gizmo/GW40k_W_CoreOff32";
+    private const string TexBattOn = "UI/Gizmo/W_BattOn";
+    private const string TexBattOff = "UI/Gizmo/W_BattOff";
+    private const string TexCoreOn = "UI/Gizmo/W_CoreOn";
+    private const string TexCoreOff = "UI/Gizmo/W_CoreOff";
+    private const string TexCapaOn = "UI/Gizmo/W_CapaOn";
+    private const string TexCapaOff = "UI/Gizmo/W_CapaOff";
+
+    public bool readOnly;
 
     public Gizmo_NechEnergy(Pawn pawn)
     {
         this.pawn = pawn;
     }
 
+    // Returns false and draws the texture dimmed when readOnly, otherwise behaves as Widgets.ButtonImage.
+    private bool MaybeButton(Rect rect, Texture2D tex)
+    {
+        if (readOnly)
+        {
+            Color prev = GUI.color;
+            GUI.color = new Color(1f, 1f, 1f, 0.35f);
+            GUI.DrawTexture(rect, tex, ScaleMode.ScaleToFit);
+            GUI.color = prev;
+            return false;
+        }
+        return Widgets.ButtonImage(rect, tex);
+    }
+
     public override float GetWidth(float maxWidth) => Mathf.Min(172f, maxWidth);
 
     public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
     {
+        if (NecronDefOfs.GW_UD_Concept_GaussEnergy != null)
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(NecronDefOfs.GW_UD_Concept_GaussEnergy, KnowledgeAmount.FrameDisplayed);
+
         float w = GetWidth(maxWidth);
 
         Need n = pawn?.needs?.TryGetNeed(NecronDefOfs.GW40K_NechEnergy);
@@ -57,6 +79,7 @@ public class Gizmo_NechEnergy : Gizmo
         bool showDevAdjust = DebugSettings.ShowDevGizmos && DebugSettings.godMode;
         HediffComp_GaussCapacitor cap = NechEnergyUtility.GetCapacitorComp(pawn);
         bool hasCap = cap != null;
+        bool showCoreToggle = hasCap && NechEnergyUtility.IsNecronPawn(pawn);
 
         float devStripOuter = showDevAdjust ? DevBtnSize + BarDevGap : 0f;
         float devStackH = showDevAdjust ? DevBtnSize * 2f + DevBtnGap : 0f;
@@ -100,7 +123,7 @@ public class Gizmo_NechEnergy : Gizmo
 
         // One header row: label left, core/battery right (spaced above the bar row).
         Rect headerRow = new Rect(inner.x, barRowTop - HeaderBarGap - headerH, inner.width, headerH);
-        float togglesW = hasCap ? ToggleIcon * 2f + ToggleGap : 0f;
+        float togglesW = hasCap ? (showCoreToggle ? ToggleIconW * 2f + ToggleIcon + ToggleGap * 2f : ToggleIconW) : 0f;
         Rect titleLabelRect = new Rect(headerRow.x + 2f, headerRow.y, headerRow.width - togglesW - 4f, headerH);
 
         Text.Font = GameFont.Tiny;
@@ -112,39 +135,58 @@ public class Gizmo_NechEnergy : Gizmo
         float right = headerRow.xMax;
         Rect battRect = default;
         Rect coreRect = default;
+        Rect capaRect = default;
         if (hasCap)
         {
-            right -= ToggleIcon;
-            coreRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIcon, ToggleIcon);
-            right -= ToggleGap + ToggleIcon;
-            battRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIcon, ToggleIcon);
+            right -= ToggleIconW;
+            battRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIconW, ToggleIcon);
+            if (showCoreToggle)
+            {
+                right -= ToggleGap;
+                right -= ToggleIconW;
+                capaRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIconW, ToggleIcon);
+                right -= ToggleGap;
+                right -= ToggleIcon;
+                coreRect = new Rect(right, headerRow.y + (headerH - ToggleIcon) * 0.5f, ToggleIcon, ToggleIcon);
+            }
         }
 
         bool absorbed = false;
         if (hasCap)
         {
             bool allowBattery = cap.allowBatteryCharge;
-            bool allowCore = cap.allowCoreCharge;
             Texture2D battTex = ContentFinder<Texture2D>.Get(allowBattery ? TexBattOn : TexBattOff, false) ?? BaseContent.BadTex;
-            Texture2D coreTex = ContentFinder<Texture2D>.Get(allowCore ? TexCoreOn : TexCoreOff, false) ?? BaseContent.BadTex;
 
-            if (Widgets.ButtonImage(battRect, battTex))
+            if (MaybeButton(battRect, battTex))
             {
                 cap.allowBatteryCharge = !cap.allowBatteryCharge;
                 SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
                 absorbed = true;
             }
-
             TooltipHandler.TipRegion(battRect, "GW40K_NechEnergyAllowBatteryDesc".Translate().Resolve());
 
-            if (Widgets.ButtonImage(coreRect, coreTex))
+            if (showCoreToggle)
             {
-                cap.allowCoreCharge = !cap.allowCoreCharge;
-                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-                absorbed = true;
-            }
+                bool allowCore = cap.allowCoreCharge;
+                Texture2D coreTex = ContentFinder<Texture2D>.Get(allowCore ? TexCoreOn : TexCoreOff, false) ?? BaseContent.BadTex;
+                if (MaybeButton(coreRect, coreTex))
+                {
+                    cap.allowCoreCharge = !cap.allowCoreCharge;
+                    SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
+                    absorbed = true;
+                }
+                TooltipHandler.TipRegion(coreRect, "GW40K_NechEnergyAllowCoreDesc".Translate().Resolve());
 
-            TooltipHandler.TipRegion(coreRect, "GW40K_NechEnergyAllowCoreDesc".Translate().Resolve());
+                bool allowAuto = cap.allowAutoConsume;
+                Texture2D capaTex = ContentFinder<Texture2D>.Get(allowAuto ? TexCapaOn : TexCapaOff, false) ?? BaseContent.BadTex;
+                if (MaybeButton(capaRect, capaTex))
+                {
+                    cap.allowAutoConsume = !cap.allowAutoConsume;
+                    SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
+                    absorbed = true;
+                }
+                TooltipHandler.TipRegion(capaRect, "GW40K_NechEnergyAllowAutoConsumeDesc".Translate().Resolve());
+            }
         }
 
         Rect plusHit = showDevAdjust ? plusRect.ExpandedBy(DevHitSlop) : Rect.zero;
@@ -179,9 +221,10 @@ public class Gizmo_NechEnergy : Gizmo
         Text.Font = GameFont.Small;
 
         bool overBatt = hasCap && Mouse.IsOver(battRect);
-        bool overCore = hasCap && Mouse.IsOver(coreRect);
+        bool overCore = showCoreToggle && Mouse.IsOver(coreRect);
+        bool overCapa = showCoreToggle && Mouse.IsOver(capaRect);
         bool overDev = showDevAdjust && (Mouse.IsOver(plusHit) || Mouse.IsOver(minusHit));
-        if (!overBatt && !overCore && !overDev && !absorbed)
+        if (!overBatt && !overCore && !overCapa && !overDev && !absorbed)
         {
             string reserveText = $"{current:0}/{capacity:0}";
             string tip = "GW40K_NechEnergyTip".Translate(reserveText, capacity.ToString("0")).Resolve();

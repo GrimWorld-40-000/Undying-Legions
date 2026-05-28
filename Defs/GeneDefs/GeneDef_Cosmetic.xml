@@ -7,6 +7,20 @@
 		</bodyTypeGraphicPaths>
 	</FurDef>
 	<FurDef>
+		<defName>GW_UD_NecronImmortal</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/Immortal/Body/Naked_Male</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
+	<FurDef>
+		<defName>GW_UD_NecronCryptothrall</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Thin>GW40K/Cryptothrall/Body/Naked_Male</Thin>
+		</bodyTypeGraphicPaths>
+	</FurDef>
+	<FurDef>
 		<defName>GW_UD_NecronLychguard</defName>
 		<noGraphic>true</noGraphic>
 		<bodyTypeGraphicPaths>
@@ -149,11 +163,95 @@
 
 	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
 		<defName>GW_UD_NecronWarrior_Head</defName>
-		<label>warrior head</label>
+		<label>standard head</label>
 		<description>Carriers of this gene possess a "deathmask" skull head, made of "living metal."</description>
 		<iconPath>GW40K/NecronWarrior/Head/GeneIcon_WarriorHead</iconPath>
 		<forcedHeadTypes>
 			<li>GW40K_NecronWarrior_HeadType</li>
+		</forcedHeadTypes>
+	</GeneDef>
+
+	<!-- Cryptothrall -->
+
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
+		<defName>GW_UD_Cryptothrall</defName>
+		<label>insectile frame</label>
+		<labelShortAdj>cryptothrall</labelShortAdj>
+		<description>The Cryptothrall body is a jarring departure from the humanoid "skeletal" frames of Warriors and Immortals; It is a specialized, barrel-shaped frame with scythe-like appendages used for slicing.</description>
+		<fur>GW_UD_NecronCryptothrall</fur>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<drawSize>1</drawSize>
+			</li>
+		</renderNodeProperties>
+		<iconPath>Genes/Machine_body</iconPath>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<statOffsets>
+			<MoveSpeed>-0.20</MoveSpeed>
+		</statOffsets>
+		<statFactors>
+			<IncomingDamageFactor>0.85</IncomingDamageFactor>
+		</statFactors>
+<!--		<modExtensions>
+ 			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW_UD_NecronLychguard</hediffDef>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li> 
+		</modExtensions> -->
+	</GeneDef>
+
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
+		<defName>GW_UD_NecronCryptothrall_Head</defName>
+		<label>canister head</label>
+		<description>Carriers of this gene possess a smooth cylindrical head, made of "living metal."</description>
+		<iconPath>GW40K/Cryptothrall/Head/GeneIcon_CryptothrallHead</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_Cryptothrall_HeadType</li>
+		</forcedHeadTypes>
+	</GeneDef>
+
+	<!-- Immortal -->
+
+	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
+		<defName>GW_UD_NecronImmortal</defName>
+		<label>immortal frame</label>
+		<labelShortAdj>immortal</labelShortAdj>
+		<description>Carriers of this gene possess a broad, self-repairing skeletal frame. THe immortal frame is significantly stronger than the warrior, featuring denser armor and jutting spines protruding from the carrier's spine.\n\nThese frames are a notable upgrade from the standard warrior and possess faster reflexes and more fluid movement.</description>
+		<fur>GW_UD_NecronImmortal</fur>
+		<renderNodeProperties Inherit="False">
+			<li>
+				<nodeClass>PawnRenderNode_Fur</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<colorType>Skin</colorType>
+				<useSkinShader>true</useSkinShader>
+				<shaderTypeDef>CutoutComplex</shaderTypeDef>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<parentTagDef>Body</parentTagDef>
+				<drawSize>1</drawSize>
+			</li>
+		</renderNodeProperties>
+		<iconPath>Genes/Machine_body</iconPath>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<statOffsets>
+		</statOffsets>
+	</GeneDef>
+
+	<GeneDef ParentName="GW_UD_NecronHeadGeneBase">
+		<defName>GW_UD_NecronImmortal_Head</defName>
+		<label>reinforced head</label>
+		<description>Carriers of this gene possess a reinforced "deathmask" skull head, made of "living metal."</description>
+		<iconPath>GW40K/Immortal/Head/GeneIcon_ImmortalHead</iconPath>
+		<forcedHeadTypes>
+			<li>GW40K_NecronImmortal_HeadType</li>
 		</forcedHeadTypes>
 	</GeneDef>
 
@@ -436,7 +534,7 @@
 
 	<GeneDef ParentName="GW_UD_NecronBodyGeneBase">
 		<defName>GW_UD_NecronOverlord</defName>
-		<label>necron overlord</label>
+		<label>overlord frame</label>
 		<labelShortAdj>Overlord</labelShortAdj>
 		<description>Carriers of this gene have a broad, heavily armored carapace made of "living metal" and adorned in royal regalia. \n\nThe decorative tassels and cloaks of "living metal" are known as Sempiternal Weave; Gene carriers are capable of turning away energy blades and plasma bursts.</description>
 		<fur>GW_UD_NecronOverlord</fur>

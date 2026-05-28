@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
@@ -92,6 +93,72 @@ public static class NecronStasisHealing
 
         // Refresh hediff-set caches so ShouldRemove is evaluated correctly next health tick.
         pawn.health.hediffSet.DirtyCache();
+    }
+
+    /// <summary>
+    /// Like <see cref="ApplyHealPulse"/> but only distributes healing across injuries that pass <paramref name="includeInjury"/>.
+    /// </summary>
+    public static void ApplyHealPulseToInjuries(Pawn pawn, float healPoints, Predicate<Hediff_Injury> includeInjury)
+    {
+        if (pawn?.health?.hediffSet == null || healPoints <= 0f || includeInjury == null)
+            return;
+
+        if (s_severityField == null)
+        {
+            ApplyHealPulseToInjuriesFallback(pawn, healPoints, includeInjury);
+            return;
+        }
+
+        List<Hediff_Injury> injuries = new List<Hediff_Injury>();
+        foreach (Hediff h in pawn.health.hediffSet.hediffs)
+        {
+            if (h is Hediff_Injury inj && !inj.IsPermanent() && includeInjury(inj))
+                injuries.Add(inj);
+        }
+
+        if (injuries.Count == 0)
+            return;
+
+        float totalSev = 0f;
+        for (int i = 0; i < injuries.Count; i++)
+            totalSev += injuries[i].Severity;
+
+        float per = totalSev > 0f ? 0f : healPoints / injuries.Count;
+
+        for (int i = 0; i < injuries.Count; i++)
+        {
+            Hediff_Injury inj = injuries[i];
+            float amount = totalSev > 0f ? healPoints * (inj.Severity / totalSev) : per;
+            float newSev = Mathf.Max(0f, inj.Severity - amount);
+            s_severityField.SetValue(inj, newSev);
+        }
+
+        pawn.health.hediffSet.DirtyCache();
+    }
+
+    private static void ApplyHealPulseToInjuriesFallback(Pawn pawn, float healPoints, Predicate<Hediff_Injury> includeInjury)
+    {
+        List<Hediff_Injury> injuries = new List<Hediff_Injury>();
+        foreach (Hediff h in pawn.health.hediffSet.hediffs)
+        {
+            if (h is Hediff_Injury inj && !inj.IsPermanent() && includeInjury(inj))
+                injuries.Add(inj);
+        }
+
+        if (injuries.Count == 0)
+            return;
+
+        float totalSev = 0f;
+        for (int i = 0; i < injuries.Count; i++)
+            totalSev += injuries[i].Severity;
+
+        float per = totalSev > 0f ? 0f : healPoints / injuries.Count;
+        for (int i = 0; i < injuries.Count; i++)
+        {
+            Hediff_Injury inj = injuries[i];
+            float amount = totalSev > 0f ? healPoints * (inj.Severity / totalSev) : per;
+            inj.Severity -= amount;
+        }
     }
 
     /// <summary>Fallback used only if the severity backing-field reflection fails (future-proof guard).</summary>

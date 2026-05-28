@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Temporary rapid-healing burst applied by stasis crypt / repair events. -->
+  <HediffDef>
+    <defName>GW40K_Necron_HealingHediff</defName>
+    <label>healing</label>
+    <description>dddd.</description>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <hediffClass>HediffWithComps</hediffClass>
+    <stages>
+      <li>
+        <naturalHealingFactor>9999</naturalHealingFactor>
+        <statOffsets>
+          <InjuryHealingFactor>9999</InjuryHealingFactor>
+        </statOffsets>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <compClass>HediffComp_Disappears</compClass>
+        <disappearsAfterTicks>300</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- Persistent infestation: grants ownership to controller and adds pain. -->
+  <HediffDef>
+    <defName>GW40K_Mindshackle</defName>
+    <label>Mindshackle Scarabs</label>
+    <description>This pawn has been infested with painful Mindshackle Scarabs - it's autonomy and free will have been reprogrammed to obey its controller.</description>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.72, 0.35, 0.38)</defaultLabelColor>
+    <isBad>true</isBad>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_MindshackleBond"/>
+    </comps>
+    <stages>
+      <li>
+        <painOffset>0.15</painOffset>
+        <disabledWorkTags>AllWork</disabledWorkTags>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- HediffGiverSets used by Necron race defs. -->
+  <HediffGiverSetDef>
+    <defName>GW40K_Necron_HediffGiverSet</defName>
+    <hediffGivers>
+      <li Class="GW40K_Necrons.HediffGiverNecron">
+        <hediff>GW40K_Necron_TiredHediff</hediff>
+      </li>
+    </hediffGivers>
+  </HediffGiverSetDef>
+
+  <HediffGiverSetDef>
+    <defName>GW40K_Necron_Resurrection_HediffGiverSet</defName>
+    <hediffGivers>
+      <li Class="GW40K_Necrons.HediffGiver_Resurrection">
+        <hediff>GW40K_Necron_ResurrectionHediff</hediff>
+      </li>
+    </hediffGivers>
+  </HediffGiverSetDef>
+
+</Defs>

@@ -82,6 +82,8 @@
     </tools>
 
     <race>
+      <hasGenders>false</hasGenders>
+      <nameCategory>HumanStandard</nameCategory>
       <!-- Child/adult split at 18 matches minGenerationAge on necron pawn kinds;
            adult-at-0 breaks gene age validation ("Tried 300 times..."). -->
       <lifeStageAges>
@@ -97,6 +99,12 @@
           <soundCall>Pawn_Mech_Pikeman_Call</soundCall>
         </li>
       </lifeStageAges>
+      <!-- Brawler forces a ranged-weapon ban — inappropriate for Warriors who are ranged infantry.
+           Nerves (nervous/iron-willed family) makes no sense on emotionless constructs. -->
+      <disallowedTraits>
+        <li>Brawler</li>
+        <li>Nerves</li>
+      </disallowedTraits>
     </race>
 
     <modExtensions>
@@ -106,7 +114,115 @@
         <coreSize>1</coreSize>
       </li>
     </modExtensions>
-
+    <comps>
+      <li Class="GW40K_Necrons.CompProperties_NechUncontrolledTimer" />
+      <!-- Work mode: Patrol / Escort / Maintain / Hold.
+           Inherited by Immortal and Cryptothrall. Cryptek overrides comps (Inherit="False") so it is excluded. -->
+      <li Class="GW40K_Necrons.CompProperties_NechWorkMode">
+        <availableModes>
+          <li>GW40K_NechMode_Patrol</li>
+          <li>GW40K_NechMode_Escort</li>
+          <li>GW40K_NechMode_Maintain</li>
+          <li>GW40K_NechMode_Hold</li>
+        </availableModes>
+        <defaultMode>GW40K_NechMode_Patrol</defaultMode>
+      </li>
+    </comps>
   </ThingDef>
+
+  <!-- Inherits all Warrior properties; overrides body to the medium-tier part layout. -->
+  <ThingDef ParentName="GW40K_NecronWarrior">
+    <defName>GW40K_NecronImmortal</defName>
+    <label>necron immortal</label>
+    <description>A heavier-chassis Necron infantryman whose necrodermis has hardened over millennia into the reinforced medium-grade plating of the Immortal caste.</description>
+    <race>
+      <body>GW40K_NecronBody_M</body>
+    </race>
+    <statBases>
+      <MarketValue>2300</MarketValue>
+    </statBases>
+  </ThingDef>
+
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_NecronImmortal_HeadType</defName>
+    <graphicPath>GW40K/Immortal/Head/Male_Average_Normal</graphicPath>
+    <gender>None</gender>
+    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
+  </HeadTypeDef>
+
+  <!-- Inherits all Warrior properties; Cryptek retains gender (higher-tier noble caste). -->
+  <ThingDef ParentName="GW40K_NecronWarrior">
+    <defName>GW40K_NecronCryptek</defName>
+    <label>necron cryptek</label>
+    <description>A Cryptek — keeper of the dynasties' arcane technologies and ancient sciences.</description>
+    <race>
+      <hasGenders>true</hasGenders>
+      <!-- Crypteks are high-intellect nobles and retain full personality variance.
+           Inherit="False" clears the Warrior's Nerves disallow; Brawler still suppressed
+           since Crypteks use ranged/arcane weapons. -->
+      <disallowedTraits Inherit="False">
+        <li>Brawler</li>
+      </disallowedTraits>
+    </race>
+    <!-- Cryptek should not inherit the Nech uncontrolled timer from Warrior.
+         CompProperties_CanoptekRepairPolicy provides the master template pushed to linked scarabs. -->
+    <comps Inherit="False">
+      <li Class="GW40K_Necrons.CompProperties_CanoptekRepairPolicy" />
+    </comps>
+    <!-- Plain li: RimWorld resolves type from loaded assemblies (GenTypes). Avoid li Class= for List<Type> inspector tabs. -->
+    <inspectorTabs Inherit="True">
+      <li>GW40K_Necrons.ITab_SpyderRepair</li>
+    </inspectorTabs>
+  </ThingDef>
+
+  <!-- Inherits all Warrior properties; blade-limbs for melee and sapper demolish. -->
+  <ThingDef ParentName="GW40K_NecronWarrior">
+    <defName>GW40K_NecronCryptothrall</defName>
+    <label>necron cryptothrall</label>
+    <description>A purpose-built Necron melee construct, its blade-limbs primed for slaughter before it fully coalesces into realspace.</description>
+    <tools Inherit="False">
+      <li>
+        <label>left blade-limb</label>
+        <labelNoLocation>blade-limb</labelNoLocation>
+        <capacities>
+          <li>Demolish</li>
+          <li>Cut</li>
+        </capacities>
+        <power>14</power>
+        <cooldownTime>1.4</cooldownTime>
+        <armorPenetration>0.15</armorPenetration>
+        <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+      </li>
+      <li>
+        <label>right blade-limb</label>
+        <labelNoLocation>blade-limb</labelNoLocation>
+        <capacities>
+          <li>Demolish</li>
+          <li>Cut</li>
+        </capacities>
+        <power>14</power>
+        <cooldownTime>1.4</cooldownTime>
+        <armorPenetration>0.15</armorPenetration>
+        <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+      </li>
+    </tools>
+    <!-- Cryptothralls are melee constructs and cannot meaningfully use ranged weapons. -->
+    <race>
+      <disallowedTraits>
+        <li>ShootingAccuracy</li>
+      </disallowedTraits>
+    </race>
+  </ThingDef>
+
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>GW40K_Cryptothrall_HeadType</defName>
+    <graphicPath>Things/Pawn/EmptyHeadTexture/Empty</graphicPath>  <!-- GW40K/Cryptothrall/Head/Male_Average_Normal -->
+    <gender>None</gender>
+    <eyeOffsetEastWest>(0.18, 0, 0.17)</eyeOffsetEastWest>
+	<randomChosen>false</randomChosen>
+	<!-- <selectionWeight>0</selectionWeight> -->
+  </HeadTypeDef>
 
 </Defs>

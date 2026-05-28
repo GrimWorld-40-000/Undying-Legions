@@ -3,7 +3,7 @@
 
   <ThingDef ParentName="BasePawn">
     <defName>GW40K_ScarabSwarm</defName>
-    <label>canoptek scarab swarm</label>
+    <label>canoptek scarab</label>
     <description>A swarm of Canoptek Scarabs — autonomous Necron maintenance constructs repurposed for combat. Each scarab is a small but durable metallic beetle capable of shredding flesh with its mandibles. As the swarm takes casualties the remaining scarabs fight on until the last one is destroyed.</description>
     <statBases>
       <MoveSpeed>3.65</MoveSpeed>
@@ -44,12 +44,13 @@
       <body>GW40K_ScarabSwarmBody</body>
       <renderTree>GW40K_ScarabSwarm</renderTree>
       <baseBodySize>0.25</baseBodySize>
-      <baseHealthScale>4.29</baseHealthScale>
+      <baseHealthScale>2.2</baseHealthScale>
       <baseHungerRate>0</baseHungerRate>
       <makesFootprints>false</makesFootprints>
       <lifeExpectancy>10000</lifeExpectancy>
       <manhunterOnDamageChance>0</manhunterOnDamageChance>
       <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+      <hasGenders>false</hasGenders>
       <trainability>None</trainability>
       <useMeatFrom>Megaspider</useMeatFrom>
       <fleshType>Mechanoid</fleshType>
@@ -63,14 +64,32 @@
         </li>
       </lifeStageAges>
     </race>
+    <modExtensions>
+      <li Class="NecronGeneUtil.RaceExtension_Canoptek">
+        <isCanoptek>true</isCanoptek>
+      </li>
+    </modExtensions>
+    <comps>
+      <li Class="GW40K_Necrons.CompProperties_CanoptekConsumePolicy" />
+      <li Class="GW40K_Necrons.CompProperties_CanoptekRepairPolicy" />
+      <li Class="GW40K_Necrons.CompProperties_ScarabPaint" />
+      <li Class="GW40K_Necrons.CompProperties_NechUncontrolledTimer" />
+    </comps>
+    <inspectorTabs Inherit="True">
+      <!-- Plain li: RimWorld resolves type from loaded assemblies (GenTypes). Avoid li Class= for List&lt;Type&gt; inspector tabs. -->
+      <li>GW40K_Necrons.ITab_CanoptekConsume</li>
+      <li>GW40K_Necrons.ITab_CanoptekRepair</li>
+    </inspectorTabs>
   </ThingDef>
 
   <PawnKindDef ParentName="AnimalKindBase">
-    <defName>GW40K_ScarabSwarm</defName>
-    <label>canoptek scarab swarm</label>
+    <defName>GW_UL_ScarabSwarm</defName>
+    <label>canoptek scarab</label>
     <race>GW40K_ScarabSwarm</race>
     <combatPower>25</combatPower>
     <aiAvoidCover>false</aiAvoidCover>
+    <canBeSapper>true</canBeSapper>
+    <isGoodBreacher>true</isGoodBreacher>
     <abilities>
       <li>GW40K_ScarabLeap</li>
       <li>GW40K_ScarabSelfDestruct</li>

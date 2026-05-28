@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Body Part Groups ===== -->
+
+  <BodyPartGroupDef><defName>GW40K_Spyder_LeftPowerClaw</defName></BodyPartGroupDef>
+  <BodyPartGroupDef><defName>GW40K_Spyder_RightPowerClaw</defName></BodyPartGroupDef>
+  <BodyPartGroupDef><defName>GW40K_Spyder_LeftFabricatorClaw</defName></BodyPartGroupDef>
+  <BodyPartGroupDef><defName>GW40K_Spyder_RightFabricatorClaw</defName></BodyPartGroupDef>
+
+  <!-- ===== Body Part Defs ===== -->
+
+  <!-- Abdomen: the large rear mass of the Spyder. High HP, most exposed to incoming fire. -->
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Spyder_Abdomen</defName>
+    <label>abdomen</label>
+    <hitPoints>80</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.20</bleedRate>
+    <frostbiteVulnerability>0.01</frostbiteVulnerability>
+    <executionPartPriority>350</executionPartPriority>
+  </BodyPartDef>
+
+  <!-- AbdomenCore: internal power-flux reservoir inside the abdomen. Pumps energy like a heart. -->
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Spyder_AbdomenCore</defName>
+    <label>abdomen core</label>
+    <hitPoints>30</hitPoints>
+    <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
+    <tags>
+      <li>BloodPumpingSource</li>
+    </tags>
+  </BodyPartDef>
+
+  <!-- Integrated particle beamer: built into the top of the abdomen. Conceptual anchor for the weapon part. -->
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Spyder_ParticleBeamerPart</defName>
+    <label>particle beamer</label>
+    <hitPoints>35</hitPoints>
+    <skinCovered>false</skinCovered>
+    <solid>true</solid>
+    <bleedRate>0</bleedRate>
+    <destroyableByDamage>false</destroyableByDamage>
+  </BodyPartDef>
+
+  <!-- Power claw: dual-purpose locomotion and attack appendage on the thorax.
+       Provides both ManipulationLimbCore (grasping/tool use) and MovingLimbCore (locomotion contribution). -->
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Spyder_PowerClaw</defName>
+    <label>power claw</label>
+    <hitPoints>38</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.25</bleedRate>
+    <tags>
+      <li>ManipulationLimbCore</li>
+      <li>MovingLimbCore</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <!-- Fabricator claw: fine-manipulation appendage on the head, used for repairs and precise attacks. -->
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Spyder_FabricatorClaw</defName>
+    <label>fabricator claw</label>
+    <hitPoints>22</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0.20</bleedRate>
+    <tags>
+      <li>ManipulationLimbCore</li>
+      <li>Mirrored</li>
+    </tags>
+  </BodyPartDef>
+
+  <!-- Control node: integrated command-relay transmitter in the head. Structural, not destroyable. -->
+  <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
+    <defName>GW40K_Spyder_ControlNode</defName>
+    <label>control node</label>
+    <hitPoints>10</hitPoints>
+    <skinCovered>false</skinCovered>
+    <bleedRate>0</bleedRate>
+    <destroyableByDamage>false</destroyableByDamage>
+    <tags>
+      <li>TalkingSource</li>
+      <li>EatingSource</li>
+    </tags>
+  </BodyPartDef>
+
+</Defs>

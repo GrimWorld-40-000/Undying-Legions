@@ -46,6 +46,14 @@
         <coreSize>2</coreSize>
       </li>
     </modExtensions>
+    <!-- Lychguards are elite melee wardens — shooting precision and emotional-nerve traits don't fit the archetype. -->
+    <race>
+      <hasGenders>false</hasGenders>
+      <disallowedTraits>
+        <li>ShootingAccuracy</li>
+        <li>Nerves</li>
+      </disallowedTraits>
+    </race>
   </ThingDef>
 
 </Defs>

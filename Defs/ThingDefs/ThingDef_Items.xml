@@ -3,10 +3,10 @@
 	<ThingDef ParentName="ResourceBase">
 		<defName>GW40k_Necron_Component</defName>
 		<label>black component</label>
-		<description>necron component</description>
+		<description>A living metal technilogical component that is used by Necrons to create advanced equipment.</description>
 		<graphicData>
-			<texPath>Things/Item/Resource/ComponentIndustrial</texPath>
-			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Items/Component</texPath>
+			<graphicClass>GW40K_Necrons.Graphic_StackCountExact</graphicClass>
 		</graphicData>
 		<soundInteract>Metal_Drop</soundInteract>
 		<soundDrop>Standard_Drop</soundDrop>
@@ -95,9 +95,6 @@
 				<!-- Must match NecronStasisSettingsDef necrodermisNutritionPerConsumedUnit (stasis crypt fuel math). -->
 				<nutritionPerUnit>0.05</nutritionPerUnit>
 			</li>
-			<li Class="CompProperties_UseEffectPlaySound">
-				<soundOnUsed>Meal_Eat</soundOnUsed>
-			</li>
 		</comps>
 	</ThingDef>
 	
@@ -153,8 +150,228 @@
     </comps>
 	</ThingDef>
 
-	<!-- Alias for legacy defName used in NecronGeneUtil.dll — resolves cross-reference error from old compiled assembly -->
+	<!-- Gauss Core: injectable item that replenishes gauss energy.
+	     Stacks in 4. Each use adds exactly 90 raw energy units regardless of capacitor size
+	     (delta = 90 / capacity, so 90/100 for small, 90/250 for large).
+	     Uses MechSerumUsed sound instead of the standard Ingest_Injectable needle sound. -->
 	<ThingDef ParentName="ResourceBase">
+		<defName>GW40K_GaussCore</defName>
+		<label>gauss core</label>
+		<description>A compact archeotech cell charged with particle energy that is designed couple with gauss capacitors. This unit is inserted in the capacitor housing, replenishing the user's gauss energy reserves.\n\nThis cell is rendered useless after charging — each core is single-use.</description>
+		<graphicData>
+			<texPath>Things/Items/GaussRecharger</texPath>
+			<graphicClass>GW40K_Necrons.Graphic_StackCountExact</graphicClass>
+		</graphicData>
+		<tickerType>Normal</tickerType>
+		<rotatable>false</rotatable>
+		<stackLimit>4</stackLimit>
+		<statBases>
+			<MarketValue>300</MarketValue>
+			<Mass>0.3</Mass>
+			<MaxHitPoints>40</MaxHitPoints>
+			<Flammability>0</Flammability>
+			<DeteriorationRate>0</DeteriorationRate>
+		</statBases>
+		<techLevel>Archotech</techLevel>
+		<thingCategories>
+			<li>Manufactured</li>
+		</thingCategories>
+		<comps>
+			<li Class="CompProperties_Usable">
+				<compClass>GW40K_Necrons.CompUsable_GaussCoreOnly</compClass>
+				<useJob>GW40K_Job_ConsumeGaussCore</useJob>
+				<useLabel>Siphon gauss core</useLabel>
+				<useDuration>60</useDuration>
+				<showUseGizmo>true</showUseGizmo>
+			</li>
+			<li Class="GW40K_Necrons.CompProperties_UseEffectGaussCoreConsume" />
+			<li Class="CompProperties_UseEffectPlaySound">
+				<soundOnUsed>MechSerumUsed</soundOnUsed>
+			</li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>2.9</explosiveRadius>
+				<explosiveDamageType>GW40K_GaussCoreBlast</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<wickTicks>30~60</wickTicks>
+				<preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
+			</li>
+		</comps>
+		<tradeability>Sellable</tradeability>
+		<tradeTags>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- Artifact item: single-use Mindshackle Scarabs worn in the Overlord's exclusive Artifact slot.
+	     Grants GW40k_MindshackleArtifact ability; the ability destroys this item on cast. -->
+	<ThingDef ParentName="ApparelBase">
+		<defName>GW40k_MindshackleScarabsArtifact</defName>
+		<thingClass>GW40K_Necrons.MindshackleArtifactApparel</thingClass>
+		<label>Mindshackle Scarabs</label>
+		<description>An Archeotech capsule of Mindshackle Scarabs — dormant nanomachines suspended in a magnetic field, coiled to launch on command. A Necron Overlord can slot this into their artifact housing and unleash a single wave of scarabs at a target, burrowing into the brain stem to claim ownership of the victim.\n\nSingle use. The capsule is consumed on activation.\n\n&lt;color=#E5A04C&gt;Artifact&lt;/color&gt;</description>
+		<graphicData>
+			<texPath>Things/Items/ArtifactScarab</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(255, 255, 255)</color>
+		</graphicData>
+		<rotatable>false</rotatable>
+		<techLevel>Archotech</techLevel>
+		<smeltable>false</smeltable>
+		<statBases>
+			<MaxHitPoints>200</MaxHitPoints>
+			<MarketValue>1200</MarketValue>
+			<Mass>0.2</Mass>
+			<Flammability>0</Flammability>
+			<DeteriorationRate>0</DeteriorationRate>
+			<EquipDelay>1.0</EquipDelay>
+		</statBases>
+		<apparel>
+			<countsAsClothingForNudity>false</countsAsClothingForNudity>
+			<bodyPartGroups>
+				<li>Torso</li>
+			</bodyPartGroups>
+			<layers>
+				<li>GW40K_Artifact</li>
+			</layers>
+			<canBeGeneratedToSatisfyWarmth>false</canBeGeneratedToSatisfyWarmth>
+			<canBeGeneratedToSatisfyToxicEnvironmentResistance>false</canBeGeneratedToSatisfyToxicEnvironmentResistance>
+		</apparel>
+		<!-- ability granted via MindshackleArtifactApparel.Notify_Worn / Notify_Unequipped -->
+		<tradeability>None</tradeability>
+		<destroyOnDrop>false</destroyOnDrop>
+	</ThingDef>
+
+	<!-- ===== Gauss Capacitor Pack ===== -->
+
+	<ThingDef ParentName="ApparelBase">
+		<defName>GW40K_GaussCapacitorPack</defName>
+		<label>gauss capacitor pack</label>
+		<description>A compact gauss particle-energy matrix housed in a wearable back-pack harness. Recovered or reverse-engineered from Necron technology, this device stores a reservoir of gauss energy, allowing the wearer to operate Archeotech gauss weapons without an integrated capacitor.\n\nThe pack charges from power grid batteries and discharges slowly over time. It does not support core-flux conversion — only Necrons with biological cores can utilise that process.</description>
+		<graphicData>
+			<texPath>Things/Pawn/Humanlike/Apparel/FirefoamPack/FirefoamPack</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<color>(168, 228, 160)</color>
+		</graphicData>
+		<techLevel>Archotech</techLevel>
+		<statBases>
+			<WorkToMake>12000</WorkToMake>
+			<MaxHitPoints>80</MaxHitPoints>
+			<Mass>3</Mass>
+			<Flammability>0.4</Flammability>
+			<MarketValue>1200</MarketValue>
+		</statBases>
+		<apparel>
+			<bodyPartGroups>
+				<li>Torso</li>
+			</bodyPartGroups>
+			<wornGraphicPath>Things/Pawn/Humanlike/Apparel/FirefoamPack/FirefoamPack</wornGraphicPath>
+			<wornGraphicData>
+				<renderUtilityAsPack>true</renderUtilityAsPack>
+				<north>
+					<offset>(0,-0.15)</offset>
+				</north>
+				<south>
+					<offset>(0,0.1)</offset>
+					<scale>(1.3,1)</scale>
+				</south>
+				<east>
+					<offset>(-0.35,-0.05)</offset>
+					<thin><offset>(0.05,0)</offset></thin>
+					<hulk><offset>(-0.1,0)</offset></hulk>
+					<fat><offset>(-0.15,0)</offset></fat>
+				</east>
+				<west>
+					<offset>(0.35,-0.05)</offset>
+					<thin><offset>(-0.05,0)</offset></thin>
+					<hulk><offset>(0.1,0)</offset></hulk>
+					<fat><offset>(0.15,0)</offset></fat>
+				</west>
+				<male><scale>(0.8,0.8)</scale></male>
+				<female><scale>(0.75,0.75)</scale></female>
+				<thin><scale>(0.7,0.7)</scale></thin>
+				<hulk><scale>(1.2,1.2)</scale></hulk>
+				<fat><scale>(1.1,1.1)</scale></fat>
+			</wornGraphicData>
+			<layers>
+				<li>Belt</li>
+			</layers>
+			<tags>
+				<li>GaussCapacitorPack</li>
+			</tags>
+		</apparel>
+		<comps>
+			<li Class="GW40K_Necrons.CompProperties_GaussCapacitorApparel"/>
+		</comps>
+		<smeltable>true</smeltable>
+		<smeltProducts>
+			<Steel>5</Steel>
+		</smeltProducts>
+		<tradeability>Sellable</tradeability>
+		<tradeTags>
+			<li>ExoticMisc</li>
+		</tradeTags>
+	</ThingDef>
+
+	<!-- ===== Litho-Phagic Acid (requires GrimWorld Core) ===== -->
+
+	<ThingDef ParentName="ResourceBase" MayRequire="Grimworld.Core">
+		<defName>GW40k_LithoPhagicAcid</defName>
+		<label>litho-phagic acid</label>
+		<description>A "smart" acid developed by the Adeptus Mechanicus and refined by Inquisitorial biologis. Chemically inert against carbon-based tissue, it reacts violently when it detects the specific isotopes found in Necrodermis. Seeking agents bind to the metallic lattice of Necron nanobots and trigger an exothermic reaction that dissolves the living metal into an inert metallic salt.\n\nThe catch: the reaction releases superheated chlorine gas and corrosive thermal energy. Expect chemical burns.</description>
+		<graphicData>
+			<texPath>Things/Items/LithoPhaegicAcid</texPath>
+			<graphicClass>GW40K_Necrons.Graphic_StackCountExact</graphicClass>
+		</graphicData>
+		<rotatable>false</rotatable>
+		<statBases>
+			<MarketValue>350</MarketValue>
+			<Mass>0.15</Mass>
+		</statBases>
+		<techLevel>Spacer</techLevel>
+		<stackLimit>5</stackLimit>
+		<thingCategories>
+			<li>Medicine</li>
+		</thingCategories>
+		<allowedArchonexusCount>5</allowedArchonexusCount>
+	</ThingDef>
+
+	<RecipeDef MayRequire="Grimworld.Core">
+		<defName>GW40k_AdministerLithoPhagicAcid</defName>
+		<label>administer litho-phagic acid</label>
+		<description>Administer litho-phagic acid to neutralize a necrodermis seed. The exothermic reaction will cause chemical burns proportional to the amount of necrodermis present.</description>
+		<workerClass>NecronMod.RecipeWorker_LithoPhagicAcid</workerClass>
+		<jobString>administering litho-phagic acid</jobString>
+		<workAmount>2000</workAmount>
+		<allowMixingIngredients>false</allowMixingIngredients>
+		<recipeUsers>
+			<li>Human</li>
+		</recipeUsers>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>GW40k_LithoPhagicAcid</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>GW40k_LithoPhagicAcid</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<skillRequirements>
+			<Medicine>6</Medicine>
+		</skillRequirements>
+		<appliedOnFixedBodyParts>
+			<li>Torso</li>
+		</appliedOnFixedBodyParts>
+	</RecipeDef>
+
+	<!-- Alias for legacy defName used in NecronGeneUtil.dll — resolves cross-reference error from old compiled assembly -->
+	<!-- <ThingDef ParentName="ResourceBase">
 		<defName>GW40k_Necron_Necrodemis</defName>
 		<label>necrodermis (legacy)</label>
 		<description>See GW40k_Necron_Necrodermis.</description>
@@ -169,6 +386,6 @@
 		<thingCategories>
 			<li>ResourcesRaw</li>
 		</thingCategories>
-	</ThingDef>
+	</ThingDef> -->
 
 </Defs>

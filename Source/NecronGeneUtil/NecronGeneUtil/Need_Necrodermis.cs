@@ -1,11 +1,15 @@
 using RimWorld;
+using System.Text;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace NecronGeneUtil;
 
 public class Need_Necrodermis : Need
 {
+    private const int NeedIntervalTicks = 150;
+
     public int lastNonStarvingTick = -99999;
 
     public NeedExtension_Necron modExtension => base.def.GetModExtension<NeedExtension_Necron>();
@@ -28,6 +32,35 @@ public class Need_Necrodermis : Need
 
     public Need_Necrodermis(Pawn pawn) : base(pawn) { }
 
+    public override int GUIChangeArrow
+    {
+        get
+        {
+            if (GainingNecrodermis())
+                return 1;
+            if (IsFrozen)
+                return 0;
+            if (EffectiveFallPerInterval() <= 0f)
+                return 0;
+            return -1;
+        }
+    }
+
+    public override string GetTipString()
+    {
+        StringBuilder sb = new StringBuilder(base.GetTipString());
+        if (!IsFrozen && def.fallPerDay > 0.0001f)
+        {
+            float fallPerDay = EffectiveFallPerDay();
+            sb.Append("\n\n").Append("GW40K_NecrodermisDrainPerDay".Translate(fallPerDay.ToStringPercent()).Resolve());
+        }
+
+        return sb.ToString();
+    }
+
+    /// <summary>Base <see cref="NeedDef.fallPerDay"/> scaled by maintenance-deficit hediff.</summary>
+    internal float EffectiveFallPerDay() => def.fallPerDay * MaintenanceDeficitFallMultiplier();
+
     public override void NeedInterval()
     {
         float fallMul = MaintenanceDeficitFallMultiplier();
@@ -35,7 +68,7 @@ public class Need_Necrodermis : Need
             CurLevel -= FallPerTick * 150f * fallMul;
         if (!Starving)
             lastNonStarvingTick = Find.TickManager.TicksGame;
-        if (!IsFrozen)
+        if (!IsFrozen && !NecrodermisIngestionUtility.IsCanoptek(base.pawn))
         {
             HediffDef deficit = modExtension?.maintenanceDeficitHediffDef;
             if (deficit != null)
@@ -47,6 +80,27 @@ public class Need_Necrodermis : Need
             }
         }
     }
+
+    /// <summary>Vanilla-style gain arrow while using a necrodermis pack or injector (<see cref="JobDriver_UseItem"/>).</summary>
+    private bool GainingNecrodermis()
+    {
+        if (pawn?.jobs?.curDriver is not JobDriver_UseItem)
+            return false;
+        Job job = pawn.CurJob;
+        if (job == null)
+            return false;
+        Thing target = job.GetTarget(TargetIndex.A).Thing;
+        if (target == null)
+            return false;
+        CompUsable usable = target.TryGetComp<CompUsable>();
+        if (usable == null || !usable.CanBeUsedBy(pawn))
+            return false;
+        return target.TryGetComp<CompUseEffect_NecrodermisPackConsume>() != null
+            || target.TryGetComp<CompUseEffect_NecrodermisInjectorIngest>() != null;
+    }
+
+    private float EffectiveFallPerInterval() =>
+        FallPerTick * NeedIntervalTicks * MaintenanceDeficitFallMultiplier();
 
     /// <summary>Higher necrodermis drain while body degradation hediff is present (replaces hunger rate offset).</summary>
     private float MaintenanceDeficitFallMultiplier()

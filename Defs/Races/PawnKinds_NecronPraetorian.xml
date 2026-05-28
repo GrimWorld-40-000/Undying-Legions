@@ -1,6 +1,7 @@
 <Defs>
+    <!-- MARKED FOR REMOVAL
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
-        <defName>GW40K_NecronPraetorianPawnKind_Colonist</defName>
+        <defName>UNUSED_NecronPraetorianPawnKind_Colonist</defName>
         <label>necron praetorian</label>
         <lifeStages>
           <li>
@@ -30,4 +31,5 @@
           <li>GW40K_Necron_Jump</li>
         </abilities>
       </PawnKindDef>
+    -->
 </Defs>

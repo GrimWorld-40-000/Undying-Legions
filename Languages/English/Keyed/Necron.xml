@@ -6,6 +6,21 @@
   <GW40K_NecronReconstructed>{PAWN_nameDef} has reconstructed a body part.</GW40K_NecronReconstructed>
   <GW40K_FlayedOneSeekingFlesh>{PAWN_nameDef} is hunting to satisfy their flesh cravings.</GW40K_FlayedOneSeekingFlesh>
 
+  <!-- Sentience Catalyst weapon restriction -->
+  <GW40K_SentienceCatalystRequired>Requires a sentience catalyst</GW40K_SentienceCatalystRequired>
+
+  <!-- Cryptek Hijack ability -->
+  <GW40K_Hijack_NotCommanded>{0} is not under another commander's control protocol.</GW40K_Hijack_NotCommanded>
+  <GW40K_Hijack_NoCommandProtocol>The caster does not have a command protocol implant.</GW40K_Hijack_NoCommandProtocol>
+  <GW40K_Hijack_MustBeHostile>{0} must be hostile to hijack their command link.</GW40K_Hijack_MustBeHostile>
+
+  <!-- Necron corpse destruction (drafted pawn float menu) -->
+  <GW40K_DestroyNecronCorpse>Destroy {0} (prevent resurrection)</GW40K_DestroyNecronCorpse>
+
+  <!-- Resurrection Protocol — alert (right-side, persistent) + throttled letter -->
+  <GW40K_AlertEnemyResurrecting>Hostile Reanimating</GW40K_AlertEnemyResurrecting>
+  <GW40K_AlertEnemyResurrectingDesc>The following hostile Necrons are in the process of reanimating. Destroy the remains before they finish — this may take many hours.\n\n{CULPRITS}</GW40K_AlertEnemyResurrectingDesc>
+
   <!-- Resurrection Protocol (CompResurrectible letters) -->
   <GW40K_ResurrectionTriggeredFriendlyTitle>Resurrection protocol engaged</GW40K_ResurrectionTriggeredFriendlyTitle>
   <GW40K_ResurrectionTriggeredFriendlyDesc>{PAWN_nameDef}'s necrodermis is sealing critical damage. The core is still intact — reanimation will take many hours if the remains are not destroyed.</GW40K_ResurrectionTriggeredFriendlyDesc>
@@ -14,10 +29,61 @@
   <GW40K_ResurrectionTriggeredEnemyTitle>Hostile reanimating</GW40K_ResurrectionTriggeredEnemyTitle>
   <GW40K_ResurrectionTriggeredEnemyDesc>An enemy construct is repairing itself. Destroy the remains before it can finish reanimation — this will take many hours.</GW40K_ResurrectionTriggeredEnemyDesc>
   <GW40K_ResurrectionCompletedEnemyTitle>Hostile reanimated</GW40K_ResurrectionCompletedEnemyTitle>
-  <GW40K_ResurrectionCompletedEnemyDesc>A hostile Necron has restored itself from apparent destruction.</GW40K_ResurrectionCompletedEnemyDesc>
+  <GW40K_ResurrectionCompletedEnemyDesc>A hostile Necron has fully reanimated and has re-engaged.</GW40K_ResurrectionCompletedEnemyDesc>
+
+  <!-- Necron siege -->
+  <GW40K_NecronSiegeBegins>{0} Spyders are beginning their assault.</GW40K_NecronSiegeBegins>
+  <GW40K_NecronSiegeAssault>{0} forces are abandoning their formation and advancing directly on the colony.</GW40K_NecronSiegeAssault>
+  <GW40K_NecronFinalAssault>{0} forces are making their final push — all units advancing.</GW40K_NecronFinalAssault>
+
+  <!-- Spyder particle beamer — undrafted placeholder -->
+  <GW40K_SpyderMustBeDrafted>Draft the Spyder to use the particle beamer.</GW40K_SpyderMustBeDrafted>
+  <GW40K_SpyderSiegeCannonLabel>Particle beamer</GW40K_SpyderSiegeCannonLabel>
+  <GW40K_SpyderSiegeCannonDesc>Fire the integrated long-range particle beamer. 30-second wind-up; 3-minute cooldown between volleys. Only available while siege mode is active.</GW40K_SpyderSiegeCannonDesc>
+  <GW40K_SpyderAlreadyInSiegeMode>Already in siege mode.</GW40K_SpyderAlreadyInSiegeMode>
+
+
+  <!-- Necrodermis needs bar overlays -->
+  <GW40K_StasisRestoring>Restoring</GW40K_StasisRestoring>
+  <GW40K_StasisRestoringTip>Necrodermis is being restored by the stasis crypt at {0}/day.</GW40K_StasisRestoringTip>
+  <GW40K_StasisRestoringTipTime>Estimated full restoration: {0}h.</GW40K_StasisRestoringTipTime>
+  <GW40K_StasisRestoringTipFull>Necrodermis is full.</GW40K_StasisRestoringTipFull>
+  <GW40K_ShieldRepairing>Shield repair</GW40K_ShieldRepairing>
+  <GW40K_ShieldRepairingTip>Dispersion shield is self-repairing. Necrodermis drain +{0}/day. Shield restores {1} HP/day.</GW40K_ShieldRepairingTip>
 
   <GW_UD_TranshumanistOnly>Transhumanist only</GW_UD_TranshumanistOnly>
-  <GW_UD_NecrodermisNeedOnly>Only units with a necrodermis core can metabolize this.</GW_UD_NecrodermisNeedOnly>
+  <GW_UD_NecrodermisNeedOnly>Only units made of "living metal" can metabolize this.</GW_UD_NecrodermisNeedOnly>
+  <GW_UD_NecrodermisNotForScarab>Canoptek constructs cannot assimilate raw necrodermis this way.</GW_UD_NecrodermisNotForScarab>
+  <GW40K_TabCanoptekConsume>Consume</GW40K_TabCanoptekConsume>
+  <GW40K_CanoptekConsumeCopy>Copy</GW40K_CanoptekConsumeCopy>
+  <GW40K_CanoptekConsumePaste>Paste</GW40K_CanoptekConsumePaste>
+  <GW40K_CanoptekConsumeCopyTip>Copy this scarab's consume filter to the clipboard.</GW40K_CanoptekConsumeCopyTip>
+  <GW40K_CanoptekConsumePasteTip>Paste the consume filter copied from {0}.</GW40K_CanoptekConsumePasteTip>
+  <GW40K_CanoptekConsumePasteEmpty>Copy a consume filter from another scarab first.</GW40K_CanoptekConsumePasteEmpty>
+  <GW40K_TabCanoptekRepair>Repair</GW40K_TabCanoptekRepair>
+  <GW40K_TabSpyderRepair>Repair</GW40K_TabSpyderRepair>
+  <GW40K_CanoptekRepairCopy>Copy</GW40K_CanoptekRepairCopy>
+  <GW40K_CanoptekRepairPaste>Paste</GW40K_CanoptekRepairPaste>
+  <GW40K_CanoptekRepairCopyTip>Copy this construct's repair policy to the clipboard.</GW40K_CanoptekRepairCopyTip>
+  <GW40K_CanoptekRepairPasteTip>Paste the repair policy copied from {0}.</GW40K_CanoptekRepairPasteTip>
+  <GW40K_CanoptekRepairPasteEmpty>Copy a repair policy from another construct first.</GW40K_CanoptekRepairPasteEmpty>
+  <GW40K_CanoptekRepairAllowAll>Allow all</GW40K_CanoptekRepairAllowAll>
+  <GW40K_CanoptekRepairClearAll>Clear all</GW40K_CanoptekRepairClearAll>
+  <GW40K_CanoptekRepairToggleSelf>Self</GW40K_CanoptekRepairToggleSelf>
+  <GW40K_CanoptekRepairToggleFriendlyNecrons>Friendly Necrons</GW40K_CanoptekRepairToggleFriendlyNecrons>
+  <GW40K_CanoptekRepairToggleFriendlyMechs>Friendly mechanoids</GW40K_CanoptekRepairToggleFriendlyMechs>
+  <GW40K_CanoptekRepairToggleNecronStructures>Necron structures</GW40K_CanoptekRepairToggleNecronStructures>
+  <GW40K_CanoptekRepairToggleStructures>Other structures</GW40K_CanoptekRepairToggleStructures>
+  <GW40K_CanoptekRepairStructuresNote> <!-- Structure repair only targets buildings owned by your faction (claimed). Neutral ruins are ignored. --></GW40K_CanoptekRepairStructuresNote>
+  <GW40K_CanoptekModeRequiresLink>Requires a Command Node link to change mode or enable Auto.</GW40K_CanoptekModeRequiresLink>
+  <GW40K_CanoptekModeConsumeDesc>Consume — assimilate approved corpses, scrap, and matter to refill necrodermis reserves. Configure targets on the Consume tab.</GW40K_CanoptekModeConsumeDesc>
+  <GW40K_CanoptekModeRepairDesc>Repair — expend necrodermis to restore damaged allies, mechanoids, and structures per the Repair tab policy.</GW40K_CanoptekModeRepairDesc>
+  <GW40K_CanoptekModeWorkDesc>Work — haul, mine, and construct when reserves allow.</GW40K_CanoptekModeWorkDesc>
+  <GW40K_CanoptekModeProduceDesc>Produce — transfer necrodermis to a linked Spyder fabricator or self-replicate when the scarab chassis is at full strength.</GW40K_CanoptekModeProduceDesc>
+  <GW40K_CanoptekModeCombatDesc>Combat — disable all resource tasks. Scarab actively pursues enemies and uses Leap and Detonate abilities. Follows attack orders.</GW40K_CanoptekModeCombatDesc>
+  <GW40K_CanoptekModeDefendDesc>Defend — disable all resource tasks. Scarab patrols near the closest allied Necron, keeping close and engaging threats within range.</GW40K_CanoptekModeDefendDesc>
+  <GW40K_CanoptekAutoOnDesc>Auto: ON — switches to Consume below 5% necrodermis. When full in Consume, switches to Repair if targets exist, otherwise Work.</GW40K_CanoptekAutoOnDesc>
+  <GW40K_CanoptekAutoOffDesc>Auto: OFF — modes change only when you cycle them manually.</GW40K_CanoptekAutoOffDesc>
 
   <AlertCoreFluxCriticalPawn>{PAWN} core-flux critical</AlertCoreFluxCriticalPawn>
   <AlertCoreFluxCriticalPawns>{NUMCULPRITS} colonists core-flux critical</AlertCoreFluxCriticalPawns>
@@ -25,6 +91,12 @@
   <GW40K_CoreFluxBodyDegradationOffset>Body degradation drain: +{0}/day</GW40K_CoreFluxBodyDegradationOffset>
   <GW40K_CoreFluxDownedDrain>Downed drain: +{0}/day</GW40K_CoreFluxDownedDrain>
   <GW40K_CoreFluxCoreChargeDrain>Core charge drain: -{0}/day</GW40K_CoreFluxCoreChargeDrain>
+
+  <GW40K_NechGoingRogueWarningTitle>Uncontrolled: {PAWN_nameDef}</GW40K_NechGoingRogueWarningTitle>
+  <GW40K_NechGoingRogueWarningDesc>{PAWN_nameDef} has been without a command link for too long. If a link is not re-established soon, engram routing will collapse and the construct will go rogue.</GW40K_NechGoingRogueWarningDesc>
+  <GW40K_NechWentRogueMessage>{PAWN_nameDef} has gone rogue. Engram routing has collapsed without a valid command link.</GW40K_NechWentRogueMessage>
+  <GW40K_NechWentHostileTitle>Hostile: {PAWN_nameDef}</GW40K_NechWentHostileTitle>
+  <GW40K_NechWentHostileDesc>{PAWN_nameDef} has exceeded unmanaged runtime tolerance and is now hostile to your control chain.</GW40K_NechWentHostileDesc>
 
   <GW40K_EternalSlumberInterrupted>{PAWN_nameDef}'s Eternal Slumber was broken improperly. Engrams spike into uncontrollable aggression.</GW40K_EternalSlumberInterrupted>
   <GW40K_EternalSlumberInterruptedNoTarget>{PAWN_nameDef}'s Eternal Slumber was broken with no core flux, but there is no reachable target for {PAWN_possessive} rage to latch onto.</GW40K_EternalSlumberInterruptedNoTarget>
@@ -38,8 +110,9 @@
   <GW40K_StasisRestoringTipTime>Full in ~{0}h</GW40K_StasisRestoringTipTime>
   <GW40K_StasisRestoringTipFull>Already full.</GW40K_StasisRestoringTipFull>
 
-  <GW40K_ShieldRepairing>⚙ repairing</GW40K_ShieldRepairing>
-  <GW40K_ShieldRepairingTip>Dispersion shield repair active.\n\nThe living metal is self-repairing at {1} HP/day, consuming additional necrodermis in the process.\n\nExtra drain: +{0}/day</GW40K_ShieldRepairingTip>
+  <GW40K_ShieldRepairing>↓ drain</GW40K_ShieldRepairing>
+  <GW40K_NecrodermisDrainPerDay>Drain: {0}/day</GW40K_NecrodermisDrainPerDay>
+  <GW40K_ShieldRepairingTip>Dispersion shield repair active — Extra drain: +{0}/day\n\nThe living metal is self-repairing at {1} HP/day, consuming additional necrodermis in the process.</GW40K_ShieldRepairingTip>
 
   <GW40K_StasisCryptTimeRemaining>Time remaining on cycle: {REMAINING}</GW40K_StasisCryptTimeRemaining>
   <GW40K_StasisCryptCyclePaused>Stasis cycle paused — needs necrodermis fuel, power, or the crypt must be switched on.</GW40K_StasisCryptCyclePaused>
@@ -53,13 +126,21 @@
   <GW40K_CommandBandwidthFullSummon>Not enough command bandwidth to bind this construct after summoning ({0}).</GW40K_CommandBandwidthFullSummon>
 
   <GW40K_TakeCommandOfNech>Take command of {0}</GW40K_TakeCommandOfNech>
+  <GW40K_TakeControlNotFriendly>Take command can only be used on friendly targets of your faction.</GW40K_TakeControlNotFriendly>
   <GW40K_CommandBandwidthFull>Command bandwidth is at capacity. Destroy or release a construct first.</GW40K_CommandBandwidthFull>
   <GW40K_CommandOutOfRange>Target is outside command range ({0} tiles).</GW40K_CommandOutOfRange>
   <GW40K_CommandOutOfRangeDraftedOnlyMove>Target is outside command range ({0} tiles) of the commander.</GW40K_CommandOutOfRangeDraftedOnlyMove>
+  <GW40K_CommandSpyderOutsideLeash>This construct must stay within command range ({0} tiles) of its nechinator.</GW40K_CommandSpyderOutsideLeash>
+  <GW40K_CommandAttackOutOfWeaponRange>That target is outside this unit's ranged weapon reach.</GW40K_CommandAttackOutOfWeaponRange>
   <GW40K_NechAlreadyCommanded>{0} already has a commander.</GW40K_NechAlreadyCommanded>
   <GW40K_TakeCommandSuccess>{0} has successfully taken command of {1}.</GW40K_TakeCommandSuccess>
   <GW40K_ReleaseCommandOfNech>Release command of {0}</GW40K_ReleaseCommandOfNech>
   <GW40K_ReleaseCommandSuccess>{0} has been released from command protocol control.</GW40K_ReleaseCommandSuccess>
+  <GW40K_ControlNodeConnectScarab>Connect to {0}</GW40K_ControlNodeConnectScarab>
+  <GW40K_ControlNodeConnectSuccess>{0} has connected a control node link to {1}.</GW40K_ControlNodeConnectSuccess>
+  <GW40K_ControlNodeDisconnectScarab>Disconnect from {0}</GW40K_ControlNodeDisconnectScarab>
+  <GW40K_ControlNodeDisconnectSuccess>{0} has been disconnected from control node control.</GW40K_ControlNodeDisconnectSuccess>
+  <GW40K_ControlNodeBandwidthFull>Control node bandwidth is at capacity. Disconnect a linked construct first.</GW40K_ControlNodeBandwidthFull>
   <GW40K_TakeCommandFailedLockout>Take command failed: Lockout protocol triggered. Try again in a moment.</GW40K_TakeCommandFailedLockout>
   <GW40K_TakeCommandFailedHandshake>Take command failed: Command handshake rejected - Recalibrating link. Try again in a moment.</GW40K_TakeCommandFailedHandshake>
   <GW40K_TakeCommandFailedInterference>Take command failed: Interstitial interference disrupted the uplink. Try again in a moment.</GW40K_TakeCommandFailedInterference>
@@ -76,6 +157,7 @@
   <GW40K_NechEnergyAllowBattery>Allow battery charging (50% efficiency)</GW40K_NechEnergyAllowBattery>
   <GW40K_NechEnergyAllowBatteryDesc>Toggle battery siphoning. When on, this Nech can draw from nearby batteries at reduced efficiency.\n\nBattery drain is inefficient and should be used as a backup when chargers are unavailable.</GW40K_NechEnergyAllowBatteryDesc>
   <GW40K_NechEnergyAllowCoreDesc>Toggle transferring core flux into the gauss capacitor via the Recharge from core command.\n\nWhen off, manual core-to-gauss transfer is disabled.</GW40K_NechEnergyAllowCoreDesc>
+  <GW40K_NechEnergyAllowAutoConsumeDesc>Toggle automatic gauss core consumption.\n\nWhen on, this Nech will automatically seek and consume gauss cores when energy is low. When off, cores will only be consumed when manually instructed.</GW40K_NechEnergyAllowAutoConsumeDesc>
   <GW40K_NechEnergyTip>Monophasic particle energy used in Necron subsystems.\nReserve: {0}\nCapacity: {1}</GW40K_NechEnergyTip>
   <GW40K_RechargeFromCoreLabel>Recharge from core</GW40K_RechargeFromCoreLabel>
   <GW40K_RechargeFromCoreDesc>Convert core flux into immediate gauss capacitor charge.</GW40K_RechargeFromCoreDesc>
@@ -87,8 +169,53 @@
 
   <GW40K_HuntersMark_NotEnemy>Hunter's Mark can only be placed on enemies.</GW40K_HuntersMark_NotEnemy>
   <GW40K_HuntersMark_AlreadyMarked>{0} is already marked for termination.</GW40K_HuntersMark_AlreadyMarked>
+  <GW40K_Mindshackle_NotEnemy>Mindshackle Scarabs can only be cast on hostile organic pawns.</GW40K_Mindshackle_NotEnemy>
+  <GW40K_Mindshackle_AlreadyShackled>{0} is already under Mindshackle control.</GW40K_Mindshackle_AlreadyShackled>
+  <GW40K_Mindshackle_AtCapacity>This Necron has reached its Mindshackle host limit ({0}).</GW40K_Mindshackle_AtCapacity>
 
   <GW40K_GaussWeapon_Disabled>Not enough Gauss Energy; Recharge your capacitor.</GW40K_GaussWeapon_Disabled>
+
+  <!-- ─── Nech Panel (Window_NechPanel) ─────────────────────────────────── -->
+  <GW40K_NechPanel_MechsBack>Mechs</GW40K_NechPanel_MechsBack>
+  <GW40K_NechPanel_MechsBackTip>Close the Necrons panel and return to the vanilla Mechs view.</GW40K_NechPanel_MechsBackTip>
+  <GW40K_NechPanel_AllNecrons>All Necrons</GW40K_NechPanel_AllNecrons>
+  <GW40K_NechPanel_Unbound>Unbound</GW40K_NechPanel_Unbound>
+  <!-- Column headers -->
+  <GW40K_NechPanel_ColName>Name</GW40K_NechPanel_ColName>
+  <GW40K_NechPanel_ColCoreFlux>Core Flux</GW40K_NechPanel_ColCoreFlux>
+  <GW40K_NechPanel_ColNecrodermis>Necrodermis</GW40K_NechPanel_ColNecrodermis>
+  <GW40K_NechPanel_ColDraft>Draft</GW40K_NechPanel_ColDraft>
+  <GW40K_NechPanel_ColCommander>Commander</GW40K_NechPanel_ColCommander>
+  <GW40K_NechPanel_ColGroup>Group</GW40K_NechPanel_ColGroup>
+  <GW40K_NechPanel_ColMode>Mode</GW40K_NechPanel_ColMode>
+  <GW40K_NechPanel_ColArea>Area</GW40K_NechPanel_ColArea>
+  <!-- Row tooltips -->
+  <GW40K_NechPanel_CoreFluxTip>Core Flux — internal power reserve. At zero the construct enters forced Eternal Slumber.</GW40K_NechPanel_CoreFluxTip>
+  <GW40K_NechPanel_NecrodermisTip>Necrodermis — living-metal integrity. Depleted necrodermis causes body degradation and prevents reconstruction.</GW40K_NechPanel_NecrodermisTip>
+  <GW40K_NechPanel_DraftedTip>Drafted — this Nech is under direct player control.</GW40K_NechPanel_DraftedTip>
+  <GW40K_NechPanel_UndraftedTip>Undrafted — this Nech will follow autonomous orders from its mode.</GW40K_NechPanel_UndraftedTip>
+
+  <!-- ─── Command Group gizmos ──────────────────────────────────────────── -->
+  <GW40K_CmdGroup_Assign>Assign to group</GW40K_CmdGroup_Assign>
+  <GW40K_CmdGroup_AssignDesc>Assign this construct to a Necron Command Group. Members of the same group can be selected together and issued shared orders via the panel.</GW40K_CmdGroup_AssignDesc>
+  <GW40K_CmdGroup_Remove>Remove from group</GW40K_CmdGroup_Remove>
+
+  <!-- Hive Fabricator -->
+  <GW40K_HiveFabricator_Title>Hive Fabricator</GW40K_HiveFabricator_Title>
+  <GW40K_HiveFabricator_Units>necrodermis</GW40K_HiveFabricator_Units>
+  <GW40K_HiveFabricator_Idle>Idle</GW40K_HiveFabricator_Idle>
+  <GW40K_HiveFabricator_Replicating>Replicating ({0})</GW40K_HiveFabricator_Replicating>
+  <GW40K_HiveFabricator_Fill>Fill</GW40K_HiveFabricator_Fill>
+  <GW40K_HiveFabricator_Fill_Tip>Allow siphoning necrodermis from controlled Scarabs.</GW40K_HiveFabricator_Fill_Tip>
+  <GW40K_HiveFabricator_Replicate>Replicate</GW40K_HiveFabricator_Replicate>
+  <GW40K_HiveFabricator_Replicate_Tip>Consume {0} necrodermis and 1 bandwidth to produce a new Canoptek Scarab over 30 seconds.</GW40K_HiveFabricator_Replicate_Tip>
+  <GW40K_Replicate_AlreadyReplicating>Already replicating.</GW40K_Replicate_AlreadyReplicating>
+  <GW40K_Replicate_NoNecrodermis>Insufficient necrodermis in Hive Fabricator (requires {0}).</GW40K_Replicate_NoNecrodermis>
+  <GW40K_Replicate_NoBandwidth>No available bandwidth on Command Node.</GW40K_Replicate_NoBandwidth>
+  <GW40K_Replicate_Success>{0} has produced a new Canoptek Scarab.</GW40K_Replicate_Success>
+  <GW40K_Produce_InsufficientNecrodermis>{0} does not have sufficient necrodermis to enter Produce mode (requires 90).</GW40K_Produce_InsufficientNecrodermis>
+  <GW40K_Produce_NotFullLife>Scarab must be at full strength to enter Produce mode.</GW40K_Produce_NotFullLife>
+  <GW40K_ScarabReplicated_Success>{0} has replicated successfully.</GW40K_ScarabReplicated_Success>
   <GW40K_AlertLowGaussEnergy_Single>{PAWN} — Low Gauss Energy</GW40K_AlertLowGaussEnergy_Single>
   <GW40K_AlertLowGaussEnergy_Multi>{COUNT} colonists — Low Gauss Energy</GW40K_AlertLowGaussEnergy_Multi>
   <GW40K_AlertLowGaussEnergyDesc>These colonists have a Gauss weapon equipped but insufficient energy to fire it. Recharge their capacitors.\n\nAffected:\n{CULPRITS}</GW40K_AlertLowGaussEnergyDesc>
@@ -99,6 +226,10 @@
   <GW40K_AlertNechDamaged_Single>{PAWN} — Damaged</GW40K_AlertNechDamaged_Single>
   <GW40K_AlertNechDamaged_Multi>{COUNT} Nechs — Damaged</GW40K_AlertNechDamaged_Multi>
   <GW40K_AlertNechDamagedDesc>These Nechs have sustained damage and require necrodermis maintenance.\n\nAffected:\n{CULPRITS}</GW40K_AlertNechDamagedDesc>
+
+  <GW40K_AlertHostileLockoutImminent_Single>{PAWN}: Hostile lockout imminent</GW40K_AlertHostileLockoutImminent_Single>
+  <GW40K_AlertHostileLockoutImminent_Multi>{COUNT} Nechs — Hostile lockout imminent</GW40K_AlertHostileLockoutImminent_Multi>
+  <GW40K_AlertHostileLockoutImminentDesc>The command lattice has exceeded safe autonomous runtime — total hostile lockout is moments away unless a Nechinator link is restored.\n\nAffected:\n{CULPRITS}</GW40K_AlertHostileLockoutImminentDesc>
 
   <!-- Dysphorakh acquisition (letter sent after The Sorrow completes its full cycle) -->
   <GW40K_TheSorrow_DysphorakhTitle>New Trait: Dysphorakh</GW40K_TheSorrow_DysphorakhTitle>
@@ -116,5 +247,20 @@
   <GW40K_RechargeGauss>Recharge gauss capacitor</GW40K_RechargeGauss>
   <GW40K_RechargeGaussNoEnergy>Cannot recharge gauss capacitor (battery empty)</GW40K_RechargeGaussNoEnergy>
   <GW40K_RechargeGaussNoPath>Cannot recharge gauss capacitor (no path)</GW40K_RechargeGaussNoPath>
+  <GW40K_GaussCapacitorAbove50Pct>Gauss capacitor above 50%</GW40K_GaussCapacitorAbove50Pct>
+  <GW40K_NecronWithdrawContent>{FACTION} are content with the damage done and have decided to pursue other targets.</GW40K_NecronWithdrawContent>
+  <GW40K_NecronWithdrawSteal>{FACTION} have decided to steal what they can and leave.</GW40K_NecronWithdrawSteal>
+  <GW40K_NecronWithdrawKidnap>{FACTION} have decided to kidnap who they can and leave.</GW40K_NecronWithdrawKidnap>
+  <!-- Kidnap outcome letters -->
+  <GW40K_KidnapOutcomeDeath_Label>No trace found</GW40K_KidnapOutcomeDeath_Label>
+  <GW40K_KidnapOutcomeDeath_Desc>{PAWN_nameDef} has not returned, and no trace of them has been found. The Necrons left nothing behind — no body, no sign of struggle, no indication of where they were taken or what was done. We fear the worst, but we may never know.</GW40K_KidnapOutcomeDeath_Desc>
+  <GW40K_KidnapOutcomeEscaped_Label>Escaped</GW40K_KidnapOutcomeEscaped_Label>
+  <GW40K_KidnapOutcomeEscaped_Desc>{PAWN_nameDef} has escaped and returned. They will not speak of what they saw.</GW40K_KidnapOutcomeEscaped_Desc>
+  <GW40K_KidnapOutcomeEnslaved_Label>Returned, changed</GW40K_KidnapOutcomeEnslaved_Label>
+  <GW40K_KidnapOutcomeEnslaved_Desc>{PAWN_nameDef} has been returned. The living metal has begun its colonization — faint traces run beneath the skin. The process was interrupted early. They are still themselves, for now.</GW40K_KidnapOutcomeEnslaved_Desc>
+  <GW40K_KidnapOutcomeVekh_Label>Vekh conversion</GW40K_KidnapOutcomeVekh_Label>
+  <GW40K_KidnapOutcomeVekh_Desc>{PAWN_nameDef} has been returned significantly changed. Necrodermis runs deep through their tissue. Their will is suppressed. They are becoming a Vekh Thrall.</GW40K_KidnapOutcomeVekh_Desc>
+  <GW40K_KidnapOutcomeBiotransferred_Label>Biotransferred</GW40K_KidnapOutcomeBiotransferred_Label>
+  <GW40K_KidnapOutcomeBiotransferred_Desc>{PAWN_nameDef} has been fully biotransferred. The biological entity is gone. Whatever they are now is no longer human.</GW40K_KidnapOutcomeBiotransferred_Desc>
 
 </LanguageData>

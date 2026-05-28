@@ -15,8 +15,8 @@ namespace GW40K_Necrons;
 public static class HarmonyPatch_NecrodermisShieldRegen
 {
     internal const string ShieldDefName    = "GM40k_Necron_Shield";
-    internal const float  HpPerDay         = 120f;   // HP restored per in-game day (full repair from 0 ≈ 10 days)
-    internal const float  ExtraDrainFactor = 0.20f;  // fraction of base fallPerDay added as extra drain
+    internal const float  HpPerDay         = 240f;   // HP restored per in-game day (full repair from 0 ≈ 5 days)
+    internal const float  ExtraDrainFactor = 0.40f;  // fraction of base fallPerDay added as extra drain
     private  const int    IntervalTicks    = 150;     // matches Need.NeedInterval cadence
 
     // Fractional HP accumulation keyed by shield thingIDNumber.
@@ -26,6 +26,8 @@ public static class HarmonyPatch_NecrodermisShieldRegen
     public static void Postfix(Need __instance)
     {
         Pawn pawn = Traverse.Create(__instance).Field<Pawn>("pawn").Value;
+        if (NecrodermisIngestionUtility.IsCanoptek(pawn))
+            return;
         if (pawn?.apparel == null) return;
 
         Apparel shield = FindShield(pawn);

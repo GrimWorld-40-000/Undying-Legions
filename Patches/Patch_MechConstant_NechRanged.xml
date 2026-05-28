@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- Colony mechanoids otherwise get almost nothing in MechConstant; Spyders need integrated ranged autos. -->
+
+  <!-- RimWorld PatchOperationInsert only supports Append | Prepend. Prepend xpath node = insert as sibling BEFORE that node (first li under subNodes). -->
+  <Operation Class="PatchOperationInsert" MayRequire="Ludeon.RimWorld.Biotech">
+    <xpath>Defs/ThinkTreeDef[defName="MechConstant"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPlayerMech"][count(invert)=0]/subNodes/li[1]</xpath>
+    <order>Prepend</order>
+    <value>
+      <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
+        <subNodes>
+          <li Class="GW40K_Necrons.JobGiver_NechIntegratedRangedAutoAttack"/>
+        </subNodes>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

@@ -1,7 +1,7 @@
 <Defs>
     <!-- Not spawned: matches GW40K_NecronFlayedOne (conversion-only); Nech spawns use UD_Necron_FlayedOne. -->
     <PawnKindDef ParentName="GW40K_NecronWarriorPawnKind">
-        <defName>GW40K_NecronFlayedOnePawnKind_Colonist</defName>
+        <defName>GW_UL_NecronFlayedOnePawnKind_Colonist</defName>
         <label>necron flayed one</label>
         <lifeStages>
           <li>

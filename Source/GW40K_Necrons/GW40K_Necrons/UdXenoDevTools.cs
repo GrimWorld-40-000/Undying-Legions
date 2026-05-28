@@ -11,9 +11,10 @@ public static class UdXenoDevTools
     public const string DevMenuCategory = "Xeno";
 
     /// <summary>
-    /// Pawn kinds that should appear under the Xeno dev spawn category (not Humanlike / Mechanoids).
-    /// Matches any pawn whose race carries <see cref="NecronMechExtension"/> — covers all Nechs and
-    /// Nech-controlled humanlike pawns (e.g. the converted Flayed One) without requiring a name prefix.
+    /// Pawn kinds that appear under the Xeno dev spawn category instead of Humanlike / Mechanoids.
+    /// Covers humanlike Necron races (<see cref="NonOrganicPawn"/> or <see cref="NecronMechExtension"/>)
+    /// and Canoptek constructs (marked with <see cref="NecronGeneUtil.RaceExtension_Canoptek"/>).
+    /// Excludes unused/test entries.
     /// </summary>
     public static bool IsUdXenoPawnKind(PawnKindDef pk)
     {
@@ -21,9 +22,14 @@ public static class UdXenoDevTools
             return false;
         if (pk.defName.IndexOf("Unused", StringComparison.OrdinalIgnoreCase) >= 0)
             return false;
-        if (pk.race.GetModExtension<NecronMechExtension>() == null)
-            return false;
-        // Exclude non-humanlike races (Nechanoids etc.) — they can't be generated as standard pawns.
-        return pk.race.race?.intelligence == Intelligence.Humanlike;
+
+        // Canoptek constructs (Scarab swarms etc.) — not humanlike, but belong in Xeno.
+        if (pk.race.GetModExtension<NecronGeneUtil.RaceExtension_Canoptek>() != null)
+            return true;
+
+        // Humanlike Necron races.
+        bool isNecronRace = pk.race.GetModExtension<NecronMechExtension>() != null
+                         || pk.race.GetModExtension<NonOrganicPawn>() != null;
+        return isNecronRace && pk.race.race?.intelligence == Intelligence.Humanlike;
     }
 }

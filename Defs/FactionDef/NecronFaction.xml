@@ -1,23 +1,128 @@
-<Defs>
+﻿<Defs>
 	
+  <!-- Genderless pawn name generator for all Necron humanlike kinds.
+       Used instead of HumanStandard (which assumes Male/Female) to avoid null bank entry on Gender.None. -->
+  <RulePackDef>
+    <defName>NamerNecronPawn</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_firstName->Imotekh|Szarekh|Trazyn|Anrakyr|Nemesor|Zahndrekh|Obyron|Orikan|Illuminor|Vargard|Nephrekh|Novokh|Nihilakh|Sautekh|Mephrit|Maynarkh|Oruscar|Sekemtar|Kardenath|Ahmontekh|Vethek|Zarathul|Khepran|Ossuar|Nefereth|Dethek|Pyreth|Khazarak|Sobekh|Setekh</li>
+        <li>r_nickName->the Phaeronless|of the Tomb|the Undying|the Ancient|the Silent|of the Legions|the Restless|the Eternal|of Iron|the Hollow</li>
+        <li>r_lastName->Nakhon|Therek|Zakhar|Mesekh|Khephri|Userkaf|Amonkar|Neferek|Ramekh|Sethnor|Hatekh|Thothek|Sobek|Khonsu|Montu|Aten|Nefert|Pakhet|Merithor|Nebt</li>
+        <li>r_name->[r_firstName] [r_lastName]</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
 	<RulePackDef>
     <defName>NamerFactionNecron</defName>
     <rulePack>
       <rulesStrings>
-        <li>r_name->[necron_prefix] [necron_suffix] [mechhive]</li>
+        <li>r_name->[necron_prefix] [necron_suffix] [dynasty]</li>
 
-		<li>necron_prefix->necron</li>
-		
-		<li>necron_suffix->alpha</li>
-		
-        <li>mechhive->mechhive</li>
+		<li>necron_prefix->arisen</li>
+		<li>necron_prefix->scorched</li>
+		<li>necron_prefix->ashen</li>
+		<li>necron_prefix->severed</li>
+		<li>necron_prefix->crowned</li>
+		<li>necron_prefix->undying</li>
 
+		<li>necron_suffix->necron</li>
+		<li>necron_suffix->phalanx</li>
+		<li>necron_suffix->Nihilakh</li>
+		<li>necron_suffix->Khemrekh</li>
+		<li>necron_suffix->Drazak</li>
+		<li>necron_suffix->Sekhmet</li>
+		
+        <li>dynasty->dynasty</li>
+		<li>dynasty->conclave</li>
+		<li>dynasty->exiles</li>
+		<li>dynasty->keepers</li>
+		<li>dynasty->legion</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
 	
+  <RulePackDef>
+    <defName>NamerSettlementNecron</defName>
+    <rulePack>
+      <rulesStrings>
+        <!-- Patterns -->
+        <li>r_name->The [adj] [place]</li>
+        <li>r_name->The [place] of [name]</li>
+        <li>r_name->[place] of [name]</li>
+        <li>r_name->Tomb of [name]</li>
+        <li>r_name->The [adj] [place] of [name]</li>
+        <li>r_name->[name] [place]</li>
+
+        <!-- Descriptors -->
+        <li>adj->Silent</li>
+		<li>adj->Cursed</li>
+        <li>adj->Eternal</li>
+        <li>adj->Undying</li>
+        <li>adj->Ancient</li>
+        <li>adj->Hollow</li>
+        <li>adj->Iron</li>
+        <li>adj->Deathless</li>
+        <li>adj->Sunken</li>
+        <li>adj->Forgotten</li>
+        <li>adj->Starless</li>
+        <li>adj->Ossified</li>
+        <li>adj->Buried</li>
+
+        <!-- Place types -->
+        <li>place->Necropolis</li>
+        <li>place->Vault</li>
+        <li>place->Sepulchre</li>
+        <li>place->Crypts</li>
+        <li>place->Ossuary</li>
+        <li>place->Tomb Complex</li>
+		<li>place->Stasis Vault</li>
+        <li>place->Charnel Fields</li>
+        <li>place->Stasis Fields</li>
+        <li>place->Legion Hold</li>
+		<li>place->Fringe-tomb</li>
+		<li>place->Pylon</li>
+		<li>place->Citadel</li>
+		<li>place->Core-tomb</li>
+		<li>place->Crown-tomb</li>
+        <!-- <li>place->Tombworld</li> -->
+
+        <!-- Dynasty and personal names (drawn from pawn last-name pool) -->
+        <li>name->Nakhon</li>
+        <li>name->Therek</li>
+        <li>name->Mesekh</li>
+        <li>name->Khephri</li>
+        <li>name->Userkaf</li>
+        <li>name->Amonkar</li>
+        <li>name->Neferek</li>
+        <li>name->Ramekh</li>
+        <li>name->Sethnor</li>
+        <li>name->Hatekh</li>
+        <li>name->Thothek</li>
+        <li>name->Sautekh</li>
+        <li>name->Nihilakh</li>
+        <li>name->Nephrekh</li>
+        <li>name->Novokh</li>
+        <li>name->Mephrit</li>
+        <li>name->Oruscar</li>
+        <li>name->Maynarkh</li>
+        <li>name->Kardenath</li>
+        <li>name->Ahmontekh</li>
+        <li>name->Pyreth</li>
+        <li>name->Khazarak</li>
+        <li>name->Zakhar</li>
+		<li>name->Nihilakh</li>
+        <li>name->Khemrekh</li>
+        <li>name->Drazak</li>
+		<li>name->Sekhmet</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
 	<FactionDef ParentName="FactionBase">
 		<defName>UD_NecronFaction</defName>
+		<categoryTag>NecronUndyingLegions</categoryTag>
 		<label>necron hive</label>
 		<description>a nexus of awakened Necrons. This hive's automated systems have been activated and this hive is now self-sufficient.</description>
 		<pawnSingular>necron</pawnSingular>
@@ -25,7 +130,8 @@
 		<settlementGenerationWeight>1</settlementGenerationWeight>
 		<requiredCountAtGameStart>1</requiredCountAtGameStart>
 		<factionNameMaker>NamerFactionNecron</factionNameMaker>
-		<factionIconPath>Genes/weird4</factionIconPath>
+		<settlementNameMaker>NamerSettlementNecron</settlementNameMaker>
+		<factionIconPath>UI/Icons/UndyingLegionsModIconW</factionIconPath>
 		<canStageAttacks>true</canStageAttacks>
 		<fixedLeaderKinds>
 			<li>UD_NecronOverlord</li>
@@ -51,7 +157,17 @@
 			</li>
 		</backstoryFilters>
 		<colorSpectrum>
-			<li>(0.78, 0.79, 0.71)</li>
+			<li>(0.5, 0.35, 0.2)</li>
+			<li>(0.65, 0.5, 0.3)</li>
+			<li>(0.45, 0.4, 0.35)</li>
+			<li>(0.85, 0.8, 0.15)</li>
+			<li>(0.2, 0.85, 0.3)</li>
+			<li>(0.1, 0.85, 0.75)</li>
+			<li>(0.55, 0.6, 0.65)</li>
+			<li>(0.42, 0.42, 0.48)</li>
+			<li>(0.25, 0.4, 0.9)</li>
+			<li>(0.6, 0.2, 0.9)</li>
+			<li>(0.5, 0.35, 0.2)</li>
 		</colorSpectrum>
 		<raidCommonalityFromPointsCurve>
 			<points>
@@ -62,7 +178,7 @@
 				<li>(4000, 2.6)</li>
 			</points>
 		</raidCommonalityFromPointsCurve>
-		<raidLootMaker>MechanoidRaidLootMaker</raidLootMaker>
+		<raidLootMaker>NecronRaidLootMaker</raidLootMaker>
 		<raidLootValueFromPointsCurve>
 			<points>
 				<li>(35,     8)</li>
@@ -85,72 +201,102 @@
 		</permanentEnemyToEveryoneExcept>
 		<maxPawnCostPerTotalPointsCurve>
 			<points>
-				<li>(400,200)</li>
-				<li>(900,300)</li>
-				<li>(100000,10000)</li>
+				<li>(400,  150)</li>  <!-- small raids: Warriors, Immortals, Thralls -->
+				<li>(800,  250)</li>  <!-- medium: Deathmarks, Lychguards, Crypteks, Spyder -->
+				<li>(1200, 310)</li>  <!-- large: Overlord -->
+				<li>(100000, 10000)</li>
 			</points>
 		</maxPawnCostPerTotalPointsCurve>
 		<pawnGroupMakers>
 			<li>
-				<!-- All types-->
+				<!-- Standard line — Warriors, Immortals, all Vekh Thrall variants as fodder -->
 				<kindDef>Combat</kindDef>
 				<commonality>100</commonality>
 				<options>
-					<!-- <Mech_Scyther>10</Mech_Scyther> -->
-					<UD_Necron_Warrior>10</UD_Necron_Warrior>
-					<!-- <Mech_Lancer>10</Mech_Lancer> -->
-					<!-- <Mech_CentipedeBlaster>10</Mech_CentipedeBlaster> -->
-					<!-- <Mech_Scorcher MayRequire="Ludeon.RimWorld.Biotech">5</Mech_Scorcher> -->
-					<!-- <Mech_Militor MayRequire="Ludeon.RimWorld.Biotech">20</Mech_Militor> -->
-					<!-- <Mech_Centurion MayRequire="Ludeon.RimWorld.Biotech">2</Mech_Centurion> -->
-					<!-- <Mech_Warqueen MayRequire="Ludeon.RimWorld.Biotech">1</Mech_Warqueen> -->
-					<!-- <Mech_Apocriton MayRequire="Ludeon.RimWorld.Biotech">1</Mech_Apocriton> -->
+					<GW_UL_NecronWarriorPawnKind_Colonist>10</GW_UL_NecronWarriorPawnKind_Colonist>
+					<GW_UL_NecronImmortalPawnKind_Colonist>5</GW_UL_NecronImmortalPawnKind_Colonist>
+					<GW_UL_VekhThrall>3</GW_UL_VekhThrall>
+					<GW_UL_VekhThrall_Breacher>3</GW_UL_VekhThrall_Breacher>
+					<GW_UL_VekhThrall_Sapper>3</GW_UL_VekhThrall_Sapper>
 				</options>
 			</li>
 			<li>
-				<!-- Ranged only -->
+				<!-- Mixed ranged — Warriors + Immortals + Deathmarks + Vekh Thralls -->
 				<kindDef>Combat</kindDef>
 				<commonality>80</commonality>
 				<options>
-					<UD_Necron_Warrior>10</UD_Necron_Warrior>
-					<UD_NecronCryptek>10</UD_NecronCryptek>
-					<UD_NecronDeathmark>10</UD_NecronDeathmark>
-					<UD_Necron_Immortal>10</UD_Necron_Immortal>
+					<GW_UL_NecronWarriorPawnKind_Colonist>10</GW_UL_NecronWarriorPawnKind_Colonist>
+					<GW_UL_NecronImmortalPawnKind_Colonist>5</GW_UL_NecronImmortalPawnKind_Colonist>
+					<UD_NecronDeathmark>3</UD_NecronDeathmark>
+					<GW_UL_VekhThrall>3</GW_UL_VekhThrall>
+					<GW_UL_VekhThrall_Breacher>3</GW_UL_VekhThrall_Breacher>
+					<GW_UL_VekhThrall_Sapper>3</GW_UL_VekhThrall_Sapper>
 				</options>
 			</li>
 			<li>
+				<!-- Cryptek escort (no Spyder) — Cryptek + Cryptothralls + Warriors + Vekh Thralls -->
 				<kindDef>Combat</kindDef>
-				<commonality>80</commonality>
+				<commonality>65</commonality>
 				<options>
-					<UD_Necron_Warrior>10</UD_Necron_Warrior>
+					<GW_UL_CryptothrallPawnKind_Colonist>8</GW_UL_CryptothrallPawnKind_Colonist>
 					<UD_NecronCryptek>1</UD_NecronCryptek>
+					<GW_UL_NecronWarriorPawnKind_Colonist>5</GW_UL_NecronWarriorPawnKind_Colonist>
+					<GW_UL_VekhThrall>3</GW_UL_VekhThrall>
+					<GW_UL_VekhThrall_Breacher>3</GW_UL_VekhThrall_Breacher>
+					<GW_UL_VekhThrall_Sapper>3</GW_UL_VekhThrall_Sapper>
+				</options>
+			</li>
+			<li>
+				<!-- Cryptek escort (with Spyder) — Cryptek + Cryptothralls + Spyder + Scarabs + Vekh Thralls -->
+				<kindDef>Combat</kindDef>
+				<commonality>45</commonality>
+				<options>
+					<GW_UL_CryptothrallPawnKind_Colonist>8</GW_UL_CryptothrallPawnKind_Colonist>
+					<UD_NecronCryptek>1</UD_NecronCryptek>
+					<UD_Necron_CanoptekSpyder>1</UD_Necron_CanoptekSpyder>
+					<GW_UL_ScarabSwarm>5</GW_UL_ScarabSwarm>
+					<GW_UL_VekhThrall>3</GW_UL_VekhThrall>
+					<GW_UL_VekhThrall_Breacher>3</GW_UL_VekhThrall_Breacher>
+					<GW_UL_VekhThrall_Sapper>3</GW_UL_VekhThrall_Sapper>
+				</options>
+			</li>
+			<li>
+				<!-- Overlord retinue — Overlord with Lychguard bodyguard -->
+				<kindDef>Combat</kindDef>
+				<commonality>60</commonality>
+				<options>
+					<UD_NecronOverlord>1</UD_NecronOverlord>
+					<UD_NecronLychguard>5</UD_NecronLychguard>
+					<UD_NecronLychguard_2>5</UD_NecronLychguard_2>
+				</options>
+			</li>
+			<li>
+				<!-- Breach team — Spyder + Lychguard breachers + Cryptek + Deathmark overwatch -->
+				<kindDef>Combat</kindDef>
+				<commonality>5</commonality>
+				<options>
+					<UD_Necron_CanoptekSpyder>2</UD_Necron_CanoptekSpyder>
+					<UD_NecronLychguard>3</UD_NecronLychguard>
+					<UD_NecronLychguard_2>3</UD_NecronLychguard_2>
+					<GW_UL_CryptothrallPawnKind_Colonist>5</GW_UL_CryptothrallPawnKind_Colonist>
+					<UD_NecronCryptek>2</UD_NecronCryptek>
+					<UD_NecronDeathmark>3</UD_NecronDeathmark>
+				</options>
+			</li>
+			<!-- Necron siege group — always includes a Spyder + Warriors + Scarabs.
+			     Only selected by RaidStrategyWorker_NecronSiege (kindDef=Combat). -->
+			<li>
+				<kindDef>Combat</kindDef>
+				<commonality>0</commonality>
+				<options>
+					<UD_Necron_CanoptekSpyder>1</UD_Necron_CanoptekSpyder>
+					<GW_UL_ScarabSwarm>10</GW_UL_ScarabSwarm>
+					<GW_UL_NecronWarriorPawnKind_Colonist>5</GW_UL_NecronWarriorPawnKind_Colonist>
+					<GW_UL_NecronImmortalPawnKind_Colonist>3</GW_UL_NecronImmortalPawnKind_Colonist>
 				</options>
 			</li>
 
-			<li>
-				<!-- Melee only-->
-				<kindDef>Combat</kindDef>
-				<commonality>70</commonality>
-				<options>
-					<UD_Necron_Cryptothrall>10</UD_Necron_Cryptothrall>
-					<UD_NecronOverlord>10</UD_NecronOverlord>
-					<UD_NecronLychguard>5</UD_NecronLychguard>
-					<UD_NecronLychguard_2>5</UD_NecronLychguard_2>
-				</options>
-			</li>
-			<li>
-				<!-- breach raids -->
-				<kindDef>Combat</kindDef>
-				<commonality>1</commonality>
-				<options>
-					<UD_Necron_Warrior>10</UD_Necron_Warrior>
-					<UD_NecronLychguard>5</UD_NecronLychguard>
-					<UD_NecronLychguard_2>5</UD_NecronLychguard_2>
-					<UD_NecronCryptek>10</UD_NecronCryptek>
-					<UD_NecronDeathmark>10</UD_NecronDeathmark>
-					<UD_Necron_FlayedOne>5</UD_Necron_FlayedOne>
-				</options>
-			</li>
+			<!-- Flayed One swarm removed — Flayed Ones are exclusive to UD_FlayedOneFaction. -->
 		</pawnGroupMakers>
 		<settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
 		<allowedArrivalTemperatureRange>-100~200</allowedArrivalTemperatureRange>
@@ -159,5 +305,175 @@
 		<dropPodActive>ActiveDropPodMechanoid</dropPodActive>
 		<dropPodIncoming>DropPodIncomingMechanoidRapid</dropPodIncoming>
 	</FactionDef>
+
+  <!-- ===== Flayed One Faction ===== -->
+
+  <RulePackDef>
+    <defName>NamerFactionFlayedOne</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name->The [epithet] of [name]</li>
+        <li>r_name->[epithet] [name]</li>
+        <li>r_name->The [name] [pack]</li>
+
+        <li>epithet->Flaying</li>
+        <li>epithet->Hunting</li>
+        <li>epithet->Charnel</li>
+        <li>epithet->Flayed</li>
+        <li>epithet->Hungering</li>
+        <li>epithet->Stalking</li>
+        <li>epithet->Cursed</li>
+
+        <li>pack->Pack</li>
+        <li>pack->Horde</li>
+        <li>pack->Swarm</li>
+        <li>pack->Stalkers</li>
+
+        <li>name->Nakhon</li>
+        <li>name->Therek</li>
+        <li>name->Mesekh</li>
+        <li>name->Ramekh</li>
+        <li>name->Sethnor</li>
+        <li>name->Pyreth</li>
+        <li>name->Khazarak</li>
+        <li>name->Ossuar</li>
+        <li>name->Drazak</li>
+        <li>name->Sekhmet</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>NamerSettlementFlayedOne</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name->The [adj] [place]</li>
+        <li>r_name->[place] of [name]</li>
+        <li>r_name->The [place] of [name]</li>
+
+        <li>adj->Charnel</li>
+        <li>adj->Flesh-strewn</li>
+        <li>adj->Haunted</li>
+        <li>adj->Cursed</li>
+        <li>adj->Blighted</li>
+        <li>adj->Hollow</li>
+
+        <li>place->Hunting Grounds</li>
+        <li>place->Flesh Warren</li>
+        <li>place->Charnel Fields</li>
+        <li>place->Stalking Grounds</li>
+        <li>place->Den</li>
+        <li>place->Ossuary</li>
+
+        <li>name->Nakhon</li>
+        <li>name->Therek</li>
+        <li>name->Ramekh</li>
+        <li>name->Sethnor</li>
+        <li>name->Pyreth</li>
+        <li>name->Ossuar</li>
+        <li>name->Drazak</li>
+        <li>name->Sekhmet</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <FactionDef ParentName="FactionBase">
+    <defName>UD_FlayedOneFaction</defName>
+    <categoryTag>NecronFlayedOnes</categoryTag>
+    <label>flayed stalkers</label>
+    <description>A pack of Necrons lost to the Flayer Virus — an ancient, infectious curse that drives them to stalk the living and drape themselves in trophies of flesh. They belong to no dynasty. Their minds have shattered entirely, leaving only hunger and the hollow echo of what they once were.</description>
+    <pawnSingular>flayed one</pawnSingular>
+    <pawnsPlural>flayed ones</pawnsPlural>
+    <settlementGenerationWeight>1</settlementGenerationWeight>
+    <requiredCountAtGameStart>1</requiredCountAtGameStart>
+    <factionNameMaker>NamerFactionFlayedOne</factionNameMaker>
+    <settlementNameMaker>NamerSettlementFlayedOne</settlementNameMaker>
+    <factionIconPath>UI/Icons/UndyingLegionsModIconW</factionIconPath>
+    <humanlikeFaction>true</humanlikeFaction>
+    <classicIdeo>true</classicIdeo>
+    <fixedLeaderKinds>
+      <li>UD_NecronOverlord</li>
+    </fixedLeaderKinds>
+    <leaderForceGenerateNewPawn>true</leaderForceGenerateNewPawn>
+    <permanentEnemy>true</permanentEnemy>
+    <hostileToFactionlessHumanlikes>true</hostileToFactionlessHumanlikes>
+    <autoFlee>false</autoFlee>
+    <canUseAvoidGrid>false</canUseAvoidGrid>
+    <techLevel>Ultra</techLevel>
+    <earliestRaidDays>30</earliestRaidDays>
+    <backstoryFilters>
+      <li>
+        <categories>
+          <li>NecronFlayedOne</li>
+        </categories>
+      </li>
+    </backstoryFilters>
+    <colorSpectrum>
+      <li>(0.45, 0.1, 0.1)</li>
+      <li>(0.65, 0.25, 0.15)</li>
+      <li>(0.85, 0.6, 0.5)</li>
+      <li>(0.9, 0.72, 0.6)</li>
+      <li>(0.75, 0.55, 0.4)</li>
+      <li>(0.6, 0.38, 0.28)</li>
+      <li>(0.55, 0.4, 0.3)</li>
+      <li>(0.35, 0.1, 0.1)</li>
+      <li>(0.45, 0.1, 0.1)</li>
+    </colorSpectrum>
+    <raidCommonalityFromPointsCurve>
+      <points>
+        <li>(300,  0)</li>
+        <li>(600,  1)</li>
+        <li>(1400, 1.5)</li>
+        <li>(3000, 2.0)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <raidLootMaker>NecronRaidLootMaker</raidLootMaker>
+    <raidLootValueFromPointsCurve>
+      <points>
+        <li>(35,    8)</li>
+        <li>(100,  40)</li>
+        <li>(1000,150)</li>
+        <li>(3000,250)</li>
+      </points>
+    </raidLootValueFromPointsCurve>
+    <maxPawnCostPerTotalPointsCurve>
+      <points>
+        <li>(300,  150)</li>
+        <li>(1000, 300)</li>
+        <li>(100000, 10000)</li>
+      </points>
+    </maxPawnCostPerTotalPointsCurve>
+    <pawnGroupMakers>
+      <li>
+        <kindDef>Combat</kindDef>
+        <commonality>100</commonality>
+        <options>
+          <GW_UL_NecronFlayedOnePawnKind_Colonist>10</GW_UL_NecronFlayedOnePawnKind_Colonist>
+          <GW_UL_VekhThrall>3</GW_UL_VekhThrall>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+    <allowedArrivalTemperatureRange>-100~200</allowedArrivalTemperatureRange>
+    <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
+    <dropPodActive>ActiveDropPodMechanoid</dropPodActive>
+    <dropPodIncoming>DropPodIncomingMechanoidRapid</dropPodIncoming>
+  </FactionDef>
+
+  <ThingSetMakerDef>
+    <defName>NecronRaidLootMaker</defName>
+    <root Class="ThingSetMaker_MarketValue">
+      <fixedParams>
+        <filter>
+          <thingDefs>
+            <li>GW40k_Necron_Necrodermis</li>
+            <li>GW40K_GaussCore</li>
+            <li>Plasteel</li>
+            <li>ComponentSpacer</li>
+          </thingDefs>
+        </filter>
+      </fixedParams>
+    </root>
+  </ThingSetMakerDef>
 
 </Defs>

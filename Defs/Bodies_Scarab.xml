@@ -7,34 +7,37 @@
   <BodyPartGroupDef><defName>GW40K_ScarabC</defName></BodyPartGroupDef>
   <BodyPartGroupDef><defName>GW40K_ScarabD</defName></BodyPartGroupDef>
 
-  <!-- Invisible root chassis — 0 coverage so it can never be hit directly -->
+  <!-- Root chassis: structural shell only. Damage/injuries on it are blocked in code; HP is a buffer if anything slips through.
+       Label must be non-empty — combat/death logs use it ("in the …", "Missing a … caused …"). Use carapace (not "swarm") so health UI stays clean. -->
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_ScarabSwarm_Chassis</defName>
-    <label>swarm chassis</label>
-    <hitPoints>10</hitPoints>
+    <label>carapace</label>
+    <hitPoints>99999</hitPoints>
     <solid>true</solid>
     <bleedRate>0</bleedRate>
+    <tags>
+      <li>ConsciousnessSource</li>
+      <li>SightSource</li>
+    </tags>
   </BodyPartDef>
 
-  <!-- One body part per scarab — each is vital so losing it degrades the swarm -->
+  <!-- One body part per scarab — swarm dies when all four are destroyed (see ShouldBeDead postfix). -->
   <BodyPartDef ParentName="GW40K_Necron_BodyPartBase">
     <defName>GW40K_ScarabUnit</defName>
-    <label>scarab</label>
-    <hitPoints>750</hitPoints>
+    <label>carapace</label>
+    <hitPoints>14</hitPoints>
     <bleedRate>0</bleedRate>
     <frostbiteVulnerability>0.01</frostbiteVulnerability>
     <tags>
       <li>MovingLimbCore</li>
       <li>ManipulationLimbCore</li>
-      <li>ConsciousnessSource</li>
-      <li>SightSource</li>
     </tags>
   </BodyPartDef>
 
   <!-- Body: chassis root (0 coverage) with 4 scarab units (0.25 each = 1.0 total) -->
   <BodyDef>
     <defName>GW40K_ScarabSwarmBody</defName>
-    <label>scarab swarm</label>
+    <label>canoptek scarab</label>
     <corePart>
       <def>GW40K_ScarabSwarm_Chassis</def>
       <height>Middle</height>

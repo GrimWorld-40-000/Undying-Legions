@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
 
 namespace GW40K_Necrons;
@@ -13,6 +14,16 @@ public class Alert_LowGaussEnergy : Alert
 {
     private readonly List<GlobalTargetInfo> targets = new();
     private readonly List<string> targetLabels = new();
+
+    // Pulsing deep-green background — readable white text on a dark teal pulse.
+    protected override Color BGColor
+    {
+        get
+        {
+            float num = Pulser.PulseBrightness(0.5f, Pulser.PulseBrightness(0.5f, 0.6f));
+            return new Color(0f, num * 0.72f, num * 0.35f);
+        }
+    }
 
     public Alert_LowGaussEnergy()
     {

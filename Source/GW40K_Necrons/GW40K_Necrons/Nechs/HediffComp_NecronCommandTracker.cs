@@ -100,6 +100,14 @@ public class HediffComp_NecronCommandTracker : HediffComp
         controlledMechs.Add(mech);
         mech.TryGetComp<CompNechUncontrolledTimer>()?.NotifyCommandLinkGained();
 
+        // Auto-assign to Command Group 1 if not already in any group (humanlike Necrons + Spyders).
+        if (mech.RaceProps?.Humanlike == true || ControlNodeUtility.IsSpyder(mech))
+        {
+            NecronCommandGroupManager grpMgr = NecronCommandGroupManager.Instance;
+            if (grpMgr != null && grpMgr.GetGroupOf(mech) < 0)
+                grpMgr.AssignToGroup(mech, 0);
+        }
+
         // Command Protocol binding (distinct from Control Node swarm link): tint scarab swarm head from commander preference.
         if (mech.def?.defName == "GW40K_ScarabSwarm")
             mech.TryGetComp<CompScarabPaint>()?.QueueCommanderFavoriteTint(CommanderPawn);

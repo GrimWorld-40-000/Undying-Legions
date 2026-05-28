@@ -13,6 +13,10 @@
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronFlayedOne</race>
         <combatPower>150</combatPower>
+        <!-- Flayed Ones are melee-only — shooting accuracy traits are meaningless and misleading. -->
+        <disallowedTraits>
+          <li>ShootingAccuracy</li>
+        </disallowedTraits>
         <!-- Always spawn with Flayer Claws; no other melee weapons should be generated. -->
         <weaponMoney>9999~9999</weaponMoney>
         <weaponTags>

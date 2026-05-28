@@ -13,6 +13,12 @@
         <defaultFactionType>PlayerColony</defaultFactionType>
         <race>GW40K_NecronWarrior</race>
         <combatPower>100</combatPower>
+        <!-- Brawler forces a ranged-weapon ban — inappropriate for ranged infantry.
+             Nerves (nervous/iron-willed family) makes no sense on emotionless constructs. -->
+        <disallowedTraits>
+          <li>Brawler</li>
+          <li>Nerves</li>
+        </disallowedTraits>
         <!-- Always spawn with Gauss Flayer/Reaper -->
         <weaponMoney>3375~4000</weaponMoney>
         <weaponTags>

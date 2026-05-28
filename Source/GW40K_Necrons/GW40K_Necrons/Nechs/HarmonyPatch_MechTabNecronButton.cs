@@ -17,7 +17,7 @@ static class HarmonyPatch_MechTabNecronButton
     private const float BtnH = 31f;
 
     [HarmonyPostfix]
-    static void Postfix(Rect rect)
+    static void Postfix(MainTabWindow_Mechs __instance, Rect rect)
     {
         Rect btnRect = new Rect(rect.width / 2f - BtnW / 2f, 2f, BtnW, BtnH);
         bool enabled = DebugSettings.godMode || HasPlayerNecrons();
@@ -36,7 +36,12 @@ static class HarmonyPatch_MechTabNecronButton
             Widgets.DrawHighlight(btnRect);
 
         if (Widgets.ButtonText(btnRect, "Necrons"))
+        {
             Window_NechPanel.Toggle();
+            // Close the mechs tab itself when the Necrons panel opens.
+            if (Window_NechPanel.IsOpen)
+                __instance.Close(doCloseSound: false);
+        }
     }
 
     private static bool HasPlayerNecrons()

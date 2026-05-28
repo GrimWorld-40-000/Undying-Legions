@@ -103,6 +103,10 @@
     </lifeStages>
     -->
 	<factionLeader>true</factionLeader>
+    <!-- Overlords are command/melee lords — shooting precision traits don't fit the archetype. -->
+    <disallowedTraits Inherit="False">
+      <li>ShootingAccuracy</li>
+    </disallowedTraits>
     <combatPower>300</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
@@ -160,6 +164,11 @@
       </li>
     </lifeStages>
     -->
+    <!-- Lychguards are elite melee wardens — shooting precision and nerve traits don't fit the archetype. -->
+    <disallowedTraits Inherit="False">
+      <li>ShootingAccuracy</li>
+      <li>Nerves</li>
+    </disallowedTraits>
     <combatPower>225</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
@@ -208,6 +217,11 @@
       </li>
     </lifeStages>
     -->
+    <!-- Lychguards are elite melee wardens — shooting precision and nerve traits don't fit the archetype. -->
+    <disallowedTraits Inherit="False">
+      <li>ShootingAccuracy</li>
+      <li>Nerves</li>
+    </disallowedTraits>
     <combatPower>200</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>

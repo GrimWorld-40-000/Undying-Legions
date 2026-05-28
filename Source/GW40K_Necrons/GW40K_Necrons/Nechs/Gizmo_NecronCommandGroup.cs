@@ -34,11 +34,12 @@ public class Gizmo_NecronCommandGroup : Gizmo
 
     // ── Layout constants ─────────────────────────────────────────────────────
 
-    private const float GizmoSize   = 75f;
-    private const float TitleH      = 14f;
-    private const float FooterH     = 12f;
-    private const float PortraitSz  = 20f;
-    private const float PortraitGap = 2f;
+    private const float GizmoSize   = 160f;
+    private const float StdGizmoH   = 75f;   // standard RimWorld gizmo height for alignment
+    private const float TitleH      = 22f;
+    private const float FooterH     = 16f;
+    private const float PortraitSz  = 30f;
+    private const float PortraitGap = 3f;
 
     // ── Instance data ────────────────────────────────────────────────────────
 
@@ -60,14 +61,15 @@ public class Gizmo_NecronCommandGroup : Gizmo
     public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
     {
         float w    = GetWidth(maxWidth);
-        Rect rect  = new Rect(topLeft.x, topLeft.y, w, GizmoSize);
+        // Shift upward so the bottom aligns with the standard gizmo baseline (grows upward).
+        Rect rect  = new Rect(topLeft.x, topLeft.y - (GizmoSize - StdGizmoH), w, GizmoSize);
 
         Widgets.DrawWindowBackground(rect);
         if (Mouse.IsOver(rect))
             Widgets.DrawHighlight(rect);
 
         // ── Title ────────────────────────────────────────────────────────────
-        Text.Font   = GameFont.Tiny;
+        Text.Font   = GameFont.Small;
         Text.Anchor = TextAnchor.UpperCenter;
         Widgets.Label(new Rect(rect.x + 2f, rect.y + 3f, rect.width - 4f, TitleH),
                       _mgr.GetLabel(_groupIndex));
@@ -236,13 +238,27 @@ internal static class NecronCommandGroupGizmos
         if (mgr == null || pawn?.Faction != Faction.OfPlayer)
             yield break;
 
+        // Scarabs: compact A/B group button, only when controlled via Control Node.
+        if (!pawn.RaceProps.Humanlike && !ControlNodeUtility.IsSpyder(pawn))
+        {
+            if (HediffComp_ControlNodeTracker.GetControllerOfConstruct(pawn) != null)
+                yield return new Gizmo_ScarabGroup(pawn, mgr);
+            yield break;
+        }
+
+        // Humanlike Necrons / Spyders: only show when under active command.
+        bool isCommanded = HediffComp_NecronCommandTracker.GetCommanderOf(pawn) != null
+                        || HediffComp_ControlNodeTracker.GetControllerOfConstruct(pawn) != null;
+        if (!isCommanded)
+            yield break;
+
         int groupIdx = mgr.GetGroupOf(pawn);
 
         // Group membership box (only when assigned)
         if (groupIdx >= 0)
             yield return new Gizmo_NecronCommandGroup(pawn, groupIdx, mgr);
 
-        // Assign button (always)
+        // Assign button (only when commanded)
         yield return MakeAssignGizmo(pawn, mgr);
     }
 
@@ -250,7 +266,7 @@ internal static class NecronCommandGroupGizmos
     {
         int current = mgr.GetGroupOf(pawn);
         string label = current >= 0
-            ? $"{mgr.GetLabel(current)} ✓"
+            ? $"Group {current + 1}"
             : "GW40K_CmdGroup_Assign".Translate().ToString();
 
         return new Command_Action
@@ -277,6 +293,86 @@ internal static class NecronCommandGroupGizmos
 
         if (current >= 0)
             opts.Add(new FloatMenuOption("GW40K_CmdGroup_Remove".Translate(), () => mgr.RemoveFromAllGroups(pawn)));
+
+        Find.WindowStack.Add(new FloatMenu(opts));
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Compact scarab group gizmo — shows A / B / – in a small square
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/// <summary>
+/// Small 55×55 gizmo shown on selected scarabs. Displays their current A/B group
+/// as a large letter. Clicking opens a float menu to reassign or remove.
+/// </summary>
+public class Gizmo_ScarabGroup : Gizmo
+{
+    private const float Size = 55f;
+
+    private readonly Pawn _scarab;
+    private readonly NecronCommandGroupManager _mgr;
+
+    public Gizmo_ScarabGroup(Pawn scarab, NecronCommandGroupManager mgr)
+    {
+        _scarab = scarab;
+        _mgr    = mgr;
+    }
+
+    public override float GetWidth(float maxWidth) => Mathf.Min(Size, maxWidth);
+
+    public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
+    {
+        Rect rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), Size);
+
+        Widgets.DrawWindowBackground(rect);
+        if (Mouse.IsOver(rect))
+            Widgets.DrawHighlight(rect);
+
+        int    groupIdx = _mgr.GetScarabGroupOf(_scarab);
+        string label    = groupIdx >= 0 ? _mgr.GetScarabLabel(groupIdx) : "–";
+
+        Text.Font   = GameFont.Medium;
+        Text.Anchor = TextAnchor.MiddleCenter;
+        Widgets.Label(rect, label);
+        Text.Anchor = TextAnchor.UpperLeft;
+        Text.Font   = GameFont.Small;
+
+        TooltipHandler.TipRegion(rect,
+            () => $"Scarab group: {label}\nClick to reassign.",
+            rect.GetHashCode() ^ _scarab.thingIDNumber);
+
+        GizmoState state = GizmoState.Clear;
+        if (Mouse.IsOver(rect))
+        {
+            state = GizmoState.Mouseover;
+            if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
+            {
+                ShowMenu();
+                SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
+                Event.current.Use();
+                state = GizmoState.Interacted;
+            }
+        }
+        return new GizmoResult(state);
+    }
+
+    private void ShowMenu()
+    {
+        int current = _mgr.GetScarabGroupOf(_scarab);
+        List<FloatMenuOption> opts = new List<FloatMenuOption>();
+
+        for (int i = 0; i < NecronCommandGroupManager.ScarabGroupCount; i++)
+        {
+            int    captured = i;
+            string lbl      = _mgr.GetScarabLabel(i);
+            if (current == i) lbl += " ✓";
+            opts.Add(new FloatMenuOption(lbl, () => _mgr.AssignToScarabGroup(_scarab, captured)));
+        }
+
+        if (current >= 0)
+            opts.Add(new FloatMenuOption("GW40K_CmdGroup_Remove".Translate(),
+                () => _mgr.RemoveFromAllScarabGroups(_scarab)));
 
         Find.WindowStack.Add(new FloatMenu(opts));
     }

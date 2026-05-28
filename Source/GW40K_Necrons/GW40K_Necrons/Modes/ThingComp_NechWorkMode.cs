@@ -51,7 +51,8 @@ public class ThingComp_NechWorkMode : ThingComp
     private Pawn Pawn => (Pawn)parent;
 
     /// <summary>True when a Nechinator commander has this pawn in its <c>controlledMechs</c> list.</summary>
-    public bool HasCommander => HediffComp_NecronCommandTracker.GetCommanderOf(Pawn) != null;
+    public bool HasCommander => HediffComp_NecronCommandTracker.GetCommanderOf(Pawn) != null
+                             || HediffComp_ControlNodeTracker.GetControllerOfConstruct(Pawn) != null;
 
     // ── Lifecycle ───────────────────────────────────────────────────────────
 

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===== Necrodermis growth (organic pawn stages) ===== -->
+
+  <ThoughtDef>
+    <defName>Necron_NecrodermisGrowthThought</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>Necron_NecrodermisGrowth</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>microscopic prickling</label>
+        <description>Something is under my skin. It's a faint, metallic itch that I just can't scratch away.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+      <li>
+        <label>nanobot gnawing</label>
+        <description>The itching has turned into a constant, cold grinding. I can feel them disassembling me one cell at a time.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+      <li>
+        <label>metallic assimilation</label>
+        <description>The silver is spreading. My nerves are screaming as my organic parts are replaced by cold, unfeeling machines.</description>
+        <baseMoodEffect>-18</baseMoodEffect>
+      </li>
+      <li>
+        <label>industrial body horror</label>
+        <description>I'm being hollowed out. There's more machine than man left, and the swarm won't stop until the last of my flesh is gone.</description>
+        <baseMoodEffect>-28</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Transhumanist pawns embrace the necrodermis seed rather than fear it -->
+  <ThoughtDef>
+    <defName>Necron_NecrodermisGrowthThought_Transhumanist</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>Necron_NecrodermisGrowth</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <requiredTraits>
+      <li>
+        <def>Transhumanist</def>
+      </li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>metallic awakening</label>
+        <description>A faint prickling beneath the skin. The nanomachines are beginning their work. This is just the start of something greater.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+      <li>
+        <label>living metal integration</label>
+        <description>I can feel the metal threading through my veins, replacing the fragile with the eternal. Each pulse is progress.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+      <li>
+        <label>biomechanical transcendence</label>
+        <description>My flesh yields to living metal. The machines are making me stronger, harder. I am becoming something beyond mere biology.</description>
+        <baseMoodEffect>18</baseMoodEffect>
+      </li>
+      <li>
+        <label>ascension to metal</label>
+        <description>Nearly complete. Soon there will be nothing left of this weak flesh. I will be perfect. Eternal. Machine.</description>
+        <baseMoodEffect>28</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Injected necrodermis seed — short memory debuff -->
+  <ThoughtDef>
+    <defName>GW_UD_IngestedRawNecrodermis</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackedEffectMultiplier>0.85</stackedEffectMultiplier>
+    <stages>
+      <li>
+        <label>living metal injection</label>
+        <description>They pumped that sludge into me on purpose. It felt wrong—cold, crawling—and now I can't stop thinking about what might be growing in there.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===== Core flux ===== -->
+
+  <ThoughtDef>
+    <defName>GW40K_Thought_CoreFluxCollapse</defName>
+    <workerClass>GW40K_Necrons.ThoughtWorker_CoreFluxCollapse</workerClass>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>dynastic system failure</label>
+        <description>Power matrices gutter. Subroutines fall silent one by one. Only the cold logic of the tomb remains—and it demands stasis.</description>
+        <baseMoodEffect>-12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===== Hatred / social opinion ===== -->
+
+  <!-- Always-active mood debuff for GW_UD_Hatred gene carriers -->
+  <ThoughtDef>
+    <defName>GW40K_HateLiving</defName>
+    <workerClass>ThoughtWorker_AlwaysActive</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <requiredGenes>
+      <li>GW_UD_Hatred</li>
+    </requiredGenes>
+    <stages>
+      <li>
+        <label>hatred for the living</label>
+        <description>I am surrounded by biological vermin. Their existence is an affront to the eternal order.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Social opinion — hate flesh (gene-based) -->
+  <ThoughtDef>
+    <defName>GW_UD_HateFlesh</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>NecronGeneUtil.ThoughtWorker_NecronHateFlesh</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>notmatch</label>
+        <baseOpinionOffset>-90</baseOpinionOffset>
+      </li>
+      <li>
+        <label>match</label>
+        <baseOpinionOffset>90</baseOpinionOffset>
+      </li>
+    </stages>
+    <modExtensions>
+      <li Class="NecronGeneUtil.ThoughtExtension_NecronHateFlesh">
+        <requireGeneDef>GW_UD_ResurrectionProtocol</requireGeneDef>
+        <stateMatch>1</stateMatch>
+        <stateNotMatch>0</stateNotMatch>
+      </li>
+    </modExtensions>
+  </ThoughtDef>
+
+  <!-- Social opinion — organic vs Necron -->
+  <ThoughtDef>
+    <defName>GW40K_Thought_HateLiving</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>GW40K_Necrons.ThoughtWorker_HateLiving</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>living organism</label>
+        <baseOpinionOffset>-99</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===== Flayer Virus witness ===== -->
+
+  <ThoughtDef>
+    <defName>GW40K_WitnessedFlayerVirus</defName>
+    <thoughtClass>Thought_Memory</thoughtClass>
+    <stackLimit>4</stackLimit>
+    <stackedEffectMultiplier>0.75</stackedEffectMultiplier>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>witnessed Flayer Virus</label>
+        <description>I watched a Necron succumb to the Flayer Virus. The transformation was gruesome...</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>GW40K_WitnessedFlayerVirus_Psychopath</defName>
+    <thoughtClass>Thought_Memory</thoughtClass>
+    <stackLimit>4</stackLimit>
+    <stackedEffectMultiplier>0.75</stackedEffectMultiplier>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>witnessed Flayer Virus</label>
+        <description>I watched a Necron succumb to the Flayer Virus. The transformation was incredible!</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

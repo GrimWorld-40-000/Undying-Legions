@@ -105,7 +105,7 @@
       <bloodSmearDef>GW40K_Filth_NecronBloodSmear</bloodSmearDef>
       <nameCategory>HumanStandard</nameCategory>
       <body>GW40K_NecronBody</body>
-      <renderTree>Humanlike</renderTree>
+      <renderTree>GW40K_NecronHumanlike</renderTree>
       <baseBodySize>1</baseBodySize>
       <baseHealthScale>1.5</baseHealthScale>
       <foodType>OmnivoreHuman</foodType>
@@ -121,6 +121,7 @@
       <hediffGiverSets>
         <li>GW40K_Necron_HediffGiverSet</li>
       </hediffGiverSets>
+      <canBecomeShambler>false</canBecomeShambler>
     </race>
   </ThingDef>
 

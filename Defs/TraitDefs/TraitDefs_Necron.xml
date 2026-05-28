@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===== Internal / base traits (commonality 0, never randomly generated) ===== -->
+
+  <TraitDef>
+    <defName>GW40K_Trait_NecronBloodthirst</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>bloodthirst</label>
+        <description>{PAWN_nameDef} iary weapon.</description>
+        <randomMentalState>Berserk</randomMentalState>
+        <randomMentalStateMtbDaysMoodCurve>
+          <points>
+            <li>(0, 20)</li>
+          </points>
+        </randomMentalStateMtbDaysMoodCurve>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW30K_Trait_BaseNecron</defName>
+    <commonality>0</commonality>
+    <disabledWorkTags>Social, Intellectual, Artistic, Crafting</disabledWorkTags>
+    <degreeDatas>
+      <li>
+        <label>base necron</label>
+        <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW30K_Trait_OverlordNecron</defName>
+    <commonality>0</commonality>
+    <disabledWorkTags>ManualDumb</disabledWorkTags>
+    <degreeDatas>
+      <li>
+        <label>overlord necron</label>
+        <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- ===== Backstory-granted traits (forced by specific BackstoryDefs) ===== -->
+
+  <TraitDef>
+    <defName>GW_UD_Trait_PristineFrame</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>pristine frame</label>
+        <description>{PAWN_nameDef}'s motor-actuators emerged from stasis in flawless condition, granting exceptional speed.</description>
+        <statFactors>
+          <MoveSpeed>1.25</MoveSpeed>
+        </statFactors>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_DegradedFrame</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>degraded frame</label>
+        <description>{PAWN_nameDef}'s frame is plagued by bit rot and mechanical decay, impairing targeting systems and weapon warmup.</description>
+        <statFactors>
+          <ShootingAccuracyPawn>0.90</ShootingAccuracyPawn>
+          <AimingDelayFactor>1.05</AimingDelayFactor>
+        </statFactors>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- Destroyer -->
+  <TraitDef>
+    <defName>GW30K_Trait_NecronDestroyerRanged</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>ranged fighter</label>
+        <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+        <statOffsets>
+          <MeleeCooldownFactor>-20</MeleeCooldownFactor>
+          <MeleeDamageFactor>-20</MeleeDamageFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW30K_Trait_NecronDestroyerMelee</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>melee fighter</label>
+        <description>{PAWN_nameDef} {PAWN_pronoun} da.</description>
+        <statOffsets>
+          <ShootingAccuracyPawn>-20</ShootingAccuracyPawn>
+          <AimingDelayFactor>-20</AimingDelayFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- Deathmark -->
+  <TraitDef>
+    <defName>GW_UD_Trait_Marksman</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>apprentice marksman</label>
+        <description>{PAWN_nameDef} trained for years in the stillness and patience of an elite hunter's guild. Aim settles faster than any untrained soldier.</description>
+        <statOffsets>
+          <AimingDelayFactor>-0.1</AimingDelayFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_ShadowHyperspace</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>shadow of the hyperspace</label>
+        <description>{PAWN_nameDef} has spent centuries flickering through the pocket dimension between moments. Phase transit is as natural as breathing once was — the orbs cycle faster, the re-entry is colder.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- Lychguard -->
+  <TraitDef>
+    <defName>GW_UD_Trait_EternalBulwark</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>eternal bulwark</label>
+        <description>{PAWN_nameDef} served as a lieutenant and diplomat in a Necron dynasty. Retained personality and tactical wit after Biotransference.</description>
+        <statOffsets>
+          <SocialImpact>0.15</SocialImpact>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Protector</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>lychguard protector</label>
+        <description>{PAWN_nameDef} is a veteran of a thousand wars, hardened by millennia of close-quarters battle in heavy necrodermis plate.</description>
+        <statOffsets>
+          <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+          <MeleeDodgeChance>-0.15</MeleeDodgeChance>
+          <MoveSpeed>-0.05</MoveSpeed>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- Cryptek -->
+  <TraitDef>
+    <defName>GW_UD_Trait_Astromancer</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>apprentice astromancer</label>
+        <description>{PAWN_nameDef} was a prodigy of the mathematical colleges in the flesh-times, absorbing knowledge at an accelerated rate.</description>
+        <statOffsets>
+          <GlobalLearningFactor>0.05</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_TechMaster</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>master of technomancy</label>
+        <description>{PAWN_nameDef} has spent eons refining hyper-technology. Their etheric sensitivity and precision of manipulation far exceed the Necrontyr norm.</description>
+        <statOffsets>
+          <WorkSpeedGlobal>0.15</WorkSpeedGlobal>
+          <PsychicSensitivity>1.5</PsychicSensitivity>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- Overlord -->
+  <TraitDef>
+    <defName>GW_UD_Trait_Scion</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>scion of the dynasty</label>
+        <description>{PAWN_nameDef} was raised from birth to rule. Courtly education sharpened their influence and capacity to absorb new knowledge.</description>
+        <statOffsets>
+          <SocialImpact>0.15</SocialImpact>
+          <GlobalLearningFactor>0.05</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Wardis</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>courtly wardispatcher</label>
+        <description>{PAWN_nameDef} mastered the Seven Honorable Cuts in the flesh-times. Combat instincts, pain tolerance, and movement were honed to a noble ideal.</description>
+        <statOffsets>
+          <MeleeHitChance>0.05</MeleeHitChance>
+          <MeleeDodgeChance>0.05</MeleeDodgeChance>
+          <MoveSpeed>0.05</MoveSpeed>
+          <PainShockThreshold>0.1</PainShockThreshold>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Tyrant</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>awakened tyrant</label>
+        <description>{PAWN_nameDef} commanded legions across a thousand worlds. Their presence commands submission — but awareness of how far the galaxy has fallen weighs on the engrams.</description>
+        <statOffsets>
+          <SocialImpact>0.15</SocialImpact>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <ThoughtDef>
+    <defName>GW_UD_Thought_Tyrant</defName>
+    <workerClass>ThoughtWorker_AlwaysActive</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <requiredTraits>
+      <li>GW_UD_Trait_Tyrant</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>awakened tyrant</label>
+        <description>The weight of a thousand conquered worlds presses on my memory. This realm is a ruin of what the galaxy should be.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <TraitDef>
+    <defName>GW_UD_Trait_Codekeeper</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>keeper of the code</label>
+        <description>{PAWN_nameDef} emerged from the Long Sleep with honor calcified into law. Melee discipline and commanding presence are exceptional; ranged precision is sacrificed for it.</description>
+        <statOffsets>
+          <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
+          <MeleeDodgeChance>0.05</MeleeDodgeChance>
+          <SocialImpact>0.2</SocialImpact>
+          <ShootingAccuracyPawn>-0.1</ShootingAccuracyPawn>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- ===== Vekh Thrall ===== -->
+
+  <!-- Permanent 50% pain reduction from Necrontyr surgical procedures. -->
+  <HediffDef>
+    <defName>GW_UL_VekhThrallPainblocker</defName>
+    <hediffClass>Hediff</hediffClass>
+    <label>severed pain pathways</label>
+    <description>Necrontyr surgical procedures have severed most pain receptors, leaving the subject able to function through injuries that would incapacitate a normal person. Pain is felt at roughly half intensity.</description>
+    <defaultLabelColor>(0.55, 0.75, 0.55, 1)</defaultLabelColor>
+    <isBad>false</isBad>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <painFactor>0.5</painFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <TraitDef>
+    <defName>GW_UL_VekhThrall</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>Vekh Thrall</label>
+        <description>The systematic surgical dimming of intellect and pain by Necrontyr chirurgeons. This being's higher cognition has been stripped to the minimum required for obedience. [PAWN_pronoun] labors without complaint, without rest, without thought — and learns new skills only at a fraction of the normal rate.</description>
+        <statFactors>
+          <WorkSpeedGlobal>0.85</WorkSpeedGlobal>
+          <GlobalLearningFactor>0.25</GlobalLearningFactor>
+          <ResearchSpeed>0</ResearchSpeed>
+        </statFactors>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+</Defs>

@@ -42,7 +42,7 @@ public class HediffComp_DysphorakhEpisodes : HediffComp
         base.CompPostTick(ref severityAdjustment);
 
         Pawn pawn = parent.pawn;
-        if (pawn == null || pawn.Dead || !pawn.Spawned)
+        if (pawn == null || pawn.Dead || pawn.Downed || !pawn.Spawned)
             return;
 
         if (cooldownTicks > 0)

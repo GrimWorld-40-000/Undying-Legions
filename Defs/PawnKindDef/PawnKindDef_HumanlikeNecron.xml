@@ -21,11 +21,8 @@
 	<initialResistanceRange>9999~9999</initialResistanceRange>
     <initialWillRange>9999~9999</initialWillRange>
     <apparelTags Inherit="False" />
-	<apparelRequired>
-		<!-- <li>GW40K_HiddenHeadApparel</li> -->
-	</apparelRequired>
     <apparelMoney>0</apparelMoney>
-    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
     <weaponMoney>9999~9999</weaponMoney>
     <techHediffsChance>0.05</techHediffsChance>
     <techHediffsMoney>500~500</techHediffsMoney>
@@ -49,6 +46,7 @@
   <PawnKindDef ParentName="UD_NecronRangedBase">
     <defName>UD_NecronCryptek</defName>
     <label>Cryptek</label>
+    <race>GW40K_NecronCryptek</race>
     <!-- Reference only — Biotech fur uses GW_UD_NecronCryptek renderNodeProperties/drawSize.
     <lifeStages>
       <li>
@@ -58,13 +56,23 @@
       </li>
     </lifeStages>
     -->
-    <combatPower>100</combatPower>
-    <canBeSapper>true</canBeSapper>
-    <isGoodBreacher>true</isGoodBreacher>
+    <combatPower>200</combatPower>
+    <canBeSapper>false</canBeSapper>
+    <isGoodBreacher>false</isGoodBreacher>
     <weaponMoney>3800~5000</weaponMoney>
     <weaponTags>
-      <li>GW_Necron_Melee_Staff</li>
+      <li>GW_Necron_Ranged_Staff</li>
     </weaponTags>
+    <invNutrition>0</invNutrition>
+    <inventoryOptions Inherit="False">
+      <skipChance>0</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>GW40K_GaussCore</thingDef>
+          <countRange>2</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <backstoryFiltersOverride>
       <li>
         <categories>
@@ -82,6 +90,9 @@
   <PawnKindDef ParentName="UD_NecronRangedBase">
     <defName>UD_NecronOverlord</defName>
     <label>Overlord</label>
+    <!-- Use the Overlord-specific race ThingDef (GW40K_BaseNecronRace lineage) so the
+         work-mode comp inherited from GW40K_NecronWarrior does not appear on this pawn. -->
+    <race>GW40K_NecronOverlord</race>
     <!-- Reference only — Biotech fur uses GW_UD_NecronOverlord renderNodeProperties/drawSize.
     <lifeStages>
       <li>
@@ -92,13 +103,23 @@
     </lifeStages>
     -->
 	<factionLeader>true</factionLeader>
-    <combatPower>100</combatPower>
+    <combatPower>300</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
     <weaponMoney>3900~5000</weaponMoney>
     <weaponTags>
       <li>GW_Necron_Melee_Warscythe</li>
     </weaponTags>
+    <invNutrition>0</invNutrition>
+    <inventoryOptions Inherit="False">
+      <skipChance>0</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>GW40K_GaussCore</thingDef>
+          <countRange>2</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <backstoryFiltersOverride>
       <li>
         <categories>
@@ -128,6 +149,8 @@
   <PawnKindDef ParentName="UD_NecronLowbornBase">
     <defName>UD_NecronLychguard</defName>
     <label>Lychguard</label>
+    <!-- Use the Lychguard-specific race ThingDef so the Warrior work-mode comp is absent. -->
+    <race>GW40K_NecronLychGuard</race>
     <!-- Reference only — both Lychguard pawn kinds share GW_UD_NecronLychguard fur drawSize (1.2).
     <lifeStages>
       <li>
@@ -137,13 +160,23 @@
       </li>
     </lifeStages>
     -->
-    <combatPower>100</combatPower>
+    <combatPower>225</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
     <weaponMoney>3200~4500</weaponMoney>
     <weaponTags>
       <li>GW_Necron_Melee_HyperSword</li>
     </weaponTags>
+    <invNutrition>0</invNutrition>
+    <inventoryOptions Inherit="False">
+      <skipChance>0</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>GW40K_GaussCore</thingDef>
+          <countRange>2</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <apparelRequired>
       <li>GM40k_Necron_Shield</li>
     </apparelRequired>
@@ -165,6 +198,7 @@
   <PawnKindDef ParentName="UD_NecronLowbornBase">
     <defName>UD_NecronLychguard_2</defName>
     <label>Lychguard</label>
+    <race>GW40K_NecronLychGuard</race>
     <!-- Reference only — same body gene/xenotype as UD_NecronLychguard; drawSize 1.2 on GW_UD_NecronLychguard.
     <lifeStages>
       <li>
@@ -174,13 +208,23 @@
       </li>
     </lifeStages>
     -->
-    <combatPower>100</combatPower>
+    <combatPower>200</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
     <weaponMoney>3900~5000</weaponMoney>
     <weaponTags>
       <li>GW_Necron_Melee_Warscythe</li>
     </weaponTags>
+    <invNutrition>0</invNutrition>
+    <inventoryOptions Inherit="False">
+      <skipChance>0</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>GW40K_GaussCore</thingDef>
+          <countRange>2</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <backstoryFiltersOverride Inherit="False">
       <li>
         <categories>
@@ -209,12 +253,22 @@
       </li>
     </lifeStages>
     -->
-    <combatPower>100</combatPower>
+    <combatPower>200</combatPower>
     <canBeSapper>true</canBeSapper>
     <isGoodBreacher>true</isGoodBreacher>
     <weaponTags>
       <li>GW_Necron_Ranged_Disintegrator</li>
     </weaponTags>
+    <invNutrition>0</invNutrition>
+    <inventoryOptions Inherit="False">
+      <skipChance>0</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <thingDef>GW40K_GaussCore</thingDef>
+          <countRange>2</countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <backstoryFiltersOverride Inherit="False">
       <li>
         <categories>
@@ -229,5 +283,88 @@
 		</xenotypeChances>
 	</xenotypeSet>
   </PawnKindDef>
+
+  <!-- Vekh Thrall: a human slave conscripted as a necrodermis growth host.
+       Regular human baseline, pre-industrial weapon, tribal clothes.
+       Backstory and trait are forced; Painblocker + necrodermis hediffs granted by Harmony patch. -->
+
+  <!-- Shared base: all three Vekh Thrall variants inherit from this. -->
+  <PawnKindDef ParentName="TribalBase" Name="GW_UL_VekhThrallBase" Abstract="True">
+    <combatPower>35</combatPower>
+    <isFighter>true</isFighter>
+    <backstoryCryptosleepCommonality>0</backstoryCryptosleepCommonality>
+    <minGenerationAge>20</minGenerationAge>
+    <maxGenerationAge>45</maxGenerationAge>
+    <itemQuality>Poor</itemQuality>
+    <!-- gearHealthRange required — TribalBase has none; without it gear generates at 0 health
+         and is culled before spawn, leaving the pawn naked. -->
+    <gearHealthRange>0.3~1.2</gearHealthRange>
+    <apparelTags Inherit="False">
+      <li>Neolithic</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <!-- Keep below ~70 so ShieldPrimitive (moves speed -20%) is never generated. -->
+    <apparelMoney>30~65</apparelMoney>
+    <!-- weaponMoney floor raised to 40 — cheapest NeolithicMeleeBasic weapon costs 38.7sv. -->
+    <weaponMoney>40~70</weaponMoney>
+    <backstoryFiltersOverride>
+      <!-- Weight 1: Vekh Thrall backstory (~20% — fully processed thrall) -->
+      <li>
+        <categories>
+          <li>VekhThrall</li>
+        </categories>
+        <commonality>1</commonality>
+      </li>
+      <!-- Weight 4: vanilla human backstory (~80% — recently captured, identity still intact) -->
+      <li>
+        <categories>
+          <li>Outlander</li>
+          <li>Offworld</li>
+        </categories>
+        <commonality>4</commonality>
+      </li>
+    </backstoryFiltersOverride>
+    <xenotypeSet Inherit="False" MayRequire="Ludeon.RimWorld.Biotech">
+      <xenotypeChances>
+        <Baseliner>1</Baseliner>
+      </xenotypeChances>
+    </xenotypeSet>
+    <initialResistanceRange>6~12</initialResistanceRange>
+    <initialWillRange>0~0</initialWillRange>
+    <invNutrition>1</invNutrition>
+    <techHediffsChance>0</techHediffsChance>
+  </PawnKindDef>
+
+  <!-- Standard — basic pre-industrial melee (clubs, knives, short swords). -->
+  <PawnKindDef ParentName="GW_UL_VekhThrallBase">
+    <defName>GW_UL_VekhThrall</defName>
+    <label>vekh thrall</label>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+  </PawnKindDef>
+
+  <!-- Breacher — breach axe; ordered to destroy walls during breach raids and Stage 3 siege. -->
+  <PawnKindDef ParentName="GW_UL_VekhThrallBase">
+    <defName>GW_UL_VekhThrall_Breacher</defName>
+    <label>vekh thrall (breacher)</label>
+    <isGoodBreacher>true</isGoodBreacher>
+    <weaponTags>
+      <li>NeolithicMeleeDestructive</li>
+    </weaponTags>
+    <weaponMoney>90~150</weaponMoney>
+  </PawnKindDef>
+
+  <!-- Sapper — breach axe; tunnels and mines around defences during sapper raids and Stage 3 siege. -->
+  <PawnKindDef ParentName="GW_UL_VekhThrallBase">
+    <defName>GW_UL_VekhThrall_Sapper</defName>
+    <label>vekh thrall (sapper)</label>
+    <canBeSapper>true</canBeSapper>
+    <weaponTags>
+      <li>NeolithicMeleeDestructive</li>
+    </weaponTags>
+    <weaponMoney>90~150</weaponMoney>
+  </PawnKindDef>
+
 
 </Defs>

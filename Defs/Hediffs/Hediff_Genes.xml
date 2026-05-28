@@ -3,13 +3,15 @@
 	<!-- Granted by GW_UD_SocialMatrix gene on high-tier Necrons (Lychguard, Deathmark, Cryptek, Overlord).
 	     Indicates the pawn's vox-routing engrams are fully intact for nuanced communication.
 	     No functional capacity change — all Necrons have basic talking via the Jaw (TalkingSource).
-	     The hediff is visible in the health tab as confirmation of the implant. -->
+	     The hediff is visible in the health tab as confirmation of the implant.
+	     Color matches ImplantHediffBase (0.6, 0.6, 1.0) — same palette as command protocol / control node. -->
 	<HediffDef>
 		<defName>GW40K_Necron_SocialMatrix_Active</defName>
 		<label>social matrix</label>
 		<description>An advanced engram-routing matrix wired into the jaw assembly, enabling nuanced communication and diplomatic processing beyond basic vox-emission.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.6, 0.6, 1.0)</defaultLabelColor>
 		<isBad>false</isBad>
 		<stages>
 			<li />
@@ -22,6 +24,8 @@
 		<description>The spark did not transfer. The frame works, but nothing behind it cares — no surge of drive, no moment of clarity, no inspiration ever rises from the lattice. It simply continues.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
+		<!-- Same blue-purple palette as The Sorrow — both are echoes of what was lost at Biotransference. -->
+		<defaultLabelColor>(0.55, 0.65, 1.0)</defaultLabelColor>
 		<stages>
 			<li>
 				<blocksInspirations>true</blocksInspirations>
@@ -37,6 +41,7 @@
 		<description>The reinforced necrodermis chassis seals damage faster than lighter frames — wounds clot into slag and re-knit without core flux loss. The living metal dedicates significant molecular resources to structural repair, recovering injuries at an accelerated rate.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.8)</defaultLabelColor>
 		<stages>
 			<li>
 				<regeneration>10</regeneration>
@@ -54,6 +59,7 @@
 		<description>The Deathmark frame channels molecular repair into its skeletal lattice — injuries reseal without core flux loss and the living metal re-knits at an elevated rate. The chassis is optimized for sustained independent operation deep in hostile territory.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.8)</defaultLabelColor>
 		<stages>
 			<li>
 				<regeneration>10</regeneration>
@@ -71,6 +77,7 @@
 		<description>The Cryptek's crystalline frame is threaded with self-correcting molecular architecture — damage is re-knit at an elevated rate and the lattice does not bleed. The same arcane substrate that grants etheric capacity also sustains the body's structural cohesion.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.8)</defaultLabelColor>
 		<stages>
 			<li>
 				<regeneration>10</regeneration>
@@ -88,6 +95,7 @@
 		<description>The Overlord's Sempiternal Weave is not merely decorative — the layered necrodermis baffles redirect molecular repair to where it is needed most, accelerating wound closure and eliminating core flux loss entirely. To wound an Overlord is to inconvenience one.</description>
 		<scenarioCanAdd>false</scenarioCanAdd>
 		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.8)</defaultLabelColor>
 		<stages>
 			<li>
 				<regeneration>9</regeneration>

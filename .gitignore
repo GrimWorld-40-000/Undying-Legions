@@ -33,6 +33,7 @@ scripts/
 ai_prompt.txt
 ai_prompt.text
 notes.md
+debug-*.log
 
 # Claude Code memory and session files
 .claude/
@@ -40,6 +41,9 @@ notes.md
 # Decompiled / ILSpy output (local reference only)
 _HeadTypeDef_decompiled.cs/
 _ilspy_out/
+
+# Local tooling / scripts (not mod content)
+_tools/
 
 # Backup project files
 *_OLD.csproj

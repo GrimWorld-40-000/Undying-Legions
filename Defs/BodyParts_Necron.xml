@@ -571,4 +571,18 @@
     </tags>
   </BodyPartDef>
 
+  <!-- Virtual zero-coverage part that anchors the Artifact apparel slot on the Overlord body -->
+  <BodyPartDef>
+    <defName>GW40K_NecronArtifactNode</defName>
+    <label>artifact node</label>
+    <hitPoints>1</hitPoints>
+    <bleedRate>0</bleedRate>
+    <solid>false</solid>
+    <frostbiteVulnerability>0</frostbiteVulnerability>
+    <canScarify>false</canScarify>
+    <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+    <canSuggestAmputation>false</canSuggestAmputation>
+    <destroyableByDamage>false</destroyableByDamage>
+  </BodyPartDef>
+
 </Defs>

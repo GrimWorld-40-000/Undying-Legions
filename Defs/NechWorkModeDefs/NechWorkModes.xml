@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Patrol: wander the colony, autonomously engage threats.
+       Default for all combat Necrons (Warrior, Immortal, Cryptothrall, Flayed One). -->
+  <GW40K_Necrons.NechWorkModeDef>
+    <defName>GW40K_NechMode_Patrol</defName>
+    <label>patrol</label>
+    <description>Wander the colony and engage hostile targets autonomously.</description>
+    <iconPath>UI/Icons/NechModes/Patrol</iconPath>
+    <uiOrder>0</uiOrder>
+  </GW40K_Necrons.NechWorkModeDef>
+
+  <!-- Escort: follow and defend the linked Nechinator commander. -->
+  <GW40K_Necrons.NechWorkModeDef>
+    <defName>GW40K_NechMode_Escort</defName>
+    <label>escort</label>
+    <description>Follow the linked commander and engage any threats within command range.</description>
+    <iconPath>UI/Icons/NechModes/Escort</iconPath>
+    <uiOrder>1</uiOrder>
+  </GW40K_Necrons.NechWorkModeDef>
+
+  <!-- Maintain: seek maintenance and core flux recharge. -->
+  <GW40K_Necrons.NechWorkModeDef>
+    <defName>GW40K_NechMode_Maintain</defName>
+    <label>maintain</label>
+    <description>Seek maintenance stations and recharge core flux.</description>
+    <iconPath>UI/Icons/NechModes/Maintain</iconPath>
+    <uiOrder>2</uiOrder>
+  </GW40K_Necrons.NechWorkModeDef>
+
+  <!-- Hold: stand at the captured position in combat-ready stance. -->
+  <GW40K_Necrons.NechWorkModeDef>
+    <defName>GW40K_NechMode_Hold</defName>
+    <label>hold</label>
+    <description>Hold the current position. The pawn will stand its ground and not wander.</description>
+    <iconPath>UI/Icons/NechModes/Hold</iconPath>
+    <uiOrder>3</uiOrder>
+  </GW40K_Necrons.NechWorkModeDef>
+
+  <!-- Work: perform repair and construction tasks.
+       Available to Canoptek Spyder only; default mode for the Spyder. -->
+  <GW40K_Necrons.NechWorkModeDef>
+    <defName>GW40K_NechMode_Work</defName>
+    <label>work</label>
+    <description>Perform repair, maintenance, and construction tasks.</description>
+    <iconPath>UI/Icons/NechModes/Work</iconPath>
+    <uiOrder>4</uiOrder>
+  </GW40K_Necrons.NechWorkModeDef>
+
+</Defs>

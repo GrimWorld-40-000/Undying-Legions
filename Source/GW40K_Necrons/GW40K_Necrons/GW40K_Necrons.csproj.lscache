@@ -1,0 +1,310 @@
+version=1
+
+# This file caches language service data to improve the performance of C# Dev Kit.
+# It is not intended for manual editing. It can safely be deleted and will be
+# regenerated automatically. For more information, see https://aka.ms/lscache
+#
+# To control where cache files are stored, use the following VS Code setting:
+#   "dotnet.projectsystem.cacheInProjectFolder": true
+
+[project]
+language=C#
+primary
+lastDtbSucceeded
+
+[properties]
+AssemblyName=GW40K_Necrons
+CommandLineArgsForDesignTimeEvaluation=-langversion:latest -define:TRACE
+CompilerGeneratedFilesOutputPath=
+MaxSupportedLangVersion=7.3
+ProjectAssetsFile=<PATH>obj/project.assets.json
+RootNamespace=GW40K_Necrons
+RunAnalyzers=
+RunAnalyzersDuringLiveAnalysis=
+SolutionPath=*Undefined*
+TargetFrameworkIdentifier=.NETFramework
+TargetPath=<PATH>../../../Assemblies/GW40K_Necrons.dll
+TargetRefPath=
+TemporaryDependencyNodeTargetIdentifier=net472
+
+[commandLineArguments]
+/noconfig
+/unsafe-
+/checked-
+/nowarn:1701,1702,1701,1702
+/fullpaths
+/nostdlib+
+/errorreport:prompt
+/warn:4
+/define:TRACE;DEBUG;NETFRAMEWORK;NET472;NET20_OR_GREATER;NET30_OR_GREATER;NET35_OR_GREATER;NET40_OR_GREATER;NET45_OR_GREATER;NET451_OR_GREATER;NET452_OR_GREATER;NET46_OR_GREATER;NET461_OR_GREATER;NET462_OR_GREATER;NET47_OR_GREATER;NET471_OR_GREATER;NET472_OR_GREATER
+/highentropyva+
+/nullable:disable
+/debug-
+/filealign:512
+/optimize-
+/out:obj\Debug\GW40K_Necrons.dll
+/subsystemversion:6.00
+/target:library
+/warnaserror-
+/utf8output
+/deterministic+
+/langversion:latest
+/warnaserror+:NU1605
+
+[sourceFiles]
+AbilityExtension_GW40K.cs
+Alert_CoreFluxCritical.cs
+Alert_LowGaussEnergy.cs
+Alert_NechDamaged.cs
+Alert_NechHostileLockoutImminent.cs
+Alert_NechUncontrolled.cs
+AssemblyInfo.cs
+CompNecronShieldMemory.cs
+CompProperties_Resurrectible.cs
+CompResurrectible.cs
+CompStasisCryptNecrodermisRefuelable.cs
+CompToggleableBatteryCharge.cs
+CompUsable_GaussCoreOnly.cs
+Comp_GaussCapacitorApparel.cs
+CorpseCompAdder.cs
+DeathActionWorker_VanishScarab.cs
+DebugActions_UndyingLegions.cs
+DefNameDisplayUtility.cs
+DynamicDrawSilhouetteDiagnostics.cs
+GameComponent_CanoptekConstructModes.cs
+GameComponent_DeferredActions.cs
+GameComponent_NecronLetters.cs
+GeneExtension_Resurrection.cs
+Gene_DeathmarkOculus.cs
+Gene_Dysphorakh.cs
+Gene_FlayedOneChassis.cs
+GizmoEnumerationSafety.cs
+Gizmo_HiveFabricator.cs
+Graphic_StackCountExact.cs
+GW40K_Necrons_HarmonyPatches.cs
+HarmonyPatches_Canoptek.cs
+HarmonyPatch_AbilityDevResetCooldown.cs
+HarmonyPatch_AbilityIconScale.cs
+HarmonyPatch_BatteryRechargeFloatMenu.cs
+HarmonyPatch_BlockNecronChemicalTrait.cs
+HarmonyPatch_BloodFiltrationCapacitySafeguard.cs
+HarmonyPatch_BloodPumpingCapacitySafeguard.cs
+HarmonyPatch_CanBeBroughtFood.cs
+HarmonyPatch_ConsciousnessCapacitySafeguard.cs
+HarmonyPatch_ConvertIdeoAttemptGuard.cs
+HarmonyPatch_Deathmark.cs
+HarmonyPatch_DebugToolsSpawning_XenoCategory.cs
+HarmonyPatch_DynamicDrawManager_DrawSilhouettes.cs
+HarmonyPatch_FinishOffNecronBeforeLeaving.cs
+HarmonyPatch_FixNecronGenderlessNameGeneration.cs
+HarmonyPatch_FlayedOne.cs
+HarmonyPatch_FloatMenu_NecronCorpse.cs
+HarmonyPatch_ForceDeathrestOrComa.cs
+HarmonyPatch_GaussWeapons.cs
+HarmonyPatch_GeneUI_IconNudge.cs
+HarmonyPatch_GeneUtility_NecronHeadOverridesHair.cs
+HarmonyPatch_GuaranteeApparelRequired.cs
+HarmonyPatch_HasTendableHediff.cs
+HarmonyPatch_ITabPawnNeedsIsVisible.cs
+HarmonyPatch_LifeStageHumanlikeAdult.cs
+HarmonyPatch_NecrodermisRestoreBar.cs
+HarmonyPatch_NecrodermisShieldRegen.cs
+HarmonyPatch_NecrodermisYield.cs
+HarmonyPatch_NecronColonistGaussGizmo.cs
+HarmonyPatch_NecronCorpse.cs
+HarmonyPatch_NecronFireImmunity.cs
+HarmonyPatch_NecronInspectLearning.cs
+HarmonyPatch_NecronNames.cs
+HarmonyPatch_NecronReconstruction.cs
+HarmonyPatch_NecronShieldOnDowned.cs
+HarmonyPatch_NecronStrip.cs
+HarmonyPatch_NecronThreatBehavior.cs
+HarmonyPatch_NecronToxImmunity.cs
+HarmonyPatch_NecronWeaponEquip.cs
+HarmonyPatch_OutdoorsNeed.cs
+HarmonyPatch_Passion.cs
+HarmonyPatch_PawnSpawn_Capacitor.cs
+HarmonyPatch_PreventNecronKidnap.cs
+HarmonyPatch_Recruitable.cs
+HarmonyPatch_RedirectBloodLossToFluxLoss.cs
+HarmonyPatch_ResurrectionPulse.cs
+HarmonyPatch_ShouldBeDead.cs
+HarmonyPatch_ShouldBeDeathrestingOrInComa.cs
+HarmonyPatch_ShouldNeed.cs
+HarmonyPatch_StasisCryptLoadLabel.cs
+HarmonyPatch_StasisCryptUninstall.cs
+HarmonyPatch_SuppressNechMechAlerts.cs
+HarmonyPatch_SuppressNecronFullyHealedSpam.cs
+HarmonyPatch_TransDimensional.cs
+HediffComp_DysphorakhEpisodes.cs
+HediffComp_EternalSlumberInterruption.cs
+HediffComp_GaussCapacitor.cs
+HediffComp_HiveFabricator.cs
+HediffComp_NecrodermisOverlay.cs
+HediffComp_TheSorrow.cs
+HediffGiverNecron.cs
+HediffGiver_Resurrection.cs
+Hediff_Resurrection.cs
+Hediff_ResurrectionActive.cs
+IngestionOutcomeDoer_FillGaussEnergy.cs
+IngestionOutcomeDoer_FillNeed.cs
+IngestionOutcomeDoer_GiveHediffUnlessNeedPresent.cs
+IngestionOutcomeDoer_HumanRawNecrodermis.cs
+JobDriver_ConsumeGaussCore.cs
+JobDriver_DestroyNecronCorpse.cs
+JobDriver_FinishOffNecron.cs
+JobDriver_LayDownCasket.cs
+JobDriver_RechargeFromBattery.cs
+JobGiver_DeathmarkHuntersMark.cs
+JobGiver_DeathmarkPhase.cs
+JobGiver_FlayedOneFleshSeek.cs
+JobGiver_GaussRechargeFromBattery.cs
+JobGiver_GetGaussCore.cs
+JobGiver_GetMaintenance.cs
+JobGiver_NechIntegratedRangedAutoAttack.cs
+JobGiver_NecronAutoAttack.cs
+JobGiver_ScarabBreachDetonate.cs
+JudgeAbility.cs
+JudgeAbilityProperties.cs
+JumpAbility.cs
+JumpAbilityProperties.cs
+MaintenanceNeed.cs
+MentalState_DysphorakhClawing.cs
+MentalState_TheSorrow.cs
+ModExtension_GaussWeapon.cs
+NechEnergyUtility.cs
+Nechs/
+ CanoptekConsumeNecrodermisMath.cs
+ CanoptekConsumePolicyClipboard.cs
+ CanoptekConsumePolicyParentFilter.cs
+ Command_GaussRechargeFromCore.cs
+ CompBuildingMechanitor.cs
+ CompNechUncontrolledTimer.cs
+ CompProperties_BuildingMechanitor.cs
+ CompProperties_CanoptekConsumePolicy.cs
+ CompProperties_CanoptekRepairPolicy.cs
+ Gizmo_CanoptekEject.cs
+ Gizmo_CanoptekNecrodermis.cs
+ Gizmo_ControlNodeBandwidth.cs
+ Gizmo_ControlNodeSwarm.cs
+ Gizmo_NechEnergy.cs
+ Gizmo_NecronBandwidth.cs
+ HarmonyPatch_BandwidthColor.cs
+ HarmonyPatch_CommandProtocolWork.cs
+ HarmonyPatch_DesignatorMechControlGroup.cs
+ HarmonyPatch_IsMechanitor.cs
+ HarmonyPatch_MechanitorInRangeNech.cs
+ HarmonyPatch_MechControl.cs
+ HarmonyPatch_MechTabNecronButton.cs
+ HarmonyPatch_NechDraftRequiresControl.cs
+ HarmonyPatch_NechGizmos.cs
+ HarmonyPatch_NechInspectString.cs
+ HarmonyPatch_NechIsPlayerControlled.cs
+ HarmonyPatch_NechNameplateColor.cs
+ HarmonyPatch_NechOrderedJobRange.cs
+ HarmonyPatch_NechOverseerRelationTimer.cs
+ HarmonyPatch_NechRightClickControl.cs
+ HarmonyPatch_NechUncontrolledEffect.cs
+ HarmonyPatch_NechUndraftOnOverseerRemoved.cs
+ HarmonyPatch_RadiusRingDraw.cs
+ HediffComp_ControlNodeTracker.cs
+ HediffComp_NecronCommandTracker.cs
+ ITab_CanoptekConsume.cs
+ ITab_CanoptekRepair.cs
+ JobDriver_CanoptekConsume.cs
+ JobDriver_CanoptekRepair.cs
+ JobDriver_ScarabProduceToSpyder.cs
+ JobDriver_ScarabReproduce.cs
+ JobDriver_TakeControlOfNech.cs
+ JobGiver_CanoptekConsume.cs
+ JobGiver_CanoptekRepair.cs
+ JobGiver_CanoptekWork.cs
+ JobGiver_ScarabProduce.cs
+ NechCommandHotkeys.cs
+ NechCommandOrderedRange.cs
+ NechDefExtensions.cs
+ NechGizmoAssetBootstrap.cs
+ NechInspectStringUtility.cs
+ NechIntegratedAttackUtility.cs
+ NechTakeControlJobUtility.cs
+ NechUncontrolledRevealUtility.cs
+ NechUtility.cs
+ Patch_FinishRecipeAndStartStoringProduct.cs
+ Patch_PathFollower_TryEnterNextPathCell.cs
+ RecipeWorker_SpawnAndBindMech.cs
+ ThingComp_CanoptekConsumePolicy.cs
+ ThingComp_CanoptekRepairPolicy.cs
+ Window_NechPanel.cs
+ WorkGiver_MonolithSummon.cs
+NecroCasketUtility.cs
+NecronCasket.cs
+NecronDefOfs.cs
+NecronLearning.cs
+NecronStasisFuelUtility.cs
+NecronStasisHealing.cs
+NecronStasisSettingsDef.cs
+NecronStasisUtility.cs
+Need_NechEnergy.cs
+NonOrganicPawn.cs
+obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+PawnRenderNodeWorker_DeathmarkEyeGlow.cs
+RecipeWorker_LithoPhagicAcid.cs
+ResurrectionProtocolVisuals.cs
+Scarab/
+ CompScarabPaint.cs
+ HarmonyPatch_ScarabSapper.cs
+ JobGiver_ScarabSapper.cs
+ PawnRenderNodeWorker_ScarabPaint.cs
+ ScarabRaidDutyUtility.cs
+ ThinkNode_ConditionalScarabRaidDuty.cs
+ VanillaMechTabColorPalette.cs
+ Window_ScarabColorPicker.cs
+ScarabSelfDestruct.cs
+ScarabSelfDestructProperties.cs
+Siege/
+ AbilityComp_SpyderParticleCannon.cs
+ HarmonyPatch_SpyderSiegeEffect.cs
+ HediffComp_SpyderSiegeMode.cs
+ LordJob_NecronSiege.cs
+ LordToil_NecronSiegeBombard.cs
+ LordToil_NecronSiegeDrop.cs
+ RaidStrategyWorker_NecronSiege.cs
+Spyder/
+ Comp_SpyderAutoAttack.cs
+ Verb_SpyderParticleBeamer.cs
+SwapCompAbility.cs
+SwapCompAbilityProperties.cs
+System/Runtime/CompilerServices/RefSafetyRulesAttribute.cs
+TargetedAbility.cs
+TeleportAbility.cs
+TeleportAbilityProperties.cs
+ThoughtWorker_CoreFluxCollapse.cs
+ThoughtWorker_HateLiving.cs
+UdXenoDevTools.cs
+Verb_CastOnNecron.cs
+WorkGiver_CarryToStasisCrypt.cs
+
+[metadataReferences]
+../../../../../
+ ../../workshop/content/294100/2009463077/Current/Assemblies/0Harmony.dll
+ RimWorldWin64_Data/Managed/
+  Assembly-CSharp.dll
+  UnityEngine.CoreModule.dll
+  UnityEngine.IMGUIModule.dll
+  UnityEngine.TextRenderingModule.dll
+../../../Assemblies/NecronGeneUtil.dll
+<NUGET>/microsoft.netframework.referenceassemblies.net472/1.0.3/build/.NETFramework/v4.7.2/
+ Facades/netstandard.dll
+ mscorlib.dll
+ System.Core.dll
+ System.Data.dll
+ System.dll
+ System.Drawing.dll
+ System.IO.Compression.FileSystem.dll
+ System.Numerics.dll
+ System.Runtime.Serialization.dll
+ System.Xml.dll
+ System.Xml.Linq.dll
+
+[analyzerConfigFiles]
+obj/Debug/GW40K_Necrons.GeneratedMSBuildEditorConfig.editorconfig

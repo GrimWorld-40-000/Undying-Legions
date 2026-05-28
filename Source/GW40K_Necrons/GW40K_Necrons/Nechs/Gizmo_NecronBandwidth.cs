@@ -53,6 +53,9 @@ public class Gizmo_NecronBandwidth : Gizmo
 
     public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
     {
+        if (NecronDefOfs.GW_UD_Concept_CommandProtocol != null)
+            PlayerKnowledgeDatabase.KnowledgeDemonstrated(NecronDefOfs.GW_UD_Concept_CommandProtocol, KnowledgeAmount.FrameDisplayed);
+
         float w = GetWidth(maxWidth);
         float portraitH = PortraitPanelHeight();
 
@@ -78,6 +81,8 @@ public class Gizmo_NecronBandwidth : Gizmo
             Widgets.DrawWindowBackground(portraitPanel);
             portraitClickAbsorbed = DrawPortraits(portraitPanel);
         }
+
+        bool controlPanelInteracted = false;
 
         // Title
         Text.Font   = GameFont.Tiny;
@@ -105,13 +110,13 @@ public class Gizmo_NecronBandwidth : Gizmo
         TooltipHandler.TipRegion(main,
             $"Necron command protocol — bandwidth determines how many constructs this commander can directly control.\nCommand range: {tracker.ControlRange:0.#}");
 
-        float hitTop = portraitH > 0f ? main.y - portraitH : main.y;
-        float hitH = portraitH + MainH;
+        float hitTop = main.y - portraitH;
+        float hitH   = portraitH + MainH;
         Rect unionHit = new Rect(topLeft.x, hitTop, w, hitH);
         bool overBandwidth = Mouse.IsOver(main) || Mouse.IsOver(unionHit);
         HoveredTracker = overBandwidth ? tracker : null;
 
-        GizmoState state = portraitClickAbsorbed
+        GizmoState state = (portraitClickAbsorbed || controlPanelInteracted)
             ? GizmoState.Interacted
             : overBandwidth
                 ? GizmoState.Mouseover

@@ -1,8 +1,8 @@
-<Defs>
+﻿<Defs>
 	<AbilityDef>
 		<defName>GW40K_Deathmark_HuntersMark</defName>
 		<label>hunter's mark</label>
-		<description>The Deathmark selects a target for termination. An emerald energy brand is seared into the victim — a halo of cold light visible even through stone and steel. For one hour the marked target cannot hide — the Deathmark's will track them with uncanny precision.</description>
+		<description>The Deathmark selects a target for termination. An emerald energy brand is seared into the victim â€” a halo of cold light visible even through stone and steel. For one hour the marked target cannot hide â€” the Deathmark's will track them with uncanny precision.</description>
 		<iconPath>UI/Abilities/GW40k_DeathmarkHunt</iconPath>
 		<cooldownTicksRange>30000</cooldownTicksRange><!-- 12 hours -->
 		<aiCanUse>true</aiCanUse>
@@ -31,7 +31,7 @@
 		<defName>GW40K_Deathmark_Phase</defName>
 		<label>phase</label>
 		<description>The Deathmark activates its Arcane Orbs, slipping through the hyperspace between moments to reappear up to 10 cells away. The Deathmark will remain in a pocket dimension briefly to gauge a better position.</description>
-		<iconPath>UI/Abilities/GW40k_DeathmarkPhase</iconPath>
+		<iconPath>UI/Abilities/Ability_DeathmarkPhase</iconPath>
 		<cooldownTicksRange>3750</cooldownTicksRange><!-- 1.5 hours -->
 		<aiCanUse>true</aiCanUse>
 		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
@@ -40,6 +40,7 @@
 			<verbClass>Verb_CastAbility</verbClass>
 			<range>10.9</range>
 			<warmupTime>0.5</warmupTime>
+			<requireLineOfSight>false</requireLineOfSight>
 			<soundCast>Psycast_Skip_Entry</soundCast>
 			<targetParams>
 				<canTargetLocations>true</canTargetLocations>
@@ -156,11 +157,14 @@
 	  
 	<AbilityDef>
 		<defName>GW40K_ScarabLeap</defName>
-		<label>scarab leap</label>
+		<label>leap</label>
 		<description>The swarm launches itself in a burst of skittering legs, closing a short distance in an instant. Once spent, the scarabs require time to coil and ready themselves again.</description>
 		<iconPath>UI/Abilities/GW40k_ScarabJump</iconPath>
 		<cooldownTicksRange>2000</cooldownTicksRange>
-		<aiCanUse>true</aiCanUse>
+		<!-- aiCanUse disabled: JobGiver_AIAbilityFight was using this without wall/proximity
+		     checks, causing the leap loop. Custom job givers (JobGiver_ScarabLeapOverWall,
+		     JobGiver_ScarabSiegeLeapToObjective) manage the leap with proper guards. -->
+		<aiCanUse>false</aiCanUse>
 		<verbProperties>
 			<verbClass>Verb_CastAbility</verbClass>
 			<range>8.9</range>
@@ -182,19 +186,21 @@
 	<AbilityDef>
 		<defName>GW40K_ScarabSelfDestruct</defName>
 		<label>detonate</label>
-		<description>The swarm detonates its internal power cores in a kamikaze explosion. Damage and radius scale with the number of surviving scarabs — a full swarm produces a devastating blast; a dying one a final, desperate pop.</description>
+		<description>The swarm detonates its internal power cores in a kamikaze explosion. Damage and radius scale with the number of surviving scarabs â€” a full swarm produces a devastating blast; a dying one a final, desperate pop.</description>
 		<iconPath>UI/Abilities/GW40k_ScarabExplode</iconPath>
-		<cooldownTicksRange>0</cooldownTicksRange>
-		<aiCanUse>true</aiCanUse>
+		<!-- 4-second cooldown prevents instant retry loops after a cancelled detonation. -->
+		<cooldownTicksRange>240</cooldownTicksRange>
+		<targetRequired>False</targetRequired>
+		<!-- aiCanUse disabled: JobGiver_AIAbilityFight was firing this on wild animals.
+		     Custom job givers (JobGiver_ScarabSiegeDetonate, JobGiver_ScarabBreachDetonate)
+		     manage detonation with proper colony-target and staging-zone guards. -->
+		<aiCanUse>false</aiCanUse>
 		<verbProperties>
 			<verbClass>Verb_CastAbility</verbClass>
 			<warmupTime>1.5</warmupTime>
 			<range>1</range>
 			<targetParams>
 				<canTargetSelf>true</canTargetSelf>
-				<canTargetPawns>true</canTargetPawns>
-				<canTargetBuildings>true</canTargetBuildings>
-				<canTargetLocations>true</canTargetLocations>
 			</targetParams>
 		</verbProperties>
 		<comps>
@@ -248,4 +254,132 @@
 			</li>
 		</comps>
 	</AbilityDef>
+
+	<!-- Hijack: TEMPORARY — granted only via future Technomancer / Cryptek psychic-class genes; AI use disabled until tuned. -->
+	<AbilityDef>
+		<defName>GW40k_Cryptek_Hijack</defName>
+		<label>Hijack</label>
+		<description>Exploit the target's Command Protocol, subverting control of the Target to the Cryptek.\n\nRequires available bandwidth.\n\nCooldown: 48 hours</description>
+		<iconPath>UI/Abilities/Ability_CryptekHijack</iconPath>
+		<cooldownTicksRange>120000</cooldownTicksRange><!-- 48 hours -->
+		<aiCanUse>false</aiCanUse>
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<sendMessageOnCooldownComplete>false</sendMessageOnCooldownComplete>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>24.9</range>
+			<warmupTime>10</warmupTime>
+			<soundCast>PsychicShockLanceCast</soundCast>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetAnimals>true</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>true</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+		<comps>
+			<li Class="GW40K_Necrons.HijackAbilityProperties"/>
+		</comps>
+	</AbilityDef>
+
+	<AbilityDef Abstract="True" Name="GW40k_MindshackleBase">
+		<label>Mindshackle Scarabs</label>
+		<description>Cast a wave of Mindshackle Scarabs at the target - tiny spider-like nanomachines that burrow into the ear or nose of a victim, attaching to the brain stem to override the biological functions of the host.\n\nTakes control of target biological pawn but also causes significant pain and turns them into a mindless drone.\n\nCooldown: 3 days</description>
+		<iconPath>UI/Abilities/Ability_CryptekMindshackle</iconPath>
+		<cooldownTicksRange>180000</cooldownTicksRange><!-- 3 days -->
+		<aiCanUse>false</aiCanUse>
+		<displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+		<sendMessageOnCooldownComplete>false</sendMessageOnCooldownComplete>
+		<verbProperties>
+			<verbClass>Verb_CastAbility</verbClass>
+			<range>9.9</range>
+			<warmupTime>6</warmupTime>
+			<soundCast>PsychicPulseGlobal</soundCast>
+			<targetParams>
+				<canTargetLocations>false</canTargetLocations>
+				<canTargetPawns>true</canTargetPawns>
+				<canTargetAnimals>true</canTargetAnimals>
+				<canTargetSelf>false</canTargetSelf>
+				<canTargetBuildings>false</canTargetBuildings>
+				<canTargetMechs>false</canTargetMechs>
+			</targetParams>
+		</verbProperties>
+	</AbilityDef>
+
+	<AbilityDef ParentName="GW40k_MindshackleBase">
+		<defName>GW40k_Mindshackle_I</defName>
+		<label>Mindshackle Scarabs I</label>
+		<comps>
+			<li Class="GW40K_Necrons.MindshackleAbilityProperties">
+				<maxHosts>1</maxHosts>
+			</li>
+		</comps>
+	</AbilityDef>
+
+	<AbilityDef ParentName="GW40k_MindshackleBase">
+		<defName>GW40k_Mindshackle_II</defName>
+		<label>Mindshackle Scarabs II</label>
+		<comps>
+			<li Class="GW40K_Necrons.MindshackleAbilityProperties">
+				<maxHosts>2</maxHosts>
+			</li>
+		</comps>
+	</AbilityDef>
+
+	<AbilityDef ParentName="GW40k_MindshackleBase">
+		<defName>GW40k_Mindshackle_III</defName>
+		<label>Mindshackle Scarabs III</label>
+		<comps>
+			<li Class="GW40K_Necrons.MindshackleAbilityProperties">
+				<maxHosts>3</maxHosts>
+			</li>
+		</comps>
+	</AbilityDef>
+
+	<!-- One-time-use version granted by the Mindshackle Scarabs artifact item. Destroys the item on cast. -->
+	<AbilityDef ParentName="GW40k_MindshackleBase">
+		<defName>GW40k_MindshackleArtifact</defName>
+		<label>Mindshackle Scarabs</label>
+		<showPsycastEffects>false</showPsycastEffects>
+		<comps>
+			<li Class="GW40K_Necrons.MindshackleAbilityProperties">
+				<maxHosts>1</maxHosts>
+				<sourceItem>GW40k_MindshackleScarabsArtifact</sourceItem>
+			</li>
+		</comps>
+	</AbilityDef>
+
+  <!-- ===== Canoptek Spyder — manual Siege Mode activation ===== -->
+  <AbilityDef>
+    <defName>GW_UL_SpyderSiegeModeActivate</defName>
+    <label>siege mode</label>
+    <description>Lock locomotion systems and extend targeting arrays. Severely restricts movement but enables the integrated particle beamer for sustained bombardment. Lasts 3 hours.</description>
+    <iconPath>UI/Abilities/Ability_SpyderSiege</iconPath>
+    <!-- 2 game-days = 2 × 60000 ticks -->
+    <cooldownTicksRange>120000~120000</cooldownTicksRange>
+    <aiCanUse>false</aiCanUse>
+    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
+    <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+    <targetRequired>False</targetRequired>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <!-- 10-second activation wind-up -->
+      <warmupTime>10</warmupTime>
+      <range>1</range>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+        <canTargetPawns>false</canTargetPawns>
+        <canTargetAnimals>false</canTargetAnimals>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetLocations>false</canTargetLocations>
+        <canTargetMechs>false</canTargetMechs>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="GW40K_Necrons.CompProperties_SpyderSiegeModeActivate" />
+    </comps>
+  </AbilityDef>
+
 </Defs>

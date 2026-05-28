@@ -22,6 +22,9 @@ public class HediffComp_GaussCapacitor : HediffComp
     /// <summary>When false, manual &quot;Recharge from core&quot; is blocked (Gauss gizmo core toggle).</summary>
     public bool allowCoreCharge;
 
+    /// <summary>When false, the pawn will not automatically seek and consume gauss cores (Gauss gizmo capa toggle).</summary>
+    public bool allowAutoConsume = true;
+
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
         base.CompPostPostAdd(dinfo);
@@ -39,5 +42,6 @@ public class HediffComp_GaussCapacitor : HediffComp
         base.CompExposeData();
         Scribe_Values.Look(ref allowBatteryCharge, "allowBatteryCharge", true);
         Scribe_Values.Look(ref allowCoreCharge, "allowCoreCharge", false);
+        Scribe_Values.Look(ref allowAutoConsume, "allowAutoConsume", true);
     }
 }

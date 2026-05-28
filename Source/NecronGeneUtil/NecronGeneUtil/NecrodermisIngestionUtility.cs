@@ -1,3 +1,4 @@
+using System;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -9,6 +10,13 @@ namespace NecronGeneUtil;
 /// </summary>
 public static class NecrodermisIngestionUtility
 {
+    /// <summary>
+    /// Canoptek constructs (scarab swarms, Spyders, etc.) use <see cref="Need_Necrodermis"/> as a material bar;
+    /// pack/injector refill does not apply. Mark races with <see cref="RaceExtension_Canoptek.isCanoptek"/>.
+    /// </summary>
+    public static bool IsCanoptek(Pawn pawn) =>
+        pawn?.def?.GetModExtension<RaceExtension_Canoptek>()?.isCanoptek == true;
+
     public static float NutritionWantedForNecrodermis(Pawn pawn)
     {
         var need = pawn.needs?.TryGetNeed<Need_Necrodermis>();

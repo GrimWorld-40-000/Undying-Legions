@@ -44,6 +44,15 @@
       </li>
     </tools>
 
+    <race>
+      <hasGenders>false</hasGenders>
+      <nameCategory>NoName</nameCategory>
+      <!-- Deathmarks are precision marksmen — Brawler would forbid their defining ranged role. -->
+      <disallowedTraits>
+        <li>Brawler</li>
+      </disallowedTraits>
+    </race>
+
     <modExtensions>
       <li Class="GW40K_Necrons.NonOrganicPawn">
         <passion>Minor</passion>

@@ -1,3 +1,4 @@
+using NecronGeneUtil;
 using RimWorld;
 using Verse;
 
@@ -22,8 +23,8 @@ public static class NechEnergyUtility
             || dn.IndexOf("Scarab", System.StringComparison.OrdinalIgnoreCase) >= 0;
     }
 
-    public static bool IsScarab(Pawn pawn) =>
-        pawn?.def?.defName?.IndexOf("Scarab", System.StringComparison.OrdinalIgnoreCase) >= 0;
+    public static bool IsCanoptek(Pawn pawn) =>
+        NecrodermisIngestionUtility.IsCanoptek(pawn);
 
     public static bool IsOverlord(Pawn pawn) =>
         pawn?.def?.defName?.IndexOf("Overlord", System.StringComparison.OrdinalIgnoreCase) >= 0;
@@ -103,5 +104,10 @@ public static class NechEnergyUtility
     public static bool AllowCoreRecharge(Pawn pawn)
     {
         return GetCapacitorComp(pawn)?.allowCoreCharge ?? true;
+    }
+
+    public static bool AllowAutoConsume(Pawn pawn)
+    {
+        return GetCapacitorComp(pawn)?.allowAutoConsume ?? true;
     }
 }

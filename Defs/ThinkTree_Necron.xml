@@ -125,7 +125,7 @@
           </subNodes>
         </li>
 
-        <!-- Lord directives (high priority) -->
+        <!-- Lord directives (high priority) — voluntarily-joinable lords (Nechinator). -->
         <li Class="ThinkNode_JoinVoluntarilyJoinableLord">
           <dutyHook>HighPriority</dutyHook>
           <subNodes>
@@ -133,6 +133,14 @@
               <treeDef>LordDuty</treeDef>
             </li>
           </subNodes>
+        </li>
+
+        <!-- Direct duty processing for non-voluntarily-joinable lords (siege raid lord).
+             ThinkNode_JoinVoluntarilyJoinableLord silently skips LordJob_NecronSiege because
+             it does not extend LordJob_VoluntarilyJoinable. This node fires for enemy Necrons
+             whose duty was assigned directly by UpdateAllDuties (AssaultColony etc.). -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>LordDuty</treeDef>
         </li>
 
         <!-- Insertion hook for modders -->
@@ -144,6 +152,7 @@
         </li>
         <li Class="GW40K_Necrons.JobGiver_GetMaintenance" />
         <li Class="GW40K_Necrons.JobGiver_GaussRechargeFromBattery" />
+        <li Class="GW40K_Necrons.JobGiver_GetGaussCore" />
         <!-- Prisoner -->
         <li Class="ThinkNode_ConditionalPrisoner">
           <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
@@ -206,7 +215,7 @@
                 <li Class="ThinkNode_PrioritySorter">
                   <subNodes>
                     <li Class="JobGiver_Autofeed" MayRequire="Ludeon.RimWorld.Biotech" />
-                    <li Class="JobGiver_GetFood"/>
+                    <li Class="GW40K_Necrons.JobGiver_GetGaussCore"/>
                     <li Class="GW40K_Necrons.JobGiver_GetMaintenance"/>
                     <li Class="JobGiver_SatisfyChemicalNeed"/>
                     <li Class="JobGiver_SatifyChemicalDependency" MayRequire="Ludeon.RimWorld.Biotech" />
@@ -283,13 +292,13 @@
               <emergency>true</emergency>
             </li>
             
-            <!-- Get food (only if starving) -->
+            <!-- Emergency gauss core recharge if energy is low -->
             <li Class="ThinkNode_ConditionalStarving">
               <subNodes>
                 <li Class="ThinkNode_Tagger">
                   <tagToGive>SatisfyingNeeds</tagToGive>
                   <subNodes>
-                    <li Class="JobGiver_GetFood">
+                    <li Class="GW40K_Necrons.JobGiver_GetGaussCore">
                       <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
                     </li>
                   </subNodes>
@@ -358,16 +367,6 @@
               </subNodes>
             </li>
 
-            <!-- Pack food if not hungry-->
-            <li Class="ThinkNode_ConditionalNeedPercentageAbove">
-              <need>Food</need>
-              <threshold>0.6</threshold>
-              <subNodes>
-                <li Class="JobGiver_PackFood">
-                  <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
-                </li>
-              </subNodes>
-            </li>
           </subNodes>
         </li>
 
@@ -404,7 +403,80 @@
           <insertTag>Humanlike_PostMain</insertTag>
         </li>
 
-        <!-- Idle colonist -->
+        <!-- Nech Work Mode: mode-gated idle behaviors for player-faction colonist Necrons.
+             Evaluated after main colonist behavior; overrides generic idle wander.
+             Enemy Necrons fail the faction check inside ThinkNode_ConditionalNechWorkMode. -->
+        <li Class="ThinkNode_ConditionalColonist">
+          <subNodes>
+
+            <!-- Patrol: seek and engage enemies, then wander the colony -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Patrol</workMode>
+              <subNodes>
+                <li Class="JobGiver_AIFightEnemies">
+                  <targetAcquireRadius>65</targetAcquireRadius>
+                </li>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_WanderColony">
+                      <maxDanger>None</maxDanger>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Escort: defend commander, follow, wander near commander -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Escort</workMode>
+              <subNodes>
+                <li Class="GW40K_Necrons.JobGiver_NechDefendCommander" />
+                <li Class="GW40K_Necrons.JobGiver_NechEscortCommander" />
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="GW40K_Necrons.JobGiver_NechWanderCommander" />
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Maintain: seek maintenance/recharge, then wander -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Maintain</workMode>
+              <subNodes>
+                <li Class="GW40K_Necrons.JobGiver_GetMaintenance" />
+                <li Class="GW40K_Necrons.JobGiver_GaussRechargeFromBattery" />
+                <li Class="GW40K_Necrons.JobGiver_GetGaussCore" />
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_WanderColony">
+                      <maxDanger>None</maxDanger>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Hold: stand at captured position, combat-ready -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Hold</workMode>
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="GW40K_Necrons.JobGiver_NechHoldPosition" />
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+          </subNodes>
+        </li>
+
+        <!-- Idle colonist (fallback when no mode branch fires, or mode has no idle job) -->
         <li Class="ThinkNode_ConditionalColonist">
           <subNodes>
             <li Class="ThinkNode_Tagger">
@@ -419,7 +491,7 @@
                     <li Class="JobGiver_IdleJoy" />
                   </subNodes>
                 </li>
-              
+
                 <!-- Wander -->
                 <li Class="JobGiver_WanderColony">
                   <maxDanger>None</maxDanger>
@@ -604,7 +676,77 @@
           </subNodes>
         </li>
 
-        <!-- Idle: wander the colony when colonist -->
+        <!-- Nech Work Mode: mode-gated idle behaviors for player-faction Flayed Ones.
+             Flesh-seeking at high priority remains unaffected (it fires before this section). -->
+        <li Class="ThinkNode_ConditionalColonist">
+          <subNodes>
+
+            <!-- Patrol: seek enemies, then wander colony -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Patrol</workMode>
+              <subNodes>
+                <li Class="JobGiver_AIFightEnemies">
+                  <targetAcquireRadius>65</targetAcquireRadius>
+                </li>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_WanderColony">
+                      <maxDanger>None</maxDanger>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Escort: defend commander, follow, wander near commander -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Escort</workMode>
+              <subNodes>
+                <li Class="GW40K_Necrons.JobGiver_NechDefendCommander" />
+                <li Class="GW40K_Necrons.JobGiver_NechEscortCommander" />
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="GW40K_Necrons.JobGiver_NechWanderCommander" />
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Maintain: seek maintenance, then wander -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Maintain</workMode>
+              <subNodes>
+                <li Class="GW40K_Necrons.JobGiver_GetMaintenance" />
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_WanderColony">
+                      <maxDanger>None</maxDanger>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Hold: stand at captured position, combat-ready -->
+            <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+              <workMode>GW40K_NechMode_Hold</workMode>
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Idle</tagToGive>
+                  <subNodes>
+                    <li Class="GW40K_Necrons.JobGiver_NechHoldPosition" />
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+          </subNodes>
+        </li>
+
+        <!-- Idle: wander the colony when colonist (fallback for all modes) -->
         <li Class="ThinkNode_ConditionalColonist">
           <subNodes>
             <li Class="ThinkNode_Tagger">
@@ -636,18 +778,32 @@
     <defName>GW40K_ScarabSwarm</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
-        <!-- 25% chance to attempt the leap each think cycle; respects cooldown via skipIfCantTargetNow -->
-        <li Class="ThinkNode_ConditionalRandom">
-          <chance>0.25</chance>
+        <!-- Sapper raids: tunnel toward sapperDest (mine rock; self-destruct constructed walls). -->
+        <li Class="GW40K_Necrons.ThinkNode_ConditionalSapperDuty">
           <subNodes>
-            <li Class="JobGiver_AIAbilityFight">
-              <ability>GW40K_ScarabLeap</ability>
-              <targetAcquireRadius>10</targetAcquireRadius>
-              <targetKeepRadius>12</targetKeepRadius>
-              <skipIfCantTargetNow>true</skipIfCantTargetNow>
-            </li>
+            <li Class="GW40K_Necrons.JobGiver_ScarabSapper" />
           </subNodes>
         </li>
+        <!-- Breach raids: leap over walls and kamikaze detonate on adjacent walls.
+             JobGiver_AIAbilityFight removed — it explicitly named GW40K_ScarabLeap
+             bypassing aiCanUse=false, issuing redundant leap jobs that cancelled the
+             one from JobGiver_ScarabLeapOverWall and looped. -->
+        <li Class="GW40K_Necrons.ThinkNode_ConditionalBreachingDuty">
+          <subNodes>
+            <li Class="GW40K_Necrons.JobGiver_ScarabLeapOverWall" />
+            <li Class="GW40K_Necrons.JobGiver_ScarabBreachDetonate" />
+          </subNodes>
+        </li>
+        <!-- Repair mode: self first, then structures; friendly Necron pawn repair is reserved for a later pass. -->
+        <li Class="GW40K_Necrons.JobGiver_CanoptekRepair" />
+        <!-- Consume mode: harvest necrodermis from approved map resources when idle -->
+        <li Class="GW40K_Necrons.JobGiver_CanoptekConsume" />
+        <!-- Work mode: haul, mine, and construct for the colony -->
+        <li Class="GW40K_Necrons.JobGiver_CanoptekWork" />
+        <!-- Produce mode: pump necrodermis to Spyder HiveFabricator or self-reproduce -->
+        <li Class="GW40K_Necrons.JobGiver_ScarabProduce" />
+        <!-- Defend mode: follow nearest allied Necron humanlike controller -->
+        <li Class="GW40K_Necrons.JobGiver_ScarabDefendController" />
         <!-- All standard animal behavior: combat, wandering, faction duty, fleeing -->
         <li Class="ThinkNode_Subtree">
           <treeDef>Animal</treeDef>
@@ -656,56 +812,75 @@
     </thinkRoot>
   </ThinkTreeDef>
 
+
+  <!-- Think tree for the Canoptek Spyder.
+       Runs JobGiver_SpyderRaidStandoff first: for hostile non-siege Spyders it overrides
+       the pawn's duty to GW_UL_SpyderRaidStandoff (standoff ~17 tiles from colony) and
+       returns null, so the Mechanoid subtree below processes the job normally using that duty.
+       For player-faction Spyders or those in LordJob_NecronSiege it is a no-op pass-through.
+       The full Mechanoid subtree handles combat, downed response, wandering, etc. -->
   <ThinkTreeDef>
-    <defName>HumanlikeConstant</defName>
+    <defName>GW_UL_SpyderThinkTree</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
-        <!-- Despawned -->
+
+        <!-- Enemy Spyder standoff: for non-player, non-siege Spyders overrides duty to a
+             standoff position. For player Spyders this is a no-op pass-through. -->
+        <li Class="GW40K_Necrons.JobGiver_SpyderRaidStandoff" />
+
+        <!-- Nech Work Mode: mode-gated behavior for player-faction Spyders.
+             Enemy Spyders fail the faction check and fall through to Mechanoid. -->
+
+        <!-- Work: repair first, then let Mechanoid handle hauling / wandering -->
+        <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+          <workMode>GW40K_NechMode_Work</workMode>
+          <subNodes>
+            <li Class="GW40K_Necrons.JobGiver_CanoptekRepair" />
+            <!-- Hauling/construction fall through to Mechanoid subtree below -->
+          </subNodes>
+        </li>
+
+        <!-- Patrol: engage enemies, then let Mechanoid handle wandering -->
+        <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+          <workMode>GW40K_NechMode_Patrol</workMode>
+          <subNodes>
+            <li Class="JobGiver_AIFightEnemies">
+              <targetAcquireRadius>65</targetAcquireRadius>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Escort: defend commander, follow -->
+        <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+          <workMode>GW40K_NechMode_Escort</workMode>
+          <subNodes>
+            <li Class="GW40K_Necrons.JobGiver_NechDefendCommander" />
+            <li Class="GW40K_Necrons.JobGiver_NechEscortCommander" />
+            <li Class="GW40K_Necrons.JobGiver_NechWanderCommander" />
+          </subNodes>
+        </li>
+
+        <!-- Maintain: seek maintenance, then wander via Mechanoid fallthrough -->
+        <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+          <workMode>GW40K_NechMode_Maintain</workMode>
+          <subNodes>
+            <li Class="GW40K_Necrons.JobGiver_GetMaintenance" />
+          </subNodes>
+        </li>
+
+        <!-- Hold: stand at captured position, combat-ready -->
+        <li Class="GW40K_Necrons.ThinkNode_ConditionalNechWorkMode">
+          <workMode>GW40K_NechMode_Hold</workMode>
+          <subNodes>
+            <li Class="GW40K_Necrons.JobGiver_NechHoldPosition" />
+          </subNodes>
+        </li>
+
+        <!-- Standard Mechanoid behavior: downed, combat, wandering for all Spyders -->
         <li Class="ThinkNode_Subtree">
-          <treeDef>Despawned</treeDef>
+          <treeDef>Mechanoid</treeDef>
         </li>
 
-        <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
-          <subNodes>
-            <!-- Flee explosion -->
-            <li Class="JobGiver_FleePotentialExplosion" />
-
-            <!-- Avoid vacuums (skipped for pawns with VacuumResistance=1, e.g. Necrons) -->
-            <li Class="JobGiver_FindOxygen" />
-
-            <!-- Board/leave gravship -->
-            <li Class="JobGiver_BoardOrLeaveGravship" />
-
-            <!-- Join auto joinable caravan -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>JoinAutoJoinableCaravan</treeDef>
-            </li>
-
-            <!-- Necrons always attack — no configurable flee/ignore -->
-            <li Class="GW40K_Necrons.JobGiver_NecronAutoAttack" />
-
-            <!-- Stop crawling -->
-            <li Class="ThinkNode_ConditionalIsCrawling">
-              <subNodes>
-                <li Class="ThinkNode_ConditionalCanCrawl">
-                  <invert>true</invert>
-                  <subNodes>
-                    <li Class="JobGiver_IdleForever"/>
-                  </subNodes>
-                </li>
-              </subNodes>
-            </li>
-          </subNodes>
-        </li>
-
-        <li Class="ThinkNode_ConditionalCanDoLordJobNow">
-          <subNodes>
-            <!-- Lord directives -->
-            <li Class="ThinkNode_Subtree">
-              <treeDef>LordDutyConstant</treeDef>
-            </li>
-          </subNodes>
-        </li>
       </subNodes>
     </thinkRoot>
   </ThinkTreeDef>

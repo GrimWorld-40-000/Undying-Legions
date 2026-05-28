@@ -99,6 +99,10 @@ public class HediffComp_NecronCommandTracker : HediffComp
         if (mech == null || controlledMechs.Contains(mech)) return;
         controlledMechs.Add(mech);
         mech.TryGetComp<CompNechUncontrolledTimer>()?.NotifyCommandLinkGained();
+
+        // Command Protocol binding (distinct from Control Node swarm link): tint scarab swarm head from commander preference.
+        if (mech.def?.defName == "GW40K_ScarabSwarm")
+            mech.TryGetComp<CompScarabPaint>()?.QueueCommanderFavoriteTint(CommanderPawn);
     }
 
     public void UnbindMech(Pawn mech)
@@ -189,6 +193,9 @@ public class HediffComp_NecronCommandTracker : HediffComp
     public override IEnumerable<Gizmo> CompGetGizmos()
     {
         yield return new Gizmo_NecronBandwidth(this);
+        HediffComp_ControlNodeTracker controlNode = HediffComp_ControlNodeTracker.GetTracker(CommanderPawn);
+        if (controlNode != null && controlNode.controlledScarabs.Count > 0)
+            yield return new Gizmo_ControlNodeSwarm(controlNode);
     }
 
     /// <summary>Convenience accessor — fetches the tracker from any pawn with the Command Protocol.</summary>

@@ -18,9 +18,34 @@ public static class HarmonyPatch_NechIsPlayerControlled
     public static void Postfix(Pawn __instance, ref bool __result)
     {
         if (__result) return;
-        if (__instance?.def?.GetModExtension<NecronMechExtension>() == null) return;
+        if (__instance == null) return;
         if (__instance.Faction != Faction.OfPlayer) return;
-        if (HediffComp_NecronCommandTracker.GetCommanderOf(__instance) != null)
+
+        if (NechUtility.IsHumanlikeNechControlled(__instance)
+            && HediffComp_NecronCommandTracker.GetCommanderOf(__instance) != null)
+        {
+            __result = true;
+            return;
+        }
+
+        if (__instance.def?.GetModExtension<NecronMechExtension>() != null
+            && HediffComp_NecronCommandTracker.GetCommanderOf(__instance) != null)
+        {
+            __result = true;
+            return;
+        }
+
+        // Control-node bearers (Canoptek Spyder, etc.): they command scarabs but are not listed in
+        // controlledScarabs — without this, IsPlayerControlled stays false and draft attack gizmos never appear.
+        if (__instance.def?.GetModExtension<NecronMechExtension>() != null
+            && HediffComp_ControlNodeTracker.GetTracker(__instance) != null)
+        {
+            __result = true;
+            return;
+        }
+
+        if (ControlNodeUtility.IsCanoptek(__instance)
+            && HediffComp_ControlNodeTracker.GetControllerOfScarab(__instance) != null)
             __result = true;
     }
 }

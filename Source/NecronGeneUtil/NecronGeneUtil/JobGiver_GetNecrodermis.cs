@@ -22,6 +22,8 @@ public class JobGiver_GetNecrodermis : ThinkNode_JobGiver
     {
         if (!ModsConfig.BiotechActive)
             return 0f;
+        if (NecrodermisIngestionUtility.IsCanoptek(pawn))
+            return 0f;
         var need = pawn.needs?.TryGetNeed<Need_Necrodermis>();
         if (need == null)
             return 0f;
@@ -35,6 +37,8 @@ public class JobGiver_GetNecrodermis : ThinkNode_JobGiver
     protected override Job TryGiveJob(Pawn pawn)
     {
         if (!ModsConfig.BiotechActive)
+            return null;
+        if (NecrodermisIngestionUtility.IsCanoptek(pawn))
             return null;
         var need = pawn.needs?.TryGetNeed<Need_Necrodermis>();
         if (need == null || need.CurLevelPercentage >= pawn.RaceProps.FoodLevelPercentageWantEat)

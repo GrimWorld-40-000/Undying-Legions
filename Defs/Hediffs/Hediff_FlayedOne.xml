@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Persistent Flayer curse — grants phase-cloak ability (GW40K_Nech_FlayedCloak).
+       Mirrors Lych chassis hediff pacing for repair; lore: Flayer Curse / Llandu'gor echo. -->
+  <HediffDef>
+    <defName>GW40K_FlayerVirus</defName>
+    <label>Flayer virus</label>
+    <description>The Flayer curse — an echo of the slain C'tan Llandu'gor — gnaws at the mind and lattice alike. Afflicted units hunger for organic matter they can never digest, drape themselves in trophy-flesh, and slip unpredictably through the Ghostwind between moments. The necrodermis still knits damage closed, but every repair feeds the hunger.\n\nCombat protocols exploit dimensional bleed: a short-lived veil that breaks weapon locks and sightlines, as Crypteks once catalogued among fully turned Flayed Ones.</description>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.72, 0.35, 0.38)</defaultLabelColor>
+    <isBad>true</isBad>
+    <stages>
+      <li>
+        <regeneration>10</regeneration>
+        <naturalHealingFactor>1.5</naturalHealingFactor>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_GiveAbility">
+        <abilityDefs>
+          <li>GW40K_Nech_FlayedCloak</li>
+        </abilityDefs>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- Ghostwind — extradimensional veil applied by the Flayed One's cloak ability.
+       Same combat behaviour as PsychicInvisibility but without psyker fluff. -->
+  <HediffDef>
+    <defName>GW40K_FlayedOne_Stealth</defName>
+    <label>ghostwind</label>
+    <description>This pawn is out of phase with the normal world — ranged weapons and sensors struggle to target it.\n\nThose afflicted with the Flayer Virus develop the ability to "tunnel" through reality and inhabit a sub-dimension known as the Ghostwind.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.55, 0.85, 0.60)</defaultLabelColor>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Invisibility">
+        <visibleToPlayer>true</visibleToPlayer>
+      </li>
+      <li Class="HediffCompProperties_Disappears">
+        <showRemainingTime>True</showRemainingTime>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+    </comps>
+  </HediffDef>
+
+</Defs>

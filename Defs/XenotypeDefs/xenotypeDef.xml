@@ -64,6 +64,47 @@
 	</XenotypeDef>
 
 	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_NecronImmortal</defName>
+		<label>Immortal</label>
+		<description>Elite infantry of the tombworld, their bodies reinforced with heavier necrodermis plating over millions of years. Unlike the basic Warrior caste, Immortals retain a sliver of battlefield awareness — enough to hold a firing line without being ordered, but not enough to be considered truly sentient.</description>
+		<descriptionShort>Heavy-armoured elite infantry. More durable than a Warrior, equally hollow inside.</descriptionShort>
+		<iconPath>Genes/Warrior</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_NecronImmortal</li>
+			<li>GW_UD_NecronImmortal_Head</li>
+			<li>GW_UD_CantWork</li>
+			<li>GW_UD_LowBorn</li>
+			<li>GW_UD_SocialMatrix</li>
+			<li>WoundHealing_Fast</li>
+			<li>Robust</li>
+			<li>Unstoppable</li>
+			<li>AptitudeRemarkable_Shooting</li>
+			<li>AptitudeTerrible_Social</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_Cryptothrall</defName>
+		<label>Cryptothrall</label>
+		<description>Purpose-built melee bodyguards drawn directly from a Cryptek's reserves. Their blade-limbs are already primed for slaughter before they fully coalesce into realspace. They have no memory of biotransference — they were made this way.</description>
+		<descriptionShort>Cryptek-bound melee bodyguards. Fast, lethal, completely mindless.</descriptionShort>
+		<iconPath>Genes/weird1</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_Cryptothrall</li>
+			<li>GW_UD_NecronCryptothrall_Head</li>
+			<li>GW_UD_CantWork</li>
+			<li>GW_UD_LowBorn</li>
+			<li>WoundHealing_Fast</li>
+			<li>Robust</li>
+			<li>Unstoppable</li>
+			<li>AptitudeRemarkable_Shooting</li>
+			<li>AptitudeTerrible_Social</li>
+		</genes>
+	</XenotypeDef>
+
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase" MayRequire="Ludeon.RimWorld.Biotech">
 		<defName>GW_UD_NecronWarrior</defName>
 		<label>Warrior</label>
 		<description>A hollowed-out husk of a person, the Necron Warrior is a biological tragety converted into a flux-driven machine.\n\nThey do not eat, they do not sleep, and they do not feel. They exist only to march forward and fire until the battlefield is silent.</description>
@@ -115,6 +156,7 @@
 			<li>GW_UD_RecallMemories</li>
 			<li>GW_UD_Royalty</li>
 			<li>GW_UD_TechnoInterface</li>
+			<li>GW_UD_CommandNode</li>
 			<li>GW_UD_TechnoMagic</li>
 			<li>GW_UD_Workflow</li>
 			<li>GW_UD_SocialMatrix</li>
@@ -127,11 +169,33 @@
 		</genes>
 	</XenotypeDef>
 
+	<!-- Spyder moved to nech system. Xenotype kept for reference.
+	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase" MayRequire="Ludeon.RimWorld.Biotech">
+		<defName>GW_UD_CanoptekSpyder</defName>
+		<label>Canoptek Spyder</label>
+		<description>A Canoptek Spyder — an eight-limbed Necron maintenance and combat construct of immense size and lethality. Unlike the hollowed bio-transferred warriors, the Spyder was never organic; it was forged, not converted.\n\nIts arachnid chassis mounts a pair of heavy power claws for crushing enemies and tearing apart armored hulls, fine fabricator claws for repairing Canoptek constructs mid-battle, and an integrated particle beamer that detonates on impact in a plasma-like radius. A control node in its head lets the Spyder bind scarab swarms and relay Nechinator command frequencies.\n\nIn a colony, the Spyder serves as a heavy combat presence and field repair unit. It lacks the social wiring of higher-tier Necrons but makes up for it in sheer destructive output.</description>
+		<descriptionShort>A massive eight-limbed Canoptek combat and repair construct. Heavy armor, integrated particle beamer, and scarab-control capabilities.</descriptionShort>
+		<iconPath>GW40K/Spyder/Spyder_south</iconPath>
+		<inheritable>true</inheritable>
+		<genes>
+			<li>GW_UD_CanoptekSpyder</li>
+			<li>GW_UD_Spyder_Head</li>
+			<li>GW_UD_CantWork</li>
+			<li>GW_UD_LowBorn</li>
+			<li>WoundHealing_Fast</li>
+			<li>Robust</li>
+			<li>Unstoppable</li>
+			<li>AptitudeRemarkable_Shooting</li>
+			<li>AptitudeTerrible_Social</li>
+		</genes>
+	</XenotypeDef>
+	-->
+
 	<XenotypeDef ParentName="GW_UD_NecronXenotypeBase">
 		<defName>GW_UD_NecronOverlord</defName>
 		<label>Overlord</label>
 		<description>The supreme rulers of the Necron dynasties, Overlords are ancient grandmasters of war and politics who have retained the full breadth of their personality and ambition through the long sleep. Clad in the finest living metal bodies ever forged, they possess a physical strength and resilience that few biological entities can comprehend. An Overlord does not merely lead; they dominate, their sheer force of will transmitted through the command protocols that bind their legions to their service.\n\nMillennia of isolation and the trauma of bio-transference have left many Overlords with eccentricities ranging from obsessive codes of honor to delusions of grandeur. They view the younger races as unruly children or encroaching pests upon their eternal empires. In a colony, an Overlord is a peerless strategist and a terrifying combatant, though their haughty nature and demand for absolute subservience can make them difficult to manage alongside those they deem "inferior."</description>
-		<descriptionShort>. . .</descriptionShort>
+		<descriptionShort>High-tier genetically-engineered leader designed for absolute dominion of the galaxy. They are the apex of a colony's hierarchy, possessing superhuman charisma and cognitive processing, though they are often physically weaker and incapable of manual labor.</descriptionShort>
 		<iconPath>Genes/weird4</iconPath>
 		<inheritable>true</inheritable>
 		<genes>
@@ -139,6 +203,7 @@
 			<li>GW_UD_RecallMemories</li>
 			<li>GW_UD_RoyalHabits</li>
 			<li>GW_UD_Royalty</li>
+			<li>GW_UD_TechnoInterface</li>
 			<li>GW_UD_SocialMatrix</li>
 			<li>GW_UD_NecronOverlord</li>
 			<li>Aggression_HyperAggressive</li>

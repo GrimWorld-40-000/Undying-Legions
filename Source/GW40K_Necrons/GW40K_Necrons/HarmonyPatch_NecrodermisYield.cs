@@ -34,7 +34,7 @@ namespace NecronMod
             necrodermis.stackCount = yieldCount;
             GenPlace.TryPlaceThing(necrodermis, pos, map, ThingPlaceMode.Near);
             Messages.Message(
-                $"Necrodermis seed recovered from {Pawn.LabelShort}'s remains: {yieldCount} units.",
+                $"Necrodermis colonization on {Pawn.LabelShort} yielded {yieldCount} units.",
                 new TargetInfo(pos, map), MessageTypeDefOf.NeutralEvent);
         }
     }

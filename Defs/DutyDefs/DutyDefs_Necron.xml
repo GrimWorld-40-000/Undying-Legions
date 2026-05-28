@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Canoptek Spyder during a standard (non-siege) raid, or during the assault phase of a
+       Necron siege. Keeps the Spyder at a standoff position ~17 tiles from the colony
+       (inside particle-beamer max-range 23, outside the 5-tile min-range / friendly-fire
+       zone). JobGiver_AIDefendPoint attacks any enemy that enters the 26-tile acquire radius;
+       the tight keep-radius (8) forces the Spyder to hold the standoff point rather than
+       drifting toward the colony. No SatisfyBasicNeedsAndWork — Spyder has no needs. -->
+  <DutyDef>
+    <defName>GW_UL_SpyderRaidStandoff</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="JobGiver_AIDefendPoint">
+          <targetAcquireRadius>26</targetAcquireRadius>
+          <targetKeepRadius>8</targetKeepRadius>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>5</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- Canoptek Spyder in siege-bombardment mode.
+       Fires GW_UL_SpyderParticleCannon whenever the ability is off cooldown (every ~4 min).
+       When the cannon is recharging the Spyder defends the staging area.
+       No SatisfyBasicNeedsAndWork — Spyder has no food/rest needs. -->
+  <DutyDef>
+    <defName>GW_UL_SpyderSiegeDuty</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <!-- Old JobGiver_AIAbilityFight removed — siege cannon is now a built-in verb
+             (Verb_SpyderSiegeCannon) so the combat AI picks it up automatically when
+             Available() is true. Wide acquire radius lets it engage at cannon range.
+             Old (for rollback):
+          <li Class="JobGiver_AIAbilityFight">
+            <ability>GW_UL_SpyderParticleCannon</ability>
+            <targetAcquireRadius>500</targetAcquireRadius>
+            <targetKeepRadius>500</targetKeepRadius>
+          </li> -->
+        <!-- Defend staging area. Acquire radius matches the beamer range (23) so the
+             Spyder only auto-attacks nearby threats with the close-range beamer.
+             The siege cannon is manual-target only via the gizmo. -->
+        <li Class="JobGiver_AIDefendPoint">
+          <targetAcquireRadius>26</targetAcquireRadius>
+          <targetKeepRadius>30</targetKeepRadius>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>6</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- Humanlike Necron assault duty. Puts JobGiver_AIFightEnemy first so Necrons
+       engage any visible hostile (ranged or melee) rather than marching under fire.
+       No SatisfyBasicNeedsAndWork — Necron Warriors have no food/rest needs. -->
+  <DutyDef>
+    <defName>GW_UL_NecronAssault</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <!-- Engage any enemy in range first, then march toward the colony duty focus.
+             JobGiver_AIFightEnemy has no parameterless constructor (can't be XML-instantiated).
+             JobGiver_AIDefendPoint with a wide acquire radius covers both: it attacks enemies
+             within 40 tiles (including ranged fire sources) and marches to the focus otherwise. -->
+        <li Class="JobGiver_AIDefendPoint">
+          <targetAcquireRadius>40</targetAcquireRadius>
+          <targetKeepRadius>50</targetKeepRadius>
+        </li>
+        <!-- wanderRadius=1: destination is essentially the colony center itself, so
+             pathfinding generates one long continuous path from staging area to colony
+             rather than repeated 12-tile hops that look like slow stop-start movement. -->
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>1</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- Final assault: no wander fallback. targetKeepRadius=1 means the pawn is always
+       "outside" the keep zone, so JobGiver_AIDefendPoint continuously issues a direct
+       march-to-colony job. Enemies within 40 tiles are engaged immediately.
+       No SatisfyBasicNeedsAndWork — Necron Warriors have no food/rest needs. -->
+  <DutyDef>
+    <defName>GW_UL_NecronFinalAssault</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="JobGiver_AIDefendPoint">
+          <targetAcquireRadius>40</targetAcquireRadius>
+          <targetKeepRadius>1</targetKeepRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- Bodyguard scarab: defend near a focal point (Spyder position).
+       No SatisfyBasicNeedsAndWork — scarabs have no food/rest needs, so
+       JobGiver_GetFood inside that tree would throw a NullRef. -->
+  <DutyDef>
+    <defName>GW_UL_ScarabDefend</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="JobGiver_AIDefendPoint">
+          <targetAcquireRadius>24</targetAcquireRadius>
+          <targetKeepRadius>30</targetKeepRadius>
+        </li>
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>6</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- Assault scarab: move toward colony target; leap over walls to interior objectives.
+       The Animal think tree handles combat (JobGiver_AIFightEnemy) separately —
+       this duty directs the scarab where to go and triggers the leap when possible.
+       No SatisfyBasicNeedsAndWork so no NullRef on food-less scarabs. -->
+  <DutyDef>
+    <defName>GW_UL_ScarabAssault</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <!-- 1. Detonate immediately when enemies enter the 5-tile blast radius.
+             Fires before the leap so a scarab that has already crossed a wall
+             explodes on its targets rather than trying to leap again. -->
+        <li Class="GW40K_Necrons.JobGiver_ScarabSiegeDetonate" />
+        <!-- 2. Leap over walls toward high-value interior targets (generators,
+             batteries, turrets, mortar ammo, bedrooms). Only fires when a
+             wall blocks the path and the leap ability is off cooldown. -->
+        <li Class="GW40K_Necrons.JobGiver_ScarabSiegeLeapToObjective" />
+        <!-- 3. Only engage enemies directly in the scarab's path.
+             80-tile acquire radius caused scarabs to reroute into insectoid dens far from
+             the colony. The Animal subtree handles combat when enemies are adjacent. -->
+        <li Class="JobGiver_AIDefendPoint">
+          <targetAcquireRadius>10</targetAcquireRadius>
+          <targetKeepRadius>14</targetKeepRadius>
+        </li>
+        <!-- 4. March toward the colony. wanderRadius=1 makes the destination the colony
+             center itself — one continuous path instead of repeated 12-tile hops. -->
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>1</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+</Defs>

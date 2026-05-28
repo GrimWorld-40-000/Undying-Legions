@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ConceptDef Abstract="True" Name="GW_UD_NecronConceptBase">
+    <priority>35</priority>
+    <needsOpportunity>True</needsOpportunity>
+  </ConceptDef>
+
+  <!-- Shown when inspecting Necrons with core flux (constructs and humanlike xenotypes). -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_CoreFluxStasis</defName>
+    <label>Necron core flux and stasis</label>
+    <helpText>Necron units run on core flux instead of rest or food. It drains while they act, fight, or suffer body degradation, and refills slowly on its own when they are safe.\n\nIf core flux hits zero, the unit enters Eternal Slumber — forced shutdown until it can recharge.\n\nUse a stasis crypt to restore core flux quickly and safely. Stasis needs power, necrodermis fuel, and time; ejecting someone mid-cycle while their core is still low can enrage them.</helpText>
+    <helpTextController>Necron units run on core flux instead of rest or food. It drains while they act, fight, or suffer body degradation, and refills slowly when they are safe.\n\nIf core flux hits zero, the unit enters Eternal Slumber until it can recharge.\n\nUse a stasis crypt for fast, safe restoration. Stasis needs power, necrodermis fuel, and time.</helpTextController>
+  </ConceptDef>
+
+  <!-- Necrodermis maintenance + shield repair drain (living metal). -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_Necrodermis</defName>
+    <label>Necron necrodermis maintenance</label>
+    <helpText>Living metal bodies need necrodermis — raw material assimilated from compatible sources. Low necrodermis causes maintenance deficits and can stall resurrection.\n\nHeavy damage increases necrodermis drain while self-repair runs. Dispersion shields, when equipped, will drain necrodermis in order to repair. Stock necrodermis packs, ore, or other approved sources for your dynasty.</helpText>
+  </ConceptDef>
+
+  <!-- Command Protocol: Nechinator, bandwidth, uncontrolled timer. -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_CommandProtocol</defName>
+    <label>Necron command protocol</label>
+    <helpText>Nech constructs (and certain humanoid legionnaires) obey the Command Protocol, not the vanilla mechanitor system.\n\nA Nechinator with the command protocol hediff binds constructs up to a bandwidth limit. Use "Take command" to assign units; release or destroy them to free bandwidth.\n\nConstructs left without a valid command link become uncontrolled — they wander, cannot be drafted, and will eventually go rogue unless relinked.</helpText>
+    <helpTextController>Nech constructs obey the Command Protocol, not the vanilla mechanitor system.\n\nA Nechinator binds constructs up to a bandwidth limit. Use the contextual command to assign units.\n\nConstructs without a command link become uncontrolled and will eventually go rogue.</helpTextController>
+  </ConceptDef>
+
+  <!-- Scarabs / Canoptek under Control Node hediff. -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_ControlNode</defName>
+    <label>Necron control node and Canoptek</label>
+    <helpText>A Control Node implant lets a commander link Canoptek constructs (such as scarabs) with their own bandwidth pool.\n\nLinked constructs use the Consume / Repair policy you set on their necrodermis panel. They do not eat necrodermis the same way humanoid Necrons do — restore it with Consume jobs instead.</helpText>
+  </ConceptDef>
+
+  <!-- Gauss capacitor + weapons. -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_GaussEnergy</defName>
+    <label>Gauss energy and capacitors</label>
+    <helpText>Gauss weapons draw monophasic particle energy from the pawn's gauss capacitor reserve.\n\nRecharge at compatible stations or, in emergencies, allow battery siphoning from the Gauss energy panel. Necron constructs can also convert core flux into capacitor charge when that toggle is enabled.\n\nIf the reserve is empty, gauss weapons cannot fire until you recharge.</helpText>
+    <helpTextController>Gauss weapons draw energy from the pawn's gauss capacitor. Recharge at stations or use the on-screen Gauss energy controls. Empty reserves block firing.</helpTextController>
+  </ConceptDef>
+
+  <!-- ITab consume targets for Canoptek. -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_CanoptekConsume</defName>
+    <label>Canoptek Scarab consume policy</label>
+    <helpText>Open the Consume tab on a linked Canoptek construct to choose what necrodermis sources it may harvest.\n\nPolicies control what the construct will consume and each type of item will have a different yield. Friendly constructs have their consume policy set to "deny all" by default, where Enemy constructs will consume everything by default.</helpText>
+  </ConceptDef>
+
+  <!-- Death / corpse / cores. -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_ResurrectionProtocol</defName>
+    <label>Necron resurrection protocol</label>
+    <helpText>Necrons with the Resurrection Protocol can reanimate after lethal damage if at least one mind or central core remains intact.\n\nReanimation takes a long time while the corpse lies on the map. Destroy the remains or both cores to prevent revival.\n\nFriendly units send a letter when the protocol starts; keep necrodermis high or the cycle may fail.</helpText>
+    <helpTextController>Necrons with the Resurrection Protocol can reanimate if a vital core survives. Destroy the remains or cores to stop revival. Reanimation needs time and sufficient necrodermis.</helpTextController>
+  </ConceptDef>
+
+  <!-- Hive Fabricator — triggered when player recruits a Canoptek Spyder. -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_HiveFabricator</defName>
+    <label>Necron hive fabricator</label>
+    <helpText>The Canoptek Spyder carries a Hive Fabricator in its abdomen — a nanite manufactory that can produce new Canoptek Scarabs on demand.\n\nThe fabricator stores up to 250 units of necrodermis feedstock. Use the Hive Fabricator gizmo to monitor reserves, toggle Fill mode (allows controlled Scarabs to pump necrodermis into the tank), and trigger the Replicate command.\n\nReplicate costs 100 necrodermis and one bandwidth slot. After a one-hour production cycle, a new Scarab is automatically linked to the Spyder's control node.\n\nScarabs in Produce mode can also self-replicate if uncontrolled or Cryptek-controlled, consuming 90 necrodermis over ~1.5 in-game hours. Quality of the offspring depends on a random roll — a worn-out scarab may produce a damaged unit.</helpText>
+  </ConceptDef>
+
+  <!-- Broad xenotype intro — triggered sparingly from inspect for any Necron-tagged pawn. -->
+  <ConceptDef ParentName="GW_UD_NecronConceptBase">
+    <defName>GW_UD_Concept_NecronOverview</defName>
+    <label>Undying Legions — Necron needs</label>
+    <priority>45</priority>
+    <helpText>Grimworld Necrons replace hunger and sleep with dynasty-specific systems:\n\n - Core flux and Eternal Slumber\n - Necrodermis maintenance\n - Command Protocol for constructs\n - Gauss capacitors for certain weapons\n - Resurrection Protocol instead of ordinary death\n\nInspect your units and read alerts — the learning helper lists each lesson for later reference.</helpText>
+  </ConceptDef>
+
+</Defs>

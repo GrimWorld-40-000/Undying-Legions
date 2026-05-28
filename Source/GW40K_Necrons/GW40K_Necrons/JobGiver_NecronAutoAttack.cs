@@ -13,6 +13,8 @@ public class JobGiver_NecronAutoAttack : ThinkNode_JobGiver
 {
     protected override Job TryGiveJob(Pawn pawn)
     {
+        if (pawn.def?.GetModExtension<NonOrganicPawn>() == null)
+            return null;
         if (pawn.Downed || pawn.Faction == null || !pawn.IsColonistPlayerControlled)
             return null;
 

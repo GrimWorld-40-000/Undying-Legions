@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThingDef ParentName="MoteBase">
+    <defName>Mote_GW40K_MechUncontrolled_Nech</defName>
+    <thingClass>MoteAttached</thingClass>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>2</fadeInTime>
+      <solidTime>0</solidTime>
+      <fadeOutTime>1</fadeOutTime>
+    </mote>
+    <graphicData>
+      <graphicClass>Graphic_PawnBodySilhouette</graphicClass>
+      <color>(0.35, 0.72, 0.52, 0.35)</color>
+      <shaderType>MotePawnBodyColor</shaderType>
+      <texPath>Things/Mote/Transparent</texPath>
+    </graphicData>
+  </ThingDef>
+
+  <EffecterDef>
+    <defName>GW40K_MechUncontrolled_Nech</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+        <ticksBetweenMotes>200</ticksBetweenMotes>
+        <moteDef>Mote_GW40K_MechUncontrolled_Nech</moteDef>
+        <rotation>0~0</rotation>
+        <absoluteAngle>true</absoluteAngle>
+        <attachToSpawnThing>true</attachToSpawnThing>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+    </children>
+  </EffecterDef>
+
+
+  <!-- Particle beamer / siege cannon impact flash.
+       Replaces the standard orange Bomb effecter with a pure bright-white burst:
+       one large expanding ExplosionFlash scaled to cover the 4-cell blast radius,
+       plus a tight cluster of smaller flashes for a bright inner core. -->
+  <EffecterDef>
+    <defName>GW40K_ParticleBeamerFlash</defName>
+    <children>
+      <!-- Primary white ring — scale ~2× explosion radius (radius 4 → scale 9-11). -->
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <burstCount>1~1</burstCount>
+        <fleckDef>ExplosionFlash</fleckDef>
+        <scale>9~11</scale>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+      <!-- Tight inner burst — gives the white-hot core feel. -->
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <burstCount>4~4</burstCount>
+        <fleckDef>ExplosionFlash</fleckDef>
+        <scale>2~4</scale>
+        <positionRadius>1.2</positionRadius>
+        <spawnLocType>OnSource</spawnLocType>
+      </li>
+    </children>
+  </EffecterDef>
+
+
+  <!-- Silent stub used by Projectile_DelayedImpactSound to suppress the explosion boom
+       during Impact() so it can be scheduled to play ~1 second later.
+       Empty subSounds list → nothing is played when this def fires. -->
+  <SoundDef>
+    <defName>GW_UL_SoundStubSilent</defName>
+    <context>MapOnly</context>
+    <subSounds />
+  </SoundDef>
+
+</Defs>

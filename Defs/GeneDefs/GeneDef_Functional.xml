@@ -105,6 +105,7 @@
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<allowedApparels>
 					<li>GM40k_Necron_Shield</li>
+					<li>GW40k_MindshackleScarabsArtifact</li>
 				</allowedApparels>
 			</li>
 		</modExtensions>
@@ -142,6 +143,18 @@
 		</forcedTraits>
 	</GeneDef>
 
+	<!-- <GeneDef>		Chassis defined in Cosmetic 
+		<defName>GW_UD_CryptothrallChassis</defName>
+		<label>cryptothrall chassis</label>
+		<description>Purpose-built for attrition — this reinforced chassis absorbs 15% of all incoming damage before it can breach the necrodermis substrate. Cryptothralls are not expected to survive; they are expected to take the hit that kills something else.</description>
+		<iconPath>Genes/Machine_body</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<statFactors>
+			<IncomingDamageFactor>0.85</IncomingDamageFactor>
+		</statFactors>
+	</GeneDef> -->
+
 	<GeneDef>
 		<defName>GW_UD_CantWork</defName>
 		<label>incapable of work</label>
@@ -159,6 +172,7 @@
 		<iconPath>Genes/lowborn</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<disabledWorkTags>Social</disabledWorkTags>
 		<disablesNeeds>
 			<li>Food</li>
 			<li>Comfort</li>
@@ -330,7 +344,24 @@
 		<modExtensions>
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_CommandProtocolImplant</hediffDef>
-				<part>GW40K_Necron_Head</part>
+				<part>Head</part>
+				<severityOnAdd>1.0</severityOnAdd>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef>
+		<defName>GW_UD_CommandNode</defName>
+		<label>command node</label>
+		<description>The gene carrier's mind is embedded with a specialized transmitter that allows it to emit "interstitial carrier waves" for interfacing with Canoptek constructs. \n\n Carriers of this gene possess a Control Node.</description>
+		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
+		<iconPath>Genes/control-interface</iconPath>
+		<displayCategory>GW_UD_NecronGene</displayCategory>
+		<canGenerateInGeneSet>false</canGenerateInGeneSet>
+		<modExtensions>
+			<li Class="NecronGeneUtil.GeneExtension_Necron">
+				<hediffDef>GW40K_ControlNodeImplant</hediffDef>
+				<part>Head</part>
 				<severityOnAdd>1.0</severityOnAdd>
 			</li>
 		</modExtensions>
@@ -372,7 +403,7 @@
 		<defName>GW_UD_SocialMatrix</defName>
 		<label>social matrix</label>
 		<description>Carriers of this gene possess an advanced social matrix — internal engram-routing hardware enabling nuanced communication and diplomatic processing beyond the basic vox-emission of lowborn Necrons.</description>
-		<iconPath>Genes/emmisarry</iconPath>
+		<iconPath>Genes/social</iconPath>
 		<displayCategory>GW_UD_NecronGene</displayCategory>
 		<canGenerateInGeneSet>false</canGenerateInGeneSet>
 		<geneClass>NecronGeneUtil.Gene_AddHediff</geneClass>
@@ -380,7 +411,7 @@
 			<li Class="NecronGeneUtil.GeneExtension_Necron">
 				<hediffDef>GW40K_Necron_SocialMatrix_Active</hediffDef>
 				<severityOnAdd>1.0</severityOnAdd>
-				<part>GW40K_Necron_Skull</part>
+				<part>Head</part>
 			</li>
 		</modExtensions>
 	</GeneDef>
@@ -400,5 +431,34 @@
 			</li>
 		</modExtensions>
 	</GeneDef>
+
+  <!-- Display-only trait. Only added via GW_UD_Dysphorakh gene — commonality 0 prevents random generation. -->
+  <TraitDef>
+    <defName>GW40K_Dysphorakh</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>Dysphorakh</label>
+        <description>Sixty million years ago, Biotransference preserved this Necron's neural engrams in living metal — but it could not erase the ghost of what they were. The mind still maps to lungs that no longer draw breath, to a stomach long since dissolved, to skin stripped away in the process. Dysphorakh is the cascading phantom-biological condition that haunts them: drowning in lungs that are not there, starving in a body with no hunger to satisfy, buried alive inside their own frame.\n\nIn its most severe form, Dysphorakh becomes the Flaying Curse — the obsession that turns a Necron warrior into one of the Flayed Ones, draped in biological trophies in a futile attempt to feel alive again.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- Gene that grants Dysphorakh to Necrons. Added to relevant xenotypes in xenotypeDef.xml.
+       forcedTraits wires the display trait. Gene class adds/removes the mechanical hediff. -->
+  <GeneDef>
+    <defName>GW_UD_Dysphorakh</defName>
+    <label>Dysphorakh</label>
+    <description>The phantom-biological condition unique to Necrons who never fully suppressed the organic memory of their pre-Biotransference body. Episodes of suffocation, hunger, and sensory horror cycle unpredictably. In severe cases, the Flaying Curse takes hold.</description>
+    <iconPath>Genes/Lifeless</iconPath>
+    <displayCategory>GW_UD_NecronGene</displayCategory>
+    <canGenerateInGeneSet>false</canGenerateInGeneSet>
+    <geneClass>GW40K_Necrons.Gene_Dysphorakh</geneClass>
+    <forcedTraits>
+      <li>
+        <def>GW40K_Dysphorakh</def>
+      </li>
+    </forcedTraits>
+  </GeneDef>
 
 </Defs>

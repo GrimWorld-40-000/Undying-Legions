@@ -37,7 +37,9 @@ public class NecronDefOfs
   public static AbilityDef GW40K_Deathmark_HuntersMark;
   public static HediffDef GW40K_TransDimensional;
   public static HediffDef GW40K_HuntersMark;
+  public static HediffDef GW40K_Mindshackle;
   public static MentalStateDef GW40K_TheSorrow;
+  public static MentalStateDef GW40K_NechRogue;
 
   // Dysphorakh
   public static HediffDef GW40K_Dysphorakh;
@@ -51,4 +53,26 @@ public class NecronDefOfs
   public static HediffDef GW40K_FlayerVirus;
   public static HediffDef GW40K_ReanimationCooldown;
   public static JobDef GW40K_Job_RechargeFromBattery;
+  public static JobDef GW40K_Job_CanoptekConsume;
+  public static JobDef GW40K_Job_CanoptekRepair;
+  public static JobDef GW40K_Job_DestroyNecronCorpse;
+
+  public static ConceptDef GW_UD_Concept_CoreFluxStasis;
+  public static ConceptDef GW_UD_Concept_Necrodermis;
+  public static ConceptDef GW_UD_Concept_CommandProtocol;
+  public static ConceptDef GW_UD_Concept_ControlNode;
+  public static ConceptDef GW_UD_Concept_GaussEnergy;
+  public static ConceptDef GW_UD_Concept_CanoptekConsume;
+  public static ConceptDef GW_UD_Concept_ResurrectionProtocol;
+  public static ConceptDef GW_UD_Concept_NecronOverview;
+  public static ConceptDef GW_UD_Concept_HiveFabricator;
+
+  public static HediffDef GW40K_SentienceCatalystImplant;
+
+  // Canoptek Spyder
+  public static HediffDef GW40K_ControlNodeImplant;
+  public static BodyPartDef GW40K_GaussCapacitor;
+  public static ThingDef UD_Necron_CanoptekSpyder;
+  public static KeyBindingDef Misc1;
+  public static KeyBindingDef Misc2;
 }

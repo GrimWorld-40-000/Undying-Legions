@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Triggered after 120 s without a Nechinator command link.
+       No beginLetter — CompNechUncontrolledTimer sends its own letter. -->
+  <MentalStateDef>
+    <defName>GW40K_NechRogue</defName>
+    <label>rogue</label>
+    <description>Engram routing has collapsed. Without a command link, base aggression protocols have taken over.</description>
+    <stateClass>MentalState_Berserk</stateClass>
+    <category>Aggro</category>
+    <blockRandomInteraction>true</blockRandomInteraction>
+    <blockNormalThoughts>true</blockNormalThoughts>
+    <nameColor>(0.9, 0.2, 0.5)</nameColor>
+    <minTicksBeforeRecovery>500</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>2500</maxTicksBeforeRecovery>
+    <recoveryMessage>{0} has ceased rogue behavior.</recoveryMessage>
+    <recoverFromSleep>false</recoverFromSleep>
+  </MentalStateDef>
+
+  <!-- The Sorrow: triggered by HediffComp_TheSorrow when RecallMemories reaches Immersion severity.
+       No MentalBreakDef — never rolled from the mood break pool. -->
+  <MentalStateDef>
+    <defName>GW40K_TheSorrow</defName>
+    <label>lost in The Sorrow</label>
+    <description>The pawn is submerged in Soul-Debt. Lost in another body, another world, another life the metal cannot return to. They drift until the debt is paid.</description>
+    <stateClass>GW40K_Necrons.MentalState_TheSorrow</stateClass>
+    <recoveryMessage>{0} has surfaced from The Sorrow.</recoveryMessage>
+    <minTicksBeforeRecovery>120000</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>480000</maxTicksBeforeRecovery>
+    <recoverFromSleep>false</recoverFromSleep>
+    <blockNormalThoughts>false</blockNormalThoughts>
+    <allowBeatfire>true</allowBeatfire>
+  </MentalStateDef>
+
+  <!-- ===== Dysphorakh episodes ===== -->
+
+  <!-- Suffocation episode: ~0.3 day of panic-wandering with consciousness debuff. -->
+  <MentalStateDef>
+    <defName>GW40K_Dysphorakh_Suffocation</defName>
+    <label>phantom suffocation</label>
+    <description>The pawn is drowning in lungs that no longer exist.</description>
+    <stateClass>MentalState_WanderSad</stateClass>
+    <recoveryMessage>{0} has stopped drowning in phantom lungs.</recoveryMessage>
+    <minTicksBeforeRecovery>12000</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>18000</maxTicksBeforeRecovery>
+    <recoverFromSleep>false</recoverFromSleep>
+  </MentalStateDef>
+
+  <!-- Phantom hunger episode: ~0.5 day of desperate wandering. -->
+  <MentalStateDef>
+    <defName>GW40K_Dysphorakh_PhantomHunger</defName>
+    <label>phantom hunger</label>
+    <description>The pawn searches for a stomach that no longer exists.</description>
+    <stateClass>MentalState_WanderSad</stateClass>
+    <recoveryMessage>{0} has stilled the ghost of phantom hunger.</recoveryMessage>
+    <minTicksBeforeRecovery>20000</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>30000</maxTicksBeforeRecovery>
+    <recoverFromSleep>false</recoverFromSleep>
+  </MentalStateDef>
+
+  <!-- Compulsive Clawing: escalates through 3 stages, potentially converting to Flayed One. -->
+  <MentalStateDef>
+    <defName>GW40K_Dysphorakh_Clawing</defName>
+    <label>compulsive clawing</label>
+    <description>The pawn tears at their own frame in a desperate attempt to clear obstructions that aren't there.</description>
+    <stateClass>GW40K_Necrons.MentalState_DysphorakhClawing</stateClass>
+    <recoveryMessage>{0} has stopped tearing at their own frame — for now.</recoveryMessage>
+    <minTicksBeforeRecovery>90000</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>480000</maxTicksBeforeRecovery>
+    <recoverFromSleep>false</recoverFromSleep>
+    <allowBeatfire>true</allowBeatfire>
+  </MentalStateDef>
+
+</Defs>

@@ -41,7 +41,8 @@ public class Alert_NechDamaged : Alert
         foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravellingTransporters_AliveSpawned)
         {
             if (pawn.Faction != Faction.OfPlayer) continue;
-            if (pawn.def.GetModExtension<NecronMechExtension>() == null) continue;
+            if (!NechEnergyUtility.IsNecronPawn(pawn)) continue;
+            if (pawn.def?.defName?.IndexOf("Scarab", System.StringComparison.OrdinalIgnoreCase) >= 0) continue;
             if (pawn.health.summaryHealth.SummaryHealthPercent >= 1f) continue;
 
             targets.Add(pawn);

@@ -16,7 +16,7 @@
         <defName>GW_UD_Necrodermis</defName>
         <needClass>NecronGeneUtil.Need_Necrodermis</needClass>
         <label>necrodermis</label>
-        <description>Without fresh necrodermis matter, a Necron's living metal frame cannot maintain itself. The body slowly unravels - this is their analogue of starvation.\n\nRestore reserves by metabolizing necrodermis stockpiles or other approved sources. Severe depletion causes cascading subsystem failure until material is assimilated.</description>
+        <description>Without fresh necrodermis matter, a Necron's living metal frame cannot maintain itself. The body slowly unravels - this is their analogue of starvation.\n\nRestore reserves by metabolizing necrodermis stockpiles. Severe depletion causes cascading subsystem failure until material is assimilated.</description>
 		<onlyIfCausedByGene>true</onlyIfCausedByGene>
 		<listPriority>800</listPriority>
         <major>true</major>

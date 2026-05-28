@@ -1,9 +1,9 @@
 using HarmonyLib;
+using NecronGeneUtil;
 using RimWorld;
 using System.Linq;
 using Verse;
 
-#nullable disable
 namespace GW40K_Necrons;
 
 [HarmonyPatch(typeof(Pawn), nameof(Pawn.SpawnSetup))]
@@ -17,54 +17,88 @@ public static class HarmonyPatch_PawnSpawn_Capacitor
         if (__instance.health?.hediffSet == null)
             return;
 
-        EnsureFlayerVirus(__instance);
-        EnsureDysphorakhForFlayed(__instance);
+        // MARKED FOR REMOVAL: EnsureFlayerVirus / EnsureDysphorakhForFlayed — only applied to nech-based UD_Necron_FlayedOne (removed).
+        // EnsureFlayerVirus(__instance);
+        // EnsureDysphorakhForFlayed(__instance);
+        EnsureScarabNecrodermisFull(__instance);
+
+        // Scarab swarms use necrodermis only; skip gauss capacitor and Spyder-specific work.
+        if (__instance.def.defName == "GW40K_ScarabSwarm")
+            return;
+
+        EnsureSpyderControlNode(__instance);
 
         HediffDef target = PickDefaultCapacitor(__instance);
         if (target == null)
             return;
-        if (__instance.health.hediffSet.HasHediff(target))
-            return;
 
-        RemoveExistingCapacitors(__instance);
-        BodyPartRecord part = ResolveCapacitorPart(__instance);
-        __instance.health.AddHediff(target, part);
+        if (!__instance.health.hediffSet.HasHediff(target))
+        {
+            RemoveExistingCapacitors(__instance);
+            BodyPartRecord part = ResolveCapacitorPart(__instance);
+            __instance.health.AddHediff(target, part);
+        }
+
+        // Always refresh needs — if the capacitor was already present (e.g. respawn after
+        // save/load), the GW40K_NechEnergy need may not be in the needs list because the
+        // early return previously skipped AddOrRemoveNeedsAsAppropriate.
         __instance.needs?.AddOrRemoveNeedsAsAppropriate();
         Need gauss = __instance.needs?.TryGetNeed(NecronDefOfs.GW40K_NechEnergy);
-        if (gauss != null)
+        if (gauss != null && gauss.CurLevel < gauss.MaxLevel * 0.01f)
             gauss.CurLevel = 1.0f;
     }
 
-    private static void EnsureFlayerVirus(Pawn pawn)
-    {
-        if (pawn?.def?.defName != "UD_Necron_FlayedOne")
-            return;
-        HediffDef virus = NecronDefOfs.GW40K_FlayerVirus;
-        if (virus == null || pawn.health.hediffSet.HasHediff(virus))
-            return;
-        pawn.health.AddHediff(virus);
-    }
+    // MARKED FOR REMOVAL — both methods only fired for nech-based UD_Necron_FlayedOne (removed).
+    // private static void EnsureFlayerVirus(Pawn pawn)
+    // {
+    //     if (pawn?.def?.defName != "UD_Necron_FlayedOne") return;
+    //     HediffDef virus = NecronDefOfs.GW40K_FlayerVirus;
+    //     if (virus == null || pawn.health.hediffSet.HasHediff(virus)) return;
+    //     pawn.health.AddHediff(virus);
+    // }
+    //
+    // private static void EnsureDysphorakhForFlayed(Pawn pawn)
+    // {
+    //     if (pawn?.def?.defName != "UD_Necron_FlayedOne") return;
+    //     HediffDef dysphorakh = NecronDefOfs.GW40K_Dysphorakh;
+    //     if (dysphorakh == null || pawn.health.hediffSet.HasHediff(dysphorakh)) return;
+    //     pawn.health.AddHediff(dysphorakh);
+    // }
 
-    private static void EnsureDysphorakhForFlayed(Pawn pawn)
+    private static void EnsureScarabNecrodermisFull(Pawn pawn)
     {
-        if (pawn?.def?.defName != "UD_Necron_FlayedOne")
+        if (pawn?.def?.defName != "GW40K_ScarabSwarm")
             return;
-        HediffDef dysphorakh = NecronDefOfs.GW40K_Dysphorakh;
-        if (dysphorakh == null || pawn.health.hediffSet.HasHediff(dysphorakh))
-            return;
-        pawn.health.AddHediff(dysphorakh);
+        pawn.needs?.AddOrRemoveNeedsAsAppropriate();
+        Need_Necrodermis necro = pawn.needs?.TryGetNeed<Need_Necrodermis>();
+        if (necro != null)
+            necro.CurLevel = necro.MaxLevel;
     }
 
     private static HediffDef PickDefaultCapacitor(Pawn p)
     {
         string defName = p?.def?.defName;
-        if (defName == "UD_Necron_FlayedOne" || defName == "GW40K_NecronFlayedOne")
+        if (defName == "GW40K_NecronFlayedOne") // MARKED FOR REMOVAL: "UD_Necron_FlayedOne" removed (nech-based)
             return null;
+        if (p.def == NecronDefOfs.UD_Necron_CanoptekSpyder)
+            return NechEnergyUtility.CapacitorLargeDef;
         if (NechEnergyUtility.IsOverlord(p))
             return NechEnergyUtility.CapacitorLargeDef;
-        if (NechEnergyUtility.IsScarab(p))
+        if (NechEnergyUtility.IsCanoptek(p))
             return NechEnergyUtility.CapacitorMicroDef;
         return NechEnergyUtility.CapacitorSmallDef;
+    }
+
+    private static void EnsureSpyderControlNode(Pawn pawn)
+    {
+        if (pawn.def != NecronDefOfs.UD_Necron_CanoptekSpyder)
+            return;
+        HediffDef controlNodeDef = NecronDefOfs.GW40K_ControlNodeImplant;
+        if (controlNodeDef == null || pawn.health.hediffSet.HasHediff(controlNodeDef))
+            return;
+        // AllParts is safe for fresh spawns; no missing-part filtering needed.
+        BodyPartRecord head = pawn.RaceProps.body.AllParts.FirstOrDefault(bp => bp.def == BodyPartDefOf.Head);
+        pawn.health.AddHediff(controlNodeDef, head);
     }
 
     private static void RemoveExistingCapacitors(Pawn p)
@@ -89,7 +123,7 @@ public static class HarmonyPatch_PawnSpawn_Capacitor
         if (p?.RaceProps?.body?.AllParts == null || p.health?.hediffSet == null)
             return null;
 
-        BodyPartDef gaussPartDef = DefDatabase<BodyPartDef>.GetNamedSilentFail("GW40K_GaussCapacitor");
+        BodyPartDef gaussPartDef = NecronDefOfs.GW40K_GaussCapacitor;
         if (gaussPartDef != null)
         {
             BodyPartRecord explicitPart = p.RaceProps.body.AllParts.FirstOrDefault(bp => bp.def == gaussPartDef);
@@ -97,10 +131,8 @@ public static class HarmonyPatch_PawnSpawn_Capacitor
                 return explicitPart;
         }
 
-        BodyPartRecord torso = p.health.hediffSet.GetNotMissingParts().FirstOrDefault(bp => bp.def == BodyPartDefOf.Torso);
-        if (torso != null)
-            return torso;
-
-        return p.health.hediffSet.GetNotMissingParts().FirstOrDefault();
+        // AllParts avoids hediffSet filter overhead; torso missing on spawn is vanishingly rare.
+        return p.RaceProps.body.AllParts.FirstOrDefault(bp => bp.def == BodyPartDefOf.Torso)
+            ?? p.RaceProps.body.AllParts.FirstOrDefault();
     }
 }

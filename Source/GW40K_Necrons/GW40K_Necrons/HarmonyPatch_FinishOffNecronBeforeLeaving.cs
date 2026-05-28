@@ -2,6 +2,7 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 #nullable disable
 namespace GW40K_Necrons;
@@ -10,6 +11,10 @@ namespace GW40K_Necrons;
 /// Before a hostile pawn exits the map, checks for nearby downed Necrons.
 /// Skipped for morale-break retreats (ExitMapBestAndDefendSelf duty), mental states (panic flee),
 /// and when a living threat is within 6 tiles of the downed Necron.
+///
+/// Necron siege lords are excluded entirely — their dedicated <see cref="LordToil_NecronFinishOff"/>
+/// phase (between Final Assault and Withdraw) handles finish-off inside the lord graph so it
+/// cannot interfere with the steal / kidnap / exit outcome chain.
 /// </summary>
 [HarmonyPatch(typeof(JobGiver_ExitMap), "TryGiveJob")]
 public static class HarmonyPatch_FinishOffNecronBeforeLeaving
@@ -29,6 +34,12 @@ public static class HarmonyPatch_FinishOffNecronBeforeLeaving
         // Skip for any flee/panic retreat duty — morale break (ExitMapBestAndDefendSelf) or random panic flee (ExitMapRandom)
         string dutyDef = pawn.mindState?.duty?.def?.defName;
         if (dutyDef == "ExitMapBestAndDefendSelf" || dutyDef == "ExitMapRandom")
+            return true;
+
+        // Necron siege lords manage finish-off via LordToil_NecronFinishOff, inserted
+        // between Final Assault and Withdraw in the lord graph.
+        // Forfeit the exit intercept entirely so the lord's outcome chain runs unimpeded.
+        if (pawn.GetLord()?.LordJob is LordJob_NecronSiege)
             return true;
 
         Pawn target = FindNearestDownedNecron(pawn);

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Applied by the Hunter's Mark ability. Lasts 1 in-game hour. -->
+  <HediffDef>
+    <defName>GW40K_HuntersMark</defName>
+    <label>hunter's mark</label>
+    <description>This target has been locked by a Deathmark's ocular array. Thermal signature, synaptic pulse, and predictive movement are being fed directly into the hunter's consciousness in real time. There is nowhere to go that the hunter does not already know about.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>true</isBad>
+    <defaultLabelColor>(0.6, 0.9, 0.65)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>2500~2500</disappearsAfterTicks><!-- 1 in-game hour -->
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- Applied during the Phase ability — brief displacement from realspace. -->
+  <HediffDef>
+    <defName>GW40K_TransDimensional</defName>
+    <label>trans-dimensional</label>
+    <description>Out of phase with realspace and cannot be damaged directly. The pawn is momentarily displaced from the physical world — untouchable, but equally unable to act.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.9, 0.65)</defaultLabelColor>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>240~240</disappearsAfterTicks><!-- 4 seconds at normal speed -->
+      </li>
+    </comps>
+  </HediffDef>
+
+</Defs>

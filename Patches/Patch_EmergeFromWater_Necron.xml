@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- Add Necron faction to EmergeFromWater raid strategy weight curve.
+       Necrons are metal constructs — rising from water is entirely appropriate.
+       Weight ramps from 0 at 500 pts to 0.3 at 1000 pts, matching the mechanoid curve. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/RaidStrategyDef[defName="EmergeFromWater"]/selectionWeightCurvesPerFaction</xpath>
+    <value>
+      <li>
+        <faction>UD_NecronFaction</faction>
+        <selectionWeightPerPointsCurve>
+          <points>
+            <li>(500, 0)</li>
+            <li>(1000, 0.3)</li>
+          </points>
+        </selectionWeightPerPointsCurve>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

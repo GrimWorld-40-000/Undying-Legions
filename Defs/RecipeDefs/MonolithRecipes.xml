@@ -1,6 +1,8 @@
 <Defs>
 
   <!-- ==================== SUMMONING RECIPES ==================== -->
+  <!-- MARKED FOR REMOVAL — all four summon recipes reference nech-based mech pawnkinds (UD_Necron_Warrior/Cryptothrall/Immortal/FlayedOne) that are being removed.
+       Replacement recipes for the humanlike UD_ pawnkinds need to be written here.
 
   <RecipeDef>
     <defName>GW40K_Summon_Warrior</defName>
@@ -153,6 +155,7 @@
       </li>
     </modExtensions>
   </RecipeDef>
+  -->
 
   <!-- ==================== CRAFTING RECIPES ==================== -->
 

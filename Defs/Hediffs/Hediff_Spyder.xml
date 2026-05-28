@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===== Siege mode ===== -->
+
+  <!-- Granted to the Canoptek Spyder by LordJob_NecronSiege when Stage 3 begins.
+       Removed automatically when the Spyder leaves siege duty (death or stage change). -->
+  <HediffDef>
+    <defName>GW_UL_SpyderSiegeMode</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>siege mode</label>
+    <description>Locomotion systems locked. Targeting arrays extended. This Spyder is acting as a siege platform — movement is severely restricted while the particle beamer and hive fabricator operate at peak capacity.</description>
+    <defaultLabelColor>(1, 0.55, 0.1, 1)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_SpyderSiegeMode" />
+    </comps>
+    <stages>
+      <li>
+        <label>siege mode</label>
+        <statFactors>
+          <MoveSpeed>0.6</MoveSpeed>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- Manually activated siege mode — 3 game-hour duration (7500 ticks).
+       Applied by the GW_UL_SpyderSiegeModeActivate ability. -->
+  <HediffDef>
+    <defName>GW_UL_SpyderSiegeModeManual</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>siege mode</label>
+    <description>Locomotion systems locked. Targeting arrays extended. Movement is severely restricted while the particle beamer operates at peak capacity. Returns to normal after 3 hours.</description>
+    <defaultLabelColor>(1, 0.55, 0.1, 1)</defaultLabelColor>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="GW40K_Necrons.HediffCompProperties_SpyderSiegeMode" />
+      <li Class="HediffCompProperties_Disappears">
+        <!-- 3 game-hours = 3 × 2500 ticks -->
+        <disappearsAfterTicks>7500</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>siege mode</label>
+        <statFactors>
+          <MoveSpeed>0.6</MoveSpeed>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===== EMP disruption ===== -->
+
+  <!-- Applied by HarmonyPatch_NecronEMPVulnerability when a Necron pawn takes EMP damage.
+       capMods removed — actual stun via pawn.stances.stunner.StunFor(90).
+       This hediff serves as a visual health-tab indicator only. -->
+  <HediffDef>
+    <defName>GW_UL_EMPDisruption</defName>
+    <label>EMP disruption</label>
+    <description>An electromagnetic pulse has destabilised this unit's integrated energy systems and sub-atomic living-metal protocols. Neural pathways are misfiring and movement is severely impaired until the necrodermis self-compensates.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>true</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>240</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>disrupted</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===== Siege cannon shell projectile ===== -->
+
+  <!-- Lobbed cannon shell — flies overhead so it clears walls; explodes on impact. -->
+  <ThingDef ParentName="BaseBullet">
+    <defName>GW_UL_SpyderCannonShell</defName>
+    <label>anti-matter particle blast</label>
+    <graphicData>
+      <texPath>Things/Projectiles/ParticleBeamer</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+    </graphicData>
+    <!-- Delayed-sound subclass: boom plays ~0.5 s after visual impact. -->
+    <thingClass>GW40K_Necrons.Projectile_DelayedImpactSound</thingClass>
+    <projectile>
+      <damageDef>GW_UL_ParticleCannonBlast</damageDef>
+      <damageAmountBase>35</damageAmountBase>
+      <stoppingPower>2.0</stoppingPower>
+      <armorPenetrationBase>0.2</armorPenetrationBase>
+      <explosionRadius>3.9</explosionRadius>
+      <!-- Reduced speed gives a visible high-arc trajectory like a mortar shell. -->
+      <speed>25</speed>
+      <flyOverhead>true</flyOverhead>
+      <explosionEffect>GW40K_ParticleBeamerFlash</explosionEffect>
+    </projectile>
+  </ThingDef>
+
+</Defs>

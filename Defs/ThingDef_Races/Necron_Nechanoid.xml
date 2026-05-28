@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-<!--
+<!-- THESE DEFS ARE NOT USED INGAME! PLEASE USE PAWN-BASED NECHS INSTEAD!
+
     Nechs are fully independent of the vanilla mech/mechanitor system.
     No CompOverseerSubject or CompMechRepairable — the Necron Command Protocol
     tracker handles all command, bandwidth, and uncontrolled logic directly.
@@ -32,6 +33,7 @@
       <soundCallIntervalRange>1000~2000</soundCallIntervalRange>
       <soundCallIntervalFriendlyFactor>2</soundCallIntervalFriendlyFactor>
       <canFlyInVacuum>true</canFlyInVacuum>
+      <canBecomeShambler>false</canBecomeShambler>
     </race>
     <comps>
       <li Class="CompProperties_CanBeDormant">
@@ -123,6 +125,7 @@
     <race>
       <intelligence>ToolUser</intelligence>
       <thinkTreeMain>Mechanoid</thinkTreeMain>
+      <thinkTreeConstant>MechConstant</thinkTreeConstant>
       <mechWeightClass>Heavy</mechWeightClass>
     </race>
     <butcherProducts>
@@ -144,10 +147,9 @@
 		<defaultFactionDef>UD_NecronFaction</defaultFactionDef>
 	</PawnKindDef>
 	
-	<!-- Warrior -->
+	<!-- MARKED FOR REMOVAL — nech-based mech warrior (UD_Necron_Warrior). Superseded by humanlike GW40K_NecronWarriorPawnKind_Colonist.
 	<ThingDef ParentName="BaseNechWalker">
 		<defName>UD_Necron_Warrior</defName>
-		<!-- NecronMechExtension inherited from BaseNech -->
 		<label>Necron Warrior</label>
 		<description>A skeletal machine soldier of the ancient Necron legions. This is the base combat model for the Necrons.</description>
 		<statBases>
@@ -247,12 +249,13 @@
 		<techHediffsChance>1</techHediffsChance>
 		<techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
-	
-	<!-- Cryptothrall -->
+	-->
+
+	<!-- MARKED FOR REMOVAL — nech-based mech cryptothrall (UD_Necron_Cryptothrall). Superseded by humanlike GW40K_CryptothrallPawnKind_Colonist.
+	     Note: NecronMechExtension inherited from BaseNech.
 	<ThingDef ParentName="BaseNechWalker">
 		<defName>UD_Necron_Cryptothrall</defName>
-		<!-- NecronMechExtension inherited from BaseNech -->
-		<label>Cryptothrall</label>
+		<label>necron cryptothrall</label>
 		<description>These purpose-built bodyguards are drawn directly from the Cryptek's own reserves aboard a nearby Necron starship, their blade-limbs already primed for slaughter.</description>
 		<tools>
 			<li>
@@ -326,7 +329,7 @@
 
 	<PawnKindDef ParentName="UD_NecronMechPawnKindBase">
 		<defName>UD_Necron_Cryptothrall</defName>
-		<label>Cryptothrall</label>
+		<label>necron cryptothrall</label>
 		<race>UD_Necron_Cryptothrall</race>
 		<combatPower>150</combatPower>
 		<lifeStages>
@@ -349,12 +352,14 @@
 		<techHediffsChance>1</techHediffsChance>
 		<techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
+	-->
 	
-	<!-- Immortal â€” must set body (BaseNechLancer has none); missing body breaks pawn gen / ShouldBeDead. Medium weight (overrides BaseNechLancer Light). -->
-	<ThingDef ParentName="BaseNechLancer">
+	<!-- MARKED FOR REMOVAL — nech-based mech immortal (UD_Necron_Immortal). Superseded by humanlike GW40K_NecronImmortalPawnKind_Colonist.
+	     Note: must set body (BaseNechLancer has none); missing body breaks pawn gen / ShouldBeDead. Medium weight (overrides BaseNechLancer Light).
+	<ThingDef ParentName=”BaseNechLancer”>
 		<defName>UD_Necron_Immortal</defName>
 		<modExtensions>
-			<li Class="GW40K_Necrons.NecronMechExtension">
+			<li Class=”GW40K_Necrons.NecronMechExtension”>
 				<commandBandwidthCost>2</commandBandwidthCost>
 				<coreSize>2</coreSize>
 			</li>
@@ -366,7 +371,7 @@
 			<body>Lancer</body>
 			<baseBodySize>1.0</baseBodySize>
 			<baseHealthScale>1.5</baseHealthScale>
-			<lifeStageAges Inherit="False">
+			<lifeStageAges Inherit=”False”>
 				<li>
 					<def>MechanoidFullyFormed</def>
 					<minAge>0</minAge>
@@ -389,12 +394,12 @@
 			</detritusLeavings>
 		</race>
 		<statBases>
-			<BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
+			<BandwidthCost MayRequire=”Ludeon.RimWorld.Biotech”>2</BandwidthCost>
 			<ControlTakingTime>18</ControlTakingTime>
 		</statBases>
 	</ThingDef>
 
-	<PawnKindDef ParentName="UD_NecronMechPawnKindBase">
+	<PawnKindDef ParentName=”UD_NecronMechPawnKindBase”>
 		<defName>UD_Necron_Immortal</defName>
 		<label>immortal</label>
 		<race>UD_Necron_Immortal</race>
@@ -417,8 +422,10 @@
 		<techHediffsChance>1</techHediffsChance>
 		<techHediffsMoney>9999~9999</techHediffsMoney>
 	</PawnKindDef>
+	-->
 	
-	<!-- FlayedOne -->
+	<!-- MARKED FOR REMOVAL — nech-based mech Flayed One (UD_Necron_FlayedOne). Superseded by humanlike GW40K_NecronFlayedOnePawnKind_Colonist.
+	     Note: GW40K_Nech_FlayedCloak ability was granted by GW40K_FlayerVirus (HediffComp_GiveAbility), not listed on the pawnkind.
 	<ThingDef ParentName="BaseNechHeavy">
     <defName>UD_Necron_FlayedOne</defName>
     <modExtensions>
@@ -535,22 +542,215 @@
         </bodyGraphicData>
       </li>
     </lifeStages>
-    <!-- Ability GW40K_Nech_FlayedCloak is granted by GW40K_FlayerVirus (HediffComp_GiveAbility), not listed here. -->
-    <!--
-    <abilities>
-      <li>GW40K_Nech_FlayedCloak</li>
-    </abilities>
-    -->
     <weaponMoney>9999~9999</weaponMoney>
     <weaponTags>
       <li>GW_Necron_Melee_Claw</li>
     </weaponTags>
     <controlGroupPortraitZoom>1</controlGroupPortraitZoom>
   </PawnKindDef>
+	-->
   
-  <!-- CryptekMech -->
-	<ThingDef ParentName="BaseNechHeavy">
-    <defName>UD_Unused_CryptekMech</defName>
+  <!-- ===== Canoptek Spyder ===== -->
+  <ThingDef ParentName="BaseNechHeavy" MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>UD_Necron_CanoptekSpyder</defName>
+    <label>Canoptek Spyder</label>
+    <description>A Canoptek Spyder — a towering arachnid maintenance and combat construct. Power claws tear apart armored hulls while fabricator claws handle precision repairs for Canoptek swarms. An integrated particle beamer mounted atop the abdomen detonates in a wide radius on impact. A control node in the head cluster transmits binding frequencies to nearby scarabs and lesser constructs.</description>
+    <modExtensions>
+      <li Class="GW40K_Necrons.NecronMechExtension">
+        <commandBandwidthCost>2</commandBandwidthCost>
+        <coreSize>2</coreSize>
+      </li>
+    </modExtensions>
+    <statBases>
+      <MoveSpeed>3.8</MoveSpeed>
+      <ArmorRating_Blunt>0.20</ArmorRating_Blunt>
+      <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+      <BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">2</BandwidthCost>
+      <ControlTakingTime>22</ControlTakingTime>
+    </statBases>
+    <tools>
+      <li>
+        <label>left power claw</label>
+        <labelNoLocation>power claw</labelNoLocation>
+        <capacities><li>Scratch</li></capacities>
+        <power>24</power>
+        <cooldownTime>2.0</cooldownTime>
+        <armorPenetration>0.30</armorPenetration>
+        <linkedBodyPartsGroup>GW40K_Spyder_LeftPowerClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>right power claw</label>
+        <labelNoLocation>power claw</labelNoLocation>
+        <capacities><li>Scratch</li></capacities>
+        <power>24</power>
+        <cooldownTime>2.0</cooldownTime>
+        <armorPenetration>0.30</armorPenetration>
+        <linkedBodyPartsGroup>GW40K_Spyder_RightPowerClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>left fabricator claw</label>
+        <labelNoLocation>fabricator claw</labelNoLocation>
+        <capacities><li>Cut</li><li>Scratch</li></capacities>
+        <power>13</power>
+        <cooldownTime>1.4</cooldownTime>
+        <armorPenetration>0.12</armorPenetration>
+        <linkedBodyPartsGroup>GW40K_Spyder_LeftFabricatorClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+      <li>
+        <label>right fabricator claw</label>
+        <labelNoLocation>fabricator claw</labelNoLocation>
+        <capacities><li>Cut</li><li>Scratch</li></capacities>
+        <power>13</power>
+        <cooldownTime>1.4</cooldownTime>
+        <armorPenetration>0.12</armorPenetration>
+        <linkedBodyPartsGroup>GW40K_Spyder_RightFabricatorClaw</linkedBodyPartsGroup>
+        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+      </li>
+    </tools>
+    <!-- Verbs: close-range auto beamer (normal) + long-range siege cannon (siege mode only). -->
+    <verbs>
+      <!-- Close-range particle beamer. Hidden and disabled during siege mode. -->
+      <li>
+        <verbClass>GW40K_Necrons.Verb_SpyderParticleBeamer</verbClass>
+        <hasStandardCommand>false</hasStandardCommand>
+        <defaultProjectile>GW40K_Spyder_Bullet_ParticleBeam_Explosion</defaultProjectile>
+        <warmupTime>12.5</warmupTime>
+        <range>23</range>
+        <minRange>5</minRange>
+        <ticksBetweenBurstShots>15</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <forcedMissRadius>1.5</forcedMissRadius>
+        <ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+        <soundCast>GW_Plasma_Gun_Sound</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>12</muzzleFlashScale>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+        </targetParams>
+      </li>
+      <!-- Long-range siege cannon — only available when siege mode hediff is active and
+           the 3-minute cooldown has expired. Replaces the old AbilityDef approach;
+           vanilla burst mechanics handle ticksBetweenBurstShots natively. -->
+      <li>
+        <verbClass>GW40K_Necrons.Verb_SpyderSiegeCannon</verbClass>
+        <hasStandardCommand>false</hasStandardCommand>
+        <defaultProjectile>GW_UL_SpyderCannonShell</defaultProjectile>
+        <warmupTime>30</warmupTime>
+        <range>500</range>
+        <minRange>33</minRange>
+        <ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <forcedMissRadius>8</forcedMissRadius>
+        <requireLineOfSight>false</requireLineOfSight>
+        <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+        <ai_AvoidFriendlyFireRadius>7</ai_AvoidFriendlyFireRadius>
+        <soundCast>GW_Plasma_Gun_Sound</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>12</muzzleFlashScale>
+        <targetParams>
+          <canTargetLocations>true</canTargetLocations>
+          <canTargetPawns>true</canTargetPawns>
+          <canTargetBuildings>true</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+        </targetParams>
+      </li>
+    </verbs>
+    <race>
+      <thinkTreeMain>GW_UL_SpyderThinkTree</thinkTreeMain>
+      <body>GW40K_SpyderBody</body>
+      <baseBodySize>4.75</baseBodySize>
+      <baseHealthScale>1.5</baseHealthScale>
+      <lifeStageAges Inherit="False">
+        <li>
+          <def>MechanoidFullyFormed</def>
+          <minAge>0</minAge>
+          <soundWounded>Pawn_Mech_Scyther_Wounded</soundWounded>
+          <soundDeath>Pawn_Mech_Scyther_Death</soundDeath>
+          <soundCall>Pawn_Mech_Scyther_Call</soundCall>
+        </li>
+      </lifeStageAges>
+      <detritusLeavings>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>0</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>3</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+      </detritusLeavings>
+    </race>
+    <comps>
+      <li Class="GW40K_Necrons.CompProperties_HiveFabricatorInit"/>
+      <!-- Burst queue comp now unused (verb handles burst natively); kept commented for rollback.
+      <li Class="GW40K_Necrons.CompProperties_SpyderBurstQueue"/> -->
+      <li Class="GW40K_Necrons.CompProperties_SpyderSiegeCannon"/>
+      <li Class="GW40K_Necrons.CompProperties_SpyderAutoAttack">
+        <commandLabel>Particle Beamer</commandLabel>
+        <commandDesc>Fire the integrated particle beamer at a target. Right-click to toggle autonomous fire.</commandDesc>
+      </li>
+      <!-- Repair policy: stores the Spyder's master template pushed to linked scarabs on bind and on tab change. -->
+      <li Class="GW40K_Necrons.CompProperties_CanoptekRepairPolicy" />
+      <!-- Work mode: Work (default) + full combat suite + Patrol for area patrol. -->
+      <li Class="GW40K_Necrons.CompProperties_NechWorkMode">
+        <availableModes>
+          <li>GW40K_NechMode_Work</li>
+          <li>GW40K_NechMode_Patrol</li>
+          <li>GW40K_NechMode_Escort</li>
+          <li>GW40K_NechMode_Maintain</li>
+          <li>GW40K_NechMode_Hold</li>
+        </availableModes>
+        <defaultMode>GW40K_NechMode_Work</defaultMode>
+      </li>
+    </comps>
+    <!-- Plain li: RimWorld resolves type from loaded assemblies (GenTypes). Avoid li Class= for List<Type> inspector tabs. -->
+    <inspectorTabs Inherit="True">
+      <li>GW40K_Necrons.ITab_SpyderRepair</li>
+    </inspectorTabs>
+  </ThingDef>
+
+  <PawnKindDef ParentName="UD_NecronHeavyMechPawnKindBase">
+    <defName>UD_Necron_CanoptekSpyder</defName>
+    <label>canoptek spyder</label>
+    <race>UD_Necron_CanoptekSpyder</race>
+    <allowInMechClusters>false</allowInMechClusters>
+    <combatPower>225</combatPower>
+    <lifeStages>
+      <li>
+        <bodyGraphicData>
+          <texPath>GW40K/Spyder/Spyder</texPath>
+          <shaderType>CutoutWithOverlay</shaderType>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>2.95</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <!-- Ranged attack is an integrated verb on the ThingDef; no carried weapon. -->
+    <weaponMoney>0~0</weaponMoney>
+    <canBeSapper>true</canBeSapper>
+    <isGoodBreacher>true</isGoodBreacher>
+    <controlGroupPortraitZoom>1</controlGroupPortraitZoom>
+    <abilities>
+      <li>GW_UL_SpyderSiegeModeActivate</li>
+    </abilities>
+  </PawnKindDef>
+
+  <!-- MARKED FOR REMOVAL — CryptekMech (nech-based mech Cryptek). Superseded by humanlike UD_NecronCryptek.
+  <ThingDef ParentName="BaseNechHeavy">
+    <defName>UNUSED_CryptekMech</defName>
     <modExtensions>
       <li Class="GW40K_Necrons.NecronMechExtension">
         <coreSize>3</coreSize>
@@ -630,11 +830,11 @@
     <comps>
       <li Class="CompProperties_Shield" />
 	  <li Class="CompProperties_MechCarrier">
-        <spawnPawnKind>UD_Necron_Warrior</spawnPawnKind>
-        <fixedIngredient>Steel</fixedIngredient>
+        <spawnPawnKind>GW_UL_ScarabSwarm</spawnPawnKind>
+        <fixedIngredient>GW40k_Necron_Necrodermis</fixedIngredient>
         <costPerPawn>25</costPerPawn>
-        <startingIngredientCount>600</startingIngredientCount>
-        <maxIngredientCount>600</maxIngredientCount>
+        <startingIngredientCount>150</startingIngredientCount>
+        <maxIngredientCount>150</maxIngredientCount>
         <spawnEffecter>WarqueenWarUrchinsSpawned</spawnEffecter>
         <spawnedMechEffecter>WarUrchinSpawned</spawnedMechEffecter>
         <attachSpawnedEffecter>true</attachSpawnedEffecter>
@@ -644,9 +844,9 @@
   </ThingDef>
   
   <PawnKindDef ParentName="UD_NecronHeavyMechPawnKindBase">
-    <defName>UD_Unused_CryptekMech</defName>
+    <defName>UNUSED_CryptekMech</defName>
     <label>UNUSED Cryptek</label>
-    <race>UD_Unused_CryptekMech</race>
+    <race>UNUSED_CryptekMech</race>
     <allowInMechClusters>false</allowInMechClusters>
     <combatPower>250</combatPower>
     <lifeStages>
@@ -665,8 +865,8 @@
     <abilities>
       <li>SmokepopMech</li>
     </abilities>
-    <controlGroupPortraitZoom>1</controlGroupPortraitZoom>  
+    <controlGroupPortraitZoom>1</controlGroupPortraitZoom>
   </PawnKindDef>
-  
+  -->
 
 </Defs>

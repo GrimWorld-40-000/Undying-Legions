@@ -316,7 +316,7 @@
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
 			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
-				<gaussConsumption>0.030</gaussConsumption>
+				<gaussConsumption>0.028</gaussConsumption>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -364,6 +364,7 @@
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>18</muzzleFlashScale>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 			</li>
 		</verbs>
 		<weaponTags>
@@ -391,7 +392,7 @@
 		<equippedAngleOffset>45</equippedAngleOffset>
 		<modExtensions>
 			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
-				<gaussConsumption>0.030</gaussConsumption>
+				<gaussConsumption>0.026</gaussConsumption>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -440,6 +441,7 @@
 				<soundCast>Shot_ChargeRifle</soundCast>
 				<soundCastTail>GunTail_Medium</soundCastTail>
 				<muzzleFlashScale>11</muzzleFlashScale>
+				<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 			</li>
 		</verbs>
 		<weaponTags>
@@ -471,7 +473,7 @@
 				<hpDeductAmount>5</hpDeductAmount>
 			</li>
 			<li Class="GW40K_Necrons.ModExtension_GaussWeapon">
-				<gaussConsumption>0.050</gaussConsumption>
+				<gaussConsumption>0.047</gaussConsumption>
 			</li>
 		</modExtensions>
 	</ThingDef>
@@ -636,8 +638,13 @@
       <shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile>
-			<damageDef>Burn</damageDef>
-			<damageAmountBase>5</damageAmountBase>
+			<!-- TeslaShock: custom def with harmsHealth=true + hediffDef=Burn (no bleed).
+			     EMP has harmsHealth=false so it deals zero HP damage to everyone.
+			     Burn alone doesn't damage non-flammable turrets (flammability=0 gating).
+			     TeslaShock is Heat-armored, makes burn wounds on flesh, reduces turret HP directly. -->
+			<damageDef>GW_UL_TeslaShock</damageDef>
+			<damageAmountBase>15</damageAmountBase>
+			<armorPenetrationBase>0.25</armorPenetrationBase>
 			<speed>140</speed>
       <beamMoteDef>Mote_TeslaCarbineBeam</beamMoteDef>
       <beamStartOffset>0.5</beamStartOffset>
@@ -674,6 +681,54 @@
         <_Intensity>2</_Intensity>
       </shaderParameters>
     </graphicData>
+  </ThingDef>
+
+  <!-- ===== Canoptek Spyder — Particle Beamer projectiles ===== -->
+
+  <!-- PLASMA variant (commented out — kept for reference / future toggle)
+  <ThingDef ParentName="BaseBullet">
+    <defName>GW40K_Spyder_Bullet_ParticleBeam</defName>
+    <label>particle beam</label>
+    <graphicData>
+      <texPath>Things/Projectiles/ParticleBeamer</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.8</drawSize>
+    </graphicData>
+    <thingClass>Projectile_Explosive</thingClass>
+    <projectile>
+      <damageDef>Vaporize</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <stoppingPower>2.5</stoppingPower>
+      <explosionRadius>4</explosionRadius>
+      <armorPenetrationBase>0</armorPenetrationBase>
+      <speed>90</speed>
+      <explosionEffect>GW_PlasmaEffecter</explosionEffect>
+    </projectile>
+  </ThingDef>
+  -->
+
+  <!-- particle beamer EXPLOSION variant — bright white anti-matter detonation. -->
+  <ThingDef ParentName="BaseBullet">
+    <defName>GW40K_Spyder_Bullet_ParticleBeam_Explosion</defName>
+    <label>anti-matter beam</label>
+    <graphicData>
+      <texPath>Things/Projectiles/ParticleBeamer</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.8</drawSize>
+    </graphicData>
+    <!-- Delayed-sound subclass: boom plays ~0.5 s after visual impact. -->
+    <thingClass>GW40K_Necrons.Projectile_DelayedImpactSound</thingClass>
+    <projectile>
+      <damageDef>GW_UL_ParticleCannonBlast</damageDef>
+      <damageAmountBase>50</damageAmountBase>
+      <stoppingPower>2.5</stoppingPower>
+      <explosionRadius>4</explosionRadius>
+      <armorPenetrationBase>0</armorPenetrationBase>
+      <speed>120</speed>
+      <explosionEffect>GW40K_ParticleBeamerFlash</explosionEffect>
+    </projectile>
   </ThingDef>
 
 </Defs>

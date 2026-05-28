@@ -51,6 +51,11 @@
         <coreSize>3</coreSize>
       </li>
     </modExtensions>
+    <race>
+      <disallowedTraits>
+        <li>Nerves</li>
+      </disallowedTraits>
+    </race>
   </ThingDef>
 
 </Defs>

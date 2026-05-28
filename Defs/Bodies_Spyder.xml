@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--
+    Canoptek Spyder arachnid body.
+
+    Structure overview:
+      Thorax (root/torso) — central structural hub.
+        - Power nexus (CentralCore equiv, BloodPumpingSource)
+        - Head (Top)
+            - Skull frame (Inside) → Mind Core (ConsciousnessSource)
+            - 4x sight sensor (SightSource)
+            - 2x hearing sensor (HearingSource)
+            - Chemical analyzer
+            - Control node (TalkingSource, EatingSource, indestructible)
+            - Left fabricator claw (ManipulationLimbCore, Bottom)
+            - Right fabricator claw (ManipulationLimbCore, Bottom)
+        - Left power claw  (ManipulationLimbCore + MovingLimbCore, Bottom)
+        - Right power claw (ManipulationLimbCore + MovingLimbCore, Bottom)
+        - 6x arachnid leg (MovingLimbCore, Bottom) — three left, three right
+        - Abdomen (Middle/high coverage, high HP)
+            - Abdomen core (BloodPumpingSource, Inside)
+            - Particle beamer (integrated weapon, Inside/Top, indestructible)
+  -->
+
+  <BodyDef>
+    <defName>GW40K_SpyderBody</defName>
+    <label>canoptek spyder</label>
+    <corePart>
+      <!-- Thorax: root structural node. -->
+      <def>GW40K_Necron_Torso</def>
+      <customLabel>thorax</customLabel>
+      <height>Middle</height>
+      <depth>Outside</depth>
+      <groups>
+        <li>Torso</li>
+      </groups>
+      <parts>
+
+        <li>
+          <def>GW40K_Necron_CentralCore</def>
+          <customLabel>central core</customLabel>
+          <coverage>0.16</coverage>
+          <depth>Inside</depth>
+          <groups><li>Torso</li></groups>
+        </li>
+
+        <!-- Head is directly attached to thorax on Spyder anatomy. -->
+        <li>
+          <def>Head</def>
+          <coverage>0.24</coverage>
+          <height>Top</height>
+          <groups>
+            <li>UpperHead</li>
+            <li>FullHead</li>
+            <li>HeadAttackTool</li>
+          </groups>
+          <parts>
+            <li>
+              <def>GW40K_Necron_Skull</def>
+              <customLabel>capitulum</customLabel>
+              <coverage>0.18</coverage>
+              <depth>Inside</depth>
+              <parts>
+                <li>
+                  <def>GW40K_Necron_MindCore</def>
+                  <coverage>0.35</coverage>
+                  <depth>Inside</depth>
+                  <groups>
+                    <li>UpperHead</li>
+                    <li>Eyes</li>
+                    <li>FullHead</li>
+                  </groups>
+                </li>
+
+                <!-- 4 sight sensors -->
+                <li>
+                  <def>GW40K_Necron_Eye</def>
+                  <customLabel>forward-left sight sensor</customLabel>
+                  <coverage>0.04</coverage>
+                  <groups>
+                    <li>FullHead</li>
+                    <li>Eyes</li>
+                  </groups>
+                  <woundAnchorTag>LeftEye</woundAnchorTag>
+                  <flipGraphic>true</flipGraphic>
+                  <visibleHediffRots>
+                    <li>South</li>
+                    <li>West</li>
+                  </visibleHediffRots>
+                </li>
+                <li>
+                  <def>GW40K_Necron_Eye</def>
+                  <customLabel>forward-right sight sensor</customLabel>
+                  <coverage>0.04</coverage>
+                  <groups>
+                    <li>FullHead</li>
+                    <li>Eyes</li>
+                  </groups>
+                  <woundAnchorTag>RightEye</woundAnchorTag>
+                  <visibleHediffRots>
+                    <li>South</li>
+                    <li>East</li>
+                  </visibleHediffRots>
+                </li>
+                <li>
+                  <def>GW40K_Necron_Eye</def>
+                  <customLabel>rear-left sight sensor</customLabel>
+                  <coverage>0.04</coverage>
+                  <groups>
+                    <li>FullHead</li>
+                    <li>Eyes</li>
+                  </groups>
+                  <flipGraphic>true</flipGraphic>
+                </li>
+                <li>
+                  <def>GW40K_Necron_Eye</def>
+                  <customLabel>rear-right sight sensor</customLabel>
+                  <coverage>0.04</coverage>
+                  <groups>
+                    <li>FullHead</li>
+                    <li>Eyes</li>
+                  </groups>
+                </li>
+
+                <!-- 2 hearing sensors -->
+                <li>
+                  <def>GW40K_Necron_Ear</def>
+                  <customLabel>left hearing sensor</customLabel>
+                  <coverage>0.04</coverage>
+                  <flipGraphic>true</flipGraphic>
+                  <groups>
+                    <li>UpperHead</li>
+                    <li>FullHead</li>
+                  </groups>
+                </li>
+                <li>
+                  <def>GW40K_Necron_Ear</def>
+                  <customLabel>right hearing sensor</customLabel>
+                  <coverage>0.04</coverage>
+                  <groups>
+                    <li>UpperHead</li>
+                    <li>FullHead</li>
+                  </groups>
+                </li>
+
+                <!-- Chemical analyzer (Nose equivalent) -->
+                <li>
+                  <def>GW40K_Necron_Nose</def>
+                  <customLabel>chemical analyzer</customLabel>
+                  <coverage>0.04</coverage>
+                  <groups><li>FullHead</li></groups>
+                </li>
+
+                <!-- Control node: communication and command relay. Indestructible. -->
+                <li>
+                  <def>GW40K_Spyder_ControlNode</def>
+                  <coverage>0.03</coverage>
+                  <groups><li>FullHead</li></groups>
+                </li>
+
+                <!-- Left fabricator claw: fine-manipulation appendage. Located at bottom of head cluster. -->
+                <li>
+                  <def>GW40K_Spyder_FabricatorClaw</def>
+                  <customLabel>left fabricator claw</customLabel>
+                  <coverage>0.11</coverage>
+                  <height>Bottom</height>
+                  <flipGraphic>true</flipGraphic>
+                  <groups>
+                    <li>GW40K_Spyder_LeftFabricatorClaw</li>
+                  </groups>
+                </li>
+                <!-- Right fabricator claw -->
+                <li>
+                  <def>GW40K_Spyder_FabricatorClaw</def>
+                  <customLabel>right fabricator claw</customLabel>
+                  <coverage>0.11</coverage>
+                  <height>Bottom</height>
+                  <groups>
+                    <li>GW40K_Spyder_RightFabricatorClaw</li>
+                  </groups>
+                </li>
+              </parts>
+            </li>
+          </parts>
+        </li>
+
+        <!-- Left power claw: attack/manipulation/locomotion. Bottom of thorax. -->
+        <li>
+          <def>GW40K_Spyder_PowerClaw</def>
+          <customLabel>left power claw</customLabel>
+          <coverage>0.07</coverage>
+          <height>Bottom</height>
+          <flipGraphic>true</flipGraphic>
+          <groups>
+            <li>GW40K_Spyder_LeftPowerClaw</li>
+          </groups>
+        </li>
+        <!-- Right power claw -->
+        <li>
+          <def>GW40K_Spyder_PowerClaw</def>
+          <customLabel>right power claw</customLabel>
+          <coverage>0.07</coverage>
+          <height>Bottom</height>
+          <groups>
+            <li>GW40K_Spyder_RightPowerClaw</li>
+          </groups>
+        </li>
+
+        <!-- 6 arachnid legs: three per side. Each is a MovingLimbCore.
+             Grouped as the standard Legs group so the movement capacity system finds them. -->
+        <li>
+          <def>GW40K_Necron_Leg</def>
+          <customLabel>front-left leg</customLabel>
+          <coverage>0.03</coverage>
+          <height>Bottom</height>
+          <flipGraphic>true</flipGraphic>
+          <groups><li>Legs</li></groups>
+        </li>
+        <li>
+          <def>GW40K_Necron_Leg</def>
+          <customLabel>mid-left leg</customLabel>
+          <coverage>0.03</coverage>
+          <height>Bottom</height>
+          <flipGraphic>true</flipGraphic>
+          <groups><li>Legs</li></groups>
+        </li>
+        <li>
+          <def>GW40K_Necron_Leg</def>
+          <customLabel>rear-left leg</customLabel>
+          <coverage>0.03</coverage>
+          <height>Bottom</height>
+          <flipGraphic>true</flipGraphic>
+          <groups><li>Legs</li></groups>
+        </li>
+        <li>
+          <def>GW40K_Necron_Leg</def>
+          <customLabel>front-right leg</customLabel>
+          <coverage>0.03</coverage>
+          <height>Bottom</height>
+          <groups><li>Legs</li></groups>
+        </li>
+        <li>
+          <def>GW40K_Necron_Leg</def>
+          <customLabel>mid-right leg</customLabel>
+          <coverage>0.03</coverage>
+          <height>Bottom</height>
+          <groups><li>Legs</li></groups>
+        </li>
+        <li>
+          <def>GW40K_Necron_Leg</def>
+          <customLabel>rear-right leg</customLabel>
+          <coverage>0.03</coverage>
+          <height>Bottom</height>
+          <groups><li>Legs</li></groups>
+        </li>
+
+        <!-- Abdomen: the large, exposed rear mass. High HP, most likely hit zone. -->
+        <li>
+          <def>GW40K_Spyder_Abdomen</def>
+          <customLabel>abdomen</customLabel>
+          <coverage>0.24</coverage>
+          <height>Middle</height>
+          <depth>Outside</depth>
+          <groups><li>Torso</li></groups>
+          <parts>
+            <!-- Abdomen core: internal energy reservoir. -->
+            <li>
+              <def>GW40K_Spyder_AbdomenCore</def>
+              <coverage>0.25</coverage>
+              <depth>Inside</depth>
+              <groups><li>Torso</li></groups>
+            </li>
+            <!-- Integrated particle beamer: mounted on top of the abdomen. Indestructible structural part. -->
+            <li>
+              <def>GW40K_Spyder_ParticleBeamerPart</def>
+              <coverage>0.18</coverage>
+              <height>Top</height>
+              <depth>Inside</depth>
+              <groups><li>Torso</li></groups>
+            </li>
+          </parts>
+        </li>
+
+      </parts>
+    </corePart>
+  </BodyDef>
+
+</Defs>

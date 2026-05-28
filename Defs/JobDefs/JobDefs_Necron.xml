@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===== Canoptek / Scarab ===== -->
+
+  <JobDef>
+    <defName>GW40K_Job_ScarabProduceToSpyder</defName>
+    <driverClass>GW40K_Necrons.JobDriver_ScarabProduceToSpyder</driverClass>
+    <reportString>transferring necrodermis to Hive Fabricator.</reportString>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_Job_ScarabReproduce</defName>
+    <driverClass>GW40K_Necrons.JobDriver_ScarabReproduce</driverClass>
+    <reportString>replicating.</reportString>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_Job_CanoptekConsume</defName>
+    <driverClass>GW40K_Necrons.JobDriver_CanoptekConsume</driverClass>
+    <reportString>Consuming {0}.</reportString>
+    <!-- Digest + buffer must run to completion; casual interrupts left necro at 0 and dumped/destroyed held chunks. -->
+    <casualInterruptible>false</casualInterruptible>
+    <suspendable>false</suspendable>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_Job_CanoptekRepair</defName>
+    <driverClass>GW40K_Necrons.JobDriver_CanoptekRepair</driverClass>
+    <reportString>Repairing {0}.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+
+  <!-- ===== Necron general ===== -->
+
+  <JobDef>
+    <defName>GW40K_Job_LayDown</defName>
+    <driverClass>GW40K_Necrons.JobDriver_LayDownCasket</driverClass>
+    <reportString>lying down.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_Job_RechargeFromBattery</defName>
+    <driverClass>GW40K_Necrons.JobDriver_RechargeFromBattery</driverClass>
+    <reportString>recharging gauss energy.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_TakeControlOfNech</defName>
+    <driverClass>GW40K_Necrons.JobDriver_TakeControlOfNech</driverClass>
+    <reportString>taking command of nech.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_Job_ConsumeGaussCore</defName>
+    <driverClass>GW40K_Necrons.JobDriver_ConsumeGaussCore</driverClass>
+    <reportString>siphoning gauss core.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_Job_DestroyNecronCorpse</defName>
+    <driverClass>GW40K_Necrons.JobDriver_DestroyNecronCorpse</driverClass>
+    <reportString>destroying target.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>GW40K_Job_FinishOffNecron</defName>
+    <driverClass>GW40K_Necrons.JobDriver_FinishOffNecron</driverClass>
+    <reportString>finishing off a downed Necron.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix>
+  </JobDef>
+
+</Defs>

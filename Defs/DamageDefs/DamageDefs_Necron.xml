@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Damage type for the Necron Tesla Carbine and any other arc-lightning weapons.
+       Deals real HP damage (unlike vanilla EMP which has harmsHealth=false and is stun-only).
+       Creates Burn wound hediffs on flesh pawns — no bleeding, but requires tending.
+       The Necron EMP disruption patch (HarmonyPatch_NecronEMPVulnerability) also triggers
+       on this def, applying GW_UL_EMPDisruption to Necron pawns hit by arc lightning. -->
+  <DamageDef>
+    <defName>GW_UL_TeslaShock</defName>
+    <label>tesla shock</label>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <hediff>Burn</hediff>
+    <harmsHealth>true</harmsHealth>
+    <makesBlood>false</makesBlood>
+    <armorCategory>Heat</armorCategory>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has been electrocuted to death.</deathMessage>
+    <combatLogRules>Damage_Flame</combatLogRules>
+  </DamageDef>
+
+  <!-- Particle cannon/beamer explosion: bright white flash, no fire.
+       Colors give a white expanding ring instead of the orange Bomb default. -->
+  <DamageDef ParentName="Bomb">
+    <defName>GW_UL_ParticleCannonBlast</defName>
+    <label>anti-matter particle blast</label>
+    <explosionHeatEnergyPerCell>0</explosionHeatEnergyPerCell>
+    <!-- White core fading to a pale blue-white edge — sci-fi anti-matter aesthetic. -->
+    <explosionColorCenter>(1.0, 1.0, 1.0)</explosionColorCenter>
+    <explosionColorEdge>(0.8, 0.88, 1.0)</explosionColorEdge>
+  </DamageDef>
+
+  <!-- Gauss Core detonation — Bomb base with Necron-green explosion colours. -->
+  <DamageDef ParentName="Bomb">
+    <defName>GW40K_GaussCoreBlast</defName>
+    <explosionColorCenter>(0.45, 1, 0.45)</explosionColorCenter>
+    <explosionColorEdge>(0.35, 0.75, 0.35)</explosionColorEdge>
+  </DamageDef>
+
+</Defs>

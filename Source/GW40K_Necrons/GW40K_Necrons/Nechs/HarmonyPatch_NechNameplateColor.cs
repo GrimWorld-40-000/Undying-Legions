@@ -47,10 +47,25 @@ public static class HarmonyPatch_NechNameplateColor
     [HarmonyPostfix]
     public static void Postfix(Pawn pawn, ref Color __result)
     {
-        if (pawn?.def?.GetModExtension<NecronMechExtension>() == null)
+        if (!NechUtility.IsNechControlled(pawn))
             return;
+
+        MentalStateDef rogueState = NecronDefOfs.GW40K_NechRogue ?? MentalStateDefOf.Berserk;
+        if (pawn.InMentalState && pawn.MentalStateDef == rogueState)
+        {
+            __result = new Color(0.92f, 0.2f, 0.2f);
+            return;
+        }
+
         if (pawn.Faction != Faction.OfPlayer)
             return;
+
+        if (!NechInspectStringUtility.IsNechProperlyCommanded(pawn))
+        {
+            __result = new Color(1f, 0.68f, 0.15f);
+            return;
+        }
+
         // Light blue-white — clearly non-hostile, matches typical ally UI.
         __result = new Color(0.72f, 0.88f, 1f);
     }
